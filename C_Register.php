@@ -7,13 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = mysqli_real_escape_string($db,$_POST['password']);
     $FName = mysqli_real_escape_string($db,$_POST['FName']);
     $LName = mysqli_real_escape_string($db,$_POST['LName']);
-    $Phone = mysqli_real_escape_string($db,$_POST['Phone_num']);
+    $Phone_num = mysqli_real_escape_string($db,$_POST['Phone_num']);
     $Email = mysqli_real_escape_string($db,$_POST['Email']);
     $Passport = mysqli_real_escape_string($db,$_POST['Passport']);
     
 
 
-$sql="INSERT INTO Employee (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$password','$FName','$LName','$Phone','$Email','$Passport')";
+$sql="INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$password','$FName','$LName','$Phone_num','$Email','$Passport')";
 
 if (mysqli_query($db,$sql)) {
     echo "Successfully Register!";

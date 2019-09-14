@@ -77,7 +77,7 @@ include("config.php");
             <img src="img/logo.png" alt="Company's Logo " class="my-2 img-fluid">
         </div>
         <h1 class=" mb-3 ">
-            Please sign in
+            Customer Login Page
         </h1>
         <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto p-2">
             <form action="" method="post" class="form-signin p-2">
@@ -91,7 +91,7 @@ include("config.php");
 
             </form>
             <div>
-                <a href="C_register.php">
+                <a href="C_Register.php">
             Register here!
          </a>
 
