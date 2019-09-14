@@ -25,10 +25,9 @@ CREATE TABLE Trip(
     Name VARCHAR(255) NOT NULL,
     Destination VARCHAR(255) NOT NULL,
     Fee int NOT NULL,
+    Category VARCHAR(100) not NULL,
     Avaiable_date DATE not NULL,
-    itinerary_url VARCHAR(255) NOT NULL,
-    FK_C_username VARCHAR(255) not NULL,
-    FOREIGN KEY (FK_C_username) REFERENCES Customer(username)
+    itinerary_url VARCHAR(255) NOT NULL
 );
 
 
@@ -37,7 +36,9 @@ CREATE TABLE Booking(
     FK_E_username VARCHAR(255) not NULL,
         FOREIGN key (FK_E_username) REFERENCES Employee(username),
     FK_Trip_ID VARCHAR(255) NOT NULL,
-        FOREIGN KEY (FK_Trip_ID) REFERENCES Trip(Trip_ID)
+        FOREIGN KEY (FK_Trip_ID) REFERENCES Trip(Trip_ID),
+    FK_C_username VARCHAR(255) not NULL,
+    FOREIGN KEY (FK_C_username) REFERENCES Customer(username)
 );
 
 
