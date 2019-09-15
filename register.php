@@ -59,7 +59,7 @@ if (mysqli_query($db,$sql)) {
                       </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="C_Login.php">Customer</a>
-                        <a class="dropdown-item" href="#">Staff</a>
+                        <a class="dropdown-item" href="Login.php">Staff</a>
                     </div>
                 </li>
             </ul>
