@@ -12,7 +12,7 @@
    $position = $row['Position'];
    
    if(!isset($_SESSION['login_user'])){
-      header("location:login.php");
+      header("location:Login.php");
       die();
    }
 ?>

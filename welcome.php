@@ -1,5 +1,6 @@
-<?php
+<?php 
    include('session.php');
+   
 ?>
     <html>
 
@@ -10,8 +11,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Welcome! <?php echo $login_session ?> </title>
     </head>
+    <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Smart Holidays</a>
+        <a class="navbar-brand" href="index.html">Smart Holidays</a>
 
         <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,10 +48,73 @@
         </div>
     </nav>
 
-    <body>
-        <h2>Welcome
+    
+        <h2 class="text-center">Welcome
             <?php echo $login_session; ?>, the <?php echo $position; ?> of Smart Travel!
         </h2>
+<div class="jumbotron">
+    <h1 class="text-center">
+    Below are the trip that managed by you
+    </h1>
+        <?php
+        //https://www.youtube.com/watch?v=pc0otVM80Sk
+
+ $query_sql= mysqli_query($db,"SELECT B.Booking_ID,
+ C.FName,
+ C.LName,
+ Trip.Trip_ID,
+ T.TourCode,
+ C.Phone_num,
+ T.Name,
+ T.Destination,
+ Trip.Departure_date,
+ Trip.Fee,
+ Trip.Airline,
+ E.username ,
+ T.itinerary_url
+ FROM Booking B
+ INNER JOIN Customer C ON B.FK_C_username=C.username
+ INNER JOIN Trip on Trip.Trip_ID=B.FK_Trip_ID
+ INNER join Tour T on Trip.FK_TourCode=T.TourCode
+ INNER JOIN Employee E on B.FK_E_username=E.username
+ WHERE E.username = '$login_session'");
+
+echo "<table border='1' class='table table-striped table-dark table-hover '>";
+echo "    
+<thead> 
+    <tr>
+        <td>            Customer Name           </td>
+        <td>            Customer Phone          </td>
+        <td>            Trip ID                 </td>
+        <td>            Tour Code               </td>
+        <td>            Trip Name               </td>
+        <td>            Destination             </td>
+        <td>            Departure_date          </td>
+        <td>            Fee                     </td>
+        <td>            Airline                 </td>
+        <td>            Itinerary               </td>
+    </tr>
+</thead>";
+    
+while ($row=mysqli_fetch_assoc($query_sql)) {
+    echo "
+    <tr>
+        <td>        {$row['FName']} {$row['LName']}     </td>
+        <td>        {$row['Phone_num']}                 </td>
+        <td>        {$row['Trip_ID']}                   </td>
+        <td>        {$row['TourCode']}                  </td>
+        <td>        {$row['Name']}                      </td>
+        <td>        {$row['Destination']}               </td>
+        <td>        {$row['Departure_date']}            </td>
+        <td>        {$row['Fee']}                       </td>
+        <td>        {$row['Airline']}                   </td>
+        <td>        <a href='{$row['itinerary_url']}'><img src='img/itenerary.png'/></a></td>
+
+    </tr>";
+}      
+    echo "</table>";
+?>
+<div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

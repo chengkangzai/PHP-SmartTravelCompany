@@ -39,7 +39,7 @@ CREATE TABLE Trip(
 );
 
 CREATE TABLE Booking(
-    Booking_ID VARCHAR(255) PRIMARY KEY,
+    Booking_ID int NOT NULL AUTO_INCREMENT primary key ,
     FK_E_username VARCHAR(255) not NULL,
         FOREIGN key (FK_E_username) REFERENCES Employee(username),
     FK_Trip_ID VARCHAR(255) NOT NULL,
