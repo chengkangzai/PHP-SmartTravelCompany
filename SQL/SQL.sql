@@ -26,7 +26,8 @@ CREATE TABLE Tour(
     Name VARCHAR(255) NOT NULL,
     Destination VARCHAR(255) NOT NULL,
     Category VARCHAR(100) not NULL,
-    itinerary_url VARCHAR(255) NOT NULL
+    itinerary_url VARCHAR(255) NOT NULL,
+    thumbnail_url VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Trip(
