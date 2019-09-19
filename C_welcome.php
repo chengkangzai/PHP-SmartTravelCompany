@@ -28,7 +28,7 @@ include("C_session.php");
                     <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="trips/index.html">Trips</a>
+                    <a class="nav-link" href="trips/index.php">Trips</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="About_us.html">About Us</a>

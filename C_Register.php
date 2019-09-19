@@ -52,7 +52,7 @@ if (mysqli_query($db,$sql)) {
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="trips/index.html">Trips</a>
+                        <a class="nav-link" href="trips/index.php">Trips</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="About_us.html">About Us</a>
@@ -79,19 +79,19 @@ if (mysqli_query($db,$sql)) {
         <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto p-2">
             <form method="post" action="" class="form-signin p-2">
 
-                <input type="text" name="username" placeholder="Desired username" class="form-control" autofocus>
+                <input type="text" name="username" placeholder="Desired username" class="form-control" autofocus required>
                 <br>
-                <input type="password" name="password" placeholder="Your Password " class="form-control">
+                <input type="password" name="password" placeholder="Your Password " class="form-control" required>
                 <br>
-                <input type="text" name="FName" id="" placeholder="Your First Name" class="form-control">
+                <input type="text" name="FName" id="" placeholder="Your First Name" class="form-control" required>
                 <br>
-                <input type="text" name="LName" placeholder="Your Last Name" class="form-control">
+                <input type="text" name="LName" placeholder="Your Last Name" class="form-control" required>
                 <br>
-                <input type="text" name="Phone_num" placeholder="Your Active Handphone number" class="form-control">
+                <input type="text" name="Phone_num" placeholder="Your Active Handphone number" class="form-control" required min="9" max="11">
                 <br>
-                <input type="email" name="Email" placeholder="Your email" class="form-control">
+                <input type="email" name="Email" placeholder="Your email" class="form-control" required>
                 <br>
-                <input type="text" name="Passport" placeholder="Your Passport number" class="form-control">
+                <input type="text" name="Passport" placeholder="Your Passport number" class="form-control" required>
                 <br>
 
                 <br>

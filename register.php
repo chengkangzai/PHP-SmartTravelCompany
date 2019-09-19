@@ -49,7 +49,7 @@ if (mysqli_query($db,$sql)) {
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="trips/index.html">Trips</a>
+                        <a class="nav-link" href="trips/index.php">Trips</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="About_us.html">About Us</a>
@@ -76,15 +76,15 @@ if (mysqli_query($db,$sql)) {
         <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto p-2">
             <form method="post" action="" class="form-signin p-2">
 
-                <input type="text" name="username" placeholder="Desired username" class="form-control" autofocus>
+                <input type="text" name="username" placeholder="Desired username" class="form-control" autofocus required>
                 <br>
-                <input type="password" name="password" placeholder="Your Password " class="form-control">
+                <input type="password" name="password" placeholder="Your Password " class="form-control" required>
                 <br>
-                <input type="text" name="FName" id="" placeholder="Your First Name" class="form-control">
+                <input type="text" name="FName" id="" placeholder="Your First Name" class="form-control" required>
                 <br>
-                <input type="text" name="LName" placeholder="Your Last Name" class="form-control">
+                <input type="text" name="LName" placeholder="Your Last Name" class="form-control" required>
                 <br>
-                <input type="number" name="IC" id="" placeholder="Your Idenditication Card Number" class="form-control" min=12 max=12>
+                <input type="number" name="IC" id="" placeholder="Your Idenditication Card Number" class="form-control" min=12 max=12 required>
                 <br>
                 <select name="Position" id="" class="form-control">
                     <option value="" disabled selected hidden> Your Position</option>
