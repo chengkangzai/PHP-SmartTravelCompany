@@ -16,7 +16,7 @@ include("../config.php");
 
 <body class="bg-secondary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Smart Holidays</a>
+        <a class="navbar-brand" href="../index.html">Smart Holidays</a>
 
         <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,20 +52,25 @@ include("../config.php");
         <div class="row">
             <div class="col-lg-4 border py-2">
                 <h3>
-                    <img src="../img/turkey.jpg" alt="" class="img-fluid py-1">
+                    <img src="<?php
+
+                                $tcode = "10XII";
+                                include('itenerary.php');
+                                echo $thumbnail;
+                                ?>" alt="" class="img-fluid py-1">
                     <?php
-                            $tcode="10XII";
-                            $sql="select * from Tour where Tourcode = '$tcode'";
-                            $query=mysqli_query($db,$sql);
-                            $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
-                            $itenerary= $row['itinerary_url'];
-                            $Tour_name=$row['Name'];
-                            echo $Tour_name;
-                ?>
-                     <span class="badge badge-secondary"> New</span>
+                    $tcode = "10XII";
+                    include('itenerary.php');
+                    echo $Tour_name;
+                    ?>
+                    <span class="badge badge-secondary"> New</span>
                 </h3>
                 <div>
-                    Tour Code : 10XII
+                    Tour Code: <?php
+                                $tcode = "10XII";
+                                include('itenerary.php');
+                                echo $tcode;
+                                ?>
                 </div>
                 <ul id="10XII_intro" class="intro">
                     <li>
@@ -87,45 +92,63 @@ include("../config.php");
                         Pamukkale (Cotton Castle) - surreal, brilliant white travertine terraces and warm, limpid pools of Pamukkale hang, recognize – by UNESCO World Heritage in 1988.
                     </li>
                 </ul>
-       
+
                 <div class=" ">
-                <a onclick="hidden_10XII()" class="btn btn-dark mx-auto text-light" id="10XII_hide">
-            Expand
-               </a>
-               <script>
-                    function hidden_10XII(){
-                        var x = document.getElementById("10XII_intro");
-                        var y = document.getElementById("10XII_hide");
-                    if (x.style.display === "block") {
-                            x.style.display = "none"
-                            y.innerHTML="Expand";
-                        } else {
-                            x.style.display = "block"
-                            y.innerHTML="Hide";
+                    <a onclick="hidden_10XII()" class="btn btn-dark mx-auto text-light" id="10XII_hide">
+                        Expand
+                    </a>
+                    <script>
+                        function hidden_10XII() {
+                            var x = document.getElementById("10XII_intro");
+                            var y = document.getElementById("10XII_hide");
+                            if (x.style.display === "block") {
+                                x.style.display = "none"
+                                y.innerHTML = "Expand";
+                            } else {
+                                x.style.display = "block"
+                                y.innerHTML = "Hide";
+                            }
                         }
-                    }
-               </script>
+                    </script>
                     <a href=" 
                     <?php
-                            $tcode="10XII";
-                            $sql="select * from Tour where Tourcode = '$tcode'";
-                            $query=mysqli_query($db,$sql);
-                            $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
-                            $itenerary= $row['itinerary_url'];
-                            $Tour_name=$row['Name'];
-                            echo $itenerary;
-                ?>
+                    $tcode = "10XII";
+                    $sql = "select * from Tour where Tourcode = '$tcode'";
+                    $query = mysqli_query($db, $sql);
+                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+                    $itenerary = $row['itinerary_url'];
+                    $Tour_name = $row['Name'];
+                    echo $itenerary;
+                    ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
                     <a href="../Booking.php" class="btn btn-dark mx-auto">Book now ! </a>
                 </div>
             </div>
             <div class="col-lg-4 border py-2">
                 <h3>
-                    <img src="../img/paris.jpg" alt="" class="img-fluid py-1"> 11D 8N EUROPE CLASSIC FULLBOARD
+                    <img src="<?php
+                                $tcode = "11ELPS";
+                                include('itenerary.php');
+                                echo $thumbnail;
+                                ?>" alt="" class="img-fluid py-1">
+                    <?php
+                    $tcode = "11ELPS";
+                    $sql = "select * from Tour where Tourcode = '$tcode'";
+                    $query = mysqli_query($db, $sql);
+                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+                    $itenerary = $row['itinerary_url'];
+                    $Tour_name = $row['Name'];
+                    $thumbnail = $row['thumbnail_url'];
+                    echo $Tour_name;
+                    ?>
                     <span class="badge badge-danger"> Promo!</span>
                 </h3>
-                <div>
-                    Tour Code : 11ELPS
+                <div>Tour Code:
+                    <?php
+                    $tcode = "11ELPS";
+                    include('itenerary.php');
+                    echo $tcode;
+                    ?>
                 </div>
                 <ul id="11ELPS_intro" class="intro">
                     <li>
@@ -148,41 +171,56 @@ include("../config.php");
                     </li>
                 </ul>
                 <div class=" ">
-                <a onclick="hidden_11ELPS()" class="btn btn-dark mx-auto text-light" id="11ELPS_hide">
-            Expand
-               </a>
-               <script>
-                    function hidden_11ELPS(){
-                        var x = document.getElementById("11ELPS_intro");
-                        var y = document.getElementById("11ELPS_hide");
-                    if (x.style.display === "block") {
-                            x.style.display = "none"
-                            y.innerHTML="Expand";
-                        } else {
-                            x.style.display = "block"
-                            y.innerHTML="Hide";
+                    <a onclick="hidden_11ELPS()" class="btn btn-dark mx-auto text-light" id="11ELPS_hide">
+                        Expand
+                    </a>
+                    <script>
+                        function hidden_11ELPS() {
+                            var x = document.getElementById("11ELPS_intro");
+                            var y = document.getElementById("11ELPS_hide");
+                            if (x.style.display === "block") {
+                                x.style.display = "none"
+                                y.innerHTML = "Expand";
+                            } else {
+                                x.style.display = "block"
+                                y.innerHTML = "Hide";
+                            }
                         }
-                    }
-               </script>
+                    </script>
                     <a href=" 
                     <?php
-                            $tcode="11ELPS";
-                            $sql="select * from Tour where Tourcode = '$tcode'";
-                            $query=mysqli_query($db,$sql);
-                            $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
-                            $itenerary= $row['itinerary_url'];
-                            echo $itenerary;
-                ?>
+                    $tcode = "11ELPS";
+                    $sql = "select * from Tour where Tourcode = '$tcode'";
+                    $query = mysqli_query($db, $sql);
+                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+                    $itenerary = $row['itinerary_url'];
+                    echo $itenerary;
+                    ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
                     <a href="../Booking.php" class="btn btn-dark mx-auto">Book now ! </a>
                 </div>
             </div>
             <div class="col-lg-4 border py-2">
                 <h3>
-                    <img src="../img/shilin.jpg" alt="" class="img-fluid py-1"> 6D5N TAIWAN VALUE WEST TOUR <span class="badge badge-primary"> Classic</span>
+                    <img src="<?php
+                                $tcode = "6TPE";
+                                include('itenerary.php');
+                                echo $thumbnail;
+                                ?>" alt="" class="img-fluid py-1">
+
+                    <?php
+                    $tcode = "6TPE";
+                    include('itenerary.php');
+                    echo $Tour_name;
+                    ?>
+                    <span class="badge badge-primary"> Classic</span>
                 </h3>
-                <div>
-                    Tour Code : 6TPE
+                <div>Tour Code:
+                    <?php
+                    $tcode = "6TPE";
+                    include('itenerary.php');
+                    echo $tcode;
+                    ?>
                 </div>
                 <ul id="6TPE_intro" class="intro">
                     <li>
@@ -199,31 +237,31 @@ include("../config.php");
                     </li>
                 </ul>
                 <div class=" ">
-                <a onclick="hidden_6TPE()" class="btn btn-dark mx-auto text-light" id="6TPE_hide">
-            Expand
-               </a>
-               <script>
-                    function hidden_6TPE(){
-                        var x = document.getElementById("6TPE_intro");
-                        var y = document.getElementById("6TPE_hide");
-                    if (x.style.display === "block") {
-                            x.style.display = "none"
-                            y.innerHTML="Expand";
-                        } else {
-                            x.style.display = "block"
-                            y.innerHTML="Hide";
+                    <a onclick="hidden_6TPE()" class="btn btn-dark mx-auto text-light" id="6TPE_hide">
+                        Expand
+                    </a>
+                    <script>
+                        function hidden_6TPE() {
+                            var x = document.getElementById("6TPE_intro");
+                            var y = document.getElementById("6TPE_hide");
+                            if (x.style.display === "block") {
+                                x.style.display = "none"
+                                y.innerHTML = "Expand";
+                            } else {
+                                x.style.display = "block"
+                                y.innerHTML = "Hide";
+                            }
                         }
-                    }
-               </script>
+                    </script>
                     <a href=" 
                     <?php
-                            $tcode="6TPE";
-                            $sql="select * from Tour where Tourcode = '$tcode'";
-                            $query=mysqli_query($db,$sql);
-                            $row=mysqli_fetch_array($query,MYSQLI_ASSOC);
-                            $itenerary= $row['itinerary_url'];
-                            echo $itenerary;
-                ?>
+                    $tcode = "6TPE";
+                    $sql = "select * from Tour where Tourcode = '$tcode'";
+                    $query = mysqli_query($db, $sql);
+                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+                    $itenerary = $row['itinerary_url'];
+                    echo $itenerary;
+                    ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
                     <a href="../Booking.php" class="btn btn-dark mx-auto">Book now ! </a>
                 </div>
@@ -232,8 +270,8 @@ include("../config.php");
 
 
     </div>
-    
-    
+
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
