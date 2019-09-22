@@ -9,8 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $LName = mysqli_real_escape_string($db,$_POST['LName']);
     $IC_num=mysqli_real_escape_string($db,$_POST['IC']);
     $Position = mysqli_real_escape_string($db,$_POST['Position']);
+    $Agency=mysqli_real_escape_string($db,$_POST['Agency']);
 
-$sql="INSERT INTO Employee (username,password,FName,LName,IC_num,Position) VALUES ('$username','$password','$FName','$LName','$IC_num','$Position')";
+$sql="INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$password','$FName','$LName','$IC_num','$Position','$Agency')";
 
 if (mysqli_query($db,$sql)) {
     echo "Successfully Register!";
@@ -84,7 +85,8 @@ if (mysqli_query($db,$sql)) {
                 <br>
                 <input type="text" name="LName" placeholder="Your Last Name" class="form-control" required>
                 <br>
-                <input type="number" name="IC" id="" placeholder="Your Idenditication Card Number" class="form-control" min=12 max=12 required>
+				<!--https://stackoverflow.com/questions/10281962/is-there-a-minlength-validation-attribute-in-html5#10294291 -->
+                <input type="number" name="IC" id="" placeholder="Your Idenditication Card Number" class="form-control" pattern=".{12,}" required>
                 <br>
                 <select name="Position" id="" class="form-control">
                     <option value="" disabled selected hidden> Your Position</option>

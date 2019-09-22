@@ -57,7 +57,8 @@ include("../config.php");
                                 $tcode = "10XII";
                                 include('itenerary.php');
                                 echo $thumbnail;
-                                ?>" alt="" class="img-fluid py-1">
+                                ?>
+                                " alt="" class="img-fluid py-1">
                     <?php
                     $tcode = "10XII";
                     include('itenerary.php');
