@@ -47,6 +47,16 @@ include("../config.php");
             </ul>
         </div>
     </nav>
+
+    <div class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Tour Code</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Type specific Tour Code">
+        <div class="input-group-append">
+            <button class="btn btn-light border" type="button" id="button-addon2">Button</button>
+        </div>
+    </div>
     <div class="jumbotron col-lg-10 mx-auto">
         <h1 class="text-center mb-3">Most Popular Trips!</h1>
         <div class="row">
@@ -74,7 +84,9 @@ include("../config.php");
                     echo $tcode;
                     ?>
                 </div>
-                <ul id="10XII_intro" class="intro">
+
+                <ul id="intro_1" class="intro p-3">
+                    <h2 class="text-primary text-center">Hightlight</h2>
                     <li>
                         Local 4 Star Hotel Accommodation
                     </li>
@@ -96,13 +108,13 @@ include("../config.php");
                 </ul>
 
                 <div class=" ">
-                    <a onclick="hidden_10XII()" class="btn btn-dark mx-auto text-light" id="10XII_hide">
+                    <a onclick="hidden_1()" class="btn btn-dark mx-auto text-light" id="hide_1">
                         Expand
                     </a>
                     <script>
-                        function hidden_10XII() {
-                            var x = document.getElementById("10XII_intro");
-                            var y = document.getElementById("10XII_hide");
+                        function hidden_1() {
+                            var x = document.getElementById("intro_1");
+                            var y = document.getElementById("hide_1");
                             if (x.style.display === "block") {
                                 x.style.display = "none"
                                 y.innerHTML = "Expand";
@@ -125,10 +137,10 @@ include("../config.php");
             <div class="col-lg-4 border py-2">
                 <h3>
                     <img src="<?php
-                    $tcode = "11ELPS";
-                    include('itenerary.php');
-                    echo $thumbnail;
-                    ?>
+                                $tcode = "11ELPS";
+                                include('itenerary.php');
+                                echo $thumbnail;
+                                ?>
                     " alt="" class="img-fluid py-1">
                     <?php
                     $tcode = "11ELPS";
@@ -145,7 +157,7 @@ include("../config.php");
                     echo $tcode;
                     ?>
                 </div>
-                <ul id="11ELPS_intro" class="intro">
+                <ul id="intro_2" class="intro">
                     <li>
                         <b> England,London</b> – Panoramic views of St Paul’s Cathedral, Tower Bridge, London Bridge, London Tower, Parliament House
                     </li>
@@ -166,13 +178,13 @@ include("../config.php");
                     </li>
                 </ul>
                 <div class=" ">
-                    <a onclick="hidden_11ELPS()" class="btn btn-dark mx-auto text-light" id="11ELPS_hide">
+                    <a onclick="hidden_2()" class="btn btn-dark mx-auto text-light" id="hide_2">
                         Expand
                     </a>
                     <script>
-                        function hidden_11ELPS() {
-                            var x = document.getElementById("11ELPS_intro");
-                            var y = document.getElementById("11ELPS_hide");
+                        function hidden_2() {
+                            var x = document.getElementById("intro_2");
+                            var y = document.getElementById("hide_2");
                             if (x.style.display === "block") {
                                 x.style.display = "none"
                                 y.innerHTML = "Expand";
@@ -217,7 +229,7 @@ include("../config.php");
                     echo $tcode;
                     ?>
                 </div>
-                <ul id="6TPE_intro" class="intro">
+                <ul id="intro_3" class="intro">
                     <li>
                         <b> Shilin Night Market </b> is a night market in the Shilin District of Taipei, Taiwan, and is often considered to be the largest and most famous night market in the city
                     </li>
@@ -233,13 +245,13 @@ include("../config.php");
                     </li>
                 </ul>
                 <div class=" ">
-                    <a onclick="hidden_6TPE()" class="btn btn-dark mx-auto text-light" id="6TPE_hide">
+                    <a onclick="hidden_6TPE()" class="btn btn-dark mx-auto text-light" id="hide_3">
                         Expand
                     </a>
                     <script>
                         function hidden_6TPE() {
-                            var x = document.getElementById("6TPE_intro");
-                            var y = document.getElementById("6TPE_hide");
+                            var x = document.getElementById("intro_3");
+                            var y = document.getElementById("hide_3");
                             if (x.style.display === "block") {
                                 x.style.display = "none"
                                 y.innerHTML = "Expand";
