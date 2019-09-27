@@ -19,5 +19,7 @@
       die();
    }
 
-
+if ($user_check="") {
+   header('Login.php');
+}
 ?>

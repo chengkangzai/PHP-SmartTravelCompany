@@ -83,21 +83,22 @@ echo "<table border='1' class='table table-striped table-dark table-hover '>";
 echo "    
 <thead> 
     <tr>
-        <td>            Customer Name           </td>
-        <td>            Customer Phone          </td>
-        <td>            Trip ID                 </td>
-        <td>            Tour Code               </td>
-        <td>            Trip Name               </td>
-        <td>            Destination             </td>
-        <td>            Departure_date          </td>
-        <td>            Fee                     </td>
-        <td>            Airline                 </td>
-        <td>            Itinerary               </td>
+        <th scope='col'>            Customer Name           </th>
+        <th scope='col'>            Customer Phone          </th>
+        <th scope='col'>            Trip ID                 </th>
+        <th scope='col'>            Tour Code               </th>
+        <th scope='col'>            Trip Name               </th>
+        <th scope='col'>            Destination             </th>
+        <th scope='col'>            Departure_date          </th>
+        <th scope='col'>            Fee                     </th>
+        <th scope='col'>            Airline                 </th>
+        <th scope='col'>            Itinerary               </th>
     </tr>
 </thead>";
     
 while ($row=mysqli_fetch_assoc($query_sql)) {
     echo "
+<tbody>    
     <tr>
         <td>        {$row['FName']} {$row['LName']}     </td>
         <td>        {$row['Phone_num']}                 </td>
@@ -110,7 +111,8 @@ while ($row=mysqli_fetch_assoc($query_sql)) {
         <td>        {$row['Airline']}                   </td>
         <td>        <a href='{$row['itinerary_url']}'><img src='img/itenerary.png'/></a></td>
 
-    </tr>";
+    </tr>
+</tbody>";
 }      
     echo "</table>";
 ?>

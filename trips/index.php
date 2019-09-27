@@ -53,7 +53,6 @@ include("../config.php");
             <div class="col-lg-4 border py-2">
                 <h3>
                     <img src="<?php
-
                                 $tcode = "10XII";
                                 include('itenerary.php');
                                 echo $thumbnail;
@@ -63,15 +62,17 @@ include("../config.php");
                     $tcode = "10XII";
                     include('itenerary.php');
                     echo $Tour_name;
+
                     ?>
                     <span class="badge badge-secondary"> New</span>
                 </h3>
                 <div>
-                    Tour Code: <?php
-                                $tcode = "10XII";
-                                include('itenerary.php');
-                                echo $tcode;
-                                ?>
+                    Tour Code:
+                    <?php
+                    $tcode = "10XII";
+                    include('itenerary.php');
+                    echo $tcode;
+                    ?>
                 </div>
                 <ul id="10XII_intro" class="intro">
                     <li>
@@ -114,11 +115,7 @@ include("../config.php");
                     <a href=" 
                     <?php
                     $tcode = "10XII";
-                    $sql = "select * from Tour where Tourcode = '$tcode'";
-                    $query = mysqli_query($db, $sql);
-                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
-                    $itenerary = $row['itinerary_url'];
-                    $Tour_name = $row['Name'];
+                    include('itenerary.php');
                     echo $itenerary;
                     ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
@@ -128,19 +125,16 @@ include("../config.php");
             <div class="col-lg-4 border py-2">
                 <h3>
                     <img src="<?php
-                                $tcode = "11ELPS";
-                                include('itenerary.php');
-                                echo $thumbnail;
-                                ?>" alt="" class="img-fluid py-1">
+                    $tcode = "11ELPS";
+                    include('itenerary.php');
+                    echo $thumbnail;
+                    ?>
+                    " alt="" class="img-fluid py-1">
                     <?php
                     $tcode = "11ELPS";
-                    $sql = "select * from Tour where Tourcode = '$tcode'";
-                    $query = mysqli_query($db, $sql);
-                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
-                    $itenerary = $row['itinerary_url'];
-                    $Tour_name = $row['Name'];
-                    $thumbnail = $row['thumbnail_url'];
+                    include('itenerary.php');
                     echo $Tour_name;
+
                     ?>
                     <span class="badge badge-danger"> Promo!</span>
                 </h3>
@@ -191,7 +185,7 @@ include("../config.php");
                     <a href=" 
                     <?php
                     $tcode = "11ELPS";
-                    $sql = "select * from Tour where Tourcode = '$tcode'";
+                    $sql = "select * from Tour where Tourcode='$tcode' ";
                     $query = mysqli_query($db, $sql);
                     $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
                     $itenerary = $row['itinerary_url'];
@@ -228,7 +222,8 @@ include("../config.php");
                         <b> Shilin Night Market </b> is a night market in the Shilin District of Taipei, Taiwan, and is often considered to be the largest and most famous night market in the city
                     </li>
                     <li>
-                        <b>Sun Moon Lake</b> is in the foothills of Taiwan’s Central Mountain Range. It’s surrounded by forested peaks and has foot trails. Aboriginal Culture Village is a theme park with a section devoted to re-created indigenous villages
+                        <b>Sun Moon Lake</b> is in the foothills of Taiwan’s Central Mountain Range. It’s surrounded by forested peaks and has foot trails. Aboriginal Culture Village is a theme park with a section devoted to re-created indigenous
+                        villages
                     </li>
                     <li>
                         <b> Sun Moon Lake Wen Wu Temple</b> is a Wen Wu temple located on the perimeter of Sun Moon Lake in Yuchi Township, Nantou County, Taiwan
@@ -256,8 +251,8 @@ include("../config.php");
                     </script>
                     <a href=" 
                     <?php
-                    $tcode = "6TPE";
-                    $sql = "select * from Tour where Tourcode = '$tcode'";
+                    $tcode = " 6TPE ";
+                    $sql = "select * from Tour where Tourcode='$tcode' ";
                     $query = mysqli_query($db, $sql);
                     $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
                     $itenerary = $row['itinerary_url'];
