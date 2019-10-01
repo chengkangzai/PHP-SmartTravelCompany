@@ -131,7 +131,7 @@ include("../config.php");
                     echo $itenerary;
                     ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
-                    <a href="../Booking.php" class="btn btn-dark mx-auto">Book now ! </a>
+                    <a href="../booking.php" class="btn btn-dark mx-auto">Book now ! </a>
                 </div>
             </div>
             <div class="col-lg-4 border py-2">
@@ -197,14 +197,11 @@ include("../config.php");
                     <a href=" 
                     <?php
                     $tcode = "11ELPS";
-                    $sql = "select * from Tour where Tourcode='$tcode' ";
-                    $query = mysqli_query($db, $sql);
-                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
-                    $itenerary = $row['itinerary_url'];
+                    include('itenerary.php');
                     echo $itenerary;
                     ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
-                    <a href="../Booking.php" class="btn btn-dark mx-auto">Book now ! </a>
+                    <a href="../booking.php" class="btn btn-dark mx-auto">Book now ! </a>
                 </div>
             </div>
             <div class="col-lg-4 border py-2">
@@ -263,15 +260,12 @@ include("../config.php");
                     </script>
                     <a href=" 
                     <?php
-                    $tcode = " 6TPE ";
-                    $sql = "select * from Tour where Tourcode='$tcode' ";
-                    $query = mysqli_query($db, $sql);
-                    $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
-                    $itenerary = $row['itinerary_url'];
+                    $tcode = "6TPE";
+                    include('itenerary.php');
                     echo $itenerary;
                     ?>
                 " class="btn btn-dark mx-auto">Itinerary </a>
-                    <a href="../Booking.php" class="btn btn-dark mx-auto">Book now ! </a>
+                    <a href="../booking.php" class="btn btn-dark mx-auto">Book now ! </a>
                 </div>
             </div>
         </div>
