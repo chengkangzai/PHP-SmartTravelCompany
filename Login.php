@@ -21,7 +21,6 @@ include("config.php");
 		
       if($count == 1) {
          $_SESSION['login_user'] = $username;
-         
          header("location: welcome.php");
       }else {
          $error = "Your Login Name or Password is invalid";

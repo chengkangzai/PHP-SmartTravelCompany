@@ -19,5 +19,5 @@
       die();
    }
 
-   mysqli_close($db);
+   
 ?>

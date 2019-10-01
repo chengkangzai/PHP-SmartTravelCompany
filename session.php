@@ -15,5 +15,5 @@
       header("location:Login.php");
       die();
    }
-   mysqli_close($db);
+
 ?>

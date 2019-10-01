@@ -59,6 +59,7 @@ Welcome ! our beloved Customer <?php echo $FName.' '.$LName ?>
  $query_sql= mysqli_query($db,"SELECT
  B.Booking_ID ,
  B.FK_Trip_ID ,
+ B.FK_C_username,
  Tour.TourCode ,
  Tour.Name ,
  T.Departure_date,
@@ -72,43 +73,28 @@ where B.FK_C_username='$login_session'");
 echo "<table border='1' class='table table-striped table-dark table-hover '>";
 echo "    <thead> 
     <tr>
-        <td>            Booking ID        </td>
-        <td>            Trip ID        </td>
-        <td>            Tour Code        </td>
-        <td>            Tour Name        </td>
-        <td>            Departure Date        </td>
-        <td>            Fee        </td>
-        <td>            Itinerary        </td>
+        <td>            Booking ID          </td>
+        <td>            Trip ID             </td>
+        <td>            Tour Code           </td>
+        <td>            Tour Name           </td>
+        <td>            Departure Date      </td>
+        <td>            Fee                 </td>
+        <td>            Itinerary           </td>
     </tr>
     </thead>";
     
 while ($row=mysqli_fetch_assoc($query_sql)) {
     echo "
     <tr>
-        <td>
-        {$row['Booking_ID']}
-        </td>
-        <td>
-        {$row['FK_Trip_ID']}
-        </td>
-        <td>
-        {$row['TourCode']}
-        </td>
-        <td>
-        {$row['Name']}
-        </td>
-        <td>
-        {$row['Departure_date']}
-        </td>
-        <td>RM
-        {$row['Fee']}.00
-        </td>
-        <td>
-        <a href='
-        {$row['itinerary_url']}'>
+        <td>        {$row['Booking_ID']}            </td>
+        <td>        {$row['FK_Trip_ID']}            </td>
+        <td>        {$row['TourCode']}              </td>
+        <td>        {$row['Name']}                  </td>
+        <td>        {$row['Departure_date']}        </td>
+        <td>RM        {$row['Fee']}.00              </td>
+        <td><a href='{$row['itinerary_url']}'>
             <img src='img/itenerary.png' />
-        </a>
-        </td>
+        </a>                                        </td>
 
     </tr>";
 }      

@@ -76,7 +76,7 @@
  INNER JOIN Customer C ON B.FK_C_username=C.username
  INNER JOIN Trip on Trip.Trip_ID=B.FK_Trip_ID
  INNER join Tour T on Trip.FK_TourCode=T.TourCode
- INNER JOIN Employee E on B.FK_E_username=E.username
+ INNER JOIN Employee E on T.FK_E_username=E.username
  WHERE E.username = '$login_session'");
 
 echo "<table border='1' class='table table-striped table-dark table-hover '>";
@@ -89,7 +89,7 @@ echo "
         <th scope='col'>            Tour Code               </th>
         <th scope='col'>            Trip Name               </th>
         <th scope='col'>            Destination             </th>
-        <th scope='col'>            Departure_date          </th>
+        <th scope='col'>            Departure date          </th>
         <th scope='col'>            Fee                     </th>
         <th scope='col'>            Airline                 </th>
         <th scope='col'>            Itinerary               </th>
@@ -115,14 +115,16 @@ while ($row=mysqli_fetch_assoc($query_sql)) {
 </tbody>";
 }      
     echo "</table>";
+    //Only Manager can register user
+    if ($position == "Manager") {
+        echo $position;
+        echo "<div class='text-center jumbotron'>";
+        echo "<a href='register.php'>Register  </a>" ;
+        echo "</div";
+    }
+  
 ?>
-</div>
-<div class="text-center jumbotron">
-<?php
-if ($row['Position'] = "Manager") {
-    echo "<a href='register.php'>Register  </a>" ;
-}
-?>
+
 </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

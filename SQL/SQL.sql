@@ -26,6 +26,8 @@ CREATE TABLE Tour(
     Name VARCHAR(255) NOT NULL,
     Destination VARCHAR(255) NOT NULL,
     Category VARCHAR(100) not NULL,
+    FK_E_username VARCHAR(255) NOT NULL,
+        FOREIGN KEY (FK_E_username) REFERENCES Employee(username),
     itinerary_url VARCHAR(255) NOT NULL,
     thumbnail_url VARCHAR(255) NOT NULL
 );
@@ -41,8 +43,6 @@ CREATE TABLE Trip(
 
 CREATE TABLE Booking(
     Booking_ID int NOT NULL AUTO_INCREMENT primary key ,
-    FK_E_username VARCHAR(255) not NULL,
-        FOREIGN key (FK_E_username) REFERENCES Employee(username),
     FK_Trip_ID VARCHAR(255) NOT NULL,
         FOREIGN KEY (FK_Trip_ID) REFERENCES Trip(Trip_ID),
     FK_C_username VARCHAR(255) not NULL,

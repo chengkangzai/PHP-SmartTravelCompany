@@ -1,6 +1,7 @@
 <?php
 //https://www.tutorialrepublic.com/php-tutorial/php-mysql-insert-query.php
 include("config.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $username = mysqli_real_escape_string($db,$_POST['username']);
@@ -11,15 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Position = mysqli_real_escape_string($db,$_POST['Position']);
     $Agency=mysqli_real_escape_string($db,$_POST['Agency']);
 
-$sql="INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$password','$FName','$LName','$IC_num','$Position','$Agency')";
+    $sql="INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$password','$FName','$LName','$IC_num','$Position','$Agency')";
 
-if (mysqli_query($db,$sql)) {
-    echo "Successfully Register!";
-    header("Location:Login.php");
-}else {
-    echo "Not really functioning well \nBelow are the error code\n". mysqli_error($db);
-};
-    
+        if (mysqli_query($db,$sql)) {
+            echo "Successfully Register!";
+            header("Location:Login.php");
+        }else {
+            echo "Not really functioning well \nBelow are the error code\n". mysqli_error($db);
+        }   
 }
 mysqli_close($db);
 ?>
@@ -66,6 +66,9 @@ mysqli_close($db);
                         </div>
                     </li>
                 </ul>
+                <span>
+            <a href="logout.php" class="px-2 btn btn-outline-danger ">Sign Out</a>
+            </span>
             </div>
         </nav>
 
@@ -92,6 +95,9 @@ mysqli_close($db);
                 <select name="Position" id="" class="form-control">
                     <option value="" disabled selected hidden> Your Position</option>
                     <option value="Manager">Manager</option>
+                    <option value="Tour Manager of Asia">Tour Manager of Asia</option>
+                    <option value="Tour Manager of Exotic">Tour Manager of Exotic</option>
+                    <option value="Tour Manager of Europe">Tour Manager of Europe</option>
                     <option value="Senior Sales">Senior Sales </option>
                     <option value="Junior Sales">Junior Sales</option>
                     <option value="Account Executive">Account Executive</option>
