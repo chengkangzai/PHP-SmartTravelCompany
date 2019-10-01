@@ -28,6 +28,7 @@ include("config.php");
       }
       
    }
+   mysqli_close($db);
 ?>
     <html>
 

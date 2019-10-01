@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Your Login Name or Password is invalid";
     }
 }
+mysqli_close($db);
 ?>
 <html>
 

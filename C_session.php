@@ -19,7 +19,5 @@
       die();
    }
 
-if ($user_check="") {
-   header('Login.php');
-}
+   mysqli_close($db);
 ?>

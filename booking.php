@@ -1,3 +1,10 @@
+<?php
+//check if user logged in and redirect
+if(!isset($_SESSION['login_user'])){
+    header("location:jump/C_Login.html");
+    die();
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,6 +71,17 @@
                     <div class="input-group mb-3">
                         <select class="custom-select" id="TourCode">
                             <option selected hidden>Choose your Trips</option>
+                            <?php
+                    include('itenerary.php');
+                    ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="TourCode">
+                            <option selected hidden>Available Date</option>
+                            <!-- trip table-->
                             <?php
                     include('itenerary.php');
                     ?>

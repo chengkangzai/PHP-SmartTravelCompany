@@ -14,4 +14,5 @@ echo "
 ";
 }
 
+mysqli_close($db);
 ?>

@@ -21,6 +21,7 @@ if (mysqli_query($db,$sql)) {
 };
     
 }
+mysqli_close($db);
 ?>
     <!DOCTYPE html>
     <html lang="en">

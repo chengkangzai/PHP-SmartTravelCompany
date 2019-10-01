@@ -22,5 +22,5 @@ $itenerary= $itenerary_row['itinerary_url'];
 $Tour_name=$itenerary_row['Name'];
 $thumbnail=$itenerary_row['thumbnail_url'];
 
-
+mysqli_close($db);
 ?>
