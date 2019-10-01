@@ -2,6 +2,7 @@
 //https://www.tutorialrepublic.com/php-tutorial/php-mysql-insert-query.php
 include("config.php");
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $username = mysqli_real_escape_string($db,$_POST['username']);

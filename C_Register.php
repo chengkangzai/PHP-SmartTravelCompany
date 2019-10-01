@@ -2,10 +2,7 @@
 //https://www.tutorialrepublic.com/php-tutorial/php-mysql-insert-query.php
 include("config.php");
 
-if(!isset($_SESSION['login_user'])){
-    header("location:jump/Login.html");
-    die();
- }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $username = mysqli_real_escape_string($db,$_POST['username']);

@@ -1,9 +1,11 @@
 <?php
 //check if user logged in and redirect
-if(!isset($_SESSION['login_user'])){
-    header("location:jump/C_Login.html");
-    die();
- }
+include_once('session.php');
+include_once('C_session.php');
+if ($user_check="") {
+    header("Location:jump/C_Login.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
