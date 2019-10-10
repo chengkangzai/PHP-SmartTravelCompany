@@ -1,8 +1,5 @@
 <?php
  include('host.php');
-
-
-
  echo "
  <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
         <a class='navbar-brand' href='$host/index.html'>Smart Holidays</a>
