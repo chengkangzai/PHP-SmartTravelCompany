@@ -24,7 +24,9 @@
 </head>
 
 <body>
-
+<?php
+include("php_common/nav.php");
+   ?>
     <div class="jumbotron py-3 m-0 text-center bg-white col-lg-12 Opacity-7">
         <h1>Contact Us !</h1>
         For futher infomation, please do not hesitate to contact us by using below infomation.
