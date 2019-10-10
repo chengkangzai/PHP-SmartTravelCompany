@@ -2,11 +2,8 @@
 include_once("config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $feedback = mysqli_real_escape_string($db, $_POST['Feedback']);
-
     $sql = "INSERT INTO Feedback (feedback) VALUES ('$feedback')";
-
     if (mysqli_query($db, $sql)) {
         header("Location:jump/Feedback.html");
     } else {
@@ -31,7 +28,7 @@ mysqli_close($db);
 </head>
 
 <body class="jumbotron">
-    <div >
+    <div>
         <h2 class="text-center">
             Feedback
         </h2>

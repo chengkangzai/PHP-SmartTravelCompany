@@ -18,6 +18,3 @@
       header("location:C_Login.php");
       die();
    }
-
-   
-?>

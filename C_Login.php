@@ -42,9 +42,9 @@ mysqli_close($db);
 
 <body class="text-center jumbotron p-0">
 
-<?php
-include("php_common/nav.php");
-   ?>
+    <?php
+    include("php_common/nav.php");
+    ?>
     <div class="jumbotron mx-auto p-2">
         <img src="img/logo.png" alt="Company's Logo " class="my-2 img-fluid">
     </div>
