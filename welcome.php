@@ -17,10 +17,17 @@ include('session.php');
     include("php_common/nav.php");
     ?>
 
-
-    <h2 class="text-center">Welcome
+<div class="row">
+<h2 class="text-center col-lg-8">Welcome
         <?php echo $login_session; ?>, the <?php echo $position; ?> of Smart Travel!
     </h2>
+    <div class="col-lg-4">
+        <a href="logout.php" class="btn btn-lg btn-outline-danger" title="Log out">Log out </a>
+    </div>
+
+</div>
+   
+
     <div class="jumbotron">
         <h1 class="text-center">
             Below are the trip that managed by you
@@ -76,7 +83,7 @@ include('session.php');
         <td>        {$row['Name']}                      </td>
         <td>        {$row['Destination']}               </td>
         <td>        {$row['Departure_date']}            </td>
-        <td>        {$row['Fee']}                       </td>
+        <td>        RM {$row['Fee']}                       </td>
         <td>        {$row['Airline']}                   </td>
         <td>        <a href='{$row['itinerary_url']}'><img src='img/itenerary.png'/></a></td>
 

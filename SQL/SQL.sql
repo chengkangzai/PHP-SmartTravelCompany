@@ -49,6 +49,19 @@ CREATE TABLE Booking(
     FOREIGN KEY (FK_C_username) REFERENCES Customer(username)
 );
 
+CREATE table Tour_des(
+    FK_TourCode varchar(255),
+        FOREIGN KEY(FK_TourCode) REFERENCES Tour(TourCode),
+    Point_1 varchar(255),
+    Des_1 varchar(255),
+    Point_2 varchar(255),
+    Des_2 varchar(255),
+    Point_3 varchar(255),
+    Des_3 varchar(255),
+    Point_4 varchar(255),
+    Des_4 varchar(255)
+);
+
 
 INSERT INTO TableName (username,password,FName,LName,IC_num,Position)
 VALUES (Column1_Value, Column2_Value, Column3_Value)
