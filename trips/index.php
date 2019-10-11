@@ -19,15 +19,15 @@ include("../config.php");
 include("../php_common/nav.php");
     ?>
 
-    <div class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto">
+    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST">
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Tour Code</span>
         </div>
         <input type="text" class="form-control" placeholder="Type specific Tour Code">
         <div class="input-group-append">
-            <button class="btn btn-light border" type="button" id="button-addon2">Button</button>
+            <input class="btn btn-light border" type="submit" id="button-addon2" value="Button">
         </div>
-    </div>
+</form>
     <div class="jumbotron col-lg-10 mx-auto">
         <h1 class="text-center mb-3">Most Popular Trips!</h1>
         <div class="row">
