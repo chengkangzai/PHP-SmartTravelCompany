@@ -1,10 +1,6 @@
 <?php
 //check if user logged in and redirect
-include_once('session.php');
 include_once('C_session.php');
-if ($user_check = "") {
-    header("Location:jump/C_Login.php");
-}
 
 ?>
 
