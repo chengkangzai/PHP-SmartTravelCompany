@@ -23,7 +23,7 @@ include('session.php');
         <h2 class="text-center col-lg-8">Welcome
             <?php echo $login_session; ?>, the <?php echo $position; ?> of Smart Travel!
         </h2>
-        <div class="col-lg-4">
+        <div class="col-lg-4 ">
             <a href="logout.php" class="btn btn-lg btn-outline-danger" title="Log out">Log out </a>
         </div>
 
@@ -95,9 +95,8 @@ include('session.php');
         echo "</table>";
         //Only Manager can register user
         if ($position == "Manager") {
-            echo $position;
             echo "<div class='text-center jumbotron'>";
-            echo "<a href='register.php'>Register  </a>";
+            echo "<a href='register.php'>Add Employee Account  </a>";
             echo "</div";
         }
 

@@ -1,6 +1,8 @@
 <?php
 include("../config.php");
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,237 +22,40 @@ include("../config.php");
     navbar();
     ?>
 
-    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST">
+    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="search.php">
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Tour Code</span>
         </div>
-        <input type="text" class="form-control" placeholder="Type specific Tour Code">
+        <input type="text" class="form-control" placeholder="Type specific Tour Code" name="search_text">
         <div class="input-group-append">
             <input class="btn btn-light border" type="submit" id="button-addon2" value="Button">
         </div>
     </form>
+    
     <div class="jumbotron col-lg-10 mx-auto">
         <h1 class="text-center mb-3">Most Popular Trips!</h1>
+
         <div class="row">
-            <div class="col-lg-4 border py-2">
-                <h3>
-                    <img src="<?php
-                                $tcode = "10XII";
-                                include('itenerary.php');
-                                echo $thumbnail;
-                                ?>
-                                " alt="" class="img-fluid py-1">
-                    <?php
-                    $tcode = "10XII";
-                    include('itenerary.php');
-                    echo $Tour_name;
+            <?php
 
-                    ?>
-                    <span class="badge badge-secondary"> New</span>
-                </h3>
-                <div>
-                    Tour Code:
-                    <?php
-                    $tcode = "10XII";
-                    include('itenerary.php');
-                    echo $tcode;
-                    ?>
-                </div>
-
-                <ul id="intro_1" class="intro p-3">
-                    <h2 class="text-primary text-center">Hightlight</h2>
-                    <li>
-                        Local 4 Star Hotel Accommodation
-                    </li>
-                    <li>
-                        Excursion Bosphorus Cruise along Istanbul’s famous waterway dividing Europe and Asia 2
-                        continents
-                    </li>
-                    <li>
-                        Visit Turkey Treasury Palace ~ Topkapi Palace.
-                    </li>
-                    <li>
-                        visit HIPPODROME is the scene of chariot races and the center of Byzantine civic life
-                    </li>
-                    <li>
-                        visit EPHESUS ANCIENT CITY
-                    </li>
-                    <li>
-                        Pamukkale (Cotton Castle) - surreal, brilliant white travertine terraces and warm, limpid pools
-                        of Pamukkale hang, recognize – by UNESCO World Heritage in 1988.
-                    </li>
-                </ul>
-
-                <div class=" ">
-                    <a onclick="hidden_1()" class="btn btn-dark mx-auto text-light" id="hide_1">
-                        Expand
-                    </a>
-                    <script>
-                        function hidden_1() {
-                            var x = document.getElementById("intro_1");
-                            var y = document.getElementById("hide_1");
-                            if (x.style.display === "block") {
-                                x.style.display = "none"
-                                y.innerHTML = "Expand";
-                            } else {
-                                x.style.display = "block"
-                                y.innerHTML = "Hide";
-                            }
-                        }
-                    </script>
-                    <a href=" 
-                    <?php
-                    $tcode = "10XII";
-                    include('itenerary.php');
-                    echo $itenerary;
-                    ?>
-                " class="btn btn-dark mx-auto">Itinerary </a>
-                    <a href="../booking.php" class="btn btn-dark mx-auto">Book now ! </a>
-                </div>
-            </div>
-            <div class="col-lg-4 border py-2">
-                <h3>
-                    <img src="<?php
-                                $tcode = "11ELPS";
-                                include('itenerary.php');
-                                echo $thumbnail;
-                                ?>
-                    " alt="" class="img-fluid py-1">
-                    <?php
-                    $tcode = "11ELPS";
-                    include('itenerary.php');
-                    echo $Tour_name;
-
-                    ?>
-                    <span class="badge badge-danger"> Promo!</span>
-                </h3>
-                <div>Tour Code:
-                    <?php
-                    $tcode = "11ELPS";
-                    include('itenerary.php');
-                    echo $tcode;
-                    ?>
-                </div>
-                <ul id="intro_2" class="intro">
-                    <li>
-                        <b> England,London</b> – Panoramic views of St Paul’s Cathedral, Tower Bridge, London Bridge,
-                        London Tower, Parliament House
-                    </li>
-                    <li>
-                        <b> Eurostar</b> – by high speed train – London to Brussels,Belgium
-                    </li>
-                    <li>
-                        <b> Belgium, Brussels</b> – View the Atomium, Grand Place, MannekenPis
-                    </li>
-                    <li>
-                        <b> Holland, Amsterdam </b>– Enjoy Canal Cruise, Visit ZaanseSchaan – typical Dutch Village,
-                        Cheese Farm, Clog Factory, Windmills, Diamond Factory, Red Light District.
-                    </li>
-                    <li>
-                        <b> Germany </b>– Local Germany Lunch + Black Forest Cake Dessert, travel thru the Romantic
-                        Black Forest Region, visit Lake Titi, Clock Factory, Heidelberg,
-                    </li>
-                    <li>
-                        <b> Rhine fall</b> - View Europe’s biggest waterfall
-                    </li>
-                </ul>
-                <div class=" ">
-                    <a onclick="hidden_2()" class="btn btn-dark mx-auto text-light" id="hide_2">
-                        Expand
-                    </a>
-                    <script>
-                        function hidden_2() {
-                            var x = document.getElementById("intro_2");
-                            var y = document.getElementById("hide_2");
-                            if (x.style.display === "block") {
-                                x.style.display = "none"
-                                y.innerHTML = "Expand";
-                            } else {
-                                x.style.display = "block"
-                                y.innerHTML = "Hide";
-                            }
-                        }
-                    </script>
-                    <a href=" 
-                    <?php
-                    $tcode = "11ELPS";
-                    include('itenerary.php');
-                    echo $itenerary;
-                    ?>
-                " class="btn btn-dark mx-auto">Itinerary </a>
-                    <a href="../booking.php" class="btn btn-dark mx-auto">Book now ! </a>
-                </div>
-            </div>
-            <div class="col-lg-4 border py-2">
-                <h3>
-                    <img src="<?php
-                                $tcode = "6TPE";
-                                include('itenerary.php');
-                                echo $thumbnail;
-                                ?>" alt="" class="img-fluid py-1">
-
-                    <?php
-                    $tcode = "6TPE";
-                    include('itenerary.php');
-                    echo $Tour_name;
-                    ?>
-                    <span class="badge badge-primary"> Classic</span>
-                </h3>
-                <div>Tour Code:
-                    <?php
-                    $tcode = "6TPE";
-                    include('itenerary.php');
-                    echo $tcode;
-                    ?>
-                </div>
-                <ul id="intro_3" class="intro">
-                    <li>
-                        <b> Shilin Night Market </b> is a night market in the Shilin District of Taipei, Taiwan, and is
-                        often considered to be the largest and most famous night market in the city
-                    </li>
-                    <li>
-                        <b>Sun Moon Lake</b> is in the foothills of Taiwan’s Central Mountain Range. It’s surrounded by
-                        forested peaks and has foot trails. Aboriginal Culture Village is a theme park with a section
-                        devoted to re-created indigenous
-                        villages
-                    </li>
-                    <li>
-                        <b> Sun Moon Lake Wen Wu Temple</b> is a Wen Wu temple located on the perimeter of Sun Moon Lake
-                        in Yuchi Township, Nantou County, Taiwan
-                    </li>
-                    <li>
-                        <b>Jiufen old street</b> is known for the narrow alleyways of its old town, packed with
-                        teahouses, streetfood shacks and souvenir shops. Near central Old Street is the Shengping
-                        Theater, established in the 1900s and since restored.
-                    </li>
-                </ul>
-                <div class=" ">
-                    <a onclick="hidden_6TPE()" class="btn btn-dark mx-auto text-light" id="hide_3">
-                        Expand
-                    </a>
-                    <script>
-                        function hidden_6TPE() {
-                            var x = document.getElementById("intro_3");
-                            var y = document.getElementById("hide_3");
-                            if (x.style.display === "block") {
-                                x.style.display = "none"
-                                y.innerHTML = "Expand";
-                            } else {
-                                x.style.display = "block"
-                                y.innerHTML = "Hide";
-                            }
-                        }
-                    </script>
-                    <a href=" 
-                    <?php
-                    $tcode = "6TPE";
-                    include('itenerary.php');
-                    echo $itenerary;
-                    ?>
-                " class="btn btn-dark mx-auto">Itinerary </a>
-                    <a href="../booking.php" class="btn btn-dark mx-auto">Book now ! </a>
-                </div>
-            </div>
+            include_once("../php_common/nav.php");
+            Trip_info('5BKK');
+            Trip_info('5DPS');
+            Trip_info('5HAN');
+            Trip_info('5JBP');
+            Trip_info('6TPE');
+            Trip_info('7TPE');
+            Trip_info('8EGNP');
+            Trip_info('8ITL');
+            Trip_info('11ELPS');
+            Trip_info('14EGSA');
+            Trip_info('14ESIMF');
+            Trip_info('14EWP');
+            Trip_info('8XSAB');
+            Trip_info('9CAI');
+            Trip_info('10XII');
+            ?>
+           
         </div>
 
 
