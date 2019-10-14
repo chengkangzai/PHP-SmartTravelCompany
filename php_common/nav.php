@@ -87,8 +87,10 @@ function trip_info($tour_code)
     $D4 = $itenerary_row['Des_4'];
 
     //Javasciprt Naming 
-    $ran1="sss"+rand();
-    $ran2="rrr"+rand();
+    //Generate random number 
+    $ran1=rand();
+    $ran2=rand();
+    $ran3=rand();
 
         echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 border py-2 mx-auto'>
             <div class='embed-responsive embed-responsive-16by9'>
