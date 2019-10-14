@@ -29,7 +29,7 @@ mysqli_close($db);
 
 <body class="jumbotron">
     <?php
-    include_once("/php_common/nav.php");
+    include_once("php_common/nav.php");
     navbar();
     ?>
 

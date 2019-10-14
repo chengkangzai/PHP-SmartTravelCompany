@@ -22,7 +22,7 @@ if ($user_check = "") {
 
 <body>
     <?php
-    include_once("/php_common/nav.php");
+    include_once("php_common/nav.php");
     navbar();
     ?>
 

@@ -16,7 +16,7 @@
 
 <body>
 <?php
-include('../php_common/nav.php');
+include('..php_common/nav.php');
 ?>
     <div id="particles-js">
         <div class="login">
