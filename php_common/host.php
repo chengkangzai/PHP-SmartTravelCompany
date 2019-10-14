@@ -1,7 +1,7 @@
-<?php
-//Change it to your Local Path
-
-$host="https://chengkang.synology.me/test/php-assignment";
-
+<?php   
+//Just for fun :3
+$path="/test/php-assignment/";
+$http="https://www.";
+$host= $http.$_SERVER['SERVER_NAME'].$path;
 
 ?>
