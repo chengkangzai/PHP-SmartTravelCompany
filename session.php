@@ -11,8 +11,9 @@
    $login_session = $row['username'];
    $position = $row['Position'];
    
+
    if(!isset($_SESSION['login_user'])){
-      header("location:Login.php");
+      header("location:Login/index.php");
       die();
    }
 
