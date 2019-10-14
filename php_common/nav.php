@@ -97,15 +97,15 @@ function trip_info($tour_code)
             <img src= '$thumbnail' alt='' class='img-fluid embed-responsive-item' />
             </div>
                 <h3 class='text-capitalize'>$Tour_name</h3>
-            <div>
+            <div class='mx-auto text-center'>
             Tour Code: $tour_code
             </div>
-            <div>
+            <div class='mx-auto text-center'>
             Category: $category
             </div>
             ";
             echo    "
-                <ul id='$ran2' class='intro p-3'>
+                <ul id='$ran2' class='intro p-3 mx-auto'>
                 <h2 class='text-primary text-center'>Hightlight</h2> 
             ";
     echo    "

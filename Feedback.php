@@ -27,7 +27,7 @@ mysqli_close($db);
 
 </head>
 
-<body class="jumbotron">
+<body class="jumbotron p-0">
     <?php
     include_once("php_common/nav.php");
     navbar();
