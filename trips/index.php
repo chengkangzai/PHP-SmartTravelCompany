@@ -16,7 +16,8 @@ include("../config.php");
 
 <body class="bg-secondary">
     <?php
-include("../php_common/nav.php");
+    include_once("../php_common/nav.php");
+    navbar();
     ?>
 
     <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST">
@@ -27,7 +28,7 @@ include("../php_common/nav.php");
         <div class="input-group-append">
             <input class="btn btn-light border" type="submit" id="button-addon2" value="Button">
         </div>
-</form>
+    </form>
     <div class="jumbotron col-lg-10 mx-auto">
         <h1 class="text-center mb-3">Most Popular Trips!</h1>
         <div class="row">
@@ -62,7 +63,8 @@ include("../php_common/nav.php");
                         Local 4 Star Hotel Accommodation
                     </li>
                     <li>
-                        Excursion Bosphorus Cruise along Istanbul’s famous waterway dividing Europe and Asia 2 continents
+                        Excursion Bosphorus Cruise along Istanbul’s famous waterway dividing Europe and Asia 2
+                        continents
                     </li>
                     <li>
                         Visit Turkey Treasury Palace ~ Topkapi Palace.
@@ -74,7 +76,8 @@ include("../php_common/nav.php");
                         visit EPHESUS ANCIENT CITY
                     </li>
                     <li>
-                        Pamukkale (Cotton Castle) - surreal, brilliant white travertine terraces and warm, limpid pools of Pamukkale hang, recognize – by UNESCO World Heritage in 1988.
+                        Pamukkale (Cotton Castle) - surreal, brilliant white travertine terraces and warm, limpid pools
+                        of Pamukkale hang, recognize – by UNESCO World Heritage in 1988.
                     </li>
                 </ul>
 
@@ -130,7 +133,8 @@ include("../php_common/nav.php");
                 </div>
                 <ul id="intro_2" class="intro">
                     <li>
-                        <b> England,London</b> – Panoramic views of St Paul’s Cathedral, Tower Bridge, London Bridge, London Tower, Parliament House
+                        <b> England,London</b> – Panoramic views of St Paul’s Cathedral, Tower Bridge, London Bridge,
+                        London Tower, Parliament House
                     </li>
                     <li>
                         <b> Eurostar</b> – by high speed train – London to Brussels,Belgium
@@ -139,10 +143,12 @@ include("../php_common/nav.php");
                         <b> Belgium, Brussels</b> – View the Atomium, Grand Place, MannekenPis
                     </li>
                     <li>
-                        <b> Holland, Amsterdam </b>– Enjoy Canal Cruise, Visit ZaanseSchaan – typical Dutch Village, Cheese Farm, Clog Factory, Windmills, Diamond Factory, Red Light District.
+                        <b> Holland, Amsterdam </b>– Enjoy Canal Cruise, Visit ZaanseSchaan – typical Dutch Village,
+                        Cheese Farm, Clog Factory, Windmills, Diamond Factory, Red Light District.
                     </li>
                     <li>
-                        <b> Germany </b>– Local Germany Lunch + Black Forest Cake Dessert, travel thru the Romantic Black Forest Region, visit Lake Titi, Clock Factory, Heidelberg,
+                        <b> Germany </b>– Local Germany Lunch + Black Forest Cake Dessert, travel thru the Romantic
+                        Black Forest Region, visit Lake Titi, Clock Factory, Heidelberg,
                     </li>
                     <li>
                         <b> Rhine fall</b> - View Europe’s biggest waterfall
@@ -199,17 +205,23 @@ include("../php_common/nav.php");
                 </div>
                 <ul id="intro_3" class="intro">
                     <li>
-                        <b> Shilin Night Market </b> is a night market in the Shilin District of Taipei, Taiwan, and is often considered to be the largest and most famous night market in the city
+                        <b> Shilin Night Market </b> is a night market in the Shilin District of Taipei, Taiwan, and is
+                        often considered to be the largest and most famous night market in the city
                     </li>
                     <li>
-                        <b>Sun Moon Lake</b> is in the foothills of Taiwan’s Central Mountain Range. It’s surrounded by forested peaks and has foot trails. Aboriginal Culture Village is a theme park with a section devoted to re-created indigenous
+                        <b>Sun Moon Lake</b> is in the foothills of Taiwan’s Central Mountain Range. It’s surrounded by
+                        forested peaks and has foot trails. Aboriginal Culture Village is a theme park with a section
+                        devoted to re-created indigenous
                         villages
                     </li>
                     <li>
-                        <b> Sun Moon Lake Wen Wu Temple</b> is a Wen Wu temple located on the perimeter of Sun Moon Lake in Yuchi Township, Nantou County, Taiwan
+                        <b> Sun Moon Lake Wen Wu Temple</b> is a Wen Wu temple located on the perimeter of Sun Moon Lake
+                        in Yuchi Township, Nantou County, Taiwan
                     </li>
                     <li>
-                        <b>Jiufen old street</b> is known for the narrow alleyways of its old town, packed with teahouses, streetfood shacks and souvenir shops. Near central Old Street is the Shengping Theater, established in the 1900s and since restored.
+                        <b>Jiufen old street</b> is known for the narrow alleyways of its old town, packed with
+                        teahouses, streetfood shacks and souvenir shops. Near central Old Street is the Shengping
+                        Theater, established in the 1900s and since restored.
                     </li>
                 </ul>
                 <div class=" ">
@@ -246,8 +258,11 @@ include("../php_common/nav.php");
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 
 </html>

@@ -28,6 +28,11 @@ mysqli_close($db);
 </head>
 
 <body class="jumbotron">
+    <?php
+    include_once("/php_common/nav.php");
+    navbar();
+    ?>
+
     <div>
         <h2 class="text-center">
             Feedback

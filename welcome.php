@@ -14,19 +14,21 @@ include('session.php');
 
 <body>
     <?php
-    include("php_common/nav.php");
+    include_once("/php_common/nav.php");
+    navbar();
     ?>
 
-<div class="row">
-<h2 class="text-center col-lg-8">Welcome
-        <?php echo $login_session; ?>, the <?php echo $position; ?> of Smart Travel!
-    </h2>
-    <div class="col-lg-4">
-        <a href="logout.php" class="btn btn-lg btn-outline-danger" title="Log out">Log out </a>
+
+    <div class="row">
+        <h2 class="text-center col-lg-8">Welcome
+            <?php echo $login_session; ?>, the <?php echo $position; ?> of Smart Travel!
+        </h2>
+        <div class="col-lg-4">
+            <a href="logout.php" class="btn btn-lg btn-outline-danger" title="Log out">Log out </a>
+        </div>
+
     </div>
 
-</div>
-   
 
     <div class="jumbotron">
         <h1 class="text-center">

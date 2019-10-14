@@ -22,7 +22,8 @@ if ($user_check = "") {
 
 <body>
     <?php
-    include("php_common/nav.php");
+    include_once("/php_common/nav.php");
+    navbar();
     ?>
 
     <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto jumbotron">
