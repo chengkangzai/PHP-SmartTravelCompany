@@ -43,17 +43,7 @@ include_once('C_session.php');
                             <option selected hidden>Choose your Trips</option>
                             <?php
                             include('itenerary.php');
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="TourCode">
-                            <option selected hidden>Available Date</option>
-                            <!-- trip table-->
-                            <?php
-                            include('itenerary.php');
+                            CallTour();
                             ?>
                         </select>
                     </div>

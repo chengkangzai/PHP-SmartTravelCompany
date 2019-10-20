@@ -3,44 +3,43 @@ include('../config.php');
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // username and password sent from form 
+    // username and password sent from POST form 
 
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
+    // Customer 
     $sql = "SELECT username FROM Customer WHERE username = '$username' and password = '$password'";
-
     $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $active = $row['active'];
-
     $count = mysqli_num_rows($result);
 
-
-    // If result matched $myusername and $mypassword, table row must be 1 row
+    //Employee
+    $sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$password'";
+    $result1 = mysqli_query($db, $sql1);
+    $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+    $active1 = $row1['active'];
+    $count1 = mysqli_num_rows($result1);
 
     if ($count == 1) {
-        $_SESSION['login_user'] = $username;
-        header("location:../C_welcome.php");
-    } else {
-
-        $sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$password'";
-
-        $result1 = mysqli_query($db, $sql1);
-        $row1 = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        $active1 = $row1['active'];
-
-        $count1 = mysqli_num_rows($result1);
-        if ($result1 == 1) {
-            $_SESSION['login_user'] = $username;
-            header("Location:../welcome.php");
-        }
+        $_SESSION['login_user'] = $username ;
+        header("Location:../C_welcome.php");
+    } elseif ($count1 == 1 ) {
+        $_SESSION['login_user']=$username;
+        header("Location:../welcome.php");
+    }else {
+        echo "<script> alert('Your Credential is invalid!'); </script>";
+        header("Location:index.php");
     }
 }
+
+
+
 mysqli_close($db);
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 <head>
@@ -66,7 +65,7 @@ mysqli_close($db);
                 <div class="login-center clearfix">
                     <div class="login-center-img"><img src="img/name.png" /></div>
                     <div class="login-center-input">
-                        <input type="text" name="username" value="" placeholder="Enter Your User Name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your user name '" />
+                        <input type="text" name="username" value="" placeholder="Enter Your User Name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your user name '" autofocus />
                         <div class="login-center-input-text">User Name</div>
                     </div>
                 </div>
@@ -78,7 +77,7 @@ mysqli_close($db);
                     </div>
                 </div>
                 <div class="btn btn-primary btn-block col-md-10 mx-auto ">
-                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <input type="submit" value="Submit" class="btn btn-primary col-md-12">
                 </div>
             </div>
         </form>
