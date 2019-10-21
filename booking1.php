@@ -1,16 +1,29 @@
 <?php
 //check if user logged in and redirect
-include_once('C_session.php');
+include('C_session.php');
+
+//POST data
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    include('config.php');
-    include_once('C_session.php');
-    $Tour_Code = mysqli_real_escape_string($db, $_POST['TourCode']);
-    $sql="INSERT INTO C_selected_Tour(FK_C_username,FK_TourCode) VALUE('$login_session','$Tour_Code')";
-    if (mysqli_query($db,$sql)) {
-        header("Location:booking1.php");
-    }
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $username1 = str_replace(' ', '', $username);
+    $Trip_id = mysqli_real_escape_string($db, $_POST['Trip_id']);
+
+    $sql = "INSERT INTO Booking(FK_Trip_ID,FK_C_username) VALUES ('$Trip_id','$username1');
+    ";
+echo $sql;
+    if (mysqli_query($db, $sql)) {
+        echo "Successfully Book!";
+        echo "<script> alert('Thanks For your Payment!'); </script>";
+        header("Location:C_welcome.php");
+    } else {
+        echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
+    };
+    mysqli_close($db);
+
 }
+
+
 ?>
 
 <!--Put to 2 seperate file and by using session, get the tour code -->
@@ -32,35 +45,43 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     ?>
 
     <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto jumbotron">
-        <form method="POST" class="form-signin p-2">
+        <form method="post" action="" class="form-signin p-2">
             <h2 class="text-center mb-3">Book Your Trips Now !</h2>
             <div>
                 <div class="form-group row bg-white">
                     <label for="username" class="col-sm-2 col-form-label">User Name :</label>
                     <div class="col-sm-10 border-left">
-                        <input type="text" readonly class="form-control-plaintext" id="username" value="
-                    <?php
-                    include_once('C_session.php');
+                        <input type="text" readonly class="form-control-plaintext" name="username" 
+                        value="<?php
                     echo $login_session;
+                    ?>">
+                    </div>
+                </div>
+                <div class="form-group row bg-white">
+                    <label for="username" class="col-sm-2 col-form-label">Tour Code :</label>
+                    <div class="col-sm-10 border-left">
+                        <input type="text" readonly class="form-control-plaintext" name="Tour Code" value="
+                   <?php
+                    include_once('itenerary.php');
+                    CallSelectedTrip($login_session);
                     ?>
                     ">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="TourCode" name="TourCode">
+                        <select class="custom-select" id="Trip" name="Trip_id">
                             <option selected hidden>Choose your Trips</option>
                             <?php
-                            if ($_SERVER) {
-                                # code...
-                            }
-                            include('itenerary.php');
-                            CallTour();
+                            include_once('itenerary.php');
+
+                            CallTrip($login_session);
                             ?>
                         </select>
                     </div>
                 </div>
             </div>
+
             <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block">
         </form>
 

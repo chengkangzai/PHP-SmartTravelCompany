@@ -92,7 +92,7 @@ function trip_info($tour_code)
     $ran2=rand();
     $ran3=rand();
 
-        echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 border py-2 mx-auto'>
+        echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 border py-2 mx-auto'>
             <div class='embed-responsive embed-responsive-16by9'>
             <img src= '$thumbnail' alt='' class='img-fluid embed-responsive-item' />
             </div>

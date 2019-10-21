@@ -62,6 +62,14 @@ CREATE table Tour_des(
     Des_4 varchar(255)
 );
 
+CREATE TABLE C_selected_Tour(
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    FK_C_username VARCHAR(255),
+        FOREIGN KEY (FK_C_username) REFERENCES Customer(username),
+    FK_TourCode VARCHAR(255),
+        FOREIGN KEY(FK_TourCode) REFERENCES Tour(TourCode)
+)
+
 
 INSERT INTO TableName (username,password,FName,LName,IC_num,Position)
 VALUES (Column1_Value, Column2_Value, Column3_Value)
