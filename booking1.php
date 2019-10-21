@@ -36,6 +36,7 @@ echo $sql;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Booking Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="icon.gif" type="image/gif" sizes="16x16">
 </head>
 
 <body>

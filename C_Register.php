@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($db, $sql)) {
         echo "Successfully Register!";
-        header("Location:C_Login.php");
+        header("Location:jump/Login.html");
     } else {
         echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
     };

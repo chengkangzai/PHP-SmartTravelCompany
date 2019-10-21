@@ -50,6 +50,7 @@ mysqli_close($db);
     <link rel="stylesheet" media="screen" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="../icon.gif" type="image/gif" sizes="16x16">
 </head>
 
 <body>
@@ -79,6 +80,9 @@ mysqli_close($db);
                 </div>
                 <div class="btn btn-primary btn-block col-md-10 mx-auto ">
                     <input type="submit" value="Submit" class="btn btn-primary col-md-12">
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../C_Register.php"> Dont have account? register here !</a>
                 </div>
             </div>
         </form>
