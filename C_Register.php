@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
+    $safepass=sha1($password);
     $FName = mysqli_real_escape_string($db, $_POST['FName']);
     $LName = mysqli_real_escape_string($db, $_POST['LName']);
     $Phone_num = mysqli_real_escape_string($db, $_POST['Phone_num']);
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $sql = "INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$password','$FName','$LName','$Phone_num','$Email','$Passport')";
+    $sql = "INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$safepass','$FName','$LName','$Phone_num','$Email','$Passport')";
 
     if (mysqli_query($db, $sql)) {
         echo "Successfully Register!";

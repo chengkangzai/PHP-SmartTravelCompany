@@ -7,13 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
+    $safepass = sha1($password);
     $FName = mysqli_real_escape_string($db, $_POST['FName']);
     $LName = mysqli_real_escape_string($db, $_POST['LName']);
     $IC_num = mysqli_real_escape_string($db, $_POST['IC']);
     $Position = mysqli_real_escape_string($db, $_POST['Position']);
     $Agency = mysqli_real_escape_string($db, $_POST['Agency']);
 
-    $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$password','$FName','$LName','$IC_num','$Position','$Agency')";
+    $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
 
     if (mysqli_query($db, $sql)) {
         echo "Successfully Register!";

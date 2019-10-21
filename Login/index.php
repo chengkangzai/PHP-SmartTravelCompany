@@ -7,16 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
+    $safepass=sha1($password);
 
     // Customer 
-    $sql = "SELECT username FROM Customer WHERE username = '$username' and password = '$password'";
+    $sql = "SELECT username FROM Customer WHERE username = '$username' and password = '$safepass'";
     $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $active = $row['active'];
     $count = mysqli_num_rows($result);
 
     //Employee
-    $sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$password'";
+    $sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$safepass'";
     $result1 = mysqli_query($db, $sql1);
     $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
     $active1 = $row1['active'];
