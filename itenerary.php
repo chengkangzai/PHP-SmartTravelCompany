@@ -53,5 +53,19 @@
         echo $TourCode;
     }
 
+    function selecttour($TourCode){
+        include('config.php');
+    $sql="SELECT * FROM Tour where TourCode='$TourCode'";
+    $query_sql= mysqli_query($db,$sql);
+        
+        while ($row=mysqli_fetch_assoc($query_sql)) 
+        {
+            $TourCode=$row['TourCode'];                  
+            $TourName=$row['Name'];
+        echo "<option value='$TourCode' selected >$TourName</option>";
+        echo "<option value='' disable>-------------------- </option>";
+        CallTour();
+        }
+    }
     
 

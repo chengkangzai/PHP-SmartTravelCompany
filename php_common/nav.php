@@ -132,13 +132,10 @@ function trip_info($tour_code)
             }
             </script>
         <a href='$itenerary' class='btn btn-dark x-auto'>Itinerary </a>
-        <a href='../booking.php' class='btn btn-dark x-auto'>Book now ! </a>
+        <a href='../booking.php?tcode=$tour_code' class='btn btn-danger x-auto'>Book now ! </a>
     </div>
     </div>
 ";
     mysqli_close($db);
 }
 
-function search($tour_code){
-
-}

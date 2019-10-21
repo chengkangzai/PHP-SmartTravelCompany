@@ -3,11 +3,11 @@
 include_once('C_session.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    include('config.php');
+    include_once('config.php');
     include_once('C_session.php');
     $Tour_Code = mysqli_real_escape_string($db, $_POST['TourCode']);
-    $sql="INSERT INTO C_selected_Tour(FK_C_username,FK_TourCode) VALUE('$login_session','$Tour_Code')";
-    if (mysqli_query($db,$sql)) {
+    $sql = "INSERT INTO C_selected_Tour(FK_C_username,FK_TourCode) VALUE('$login_session','$Tour_Code')";
+    if (mysqli_query($db, $sql)) {
         header("Location:booking1.php");
     }
 }
@@ -51,11 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <select class="custom-select" id="TourCode" name="TourCode">
                             <option selected hidden>Choose your Trips</option>
                             <?php
-                            if ($_SERVER) {
-                                # code...
-                            }
-                            include('itenerary.php');
-                            CallTour();
+                        
+                                $tcode=$_GET['tcode'];
+                                echo $_GET['tcode'];
+                                include_once('itenerary.php');
+                                selecttour($tcode);
+                        
+                                
+                            /*
+                                include_once('itenerary.php');
+                                CallTour();
+                                */
                             ?>
                         </select>
                     </div>
@@ -63,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
             <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block">
         </form>
-
     </div>
 
 
