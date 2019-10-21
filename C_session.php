@@ -15,6 +15,6 @@
    $LName = $row['LName'];
    
    if(!isset($_SESSION['login_user'])){
-      header("location:Login/index.php");
+      header("location:jump/Login.html");
       die();
    }
