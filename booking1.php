@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $sql = "INSERT INTO Booking(FK_Trip_ID,FK_C_username) VALUES ('$Trip_id','$username1');
     ";
-echo $sql;
     if (mysqli_query($db, $sql)) {
         echo "Successfully Book!";
         echo "<script> alert('Thanks For your Payment!'); </script>";
