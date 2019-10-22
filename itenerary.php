@@ -49,8 +49,7 @@
         $Tour_row=mysqli_fetch_assoc($Tour_query_sql);
         //Customer's selected Tour
         $TourCode=$Tour_row['FK_TourCode'];
-
-        echo $TourCode;
+        echo $TourCode ;
     }
 
     function selecttour($TourCode){

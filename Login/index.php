@@ -67,19 +67,19 @@ mysqli_close($db);
                 <div class="login-center clearfix">
                     <div class="login-center-img"><img src="img/name.png" /></div>
                     <div class="login-center-input">
-                        <input type="text" name="username" value="" placeholder="Enter Your User Name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your user name '" autofocus />
+                        <input type="text" name="username" value="" placeholder="Enter Your User Name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your user name '" autofocus required/>
                         <div class="login-center-input-text">User Name</div>
                     </div>
                 </div>
                 <div class="login-center clearfix">
                     <div class="login-center-img"><img src="img/password.png" /></div>
                     <div class="login-center-input">
-                        <input type="password" name="password" value="" placeholder="Enter Your password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter Your Password'" />
+                        <input type="password" name="password" value="" placeholder="Enter Your password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter Your Password'" required/>
                         <div class="login-center-input-text">Password</div>
                     </div>
                 </div>
                 <div class="btn btn-primary btn-block col-md-10 mx-auto ">
-                    <input type="submit" value="Submit" class="btn btn-primary col-md-12">
+                    <input type="submit" value="Submit" class="btn btn-primary col-md-12" >
                 </div>
                 <div class="text-center mt-3">
                     <a href="../C_Register.php"> Dont have account? register here !</a>
