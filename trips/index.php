@@ -29,7 +29,7 @@ include("../config.php");
         </div>
         <input type="text" class="form-control" placeholder="Type specific Tour Code" name="search_text">
         <div class="input-group-append">
-            <input class="btn btn-light border" type="submit" id="button-addon2" value="Button">
+            <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
         </div>
     </form>
     
