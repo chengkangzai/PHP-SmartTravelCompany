@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(itinerary/Exotic/10XII.jpg) no-repeat;
+    background: url(../itinerary/Exotic/10XII.jpg) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -89,7 +89,3 @@ spin {
     padding: 1%;
 }
 
-#map {
-    height: 400px;
-    width: 100%;
-}

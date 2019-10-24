@@ -139,3 +139,32 @@ function trip_info($tour_code)
     mysqli_close($db);
 }
 
+function preloader($dir_layer){
+    if ($dir_layer=="0") {
+        //root level 
+        echo "
+    <div id='overlay' style='z-index:999999'>
+                <div class='spinner'></div>
+    </div>
+    <script src='js/pre_load.js'></script>
+    ";
+    }elseif ($dir_layer =="1") {
+        //sub folder
+        echo "       
+        <div id='overlay' style='z-index:999999' class='spinner-grow text-primary' role='status'>
+                    <div class='spinner'></div>
+        </div>
+        <script src='js/pre_load.js'></script>
+        ";
+    }
+    
+    
+}
+
+function main_css($dir_layer){
+    if ($dir_layer == "0") {
+        echo("")
+    }elseif ($dir_layer =="1") {
+        
+    }
+}

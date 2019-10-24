@@ -18,6 +18,7 @@ include("../config.php");
 </head>
 
 <body class="bg-secondary">
+
     <?php
     include_once("../php_common/nav.php");
     navbar();
