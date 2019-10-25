@@ -18,7 +18,7 @@ include('session.php');
 <body>
     <?php
     include_once("php_common/nav.php");
-    navbar();
+    navbar("0");
     ?>
 
 

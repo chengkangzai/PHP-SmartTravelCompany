@@ -20,7 +20,7 @@ include("C_session.php");
 <body>
     <?php
     include_once("php_common/nav.php");
-    navbar();
+    navbar("0");
     ?>
 
     <div>

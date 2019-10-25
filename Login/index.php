@@ -56,7 +56,7 @@ mysqli_close($db);
 <body>
     <?php
     include("../php_common/nav.php");
-    navbar();
+    navbar("1");
     ?>
     <div id="particles-js">
         <form action="" method="post">

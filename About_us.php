@@ -29,7 +29,7 @@
 <body>
     <?php
     include_once("php_common/nav.php");
-    navbar();
+    navbar("0");
     ?>
 
     <div class="jumbotron py-3 m-0 text-center bg-white col-lg-12 Opacity-7">

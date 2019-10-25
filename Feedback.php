@@ -32,7 +32,7 @@ mysqli_close($db);
 <body class="jumbotron p-0">
     <?php
     include_once("php_common/nav.php");
-    navbar();
+    navbar("0");
     ?>
 
     <div>

@@ -1,9 +1,17 @@
 <?php
 
-function navbar()
+function navbar($dir_layer)
 {
     include('host.php');
-    if ($_SESSION['login_user'] == NULL ) {
+    if ($dir_layer == "0") {
+        include_once("C_session.php");
+        include_once("session.php");
+    } elseif ($dir_layer == "1") {
+        include_once("../C_session.php");
+        include_once("../session.php");
+    }
+    
+    if ($_SESSION['login_user'] == NULL ) {    
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand' href='$host/index.php'>Smart Holidays</a>

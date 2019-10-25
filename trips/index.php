@@ -27,7 +27,7 @@ include("../config.php");
 
     <?php
     include_once("../php_common/nav.php");
-    navbar();
+    navbar("1");
     ?>
 
     <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="search.php">

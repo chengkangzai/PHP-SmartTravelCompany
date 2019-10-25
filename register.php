@@ -42,7 +42,7 @@ mysqli_close($db);
 <body class="text-center jumbotron p-0">
     <?php
     include_once("php_common/nav.php");
-    navbar();
+    navbar("0");
     ?>
 
 
