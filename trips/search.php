@@ -11,9 +11,14 @@ include("../config.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Search</title>
+    <style>
+    .intro{
+        display:none;
+    }
+    </style>
     <?php
-    include_once("php_common/nav.php");
+    include_once("../php_common/nav.php");
     main_CSSandIcon("0","1");
     ?>
 </head>

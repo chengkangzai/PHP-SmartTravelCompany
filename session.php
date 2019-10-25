@@ -13,7 +13,7 @@
    
 
    if(!isset($_SESSION['login_user'])){
-      header("location:jump/index.html");
+      header("location:jump/Login.html");
       die();
    }
 

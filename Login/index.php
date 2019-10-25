@@ -81,7 +81,7 @@ mysqli_close($db);
                 <div class="btn btn-primary btn-block col-md-10 mx-auto ">
                     <input type="submit" value="Submit" class="btn btn-primary col-md-12" >
                 </div>
-                <div class="text-center mt-3">
+                <div class="login-center clearfix mt-2">
                     <a href="../C_Register.php"> Dont have account? register here !</a>
                 </div>
             </div>
