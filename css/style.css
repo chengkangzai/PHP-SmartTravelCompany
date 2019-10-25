@@ -1,27 +1,3 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: url(../itinerary/Exotic/10XII.jpg) no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    color: black;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: flex;
-    -ms-flex-align: center;
-    -ms-flex-pack: center;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
-
 /*Pre-load */
 
 

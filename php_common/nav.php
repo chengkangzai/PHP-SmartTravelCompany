@@ -161,10 +161,25 @@ function preloader($dir_layer){
     
 }
 
-function main_css($dir_layer){
+function main_CSSandIcon($dir_layer,$bootstrap){
     if ($dir_layer == "0") {
-        echo("")
+        echo("    
+        <link rel='stylesheet' href='css/style.css'>
+        <link rel='icon' href='icon.gif' type='image/gif' sizes='16x16'>
+        ");
     }elseif ($dir_layer =="1") {
-        
+        echo(
+            "
+            <link rel='stylesheet' href='css/style.css'>
+            <link rel='icon' href='../icon.gif' type='image/gif' sizes='16x16'>  
+            "
+        );
+    }
+    if ($bootstrap == "1") {
+        echo(
+        "
+        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+        ");
+            
     }
 }
