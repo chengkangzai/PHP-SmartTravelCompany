@@ -38,7 +38,7 @@
 
     </div>
 
-    <div class="jumbotron bg-white Opacity-7 row">
+    <div class="jumbotron bg-white Opacity-7 row m-0">
         <div class="col-lg-6 ">
             <h2 class="text-primary">
                 Submit Your Feedback here !

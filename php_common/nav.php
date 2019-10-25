@@ -3,13 +3,6 @@
 function navbar($dir_layer)
 {
     include('host.php');
-    if ($dir_layer == "0") {
-        include_once("C_session.php");
-        include_once("session.php");
-    } elseif ($dir_layer == "1") {
-        include_once("../C_session.php");
-        include_once("../session.php");
-    }
     
     if ($_SESSION['login_user'] == NULL ) {    
         echo "
