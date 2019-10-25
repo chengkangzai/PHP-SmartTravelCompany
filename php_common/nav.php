@@ -3,8 +3,9 @@
 function navbar($dir_layer)
 {
     include('host.php');
-    
+
     if ($_SESSION['login_user'] == NULL ) {    
+        //User not logged in
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand' href='$host/index.php'>Smart Holidays</a>
@@ -44,6 +45,7 @@ function navbar($dir_layer)
            </nav>
         ";
     }elseif ($_SESSION['login_user'] !== NULL) {
+        //User Logged in
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand' href='$host/index.php'>Smart Holidays</a>

@@ -1,6 +1,7 @@
 <?php
 //check if user logged in and redirect
 include('C_session.php');
+session_start();
 
 //POST data
 

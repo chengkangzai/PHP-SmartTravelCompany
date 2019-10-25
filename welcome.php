@@ -1,5 +1,6 @@
 <?php
 include('session.php');
+session_start();
 
 ?>
 <html>
@@ -40,62 +41,7 @@ include('session.php');
         <?php
         //https://www.youtube.com/watch?v=pc0otVM80Sk
 
-        $query_sql = mysqli_query($db, "SELECT B.Booking_ID,
-        C.FName,
-        C.LName,
-        Trip.Trip_ID,
-        T.TourCode,
-        C.Phone_num,
-        T.Name,
-        T.Destination,
-        Trip.Departure_date,
-        Trip.Fee,
-        Trip.Airline,
-        E.username ,
-        T.itinerary_url
-        FROM Booking B
-        INNER JOIN Customer C ON B.FK_C_username=C.username
-        INNER JOIN Trip on Trip.Trip_ID=B.FK_Trip_ID
-        INNER join Tour T on Trip.FK_TourCode=T.TourCode
-        INNER JOIN Employee E on T.FK_E_username=E.username
-        WHERE E.username = '$login_session'");
-
-        echo "<table border='1' class='table table-striped table-dark table-hover '>";
-        echo "    
-<thead> 
-    <tr>
-        <th scope='col'>            Customer Name           </th>
-        <th scope='col'>            Customer Phone          </th>
-        <th scope='col'>            Trip ID                 </th>
-        <th scope='col'>            Tour Code               </th>
-        <th scope='col'>            Trip Name               </th>
-        <th scope='col'>            Destination             </th>
-        <th scope='col'>            Departure date          </th>
-        <th scope='col'>            Fee                     </th>
-        <th scope='col'>            Airline                 </th>
-        <th scope='col'>            Itinerary               </th>
-    </tr>
-</thead>";
-
-        while ($row = mysqli_fetch_assoc($query_sql)) {
-            echo "
-<tbody>    
-    <tr>
-        <td>        {$row['FName']} {$row['LName']}     </td>
-        <td>        {$row['Phone_num']}                 </td>
-        <td>        {$row['Trip_ID']}                   </td>
-        <td>        {$row['TourCode']}                  </td>
-        <td>        {$row['Name']}                      </td>
-        <td>        {$row['Destination']}               </td>
-        <td>        {$row['Departure_date']}            </td>
-        <td>        RM {$row['Fee']}                       </td>
-        <td>        {$row['Airline']}                   </td>
-        <td>        <a href='{$row['itinerary_url']}'><img src='img/itenerary.png'/></a></td>
-
-    </tr>
-</tbody>";
-        }
-        echo "</table>";
+        
         //Only Manager can register user
         if ($position == "Manager") {
             echo "<div class='text-center jumbotron'>";

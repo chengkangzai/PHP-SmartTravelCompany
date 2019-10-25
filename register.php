@@ -1,7 +1,7 @@
 <?php
 //https://www.tutorialrepublic.com/php-tutorial/php-mysql-insert-query.php
 include("config.php");
-
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

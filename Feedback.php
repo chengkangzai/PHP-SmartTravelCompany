@@ -1,5 +1,6 @@
 <?php
 include_once("config.php");
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback = mysqli_real_escape_string($db, $_POST['Feedback']);

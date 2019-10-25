@@ -1,5 +1,6 @@
 <?php
 include('../config.php');
+session_start();
     $itenerary_sql="SELECT 
     T.TourCode,
     T.Name,

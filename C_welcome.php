@@ -1,5 +1,6 @@
 <?php
 include("C_session.php");
+session_start();
 ?>
 
 
