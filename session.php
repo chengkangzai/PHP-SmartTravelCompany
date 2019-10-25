@@ -9,8 +9,12 @@
    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
    
    $login_session = $row['username'];
-   $position = $row['Position'];
-   
+   $password=$row['password'];
+   $FName=$row['FName'];
+   $LName=$row['LName'];
+   $IC=$row['IC_num'];
+   $position=$row['Position'];
+   $Agency=$row['Agency'];
 
    if(!isset($_SESSION['login_user'])){
       header("location:jump/Login.html");
