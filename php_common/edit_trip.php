@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST["submit"]=="Update" ) {
+if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     include_once("../config.php");
 
     $Trip_ID = mysqli_real_escape_string($db, $_POST['Trip_ID']);
