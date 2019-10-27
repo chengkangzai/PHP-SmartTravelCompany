@@ -222,9 +222,10 @@ function main_CSSandIcon($dir_layer,$bootstrap){
 }
 
 function notpremit(){
+    $user=$_SESSION['login_user'];
     echo("
-    <h1 class='text-center'> Hi! This functionality is not yet premit to used for you. </h1>
+    <h1 class='text-center'> Hi! $user, This functionality is not yet premit to used for you. </h1>
     <h3 class='text-center'> Contact your domain adminstrator to evaluate your premission. </h3>
-    <img src='https://carrierubin.files.wordpress.com/2015/10/sad-cartoon-boy.png'>
+    <img src='https://carrierubin.files.wordpress.com/2015/10/sad-cartoon-boy.png' class='text-center'>
     ");
 }

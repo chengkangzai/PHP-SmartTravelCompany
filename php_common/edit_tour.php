@@ -24,7 +24,7 @@ if (mysqli_query($db,$sql)) {
     echo("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
     </script>");
 }else {
-    echo("Error happen! Whyyyy");
+    echo "There is some error (●ˇ∀ˇ●)";
 }
 
 

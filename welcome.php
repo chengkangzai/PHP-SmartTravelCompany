@@ -28,14 +28,15 @@ session_start();
     <div class="row m-3">
         <!-- Select function -->
         <div class="list-group col-lg-2">
-            <a class="list-group-item list-group-item-action" onclick="showprofile()"> Profile </a>
+            <a class="list-group-item list-group-item-action" onclick="showprofile()"> Profile v </a>
             <a class="list-group-item list-group-item-action disabled">------Trip--------</a>
-            <a class="list-group-item list-group-item-action" onclick="showManageTrip()"> Managed Trip </a>
-            <a class="list-group-item list-group-item-action" onclick="showUpdateTrip()"> Update Trip </a>
+            <a class="list-group-item list-group-item-action" onclick="showManageTrip()"> Managed Trip v</a>
+            <a class="list-group-item list-group-item-action" onclick="showUpdateTrip()"> Update Trip v</a>
             <a class="list-group-item list-group-item-action" onclick="showdeletetrip()"> Delete Trip </a>
+            <a class="list-group-item list-group-item-action" onclick="showaddtrip()"> Add Trip </a>
             <a class="list-group-item list-group-item-action disabled">------Tour--------</a>
-            <a class="list-group-item list-group-item-action" onclick="showAddTour()"> Add Tour </a>
-            <a class="list-group-item list-group-item-action" onclick="showUpdateTour()"> Update Tour </a>
+            <a class="list-group-item list-group-item-action" onclick="showAddTour()"   > Add Tour </a>
+            <a class="list-group-item list-group-item-action" onclick="showUpdateTour()"> Update Tour v </a>
             <a class="list-group-item list-group-item-action" onclick="showDeleteTour()"> Delete Tour </a>
 
         </div>
@@ -171,9 +172,7 @@ session_start();
                 ?>
         </div>
         <!-- Update Trip -->
-        <div class="col-lg-10 d-block" id="Update-Trip">
-            <!--GET managed trip -->
-
+        <div class="col-lg-10 d-none" id="Update-Trip">
             <?php
             //iNNERJOIN, gET Tour Category, IF position and Tour Destination
             if ($position == "Tour Manager of Asia") {
@@ -448,6 +447,278 @@ session_start();
 
             ?>
         </div>
+        <div class="col-lg-10 d-block" id="Add-Trip">
+        <?php
+            //iNNERJOIN, gET Tour Category, IF position and Tour Destination
+            if ($position == "Tour Manager of Asia") {
+                echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>";
+
+                //header of the table
+
+                echo ("
+                    <table border='0' class='table table-striped table-dark table-hover'>
+                        <tr>
+                            <th scope='col'> Trip ID </th>
+                            <th scope='col'> Departure Date </th>
+                            <th scope='col'> Fee(RM) </th>
+                            <th scope='col'> Airline </th>
+                            <th scope='col'> Tour Code</th>
+                            <th scope='col'> Tour Name</th>
+                            <th scope='col'> Delete </th>
+                        </tr>
+                    ");
+
+                //Select and edit the Trip
+                $trip_asia_JOINED_sql = "SELECT  
+                Tr.Trip_ID ,
+                Tr.Departure_date,
+                Tr.Fee,
+                Tr.Airline,
+                Tr.FK_TourCode,
+                T.Name
+                from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
+                WHERE Category='Asia'
+                ORDER BY Tr.Trip_ID ASC
+";
+                $trip_asia_JOINED_query = mysqli_query($db, $trip_asia_JOINED_sql);
+
+                while ($trip_asia_row = mysqli_fetch_assoc($trip_asia_JOINED_query)) {
+                    echo "
+                    <form method='POST' action='php_common/delete_trip.php' onsubmit='dconfirm()'>
+                    <tbody>    
+                    <tr>
+                        <td>
+                            <input value='{$trip_asia_row['Trip_ID']}' name='Trip_ID' hidden>
+                            <input value='{$trip_asia_row['Trip_ID']}' class='form-control' disabled >
+                        </td>
+                        <td>        
+                            <input value='{$trip_asia_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled >
+                        </td>
+                        <td>        
+                            <input value='{$trip_asia_row['Fee']}' name='Fee' class='form-control' type='number' disabled>
+                        </td>
+                        <td>        
+                            <input value='{$trip_asia_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                        </td>
+                        <td>        
+                            <input value='{$trip_asia_row['FK_TourCode']}' class='form-control' disabled >
+                        </td>
+                        <td>        
+                            <input value='{$trip_asia_row['Name']}' class='form-control' disabled>
+                        </td>
+                        <td>
+                            <input type='submit' value='Delete' class='btn btn-danger'>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                    ";
+                    echo ("</form>");
+                }
+                echo "</table>";
+            } elseif ($position == "Tour Manager of Europe") {
+                echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>";
+
+                //header of the table
+                echo ("
+                    <table border='0' class='table table-striped table-dark table-hover'>
+                        <tr>
+                            <th scope='col'> Trip ID </th>
+                            <th scope='col'> Departure Date </th>
+                            <th scope='col'> Fee(RM) </th>
+                            <th scope='col'> Airline </th>
+                            <th scope='col'> Tour Code</th>
+                            <th scope='col'> Tour Name</th>
+                            <th scope='col'> Delete </th>
+                        </tr>
+                    ");
+
+                //Select and edit the Trip
+                $trip_Europe_JOINED_sql = "SELECT  
+                        Tr.Trip_ID ,
+                        Tr.Departure_date,
+                        Tr.Fee,
+                        Tr.Airline,
+                        Tr.FK_TourCode,
+                        T.Name
+                        from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
+                        WHERE Category='Europe'
+                        ORDER BY Tr.Trip_ID ASC
+                        ";
+                $trip_Europe_JOINED_query = mysqli_query($db, $trip_Europe_JOINED_sql);
+
+                while ($trip_Europe_row = mysqli_fetch_assoc($trip_Europe_JOINED_query)) {
+
+                    echo "
+                    <form method='POST' action='php_common/delete_trip.php' onsubmit='dconfirm()'>
+                        <tbody>    
+                        <tr>
+                            <td>
+                                <input value='{$trip_Europe_row['Trip_ID']}' name='Trip_ID' hidden>
+                                <input value='{$trip_Europe_row['Trip_ID']}' class='form-control' disabled >
+                            </td>
+                            <td>        
+                                <input value='{$trip_Europe_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled>
+                            </td>
+                            <td>        
+                                <input value='{$trip_Europe_row['Fee']}' name='Fee' class='form-control' type='number' disabled>
+                            </td>
+                            <td>        
+                                <input value='{$trip_Europe_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                            </td>
+                            <td>        
+                                <input value='{$trip_Europe_row['FK_TourCode']}' class='form-control' disabled >                            
+                            </td>
+                            <td>        
+                                <input value='{$trip_Europe_row['Name']}' class='form-control' disabled>
+                            </td>
+                            <td>
+                                <input type='submit' value='Delete' class='btn btn-danger'>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        ";
+                    echo ("</form>");
+                }
+                echo "</table>";
+            } elseif ($position == "Tour Manager of Exotic") {
+                echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>";
+
+                //header of the table
+                echo ("
+                <table border='0' class='table table-striped table-dark table-hover'>
+                    <tr>
+                        <th scope='col'> Trip ID </th>
+                        <th scope='col'> Departure Date </th>
+                        <th scope='col'> Fee(RM) </th>
+                        <th scope='col'> Airline </th>
+                        <th scope='col'> Tour Code</th>
+                        <th scope='col'> Tour Name</th>
+                        <th scope='col'> Delete </th>
+                    </tr>
+                ");
+
+                //Select and edit the Trip
+                $trip_Exotic_JOINED_sql = "SELECT  
+                    Tr.Trip_ID ,
+                    Tr.Departure_date,
+                    Tr.Fee,
+                    Tr.Airline,
+                    Tr.FK_TourCode,
+                    T.Name
+                    from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
+                    WHERE Category='Exotic'
+                    ORDER BY Tr.Trip_ID ASC
+                    ";
+                $trip_Exotic_JOINED_query = mysqli_query($db, $trip_Exotic_JOINED_sql);
+
+                while ($trip_Exotic_row = mysqli_fetch_assoc($trip_Exotic_JOINED_query)) {
+                    echo "
+                    <form method='POST' action='php_common/delete_trip.php' onsubmit='dconfirm()'>
+                    <tbody>    
+                    <tr>
+                        <td>
+                            <input value='{$trip_Exotic_row['Trip_ID']}' name='Trip_ID' hidden>
+                            <input value='{$trip_Exotic_row['Trip_ID']}' class='form-control' disabled >
+                        </td>
+                        <td>        
+                            <input value='{$trip_Exotic_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled>
+                        </td>
+                        <td>        
+                            <input value='{$trip_Exotic_row['Fee']}' name='Fee' class='form-control' type='number' disabled>
+                        </td>
+                        <td>        
+                            <input value='{$trip_Exotic_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                        </td>
+                        <td>        
+                            <input value='{$trip_Exotic_row['FK_TourCode']}' class='form-control' disabled >                          
+                        </td>
+                        <td>        
+                            <input value='{$trip_Exotic_row['Name']}' class='form-control' disabled>
+                        </td>
+                        <td>
+                            <input type='submit' value='Delete' class='btn btn-danger'>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                    ";
+                    echo ("</form>");
+                }
+                echo "</table>";
+            } elseif ($position == "Manager" || $position == "Assistant Manager") {
+                echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>";
+
+                //header of the table
+                echo ("
+                <table border='0' class='table table-striped table-dark table-hover'>
+                    <tr>
+                        <th scope='col'> Trip ID </th>
+                        <th scope='col'> Departure Date </th>
+                        <th scope='col'> Fee(RM) </th>
+                        <th scope='col'> Airline </th>
+                        <th scope='col'> Tour Code</th>
+                        <th scope='col'> Tour Name</th>
+                        <th scope='col'> Delete </th>
+                    </tr>
+                ");
+
+                //Select and edit the Trip
+                $trip_ALL_JOINED_sql = "SELECT  
+                    Tr.Trip_ID ,
+                    Tr.Departure_date,
+                    Tr.Fee,
+                    Tr.Airline,
+                    Tr.FK_TourCode,
+                    T.Name
+                    from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
+                    ORDER BY Tr.Trip_ID ASC
+                    ";
+                $trip_ALL_JOINED_query = mysqli_query($db, $trip_ALL_JOINED_sql);
+
+                while ($trip_ALL_row = mysqli_fetch_assoc($trip_ALL_JOINED_query)) {
+                    echo "
+                    <form method='POST' action='php_common/delete_trip.php' onsubmit='dconfirm()'>
+                        <tbody>    
+                        <tr>
+                            <td>
+                                <input value='{$trip_ALL_row['Trip_ID']}' name='Trip_ID' hidden>
+                                <input value='{$trip_ALL_row['Trip_ID']}' class='form-control' disabled >
+                            </td>
+                            <td>        
+                                <input value='{$trip_ALL_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled>
+                            </td>
+                            <td>        
+                                <input value='{$trip_ALL_row['Fee']}' name='Fee' class='form-control' type='number' disabled> 
+                            </td>
+                            <td>        
+                                <input value='{$trip_ALL_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                            </td>
+                            <td>        
+                                <input value='{$trip_ALL_row['FK_TourCode']}' class='form-control' disabled >                          
+                            </td>
+                            <td>        
+                                <input value='{$trip_ALL_row['Name']}' class='form-control' disabled>
+                            </td>
+                            <td>
+                                <input type='submit' value='Delete' class='btn btn-danger' >
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        ";
+                    echo ("</form>");
+                }
+                echo "</table>";
+            } else {
+                include_once("php_common/nav.php");
+                notpremit();
+            }
+
+            ?>
+
+                </div>
         <div class="col-lg-10 d-none" id="Delete-Trip">
             <!--Only Can delete trip that no one book-->
         </div>
@@ -682,6 +953,16 @@ session_start();
     <script>
         var close = document.getElementsByClassName('Update_tour_table');
         close.style.display = 'none';
+    </script>
+
+    <script>
+        function dconfirm(){
+            var r =confirm("You are about to delete a record ! \n Are you sure ?");
+            if (r == FALSE) {
+                location.reload();
+            }
+        }
+        
     </script>
 </body>
 

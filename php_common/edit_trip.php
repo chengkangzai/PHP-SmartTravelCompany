@@ -22,5 +22,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
         echo ("Error happen! Whyyyy");
     }
 }else {
-    echo "lol";
+    echo "There is some error (●ˇ∀ˇ●)";
 }
