@@ -5,261 +5,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard -
-        <?php echo $login_session ?> </title>
+    <title>Play ground</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <div class="row p-3 ">
-        <div class="list-group col-lg-2">
-            <a href="#" class="list-group-item list-group-item-action active">Cras justo odio</a>
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-        </div>
-        <div class="col-lg-10">
-            <table class="table table-striped table-dark table-hover ">
-                <thead>
-                    <tr>
-                        <th scope="col"> Customer Name </th>
-                        <th scope="col"> Customer Phone </th>
-                        <th scope="col"> Trip ID </th>
-                        <th scope="col"> Tour Code </th>
-                        <th scope="col"> Trip Name </th>
-                        <th scope="col"> Destination </th>
-                        <th scope="col"> Departure date </th>
-                        <th scope="col"> Fee </th>
-                        <th scope="col"> Airline </th>
-                        <th scope="col"> Itinerary </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> Chan Chin Wei </td>
-                        <td> 016-3297465 </td>
-                        <td> 3 </td>
-                        <td> 5BKK </td>
-                        <td> 5D4N Bangkok + Hua Hin Tour </td>
-                        <td> Thailand </td>
-                        <td> 2019-12-15 </td>
-                        <td> RM 2498 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5BKK.pdf"><img src="img/itenerary.png"></a>
-                        </td>
+    <form action="test.php" method="post" enctype="multipart/form-data">
+        <table class="table table-dark table-hover">
+            <tr>
+                <td>Tour Code</td>
+                <td><input type="text" name="TourCode" class="form-control " placeholder="Tour Code"></td>
+            </tr>
+            <tr>
+                <td>Tour Name</td>
+                <td><input type="text" name="TourName" class="form-control " placeholder="Tour Name"></td>
+            </tr>
+            <tr>
+                <td>Thumbnail Picture (jpg,jpeg,png)</td>
+                <td>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="pic" accept="image/*">
+                            <label class=" custom-file-label " for="pic">Choose picture</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Itenerary PDF</td>
+                <td>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input " name="itenerary" accept="application/pdf">
+                            <label class="custom-file-label " for="itenerary">Choose itenerary in pdf</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select name="Category" class="custom-select">
+                        <option value="Asia"> Asia</option>
+                        <option value="Asia"> Exotic</option>
+                        <option value="Asia"> Europe</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Destination</td>
+                <td>
+                    <select name="Destination" class="custom-select">
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Cairo">Cairo</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Arfica">Arfica</option>
+                        <option value="China">China</option>
+                    </select>
+                </td>
+            </tr>
 
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> help help </td>
-                        <td> 1 </td>
-                        <td> 4 </td>
-                        <td> 5BKK </td>
-                        <td> 5D4N Bangkok + Hua Hin Tour </td>
-                        <td> Thailand </td>
-                        <td> 2019-11-09 </td>
-                        <td> RM 2498 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5BKK.pdf"><img src="img/itenerary.png"></a>
-                        </td>
+            <tr>
+                <td>Tour Hightlight 1</td>
+                <td><textarea row="3" col="50" class="form-control" name="Point_1"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 1 Description</td>
+                <td><textarea row="3" col="50" class="form-control" name="Des_1"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 2</td>
+                <td><textarea row="3" col="50" class="form-control" name="Point_2"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 2 Description</td>
+                <td><textarea row="3" col="50" class="form-control" name="Des_2"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 3</td>
+                <td><textarea row="3" col="50" class="form-control" name="Point_3"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 3 Description</td>
+                <td><textarea row="3" col="50" class="form-control" name="Des_3"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 4</td>
+                <td><textarea row="3" col="50" class="form-control" name="Point_4"></textarea></td>
+            </tr>
+            <tr>
+                <td>Tour Hightlight 4 Description</td>
+                <td><textarea row="3" col="50" class="form-control" name="Des_4"></textarea></td>
+            </tr>
 
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Topher Percival Fields </td>
-                        <td> 0172630468 </td>
-                        <td> 6 </td>
-                        <td> 5BKK </td>
-                        <td> 5D4N Bangkok + Hua Hin Tour </td>
-                        <td> Thailand </td>
-                        <td> 2019-11-22 </td>
-                        <td> RM 2298 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5BKK.pdf"><img src="img/itenerary.png"></a>
-                        </td>
+            <tr>
+                <td colspan="2" class="text-center mx-auto">
+                    <input type="submit" value="Add Tour" class="btn btn-lg btn-primary">
+                </td>
+            </tr>
+        </table>
 
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Brant Kelli Rigby </td>
-                        <td> 0189840821 </td>
-                        <td> 6 </td>
-                        <td> 5BKK </td>
-                        <td> 5D4N Bangkok + Hua Hin Tour </td>
-                        <td> Thailand </td>
-                        <td> 2019-11-22 </td>
-                        <td> RM 2298 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5BKK.pdf"><img src="img/itenerary.png"></a>
-                        </td>
 
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Lexine Garrett Foster </td>
-                        <td> 0171196118 </td>
-                        <td> 6 </td>
-                        <td> 5BKK </td>
-                        <td> 5D4N Bangkok + Hua Hin Tour </td>
-                        <td> Thailand </td>
-                        <td> 2019-11-22 </td>
-                        <td> RM 2298 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5BKK.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Brock Alysia Caulfield </td>
-                        <td> 0171011967 </td>
-                        <td> 7 </td>
-                        <td> 5BKK </td>
-                        <td> 5D4N Bangkok + Hua Hin Tour </td>
-                        <td> Thailand </td>
-                        <td> 2019-11-23 </td>
-                        <td> RM 2298 </td>
-                        <td> Malindo </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5BKK.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Brock Alysia Caulfield </td>
-                        <td> 0171011967 </td>
-                        <td> 11 </td>
-                        <td> 5DPS </td>
-                        <td> 5D4N Bali Dolphin </td>
-                        <td> Indonesia </td>
-                        <td> 2019-12-14 </td>
-                        <td> RM 2198 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5DPS.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Chan Chin Wei </td>
-                        <td> 016-3297465 </td>
-                        <td> 11 </td>
-                        <td> 5DPS </td>
-                        <td> 5D4N Bali Dolphin </td>
-                        <td> Indonesia </td>
-                        <td> 2019-12-14 </td>
-                        <td> RM 2198 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5DPS.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Brock Alysia Caulfield </td>
-                        <td> 0171011967 </td>
-                        <td> 12 </td>
-                        <td> 5DPS </td>
-                        <td> 5D4N Bali Dolphin </td>
-                        <td> Indonesia </td>
-                        <td> 2019-11-09 </td>
-                        <td> RM 2198 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5DPS.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Phebe Stephen Wheeler </td>
-                        <td> 0123751913 </td>
-                        <td> 14 </td>
-                        <td> 5HAN </td>
-                        <td> 5D4N Hanoi – Halong Bay – Ninh Binh Bich Dong Tour </td>
-                        <td> Vietnam </td>
-                        <td> 2019-11-23 </td>
-                        <td> RM 1998 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5HAN.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Brock Alysia Caulfield </td>
-                        <td> 0171011967 </td>
-                        <td> 14 </td>
-                        <td> 5HAN </td>
-                        <td> 5D4N Hanoi – Halong Bay – Ninh Binh Bich Dong Tour </td>
-                        <td> Vietnam </td>
-                        <td> 2019-11-23 </td>
-                        <td> RM 1998 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5HAN.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Joetta Miriam Wilson </td>
-                        <td> 0187491610 </td>
-                        <td> 17 </td>
-                        <td> 5HAN </td>
-                        <td> 5D4N Hanoi – Halong Bay – Ninh Binh Bich Dong Tour </td>
-                        <td> Vietnam </td>
-                        <td> 2019-12-17 </td>
-                        <td> RM 2198 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5HAN.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td> Brant Kelli Rigby </td>
-                        <td> 0189840821 </td>
-                        <td> 19 </td>
-                        <td> 5JBP </td>
-                        <td> 5D4N Jakart– Puncak – Bandung Tour </td>
-                        <td> Indonesia </td>
-                        <td> 2019-11-16 </td>
-                        <td> RM 1998 </td>
-                        <td> Malaysia Airline </td>
-                        <td>
-                            <a href="http://chengkang.synology.me/test/php-assignment/itinerary/Asia/5JBP.pdf"><img src="img/itenerary.png"></a>
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </form>
 </body>
 
 </html>

@@ -74,6 +74,8 @@ session_start();
             Trip_info('8XSAB');
             Trip_info('9CAI');
             Trip_info('10XII');
+            Trip_info('8CKWL');
+
             ?>
 
         </div>

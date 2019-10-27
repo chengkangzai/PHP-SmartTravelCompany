@@ -1,5 +1,5 @@
 
---Drop table Employee,Booking,Trip,Customer,Tour
+--Drop table Employee,Booking,Trip,Customer,Tour,Tour_des,C_selected_Tour,Feedback
 
 CREATE TABLE Employee (
     username varchar(255) primary key,
@@ -33,7 +33,7 @@ CREATE TABLE Tour(
 );
 
 CREATE TABLE Trip(
-    Trip_ID VARCHAR(255) PRIMARY KEY,   
+    Trip_ID int AUTO_INCREMENT PRIMARY KEY,   
     Departure_date DATE not NULL,
     Fee int NOT NULL,
     Airline VARCHAR(200) not NULL,
@@ -43,7 +43,7 @@ CREATE TABLE Trip(
 
 CREATE TABLE Booking(
     Booking_ID int NOT NULL AUTO_INCREMENT primary key ,
-    FK_Trip_ID VARCHAR(255) NOT NULL,
+    FK_Trip_ID int NOT NULL,
         FOREIGN KEY (FK_Trip_ID) REFERENCES Trip(Trip_ID),
     FK_C_username VARCHAR(255) not NULL,
     FOREIGN KEY (FK_C_username) REFERENCES Customer(username)
@@ -68,6 +68,11 @@ CREATE TABLE C_selected_Tour(
         FOREIGN KEY (FK_C_username) REFERENCES Customer(username),
     FK_TourCode VARCHAR(255),
         FOREIGN KEY(FK_TourCode) REFERENCES Tour(TourCode)
+)
+
+CREATE TABLE Feedback(
+    Feedback_ID INT AUTO_INCREMENT PRIMARY key,
+    Feedback VARCHAR(255) not null 
 )
 
 
