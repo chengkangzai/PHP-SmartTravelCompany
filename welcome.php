@@ -118,7 +118,7 @@ session_start();
         <div class="col-lg-10 d-none" id="managed-trip">
 
             <?php
-            echo ("<table border='1' class='table table-striped table-dark table-hover '>
+            echo ("<table class='table table-dark table-hover '>
                         <thead>
                             <tr>
                                 <th scope='col'> Customer Name </th>
