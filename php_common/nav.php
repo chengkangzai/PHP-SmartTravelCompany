@@ -1,6 +1,6 @@
 <?php
 
-function navbar($dir_layer)
+function navbar()
 {
     include('host.php');
 
@@ -67,7 +67,7 @@ function navbar($dir_layer)
                            <a class='nav-link' href='$host/About_us.php'>About Us</a>
                        </li>
                        <li class='nav-item'>
-                       <a class='nav-link' href='$host/Login/index.php'>Login</a>
+                       <a class='nav-link' href='$host/welcome'>Dashboard</a>
                         </li>
                        <li class='nav-item'>
                        <a href='$host/logout.php' class='btn btn-outline-primary nav-link text-right float-right ' title='Log out'>Log out </a>

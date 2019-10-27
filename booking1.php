@@ -39,6 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include_once("php_common/nav.php");
     main_CSSandIcon("0","1");
     ?>
+    <style>
+        body {
+            background-color: black;
+            background-image:
+                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -47,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     navbar("0");
     ?>
 
-    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto jumbotron">
+    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto mt-5 jumbotron">
         <form method="post" action="" class="form-signin p-2">
             <h2 class="text-center mb-3">Book Your Trips Now !</h2>
             <div>

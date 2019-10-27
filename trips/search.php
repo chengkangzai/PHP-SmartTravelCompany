@@ -13,13 +13,23 @@ include("../config.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search</title>
     <style>
-    .intro{
-        display:none;
-    }
+        .intro {
+            display: none;
+        }
+        body {
+            background-color: black;
+            background-image:
+                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
     </style>
     <?php
     include_once("../php_common/nav.php");
-    main_CSSandIcon("0","1");
+    main_CSSandIcon("0", "1");
     ?>
 </head>
 
@@ -38,22 +48,22 @@ include("../config.php");
             <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
         </div>
     </form>
-    
+
     <div class="jumbotron col-lg-10 mx-auto">
         <h1 class="text-center mb-3">Most Popular Trips!</h1>
 
         <div class="row">
             <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    include_once("../php_common/nav.php");
-    include_once("../config.php");
-    $Tour_Code = mysqli_real_escape_string($db,$_POST['search_text']);
-    
-    trip_info($Tour_Code);
-}  
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                include_once("../php_common/nav.php");
+                include_once("../config.php");
+                $Tour_Code = mysqli_real_escape_string($db, $_POST['search_text']);
+
+                trip_info($Tour_Code);
+            }
 
             ?>
-           
+
         </div>
 
 

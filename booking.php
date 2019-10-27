@@ -25,18 +25,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <title>Booking Page</title>
     <?php
     include_once("php_common/nav.php");
-    main_CSSandIcon("0","1");
+    main_CSSandIcon("0", "1");
     ?>
+    <style>
+        body {
+            background-color: black;
+            background-image:
+                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
+    </style>
+
 </head>
 
-<body>
+<body >
     <?php
     include_once("php_common/nav.php");
     navbar("0");
     ?>
 
-    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto jumbotron">
-        <form method="POST" class="form-signin p-2">
+    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto mt-5 jumbotron">
+        <form method="POST" class="form-signin p-2 ">
             <h2 class="text-center mb-3">Book Your Trips Now !</h2>
             <div>
                 <div class="form-group row bg-white">
@@ -46,6 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <?php
                     include_once('C_session.php');
                     echo $login_session;
+                    if ($login_session == NULL) {
+                        echo (" Employee account detected! Bear in mind this is Booking Page for Customer used only !");
+                    }
                     ?>
                     ">
                     </div>
@@ -55,17 +71,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <select class="custom-select" id="TourCode" name="TourCode">
                             <option selected hidden>Choose your Trips</option>
                             <?php
-                        
-                                $tcode=$_GET['tcode'];
-                                echo $_GET['tcode'];
-                                include_once('itenerary.php');
-                                selecttour($tcode);
-                        
-                                
-                            /*
+
+                            $tcode = $_GET['tcode'];
+                            echo $_GET['tcode'];
+                            include_once('itenerary.php');
+                            selecttour($tcode);
+
+
+
+                            if ($tcode == NULL) {
                                 include_once('itenerary.php');
                                 CallTour();
-                                */
+                            }
+
+
                             ?>
                         </select>
                     </div>
