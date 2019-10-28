@@ -24,9 +24,9 @@ session_start();
             opacity: 0.7;
         }
     </style>
-        <?php
+    <?php
     include_once("php_common/nav.php");
-    main_CSSandIcon("0","1");
+    main_CSSandIcon("0", "1");
     ?>
 </head>
 
@@ -56,22 +56,7 @@ session_start();
         </div>
     </div>
 
-    <script>
-        function initMap() {
-            var options = {
-                zoom: 15,
-                center: {
-                    lat: 3.0551,
-                    lng: 101.7008
-                }
 
-            }
-            var map = new google.maps.Map(document.getElementById('map'), options);
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4ynZXNBtkssLgCnHqiduKpVtzUOJd7tw&callback=initMap" async defer></script>
-    </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>

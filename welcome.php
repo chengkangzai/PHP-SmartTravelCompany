@@ -18,6 +18,22 @@ session_start();
     include_once("php_common/nav.php");
     main_CSSandIcon("0", "1");
     ?>
+
+    <style>
+        body {
+            background-color: black;
+            background-image:
+                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
+        h1{
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,7 +54,7 @@ session_start();
             <a class="list-group-item list-group-item-action" onclick="showDeleteTour()" id="delete-tour-btn"> Delete Tour</a>
             <?php
             if($position == "Manager" || $position == "Assistant Manager"){
-                echo "<a class='list-group-item list-group-item-action' href='register.php' > Delete Tour</a>";
+                echo "<a class='list-group-item list-group-item-action' href='register.php' >Register Employee </a>";
             }
             ?>
         </div>
@@ -1387,9 +1403,6 @@ session_start();
                 notpremit();
             }
             ?>
-        </div>
-        <div class="col-lg-10" id="Add New Employee">
-
         </div>
         <div class="col-lg-10 d-block" id="welcome">
             <img src="img/E_welcome.jpg" class="mx-auto text-center">
