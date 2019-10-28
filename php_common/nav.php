@@ -1,50 +1,10 @@
 <?php
-
+session_start();
 function navbar()
 {
     include('host.php');
 
-    if ($_SESSION['login_user'] == NULL ) {    
-        //User not logged in
-        echo "
-        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-            <a class='navbar-brand' href='$host/index.php'>Smart Holidays</a>
-                  <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
-               <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
-                   <!--The icon itself-->
-                   <span class='navbar-toggler-icon'></span>
-               </button>
-               <!--Real nav start here-->
-               <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-                   <ul class='navbar-nav'>
-                       <li class='nav-item '>
-                           <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
-                       </li>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/trips/index.php'>Trips</a>
-                       </li>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/About_us.php'>About Us</a>
-                       </li>
-                       <li class='nav-item'>
-                       <a class='nav-link' href='$host/Login/index.php'>Login</a>
-                        </li>
-                       <!--
-                        <li class='nav-item dropdown'>
-                           <a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                               Login system
-                           </a>
-                           <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-                               <a class='dropdown-item' href='$host/C_Login.php'>Customer</a>
-                               <a class='dropdown-item' href='$host/Login.php'>Staff</a>
-                           </div>
-                       </li>
-                       -->
-                   </ul>
-               </div>
-           </nav>
-        ";
-    }elseif ($_SESSION['login_user'] !== NULL) {
+     if ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Employee") {
         //User Logged in
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -76,9 +36,70 @@ function navbar()
                </div>
            </nav>
         ";
+    } elseif ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Customer"){
+        //User Logged in
+        echo "
+            <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+                <a class='navbar-brand' href='$host/index.php'>Smart Holidays</a>
+                      <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
+                   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+                       <!--The icon itself-->
+                       <span class='navbar-toggler-icon'></span>
+                   </button>
+                   <!--Real nav start here-->
+                   <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+                       <ul class='navbar-nav'>
+                           <li class='nav-item '>
+                               <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
+                           </li>
+                           <li class='nav-item'>
+                               <a class='nav-link' href='$host/trips/index.php'>Trips</a>
+                           </li>
+                           <li class='nav-item'>
+                               <a class='nav-link' href='$host/About_us.php'>About Us</a>
+                           </li>
+                           <li class='nav-item'>
+                           <a class='nav-link' href='$host/C_welcome'>Dashboard</a>
+                            </li>
+                           <li class='nav-item'>
+                           <a href='$host/logout.php' class='btn btn-outline-primary nav-link text-right float-right ' title='Log out'>Log out </a>
+                           </li>
+                       </ul>
+                   </div>
+               </nav>
+            ";
+    } else {
+        echo "
+        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+            <a class='navbar-brand' href='$host/index.php'>Smart Holidays</a>
+                  <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
+               <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+                   <!--The icon itself-->
+                   <span class='navbar-toggler-icon'></span>
+               </button>
+               <!--Real nav start here-->
+               <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+                   <ul class='navbar-nav'>
+                       <li class='nav-item '>
+                           <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
+                       </li>
+                       <li class='nav-item'>
+                           <a class='nav-link' href='$host/trips/index.php'>Trips</a>
+                       </li>
+                       <li class='nav-item'>
+                           <a class='nav-link' href='$host/About_us.php'>About Us</a>
+                       </li>
+                       <li class='nav-item'>
+                       <a class='nav-link' href='$host/Login/index.php'>Login</a>
+                        </li>
+                   </ul>
+               </div>
+           </nav>
+        ";
     }
-
 }
+        
+
 
 function trip_info($tour_code)
 {
@@ -100,7 +121,7 @@ function trip_info($tour_code)
     FROM Tour T 
     INNER JOIN Tour_des td on td.FK_TourCode=T.TourCode
     Where T.TourCode='$tour_code'
-    "; 
+    ";
 
     // Query it --> Its for all
     $itenerary_query = mysqli_query($db, $itenerary_sql);
@@ -110,8 +131,8 @@ function trip_info($tour_code)
     $itenerary = $itenerary_row['itinerary_url'];
     $Tour_name = $itenerary_row['Name'];
     $thumbnail = $itenerary_row['thumbnail_url'];
-    $category= $itenerary_row['Destination'];
-    
+    $category = $itenerary_row['Destination'];
+
 
     //Hightlight 
     $P1 = $itenerary_row['Point_1'];
@@ -125,11 +146,11 @@ function trip_info($tour_code)
 
     //Javasciprt Naming 
     //Generate random number 
-    $ran1=rand();
-    $ran2=rand();
-    $ran3=rand();
+    $ran1 = rand();
+    $ran2 = rand();
+    $ran3 = rand();
 
-        echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 border py-2 mx-auto'>
+    echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 border py-2 mx-auto'>
             <div class='embed-responsive embed-responsive-16by9'>
             <img src= '$thumbnail' alt='' class='img-fluid embed-responsive-item' />
             </div>
@@ -141,7 +162,7 @@ function trip_info($tour_code)
             Category: $category
             </div>
             ";
-            echo    "
+    echo    "
                 <ul id='$ran2' class='intro p-3 mx-auto'>
                 <h2 class='text-primary text-center'>Hightlight</h2> 
             ";
@@ -176,8 +197,9 @@ function trip_info($tour_code)
     mysqli_close($db);
 }
 
-function preloader($dir_layer){
-    if ($dir_layer=="0") {
+function preloader($dir_layer)
+{
+    if ($dir_layer == "0") {
         //root level 
         echo "
     <div id='overlay' style='z-index:999999'>
@@ -185,7 +207,7 @@ function preloader($dir_layer){
     </div>
     <script src='js/pre_load.js'></script>
     ";
-    }elseif ($dir_layer =="1") {
+    } elseif ($dir_layer == "1") {
         //sub folder
         echo "       
         <div id='overlay' style='z-index:999999' class='spinner-grow text-primary' role='status'>
@@ -194,36 +216,32 @@ function preloader($dir_layer){
         <script src='js/pre_load.js'></script>
         ";
     }
-    
-    
 }
 
-function main_CSSandIcon($dir_layer,$bootstrap){
+function main_CSSandIcon($dir_layer, $bootstrap)
+{
     if ($dir_layer == "0") {
-        echo("    
+        echo ("    
         <link rel='stylesheet' href='css/style.css'>
         <link rel='icon' href='icon.gif' type='image/gif' sizes='16x16'>
         ");
-    }elseif ($dir_layer =="1") {
-        echo(
-            "
+    } elseif ($dir_layer == "1") {
+        echo ("
             <link rel='stylesheet' href='css/style.css'>
             <link rel='icon' href='../icon.gif' type='image/gif' sizes='16x16'>  
-            "
-        );
+            ");
     }
     if ($bootstrap == "1") {
-        echo(
-        "
+        echo ("
         <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
         ");
-            
     }
 }
 
-function notpremit(){
-    $user=$_SESSION['login_user'];
-    echo("
+function notpremit()
+{
+    $user = $_SESSION['login_user'];
+    echo ("
     <h1 class='text-center'> Hi! $user, This functionality is not yet premit to used for you. </h1>
     <h3 class='text-center'> Contact your domain adminstrator to evaluate your premission. </h3>
     <img src='https://carrierubin.files.wordpress.com/2015/10/sad-cartoon-boy.png' class='text-center'>

@@ -13,9 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $sql = "INSERT INTO Booking(FK_Trip_ID,FK_C_username) VALUES ('$Trip_id','$username1');
     ";
     if (mysqli_query($db, $sql)) {
-        echo "Successfully Book!";
-        echo "<script> alert('Thanks For your Payment!'); </script>";
-        header("Location:C_welcome.php");
+        header("Location:jump/fake_payment.html");
     } else {
         echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
     };

@@ -13,6 +13,10 @@
    $login_session = $row['username'];
    $FName = $row['FName'];
    $LName = $row['LName'];
+   $phone_number=$row['Phone_num'];
+   $Email=$row['Email'];
+   $Passport=$row['Passport'];
+
    
    if(!isset($_SESSION['login_user'])){
       header("location:jump/Login.html");

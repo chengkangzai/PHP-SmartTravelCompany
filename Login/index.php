@@ -25,9 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($count == 1) {
         $_SESSION['login_user'] = $username ;
+        $_SESSION['role'] = "Customer";
         header("Location:../C_welcome.php");
     } elseif ($count1 == 1 ) {
         $_SESSION['login_user']=$username;
+        $_SESSION['role'] = "Employee";
         header("Location:../welcome.php");
     }else {
         echo "<script> alert('Your Credential is invalid!'); </script>";
@@ -78,7 +80,7 @@ mysqli_close($db);
                         <div class="login-center-input-text">Password</div>
                     </div>
                 </div>
-                <div class="btn btn-primary btn-block col-md-10 mx-auto ">
+                <div class="btn btn-primary btn-block col-md-10 col-10 col-sm-10 col-md-10 col-xl-10 mx-auto ">
                     <input type="submit" value="Submit" class="btn btn-primary col-md-12" >
                 </div>
                 <div class="login-center clearfix mt-2">
