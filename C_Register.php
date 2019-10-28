@@ -40,6 +40,18 @@ mysqli_close($db);
     main_CSSandIcon("0","1");
     ?>
     <title>Customer Register Page</title>
+    <style>
+        body {
+            background-color: black;
+            background-image:
+                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
+    </style>
 </head>
 
 <body class="text-center jumbotron p-0">
@@ -70,7 +82,7 @@ mysqli_close($db);
             <br>
             <input type="email" name="Email" placeholder="Your email" class="form-control" required>
             <br>
-            <input type="text" name="Passport" placeholder="Your Passport number" class="form-control" required>
+            <input type="number" name="Passport" placeholder="Your Passport number" class="form-control" required pattern="^(?!^0+$)[a-zA-Z0-9]{3,20}$">
             <br>
 
             <br>

@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <div class="form-group row">
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="Trip" name="Trip_id">
+                        <select class="custom-select" id="Trip" name="Trip_id" required>
                             <option selected hidden>Choose your Trips</option>
                             <?php
                             include_once('itenerary.php');

@@ -36,7 +36,11 @@ session_start();
             <a class="list-group-item list-group-item-action" onclick="showAddTour()" id="add-tour-btn"> Add Tour</a>
             <a class="list-group-item list-group-item-action" onclick="showUpdateTour()" id="update-tour-btn"> Update Tour</a>
             <a class="list-group-item list-group-item-action" onclick="showDeleteTour()" id="delete-tour-btn"> Delete Tour</a>
-
+            <?php
+            if($position == "Manager" || $position == "Assistant Manager"){
+                echo "<a class='list-group-item list-group-item-action' href='register.php' > Delete Tour</a>";
+            }
+            ?>
         </div>
 
         <!-- Profile -->
@@ -255,7 +259,7 @@ session_start();
                 from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
                 WHERE Category='Asia'
                 ORDER BY Tr.Trip_ID ASC
-";
+                ";
                 $trip_asia_JOINED_query = mysqli_query($db, $trip_asia_JOINED_sql);
 
                 while ($trip_asia_row = mysqli_fetch_assoc($trip_asia_JOINED_query)) {
@@ -530,7 +534,7 @@ session_start();
                 from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
                 WHERE Category='Asia'
                 ORDER BY Tr.Trip_ID ASC
-";
+                ";
                 $trip_asia_JOINED_query = mysqli_query($db, $trip_asia_JOINED_sql);
 
                 while ($trip_asia_row = mysqli_fetch_assoc($trip_asia_JOINED_query)) {
@@ -1384,7 +1388,9 @@ session_start();
             }
             ?>
         </div>
+        <div class="col-lg-10" id="Add New Employee">
 
+        </div>
         <div class="col-lg-10 d-block" id="welcome">
             <img src="img/E_welcome.jpg" class="mx-auto text-center">
         </div>
@@ -1398,7 +1404,7 @@ session_start();
         var y4 = document.getElementById('add-trip-btn');
         var y5 = document.getElementById('add-tour-btn');
         var y6 = document.getElementById('update-tour-btn');
-        var y7 = document.getElementById('delete-tour-btn');
+        var y7 = document.getElementById('delete-tour-btn');       
 
         //Hiiden 
         var Z = document.getElementById('Profile');

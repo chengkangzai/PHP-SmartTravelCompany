@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($db, $sql)) {
         echo "Successfully Register!";
-        header("Location:Login.php");
+        header("Location:Login/index.php");
     } else {
         echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
     }
@@ -64,9 +64,11 @@ mysqli_close($db);
             <input type="text" name="LName" placeholder="Your Last Name" class="form-control" required>
             <br>
             <!--https://stackoverflow.com/questions/10281962/is-there-a-minlength-validation-attribute-in-html5#10294291 -->
-            <input type="number" name="IC" id="" placeholder="Your Idenditication Card Number" class="form-control" pattern=".{12,}" required>
+            <input type="number" name="IC" id="IC" placeholder="Your Idenditication Card Number" class="form-control" required >
+
+            <p id="IC_result"> </p>
             <br>
-            <select name="Position" id="" class="form-control">
+            <select name="Position" class="form-control">
                 <option value="" disabled selected hidden> Your Position</option>
                 <option value="Manager">Manager</option>
                 <option value="Tour Manager of Asia">Tour Manager of Asia</option>
@@ -90,6 +92,7 @@ mysqli_close($db);
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 </body>
 

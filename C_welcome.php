@@ -42,7 +42,7 @@ session_start();
         <!-- Select function -->
         <div class="list-group col-lg-2">
             <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showprofile()" id="profile-btn"> Profile </a>
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showManageTrip()" id="manage-trip-btn"> Managed Trip</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showManageTrip()" id="manage-trip-btn"> Booked Trip</a>
             <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showBookTrip()" id="Book-trip-btn"> Book Another Trip</a>
         </div>
 
