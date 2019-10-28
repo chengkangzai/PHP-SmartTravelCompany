@@ -59,23 +59,8 @@ session_start();
             <?php
 
             include_once("../php_common/nav.php");
-            Trip_info('5BKK');
-            Trip_info('5DPS');
-            Trip_info('5HAN');
-            Trip_info('5JBP');
-            Trip_info('6TPE');
-            Trip_info('7TPE');
-            Trip_info('8EGNP');
-            Trip_info('8ITL');
-            Trip_info('11ELPS');
-            Trip_info('14EGSA');
-            Trip_info('14ESIMF');
-            Trip_info('14EWP');
-            Trip_info('8XSAB');
-            Trip_info('9CAI');
-            Trip_info('10XII');
-            Trip_info('8CKWL');
-
+            
+            CallAllTour()
             ?>
 
         </div>
