@@ -1,12 +1,13 @@
 <?php
-//https://www.tutorialrepublic.com/php-tutorial/php-mysql-insert-query.php
 include("config.php");
 session_start();
+// define variables and set to empty values
+$nameErr = $emailErr = $genderErr = $websiteErr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
     $safepass = sha1($password);
     $FName = mysqli_real_escape_string($db, $_POST['FName']);
     $LName = mysqli_real_escape_string($db, $_POST['LName']);
@@ -14,16 +15,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Position = mysqli_real_escape_string($db, $_POST['Position']);
     $Agency = mysqli_real_escape_string($db, $_POST['Agency']);
 
-    $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
-
-    if (mysqli_query($db, $sql)) {
-        echo "Successfully Register!";
-        header("Location:Login/index.php");
+    if (empty($username)) {
+        $usernameErr = "Name is required";
     } else {
-        echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
+        if (!preg_match("/^[a-zA-Z ]*$/",$username)) {
+        $usernameErr = "Only letters and white space allowed";
+        }else {
+            $userchk="1";
+        }
+    }
+    if (empty($LName)) {
+        $LnameErr = "Last Name is required";
+    } else {
+        if (!preg_match("/^[a-zA-Z ]*$/",$LName)) {
+        $LnameErr = "Only letters and white space allowed";
+        }else {
+            $LNamechk="1";
+        }
+    }
+    if (empty($FName)) {
+        $FnameErr = "First Name is required";
+    } else {
+        if (!preg_match("/^[a-zA-Z ]*$/",$FName)) {
+        $FnameErr = "Only letters and white space allowed";
+        }else {
+            $FNamechk="1";
+        }
+    }
+    //https://www.regextester.com/109947
+    if (empty($IC_num)) {
+        $ICErr = "IC shall not be empty";
+    } else {
+        if (!preg_match("/(([[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01]))-([0-9]{2})-([0-9]{4})/",$IC_num)) {
+        $ICErr = "Please Enter proper Malaysian IC with dash(-)";
+        }else {
+            $IC_numchk="1";
+        }
+    }
+  
+    if ($password !== $cpassword) {
+        $CPassErr="Password not match!";
+    }
+    //http://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1
+    if (empty($password)) {
+        $PassErr = "Password shall not be Empty";
+    } else {
+        if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/i",$password)) {
+        $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.";
+        }    
+            else {
+            $passwordchk="1";
+        }
+    }
+
+    if (empty($Position)) {
+        $PositionErr ="Please choose a position";
+    }else {
+        $Positionchk="1";
+    }
+    if (empty($Agency)) {
+        $AgencyErr ="Please choose a Agency";
+    }else {
+        $Agencychk="1";
+    }
+
+    if ($Agencychk="1" && $FNamechk="1" && $LNamechk="1" && $passwordchk="1" && $Positionchk="1" && $IC_num="1" && $userchk="1") {
+    $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
+        if (mysqli_query($db, $sql)) {
+            header("Location:welcome.php");
+        } elseif(mysqli_error($db)) {
+            echo "<script> alert('Please choose another Username'); </script> ";
+        }
+
     }
 }
-mysqli_close($db);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,56 +110,69 @@ mysqli_close($db);
     include_once("php_common/nav.php");
     navbar("0");
     ?>
-
-
     <div class="jumbotron mx-auto p-2">
         <img src="img/logo.png" alt="Company's Logo " class="my-2 img-fluid">
     </div>
     <h1 class="mb-3">
         Staff register Page
     </h1>
-    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto p-2">
-        <form method="post" action="" class="form-signin p-2">
-
-            <input type="text" name="username" placeholder="Desired username" class="form-control" autofocus required>
-            <br>
-            <input type="password" name="password" placeholder="Your Password " class="form-control" required>
-            <br>
-            <input type="text" name="FName" id="" placeholder="Your First Name" class="form-control" required>
-            <br>
-            <input type="text" name="LName" placeholder="Your Last Name" class="form-control" required>
-            <br>
-            <!--https://stackoverflow.com/questions/10281962/is-there-a-minlength-validation-attribute-in-html5#10294291 -->
-            <input type="number" name="IC" id="IC" placeholder="Your Idenditication Card Number" class="form-control" required >
-
-            <p id="IC_result"> </p>
-            <br>
-            <select name="Position" class="form-control">
-                <option value="" disabled selected hidden> Your Position</option>
-                <option value="Manager">Manager</option>
-                <option value="Tour Manager of Asia">Tour Manager of Asia</option>
-                <option value="Tour Manager of Exotic">Tour Manager of Exotic</option>
-                <option value="Tour Manager of Europe">Tour Manager of Europe</option>
-                <option value="Senior Sales">Senior Sales </option>
-                <option value="Junior Sales">Junior Sales</option>
-                <option value="Account Executive">Account Executive</option>
-            </select>
-            <br>
-            <select name="Agency" id="" class="form-control">
-                <option value="" disabled selected hidden> Your Company</option>
-                <option value="RT">Roystar Travel and Tours Sdn Bhd</option>
-                <option value="HT">Hong Thai Travel and Tours Sdn Bhd </option>
-                <option value="MWH">Pelancongan Mewah Sdn Bhd</option>
-                <option value="BTT">BTT Travel Services Sdn Bhd</option>
-            </select>
-            <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block">
+    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-6 col-xl-8 mx-auto p-2">
+        <form method="post" class="form-signin p-2">
+            <div>
+                <input type="text" name="username" class="form-control mt-3" placeholder="Username" autofocus>
+                <span class="text-danger"> <?php echo $usernameErr;?></span>
+            </div>
+            <div>
+                <input type="password" name="password" class="form-control mt-3" placeholder="Password">
+                <span class="text-danger"> <?php echo $PassErr;?></span>
+            </div>
+            <div>
+                <input type="password" name="cpassword" class="form-control mt-3" placeholder="Confirm Your Password">
+                <span class="text-danger"> <?php echo $CPassErr;?></span>
+            </div>
+            <div>
+                <input type="text" name="FName" class="form-control mt-3" placeholder="First Name">
+                <span class="text-danger"> <?php echo $FnameErr;?></span>
+            </div>
+            <div>
+                <input type="text" name="LName" class="form-control mt-3" placeholder="Last Name">
+                <span class="text-danger"> <?php echo $LnameErr;?></span>
+            </div>
+            <div>
+                <input type="text" name="IC" class="form-control mt-3" placeholder="IC Number">
+                <span class="text-danger"> <?php echo $ICErr;?></span>
+            </div>
+            <div>
+                <select name="Position" id="" class="form-control mt-3" required>
+                    <option value="" disabled selected hidden> Position</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Tour Manager of Asia">Tour Manager of Asia</option>
+                    <option value="Tour Manager of Exotic">Tour Manager of Exotic</option>
+                    <option value="Tour Manager of Europe">Tour Manager of Europe</option>
+                    <option value="Senior Sales">Senior Sales </option>
+                    <option value="Junior Sales">Junior Sales</option>
+                    <option value="Account Executive">Account Executive</option>
+                </select>
+                <span class="text-danger"> <?php echo $PositionErr; ?> </span>
+            </div>
+            <div>
+                <select name="Agency" id="" class="form-control mt-3" required>
+                    <option value="" disabled selected hidden> Your Company</option>
+                    <option value="RT">Roystar Travel and Tours Sdn Bhd</option>
+                    <option value="HT">Hong Thai Travel and Tours Sdn Bhd </option>
+                    <option value="MWH">Pelancongan Mewah Sdn Bhd</option>
+                    <option value="BTT">BTT Travel Services Sdn Bhd</option>
+                </select>
+                <span class="text-danger"> <?php echo $AgencyErr ;?></span>
+            </div>
+            <input type="submit" name="submit" value="Submit" class=" mt-3 btn btn-lg btn-primary">
         </form>
     </div>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
 </body>
 
 </html>
