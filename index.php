@@ -62,7 +62,17 @@ main_CSSandIcon("0","1");
                     <p> Where you wish to go ?</p>
                     <a href="trips/index.php" class="btn btn-lg btn-outline-dark" title="Trips">Our Trips</a>
                     <a href="About_us.php" class="btn btn-lg btn-outline-dark" title="Trips">About Us</a>
-                    <a href="Login/index.php" class="btn btn-lg btn-outline-dark" title="Trips">Login</a>
+                    <?php
+                    include("php_common/host.php");
+                        if ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Employee") {
+                        echo"<a class='btn btn-lg btn-outline-dark' href='$host/welcome'>Dashboard</a>";
+                        } elseif ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Customer") {
+                            echo "<a class='btn btn-lg btn-outline-dark' href='$host/C_welcome'>Dashboard</a>";
+                        } else {
+                            echo "<a class='btn btn-lg btn-outline-dark' href='$host/Login/index.php'>Login</a>";
+                        }
+                    ?>
+                    
                 </div>
             </div>
         </div>

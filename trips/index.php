@@ -42,30 +42,24 @@ session_start();
     navbar("1");
     ?>
 
-    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="search.php">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Tour Code</span>
-        </div>
-        <input type="text" class="form-control" placeholder="Type specific Tour Code" name="search_text">
-        <div class="input-group-append">
-            <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
-        </div>
-    </form>
+ <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="search.php">
+     <div class="input-group-prepend">
+         <span class="input-group-text" >Tour Code</span>
+     </div>
+     <input type="text" class="form-control" placeholder="Type specific Tour Code" name="search_text" required>
+     <div class="input-group-append">
+         <input class="btn btn-light border" type="submit" value="Search">
+     </div>
+ </form>
 
     <div class="jumbotron col-lg-10 mx-auto">
         <h1 class="text-center mb-3">Most Popular Trips!</h1>
-
         <div class="row">
             <?php
-
             include_once("../php_common/nav.php");
-            
             CallAllTour()
             ?>
-
         </div>
-
-
     </div>
 
 

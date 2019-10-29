@@ -1,6 +1,6 @@
 <?php
 include("../config.php");
-
+session_start();
 ?>
 
 
@@ -43,30 +43,27 @@ include("../config.php");
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Tour Code</span>
         </div>
-        <input type="text" class="form-control" placeholder="Type specific Tour Code">
+        <input type="text" class="form-control" placeholder="Type specific Tour Code" required name="search_text">
         <div class="input-group-append">
             <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
         </div>
     </form>
 
     <div class="jumbotron col-lg-10 mx-auto">
-        <h1 class="text-center mb-3">Most Popular Trips!</h1>
-
         <div class="row">
             <?php
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 include_once("../php_common/nav.php");
                 include_once("../config.php");
                 $Tour_Code = mysqli_real_escape_string($db, $_POST['search_text']);
-
-                trip_info($Tour_Code);
+                if ($Tour_Code == NULL ) {
+                    CallAllTour();
+                }else {
+                    trip_info($Tour_Code);
+                }
             }
-
             ?>
-
         </div>
-
-
     </div>
 
 

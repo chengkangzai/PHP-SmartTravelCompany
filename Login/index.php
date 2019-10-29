@@ -22,13 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
     $active1 = $row1['active'];
     $count1 = mysqli_num_rows($result1);
+    echo $count1;
 
     if ($count == 1) {
         $_SESSION['login_user'] = $username ;
         $_SESSION['role'] = "Customer";
         header("Location:../C_welcome.php");
     } elseif ($count1 == 1 ) {
-        $_SESSION['login_user']=$username;
+        $_SESSION['login_user']= $username;
         $_SESSION['role'] = "Employee";
         header("Location:../welcome.php");
     }else {

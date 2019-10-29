@@ -78,7 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else {
         $Agencychk="1";
     }
-
+    
+    
     if ($Agencychk="1" && $FNamechk="1" && $LNamechk="1" && $passwordchk="1" && $Positionchk="1" && $IC_num="1" && $userchk="1") {
     $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
         if (mysqli_query($db, $sql)) {

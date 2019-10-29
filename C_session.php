@@ -22,3 +22,4 @@
       header("location:jump/Login.html");
       die();
    }
+   ?>

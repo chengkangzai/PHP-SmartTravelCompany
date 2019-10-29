@@ -3,6 +3,7 @@ include('session.php');
 include('config.php');
 session_start();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +53,10 @@ session_start();
             <a class="list-group-item list-group-item-action" onclick="showAddTour()" id="add-tour-btn"> Add Tour</a>
             <a class="list-group-item list-group-item-action" onclick="showUpdateTour()" id="update-tour-btn"> Update Tour</a>
             <a class="list-group-item list-group-item-action" onclick="showDeleteTour()" id="delete-tour-btn"> Delete Tour</a>
+
             <?php
             if($position == "Manager" || $position == "Assistant Manager"){
+                echo "<a class='list-group-item list-group-item-action' onclick='showFeedback()' id='feedback-btn'> Feedback</a>";
                 echo "<a class='list-group-item list-group-item-action' href='register.php' >Register Employee </a>";
             }
             ?>
@@ -1404,6 +1407,43 @@ session_start();
             }
             ?>
         </div>
+        <div class="col-lg-10 d-none" id="Feedback">
+            
+            <?php
+            if ($position == "Manager" || $position == "Assistant Manager"){
+                echo"<table class='table table-dark table-hover'>
+                
+                <tr>
+                    <td>
+                        Feedback ID
+                    </td>
+                    <td>
+                        Feedback
+                    </td>
+                </tr>";
+                $feedbacksql="SELECT * from Feedback";
+                $feedbackquery=mysqli_query($db,$feedbacksql);
+                while ($feedbackrow=mysqli_fetch_assoc($feedbackquery)) {
+                    $id=$feedbackrow['Feedback_ID'];
+                    $data=$feedbackrow['Feedback'];
+    
+                    echo("
+                    <tr>
+                        <td>
+                            $id
+                        </td>
+                        <td>
+                          $data  
+                        </td>
+                    </tr>");
+                    
+                }
+            }
+           
+            ?>
+            </table>
+            
+        </div>
         <div class="col-lg-10 d-block" id="welcome">
             <img src="img/E_welcome.jpg" class="mx-auto text-center">
         </div>
@@ -1418,6 +1458,7 @@ session_start();
         var y5 = document.getElementById('add-tour-btn');
         var y6 = document.getElementById('update-tour-btn');
         var y7 = document.getElementById('delete-tour-btn');       
+        var y8 = document.getElementById('feedback-btn');       
 
         //Hiiden 
         var Z = document.getElementById('Profile');
@@ -1428,6 +1469,8 @@ session_start();
         var Z5 = document.getElementById('Add-Tour');
         var Z6 = document.getElementById('Update-Tour');
         var Z7 = document.getElementById('Delete-Tour');
+        var Z8 = document.getElementById('Feedback');
+
 
         //Welcome Page
         var a = document.getElementById('welcome');
@@ -1449,6 +1492,8 @@ session_start();
                 Z5.classList.remove("d-block");
                 Z6.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they go off
                 Z1.classList.add("d-none");
                 Z2.classList.add("d-none");
@@ -1457,6 +1502,7 @@ session_start();
                 Z5.classList.add("d-none");
                 Z6.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1477,6 +1523,8 @@ session_start();
                 Z5.classList.remove("d-block");
                 Z6.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they go off
                 Z.classList.add("d-none");
                 Z2.classList.add("d-none");
@@ -1485,6 +1533,7 @@ session_start();
                 Z5.classList.add("d-none");
                 Z6.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1506,6 +1555,8 @@ session_start();
                 Z5.classList.remove("d-block");
                 Z6.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they fuck off
                 Z1.classList.add("d-none");
                 Z.classList.add("d-none");
@@ -1514,6 +1565,7 @@ session_start();
                 Z5.classList.add("d-none");
                 Z6.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1535,6 +1587,8 @@ session_start();
                 Z5.classList.remove("d-block");
                 Z6.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they fuck off
                 Z1.classList.add("d-none");
                 Z.classList.add("d-none");
@@ -1543,6 +1597,7 @@ session_start();
                 Z5.classList.add("d-none");
                 Z6.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1564,6 +1619,8 @@ session_start();
                 Z5.classList.remove("d-block");
                 Z6.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they fuck off
                 Z.classList.add("d-none");
                 Z1.classList.add("d-none");
@@ -1572,6 +1629,7 @@ session_start();
                 Z5.classList.add("d-none");
                 Z6.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1593,6 +1651,8 @@ session_start();
                 Z4.classList.remove("d-block");
                 Z6.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they fuck off
                 Z.classList.add("d-none");
                 Z1.classList.add("d-none");
@@ -1601,6 +1661,7 @@ session_start();
                 Z4.classList.add("d-none");
                 Z6.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1622,6 +1683,8 @@ session_start();
                 Z4.classList.remove("d-block");
                 Z5.classList.remove("d-block");
                 Z7.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they fuck off
                 Z.classList.add("d-none");
                 Z1.classList.add("d-none");
@@ -1630,6 +1693,7 @@ session_start();
                 Z4.classList.add("d-none");
                 Z5.classList.add("d-none");
                 Z7.classList.add("d-none");
+                Z8.classList.add("d-none");
             }
         }
 
@@ -1651,6 +1715,8 @@ session_start();
                 Z4.classList.remove("d-block");
                 Z5.classList.remove("d-block");
                 Z6.classList.remove("d-block");
+                Z8.classList.remove("d-block");
+
                 //Make sure they fuck off
                 Z.classList.add("d-none");
                 Z1.classList.add("d-none");
@@ -1659,6 +1725,40 @@ session_start();
                 Z4.classList.add("d-none");
                 Z5.classList.add("d-none");
                 Z6.classList.add("d-none");
+                Z8.classList.add("d-none");
+
+            }
+
+        }
+        function showFeedback() {
+            if (Z8.style.display === 'block') {
+                Z.classList.add("d-none");
+                a.classList.add("d-block");
+
+            } else {
+                Z8.classList.add("d-block");
+                a.classList.remove("d-block");
+                a.classList.add("d-none");
+                //Others 
+                Z1.classList.remove("d-block");
+                Z0.classList.remove("d-block");
+                Z2.classList.remove("d-block");
+                Z3.classList.remove("d-block");
+                Z4.classList.remove("d-block");
+                Z5.classList.remove("d-block");
+                Z6.classList.remove("d-block");
+                Z7.classList.remove("d-block");
+                
+
+                //Make sure they go off
+                Z1.classList.add("d-none");
+                Z0.classList.add("d-none");
+                Z2.classList.add("d-none");
+                Z3.classList.add("d-none");
+                Z4.classList.add("d-none");
+                Z5.classList.add("d-none");
+                Z6.classList.add("d-none");
+                Z7.classList.add("d-none");
             }
         }
     </script>
@@ -1671,6 +1771,9 @@ session_start();
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

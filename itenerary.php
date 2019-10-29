@@ -1,19 +1,19 @@
 <?php
 
-    function CallTour(){
+function CallTour(){
     include('config.php');
     $sql="SELECT * FROM Tour";
     $query_sql= mysqli_query($db,$sql);
-        
-        while ($row=mysqli_fetch_assoc($query_sql)) 
-        {
-            $TourCode=$row['TourCode'];                  
-            $TourName=$row['Name'];
-        echo "
-        <option value='$TourCode'>$TourName</option>
-        ";
-        }
+    
+    while ($row=mysqli_fetch_assoc($query_sql)) 
+    {
+        $TourCode=$row['TourCode'];                  
+        $TourName=$row['Name'];
+    echo "
+    <option value='$TourCode'>$TourName</option>
+    ";
     }
+}
 
     function CallTrip($login_session) {
         include('config.php');
@@ -49,22 +49,25 @@
         $Tour_row=mysqli_fetch_assoc($Tour_query_sql);
         //Customer's selected Tour
         $TourCode=$Tour_row['FK_TourCode'];
-        echo $TourCode ;
+        //Tour Name
+        $Name_sql="SELECT * FROM Tour where TourCode='$TourCode'";
+        $Name_query=mysqli_query($db,$Name_sql);
+        $Name_row=mysqli_fetch_assoc($Name_query);
+        $TourName=$Name_row['Name'];
+        echo $TourName ;
     }
 
-    function selecttour($TourCode){
-        include('config.php');
+function selecttour($TourCode){
+    include('config.php');
     $sql="SELECT * FROM Tour where TourCode='$TourCode'";
     $query_sql= mysqli_query($db,$sql);
-        
-        while ($row=mysqli_fetch_assoc($query_sql)) 
-        {
-            $TourCode=$row['TourCode'];                  
-            $TourName=$row['Name'];
-        echo "<option value='$TourCode' selected >$TourName</option>";
-        echo "<option value='' disable>-------------------- </option>";
-        CallTour();
-        }
+    while ($row=mysqli_fetch_assoc($query_sql)){
+        $TourCode=$row['TourCode'];                  
+        $TourName=$row['Name'];
+    echo "<option value='$TourCode' selected >$TourName</option>";
+    echo "<option value='' disable>-------------------- </option>";
     }
+}
+?>
     
 
