@@ -79,9 +79,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Agencychk="1";
     }
     
+    $c_Sql="Select username FROM Customer WHERE username='$username'";
+    $c_query=mysqli_query($db,$c_Sql);
+    $c_row=mysqli_num_rows($c_query);
+    if ($c_row=="1") {
+     $c_usernameErr="Duplicate Username, please choose another username";
+    }else {
+        $c_userchk="1";
+    }
     
-    if ($Agencychk="1" && $FNamechk="1" && $LNamechk="1" && $passwordchk="1" && $Positionchk="1" && $IC_num="1" && $userchk="1") {
-    $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
+    if ($Agencychk==1 and $FNamechk==1 and $LNamechk==1 and $passwordchk==1 and $Positionchk==1 and $IC_numchk==1 and $userchk==1 and $c_userchk==1) {
+        $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
         if (mysqli_query($db, $sql)) {
             header("Location:welcome.php");
         } elseif(mysqli_error($db)) {
@@ -89,6 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     }
+    }
+
+
+    
+        
 }
 
 ?>
@@ -117,34 +130,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1 class="mb-3">
         Staff register Page
     </h1>
-    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-6 col-xl-8 mx-auto p-2">
+    <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-6 col-xl-8 mx-auto p">
         <form method="post" class="form-signin p-2">
             <div>
-                <input type="text" name="username" class="form-control mt-3" placeholder="Username" autofocus>
-                <span class="text-danger"> <?php echo $usernameErr;?></span>
+                <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
+                <span class="text-danger"> <?php echo $usernameErr,$c_usernameErr;?></span>
             </div>
             <div>
-                <input type="password" name="password" class="form-control mt-3" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Password">
                 <span class="text-danger"> <?php echo $PassErr;?></span>
             </div>
             <div>
-                <input type="password" name="cpassword" class="form-control mt-3" placeholder="Confirm Your Password">
+                <input type="password" name="cpassword" class="form-control" placeholder="Confirm Your Password">
                 <span class="text-danger"> <?php echo $CPassErr;?></span>
             </div>
             <div>
-                <input type="text" name="FName" class="form-control mt-3" placeholder="First Name">
+                <input type="text" name="FName" class="form-control" placeholder="First Name">
                 <span class="text-danger"> <?php echo $FnameErr;?></span>
             </div>
             <div>
-                <input type="text" name="LName" class="form-control mt-3" placeholder="Last Name">
+                <input type="text" name="LName" class="form-control" placeholder="Last Name">
                 <span class="text-danger"> <?php echo $LnameErr;?></span>
             </div>
             <div>
-                <input type="text" name="IC" class="form-control mt-3" placeholder="IC Number">
+                <input type="text" name="IC" class="form-control" placeholder="IC Number">
                 <span class="text-danger"> <?php echo $ICErr;?></span>
             </div>
             <div>
-                <select name="Position" id="" class="form-control mt-3" required>
+                <select name="Position" class="form-control" required>
                     <option value="" disabled selected hidden> Position</option>
                     <option value="Manager">Manager</option>
                     <option value="Tour Manager of Asia">Tour Manager of Asia</option>
@@ -157,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="text-danger"> <?php echo $PositionErr; ?> </span>
             </div>
             <div>
-                <select name="Agency" id="" class="form-control mt-3" required>
+                <select name="Agency" class="form-control" required>
                     <option value="" disabled selected hidden> Your Company</option>
                     <option value="RT">Roystar Travel and Tours Sdn Bhd</option>
                     <option value="HT">Hong Thai Travel and Tours Sdn Bhd </option>
@@ -166,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
                 <span class="text-danger"> <?php echo $AgencyErr ;?></span>
             </div>
-            <input type="submit" name="submit" value="Submit" class=" mt-3 btn btn-lg btn-primary">
+            <input type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">
         </form>
     </div>
 
