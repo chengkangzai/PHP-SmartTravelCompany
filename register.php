@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ICErr = "IC shall not be empty";
     } else {
         if (!preg_match("/(([[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01]))-([0-9]{2})-([0-9]{4})/",$IC_num)) {
-        $ICErr = "Please Enter proper Malaysian IC with dash(-)";
+        $ICErr = "Please Enter proper Malaysian IC with dash(-) Exp:700529-01-3007";
         }else {
             $IC_numchk="1";
         }
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $PassErr = "Password shall not be Empty";
     } else {
         if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/i",$password)) {
-        $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.";
+        $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit. Exp:ASDasd123";
         }    
             else {
             $passwordchk="1";

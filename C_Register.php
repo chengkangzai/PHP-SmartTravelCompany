@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $PassErr = "Password shall not be Empty";
     } else {
         if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/i",$password)) {
-        $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.";
+        $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit. Exp:asdASD123 ";
         }    
             else {
             $passwordchk="1";
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $PhoneErr="Phone Number shall not be empty";
     }else {
         if (!preg_match("/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/",$Phone_num)) {
-            $PhoneErr="Please enter phone number with 60(Malaysia Phone Code)";
+            $PhoneErr="Please enter phone number with 60(Exp:60121234567)";
         }else {
             $Phonechk="1";
         }
@@ -80,9 +80,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    echo $userchk,$LNamechk,$FNamechk,$CPasschk,$Phonechk,$Passportchk,$passwordchk;
+    $c_Sql="Select username FROM Employee WHERE username='$username'";
+    $c_query=mysqli_query($db,$c_Sql);
+    $c_row=mysqli_num_rows($c_query);
+    if ($c_row=="1") {
+     $c_usernameErr="Duplicate Username, please choose another username";
+    }else {
+        $c_userchk="1";
+    }
+    echo $userchk,$LNamechk,$FNamechk,$CPasschk,$Phonechk,$Passportchk,$passwordchk,$c_userchk;
     
-    if ($userchk==1 && $LNamechk==1 && $FNamechk==1 && $CPasschk==1 && $Phonechk==1 && $Passportchk==1 && $passwordchk==1) {
+    if ($userchk==1 && $LNamechk==1 && $FNamechk==1 && $CPasschk==1 && $Phonechk==1 && $Passportchk==1 && $passwordchk==1 && $c_userchk==1) {
         $sql = "INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$safepass','$FName','$LName','$Phone_num','$Email','$Passport')";
         if (mysqli_query($db, $sql)) {
             echo "Successfully Register!";
