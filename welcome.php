@@ -564,7 +564,7 @@ if ($_SESSION['role']=="Customer") {
                             {$trip_asia_row['Airline']}
                         </td>
                         <td>        
-                            {$trip_asia_row['FK_TourCode']}' 
+                            {$trip_asia_row['FK_TourCode']}
                         </td>
                         <td>        
                             {$trip_asia_row['Name']}
@@ -618,7 +618,7 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$trip_Europe_row['Trip_ID']}' name='Trip_ID' hidden>
-                                {$trip_Europe_row['Trip_ID']}' 
+                                {$trip_Europe_row['Trip_ID']}
                             </td>
                             <td>        
                                 {$trip_Europe_row['Departure_date']}
@@ -630,7 +630,7 @@ if ($_SESSION['role']=="Customer") {
                                 {$trip_Europe_row['Airline']}
                             </td>
                             <td>        
-                                {$trip_Europe_row['FK_TourCode']}'                             
+                                {$trip_Europe_row['FK_TourCode']}                        
                             </td>
                             <td>        
                                 {$trip_Europe_row['Name']}
@@ -683,7 +683,7 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$trip_Exotic_row['Trip_ID']}' name='Trip_ID' hidden>
-                            {$trip_Exotic_row['Trip_ID']}' 
+                            {$trip_Exotic_row['Trip_ID']}
                         </td>
                         <td>        
                             {$trip_Exotic_row['Departure_date']}
@@ -695,7 +695,7 @@ if ($_SESSION['role']=="Customer") {
                             {$trip_Exotic_row['Airline']}
                         </td>
                         <td>        
-                            {$trip_Exotic_row['FK_TourCode']}'                           
+                            {$trip_Exotic_row['FK_TourCode']}                          
                         </td>
                         <td>        
                             {$trip_Exotic_row['Name']}
@@ -747,7 +747,7 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$trip_ALL_row['Trip_ID']}' name='Trip_ID' hidden>
-                                {$trip_ALL_row['Trip_ID']}' 
+                                {$trip_ALL_row['Trip_ID']}
                             </td>
                             <td>        
                                 {$trip_ALL_row['Departure_date']}
@@ -759,7 +759,7 @@ if ($_SESSION['role']=="Customer") {
                                 {$trip_ALL_row['Airline']}
                             </td>
                             <td>        
-                                {$trip_ALL_row['FK_TourCode']}'                           
+                                {$trip_ALL_row['FK_TourCode']}                        
                             </td>
                             <td>        
                                 {$trip_ALL_row['Name']}
@@ -778,8 +778,7 @@ if ($_SESSION['role']=="Customer") {
                 include_once("php_common/nav.php");
                 notpremit();
             }
-
-            ?>
+            ?>  
 
         </div>
         <div class="col-lg-10 d-none" id="Add-Trip">
@@ -1361,7 +1360,7 @@ if ($_SESSION['role']=="Customer") {
                                 {$row_ALL['Name']}
                             </td>
                             <td>        
-                                {$row_ALL['Destination']}'
+                                {$row_ALL['Destination']}
                             </td>
                             <td>        
                                 {$row_ALL['Category']}
