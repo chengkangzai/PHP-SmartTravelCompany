@@ -243,9 +243,6 @@ if ($_SESSION['role']=="Customer") {
             //iNNERJOIN, gET Tour Category, IF position and Tour Destination
             if ($position == "Tour Manager of Asia") {
                 echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>";
-
-                //header of the table
-
                 echo ("
                     <table border='0' class='table table-striped table-dark table-hover'>
                         <tr>
@@ -280,7 +277,7 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$trip_asia_row['Trip_ID']}' name='Trip_ID' hidden>
-                            <input value='{$trip_asia_row['Trip_ID']}' class='form-control' disabled >
+                            {$trip_asia_row['Trip_ID']}
                         </td>
                         <td>        
                             <input value='{$trip_asia_row['Departure_date']}' name='Departure_date' class='form-control' type='date'>
@@ -293,10 +290,10 @@ if ($_SESSION['role']=="Customer") {
                         </td>
                         <td>        
                             <input value='{$trip_asia_row['FK_TourCode']}' name='FK_TourCode' hidden>
-                            <input value='{$trip_asia_row['FK_TourCode']}' class='form-control' disabled >
+                            {$trip_asia_row['FK_TourCode']}
                         </td>
                         <td>        
-                            <input value='{$trip_asia_row['Name']}' class='form-control' disabled>
+                            {$trip_asia_row['Name']}
                         </td>
                         <td>
                             <input type='submit' value='Update' class='btn btn-primary'>
@@ -347,7 +344,7 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$trip_Europe_row['Trip_ID']}' name='Trip_ID' hidden>
-                                <input value='{$trip_Europe_row['Trip_ID']}' class='form-control' disabled >
+                                {$trip_Europe_row['Trip_ID']}
                             </td>
                             <td>        
                                 <input value='{$trip_Europe_row['Departure_date']}' name='Departure_date' class='form-control' type='date'>
@@ -360,10 +357,10 @@ if ($_SESSION['role']=="Customer") {
                             </td>
                             <td>        
                                 <input value='{$trip_Europe_row['FK_TourCode']}' name='FK_TourCode' hidden>
-                                <input value='{$trip_Europe_row['FK_TourCode']}' class='form-control' disabled >                            
+                                {$trip_Europe_row['FK_TourCode']}                       
                             </td>
                             <td>        
-                                <input value='{$trip_Europe_row['Name']}' class='form-control' disabled>
+                                {$trip_Europe_row['Name']}
                             </td>
                             <td>
                                 <input type='submit' value='Update' class='btn btn-primary'>
@@ -413,7 +410,7 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$trip_Exotic_row['Trip_ID']}' name='Trip_ID' hidden>
-                            <input value='{$trip_Exotic_row['Trip_ID']}' class='form-control' disabled >
+                            {$trip_Exotic_row['Trip_ID']}
                         </td>
                         <td>        
                             <input value='{$trip_Exotic_row['Departure_date']}' name='Departure_date' class='form-control' type='date'>
@@ -426,10 +423,10 @@ if ($_SESSION['role']=="Customer") {
                         </td>
                         <td>        
                             <input value='{$trip_Exotic_row['FK_TourCode']}' name='FK_TourCode' hidden>
-                            <input value='{$trip_Exotic_row['FK_TourCode']}' class='form-control' disabled >                          
+                            {$trip_Exotic_row['FK_TourCode']}            
                         </td>
                         <td>        
-                            <input value='{$trip_Exotic_row['Name']}' class='form-control' disabled>
+                            {$trip_Exotic_row['Name']}
                         </td>
                         <td>
                             <input type='submit' value='Update' class='btn btn-primary'>
@@ -491,10 +488,10 @@ if ($_SESSION['role']=="Customer") {
                             </td>
                             <td>        
                                 <input value='{$trip_ALL_row['FK_TourCode']}' name='FK_TourCode' hidden>
-                                <input value='{$trip_ALL_row['FK_TourCode']}' class='form-control' disabled >                          
+                                {$trip_ALL_row['FK_TourCode']}
                             </td>
                             <td>        
-                                <input value='{$trip_ALL_row['Name']}' class='form-control' disabled>
+                                {$trip_ALL_row['Name']}
                             </td>
                             <td>
                                 <input type='submit' value='Update' class='btn btn-primary'>
@@ -555,22 +552,22 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$trip_asia_row['Trip_ID']}' name='Trip_ID' hidden>
-                            <input value='{$trip_asia_row['Trip_ID']}' class='form-control' disabled >
+                            {$trip_asia_row['Trip_ID']}
                         </td>
                         <td>        
-                            <input value='{$trip_asia_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled >
+                            {$trip_asia_row['Departure_date']}
                         </td>
                         <td>        
-                            <input value='{$trip_asia_row['Fee']}' name='Fee' class='form-control' type='number' disabled>
+                            {$trip_asia_row['Fee']}
                         </td>
                         <td>        
-                            <input value='{$trip_asia_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                            {$trip_asia_row['Airline']}
                         </td>
                         <td>        
-                            <input value='{$trip_asia_row['FK_TourCode']}' class='form-control' disabled >
+                            {$trip_asia_row['FK_TourCode']}' 
                         </td>
                         <td>        
-                            <input value='{$trip_asia_row['Name']}' class='form-control' disabled>
+                            {$trip_asia_row['Name']}
                         </td>
                         <td>
                             <input type='submit' value='Delete' class='btn btn-danger'>
@@ -621,22 +618,22 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$trip_Europe_row['Trip_ID']}' name='Trip_ID' hidden>
-                                <input value='{$trip_Europe_row['Trip_ID']}' class='form-control' disabled >
+                                {$trip_Europe_row['Trip_ID']}' 
                             </td>
                             <td>        
-                                <input value='{$trip_Europe_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled>
+                                {$trip_Europe_row['Departure_date']}
                             </td>
                             <td>        
-                                <input value='{$trip_Europe_row['Fee']}' name='Fee' class='form-control' type='number' disabled>
+                                {$trip_Europe_row['Fee']}
                             </td>
                             <td>        
-                                <input value='{$trip_Europe_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                                {$trip_Europe_row['Airline']}
                             </td>
                             <td>        
-                                <input value='{$trip_Europe_row['FK_TourCode']}' class='form-control' disabled >                            
+                                {$trip_Europe_row['FK_TourCode']}'                             
                             </td>
                             <td>        
-                                <input value='{$trip_Europe_row['Name']}' class='form-control' disabled>
+                                {$trip_Europe_row['Name']}
                             </td>
                             <td>
                                 <input type='submit' value='Delete' class='btn btn-danger'>
@@ -686,22 +683,22 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$trip_Exotic_row['Trip_ID']}' name='Trip_ID' hidden>
-                            <input value='{$trip_Exotic_row['Trip_ID']}' class='form-control' disabled >
+                            {$trip_Exotic_row['Trip_ID']}' 
                         </td>
                         <td>        
-                            <input value='{$trip_Exotic_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled>
+                            {$trip_Exotic_row['Departure_date']}
                         </td>
                         <td>        
-                            <input value='{$trip_Exotic_row['Fee']}' name='Fee' class='form-control' type='number' disabled>
+                            {$trip_Exotic_row['Fee']}
                         </td>
                         <td>        
-                            <input value='{$trip_Exotic_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                            {$trip_Exotic_row['Airline']}
                         </td>
                         <td>        
-                            <input value='{$trip_Exotic_row['FK_TourCode']}' class='form-control' disabled >                          
+                            {$trip_Exotic_row['FK_TourCode']}'                           
                         </td>
                         <td>        
-                            <input value='{$trip_Exotic_row['Name']}' class='form-control' disabled>
+                            {$trip_Exotic_row['Name']}
                         </td>
                         <td>
                             <input type='submit' value='Delete' class='btn btn-danger'>
@@ -750,22 +747,22 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$trip_ALL_row['Trip_ID']}' name='Trip_ID' hidden>
-                                <input value='{$trip_ALL_row['Trip_ID']}' class='form-control' disabled >
+                                {$trip_ALL_row['Trip_ID']}' 
                             </td>
                             <td>        
-                                <input value='{$trip_ALL_row['Departure_date']}' name='Departure_date' class='form-control' type='date' disabled>
+                                {$trip_ALL_row['Departure_date']}
                             </td>
                             <td>        
-                                <input value='{$trip_ALL_row['Fee']}' name='Fee' class='form-control' type='number' disabled> 
+                                {$trip_ALL_row['Fee']}
                             </td>
                             <td>        
-                                <input value='{$trip_ALL_row['Airline']}' name='Airline' class='form-control' type='text' disabled>
+                                {$trip_ALL_row['Airline']}
                             </td>
                             <td>        
-                                <input value='{$trip_ALL_row['FK_TourCode']}' class='form-control' disabled >                          
+                                {$trip_ALL_row['FK_TourCode']}'                           
                             </td>
                             <td>        
-                                <input value='{$trip_ALL_row['Name']}' class='form-control' disabled>
+                                {$trip_ALL_row['Name']}
                             </td>
                             <td>
                                 <input type='submit' value='Delete' class='btn btn-danger' >
@@ -979,7 +976,7 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$row_asia['TourCode']}' name='TourCode' hidden>
-                            <input value='{$row_asia['TourCode']}' class='form-control' disabled>
+                            {$row_asia['TourCode']}
                         </td>
                         <td>        
                             <input value='{$row_asia['Name']}' name='TourName' class='form-control'>
@@ -1030,7 +1027,7 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$row_Europe['TourCode']}' name='TourCode' hidden>
-                                <input value='{$row_Europe['TourCode']}' class='form-control' disabled>
+                                {$row_Europe['TourCode']}
                             </td>
                             <td>        
                                 <input value='{$row_Europe['Name']}' name='TourName' class='form-control'>
@@ -1082,7 +1079,7 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$row_Exotic['TourCode']}' name='TourCode' hidden>
-                                <input value='{$row_Exotic['TourCode']}' class='form-control' disabled>
+                                {$row_Exotic['TourCode']}
                             </td>
                             <td>        
                                 <input value='{$row_Exotic['Name']}' name='TourName' class='form-control'>
@@ -1137,7 +1134,7 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$row_ALL['TourCode']}' name='TourCode' hidden>
-                                <input value='{$row_ALL['TourCode']}' class='form-control' disabled>
+                                {$row_ALL['TourCode']}
                             </td>
                             <td>        
                                 <input value='{$row_ALL['Name']}' name='TourName' class='form-control'>
@@ -1146,7 +1143,7 @@ if ($_SESSION['role']=="Customer") {
                                 <input value='{$row_ALL['Destination']}' name='Destination' class='form-control'>
                             </td>
                             <td>        
-                                <input   name='Category' value='{$row_ALL['Category']}'class='form-control'>
+                                <inputname='Category' value='{$row_ALL['Category']}'class='form-control'>
                             </td>
                             <td>        
                             <input value='{$row_ALL['FK_E_username']}' name='FK_E_username' class='form-control'>
@@ -1203,17 +1200,16 @@ if ($_SESSION['role']=="Customer") {
                     <tr>
                         <td>
                             <input value='{$row_asia['TourCode']}' name='TourCode' hidden>
-                            <input value='{$row_asia['TourCode']}' class='form-control' disabled>
+                            {$row_asia['TourCode']}
                         </td>
                         <td>        
-                            <input value='{$row_asia['Name']}' name='TourName' class='form-control' disabled>
+                            {$row_asia['Name']}
                         </td>
                         <td>        
-                            <input value='{$row_asia['Destination']}' name='Destination' class='form-control' disabled>
+                            {$row_asia['Destination']}
                         </td>
                         <td>        <a href='{$row_asia['itinerary_url']}'>
                                     <img src='img/itenerary.png'/></a>  
-                            <input value='{$row_asia['itinerary_url']}' hidden name='itenerary'>
                         </td>
                         <td>
                             <input type='submit' value='Delete' class='btn btn-danger'>
@@ -1254,17 +1250,16 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$row_Europe['TourCode']}' name='TourCode' hidden>
-                                <input value='{$row_Europe['TourCode']}' class='form-control' disabled>
+                                {$row_Europe['TourCode']}
                             </td>
                             <td>        
-                                <input value='{$row_Europe['Name']}' name='TourName' class='form-control' disabled>
+                                {$row_Europe['Name']}
                             </td>
                             <td>        
-                                <input value='{$row_Europe['Destination']}' name='Destination' class='form-control' disabled>
+                                {$row_Europe['Destination']}
                             </td>
                             <td>        <a href='{$row_Europe['itinerary_url']}'>
                                         <img src='img/itenerary.png'/></a>  
-                                <input value='{$row_Europe['itinerary_url']}' hidden name='itenerary' >
                             </td>
                             <td>
                                 <input type='submit' value='Delete' class='btn btn-danger'>
@@ -1306,17 +1301,16 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$row_Exotic['TourCode']}' name='TourCode' hidden>
-                                <input value='{$row_Exotic['TourCode']}' class='form-control' disabled>
+                                {$row_Exotic['TourCode']}
                             </td>
                             <td>        
-                                <input value='{$row_Exotic['Name']}' name='TourName' class='form-control' disabled>
+                                {$row_Exotic['Name']}
                             </td>
                             <td>        
-                                <input value='{$row_Exotic['Destination']}' name='Destination' class='form-control' disabled>
+                                {$row_Exotic['Destination']}
                             </td>     
                             <td>        <a href='{$row_Exotic['itinerary_url']}'>
                                         <img src='img/itenerary.png'/></a>  
-                                <input value='{$row_Exotic['itinerary_url']}' hidden name='itenerary' disabled>
                             </td>
                             <td>
                                 <input type='submit' value='Delete' class='btn btn-danger'>
@@ -1361,23 +1355,22 @@ if ($_SESSION['role']=="Customer") {
                         <tr>
                             <td>
                                 <input value='{$row_ALL['TourCode']}' name='TourCode' hidden>
-                                <input value='{$row_ALL['TourCode']}' class='form-control' disabled>
+                                {$row_ALL['TourCode']}
                             </td>
                             <td>        
-                                <input value='{$row_ALL['Name']}' name='TourName' class='form-control' disabled>
+                                {$row_ALL['Name']}
                             </td>
                             <td>        
-                                <input value='{$row_ALL['Destination']}' name='Destination' class='form-control' disabled>
+                                {$row_ALL['Destination']}'
                             </td>
                             <td>        
-                                <input   name='Category' value='{$row_ALL['Category']}'class='form-control' disabled>
+                                {$row_ALL['Category']}
                             </td>
                             <td>        
-                            <input value='{$row_ALL['FK_E_username']}' name='FK_E_username' class='form-control'disabled>
+                                {$row_ALL['FK_E_username']}
                             </td>
                             <td>        <a href='{$row_ALL['itinerary_url']}'>
                                         <img src='img/itenerary.png'/></a>  
-                                <input value='{$row_ALL['itinerary_url']}' hidden name='itenerary'>
                             </td>
                             <td>
                                 <input type='submit' value='Delete' class='btn btn-danger'>
