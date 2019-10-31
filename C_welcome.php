@@ -3,6 +3,9 @@ include('C_session.php');
 include('config.php');
 session_start();
 
+if ($_SESSION['role']=="Employee") {
+    echo"<script> alert('You seem Lost... Redirecting...'); window.history.go(-1);;</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,7 +126,7 @@ session_start();
 
             echo "<table border='1' class='table table-striped table-dark table-hover '>";
             echo "    <thead> 
-           <tr>
+            <tr>
                <td>            Booking ID          </td>
                <td>            Trip ID             </td>
                <td>            Tour Code           </td>

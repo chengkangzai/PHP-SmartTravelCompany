@@ -2,7 +2,9 @@
 include('session.php');
 include('config.php');
 session_start();
-
+if ($_SESSION['role']=="Customer") {
+    echo"<script> alert('You seem Lost... Redirecting...'); window.history.go(-1);;</script>";
+}
 
 ?>
 <!DOCTYPE html>
@@ -144,7 +146,6 @@ session_start();
                             <tr>
                                 <th scope='col'> Customer Name </th>
                                 <th scope='col'> Customer Phone </th>
-                                <th scope='col'> Trip ID </th>
                                 <th scope='col'> Tour Code </th>
                                 <th scope='col'> Tour Name </th>
                                 <th scope='col'> Destination </th>
@@ -158,9 +159,7 @@ session_start();
                 echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>";
 
                 $query_sql = mysqli_query($db, "SELECT B.Booking_ID,
-                            C.FName,
-                            C.LName,
-                            Trip.Trip_ID,
+                            C.FName,C.LName,Trip.Trip_ID,
                             T.TourCode,
                             C.Phone_num,
                             T.Name,
@@ -182,7 +181,6 @@ session_start();
                             <tr>
                             <td>        {$row['FName']} {$row['LName']}     </td>
                             <td>        {$row['Phone_num']}                 </td>
-                            <td>        {$row['Trip_ID']}                   </td>
                             <td>        {$row['TourCode']}                  </td>
                             <td>        {$row['Name']}                      </td>
                             <td>        {$row['Destination']}               </td>
@@ -191,7 +189,6 @@ session_start();
                             <td>        {$row['Airline']}                   </td>
                             <td>        <a href='{$row['itinerary_url']}'>
                                         <img src='img/itenerary.png'/></a>  </td>
-    
                             </tr>
                             </tbody>";
                 }
@@ -223,9 +220,8 @@ session_start();
                     echo "
                             <tbody>    
                             <tr>
-                            <td>        {$row['FName']} {$row['LName']}     </td>
+                            <td>        {$row['FName']} {$row['LName']}        </td>
                             <td>        {$row['Phone_num']}                 </td>
-                            <td>        {$row['Trip_ID']}                   </td>
                             <td>        {$row['TourCode']}                  </td>
                             <td>        {$row['Name']}                      </td>
                             <td>        {$row['Destination']}               </td>
@@ -234,7 +230,6 @@ session_start();
                             <td>        {$row['Airline']}                   </td>
                             <td>        <a href='{$row['itinerary_url']}'>
                                         <img src='img/itenerary.png'/></a>  </td>
-    
                             </tr>
                             </tbody>";
                 }
