@@ -9,18 +9,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     $d_tour_sql = "DELETE FROM `Tour` WHERE`TourCode`='$TourCode'";
-    $d_tourdes_sql = "DELETE FROM `Tour_des` WHERE`TourCode`='$TourCode'";
+    $d_tourdes_sql = "DELETE FROM `Tour_des` WHERE`FK_TourCode`='$TourCode'";
+    $d_selected_tour_sql = "DELETE FROM `C_selected_Tour` WHERE`FK_TourCode`='$TourCode'";
 
-    echo $d_tourdes_sql, "<br>", $d_tour_sql;
+        
 
 
     if (mysqli_query($db, $d_tourdes_sql)) {
         if (mysqli_query($db, $d_tour_sql)) {
-            echo ("<script> alert('Edit Sucess!'); </script>");
-            echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
-    </script>");
+            if (mysqli_query($db, $d_selected_tour_sql)) {
+                echo ("<script> alert('Edit Sucess!'); </script>");
+                echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
+        </script>");
+            }else {
+                echo "unable to delete C_Selected_Tour";
+                echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
+        </script>");
+            }
+        }else {
+            header("Location:../jump/reject_delete_tour.html");
         }
     } else {
-        header("Location:../jump/reject_delete_tour.html");
+        echo "unable to delete C_Selected_Tour";
+        echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
+        </script>");
     }
 }

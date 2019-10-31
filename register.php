@@ -42,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     if ($password !== $cpassword) {
         $CPassErr="Password not match!";
+    }else {
+        $CPasschk="1";
     }
 
     //http://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1
@@ -65,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($c_row=="1") {$c_usernameErr="Duplicate Username, please choose another username";
     }else {$c_userchk="1";}
     
-    if ($Agencychk==1 and $FNamechk==1 and $LNamechk==1 and $passwordchk==1 and $Positionchk==1 and $IC_numchk==1 and $userchk==1 and $c_userchk==1) {
+    if ($Agencychk==1 and $FNamechk==1 and $LNamechk==1 and $passwordchk==1 and $Positionchk==1 and $IC_numchk==1 and $userchk==1 and $c_userchk==1 and $CPasschk =="1") {
         $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
         if (mysqli_query($db, $sql)) {header("Location:welcome.php");
         } elseif(mysqli_error($db)) {echo "<script> alert('Please choose another Username'); </script> ";}
@@ -99,31 +101,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </h1>
     <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-6 col-xl-8 mx-auto p">
 <form method="post" class="form-signin p-2">
-    <div>
+    <div class="my-3">
         <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
         <span class="text-danger"> <?php echo $usernameErr,$c_usernameErr;?></span>
     </div>
-    <div>
+    <div class="my-3">
         <input type="password" name="password" class="form-control" placeholder="Password">
         <span class="text-danger"> <?php echo $PassErr;?></span>
     </div>
-    <div>
+    <div class="my-3">
         <input type="password" name="cpassword" class="form-control" placeholder="Confirm Your Password">
         <span class="text-danger"> <?php echo $CPassErr;?></span>
     </div>
-    <div>
+    <div class="my-3">
         <input type="text" name="FName" class="form-control" placeholder="First Name">
         <span class="text-danger"> <?php echo $FnameErr;?></span>
     </div>
-    <div>
+    <div class="my-3">
         <input type="text" name="LName" class="form-control" placeholder="Last Name">
         <span class="text-danger"> <?php echo $LnameErr;?></span>
     </div>
-    <div>
+    <div class="my-3">
         <input type="text" name="IC" class="form-control" placeholder="IC Number">
         <span class="text-danger"> <?php echo $ICErr;?></span>
     </div>
-    <div>
+    <div class="my-3">
         <select name="Position" class="form-control" required>
             <option value="" disabled selected hidden> Position</option>
             <option value="Manager">Manager</option>
@@ -136,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <span class="text-danger"> <?php echo $PositionErr; ?> </span>
     </div>
-    <div>
+    <div class="my-3">
         <select name="Agency" class="form-control" required>
             <option value="" disabled selected hidden> Your Company</option>
             <option value="RT">Roystar Travel and Tours Sdn Bhd</option>

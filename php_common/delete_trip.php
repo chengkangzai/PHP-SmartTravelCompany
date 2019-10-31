@@ -4,11 +4,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     include_once("../config.php");
 
     $Trip_ID = mysqli_real_escape_string($db, $_POST['Trip_ID']);
-   
-
     $sql = "DELETE FROM `Trip` WHERE `Trip_ID`='$Trip_ID' ";
 
-    echo $sql;
 
 
     if (mysqli_query($db, $sql)) {

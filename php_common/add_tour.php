@@ -11,9 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
 
     $sql = "INSERT INTO `Trip`(`Departure_date`, `Fee`, `Airline`, `FK_TourCode`) VALUES ('$newDate',' $Fee','$Airline','$TourCode')";
 
-    //echo $sql;
-
-
     if (mysqli_query($db, $sql)) {
         echo ("<script> alert('Add Sucess!'); </script>");
         echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');</script>");

@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    include_once('config.php');
+    include_once('../config.php');
     $TourCode = mysqli_real_escape_string($db, $_POST['TourCode']);
     $TourName = mysqli_real_escape_string($db, $_POST['TourName']);
     $Category = mysqli_real_escape_string($db, $_POST['Category']);
@@ -28,14 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if ($pic_fileError === 0) {
                 $pic_FileNameNEW = "$TourCode.$pic_FileactualExt";
                 $pic_fileDestination = "/volume1/web/test/php-assignment/itinerary/$Category/$pic_FileNameNEW";
-                echo $fileDestination;
                 move_uploaded_file($pic_filetmpName, $pic_fileDestination);
-            } else {
-                echo "Error happen when upload";
-            }
-        } else {
-            echo "File type not premit";
-        }
+            } else {echo "Error happen when upload";}
+        } else {echo "File type not premit";}
 
         $pdf_file = $_FILES['itenerary'];
         $pdf_fileName = $pdf_file['name'];
@@ -51,24 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if ($pdf_fileError === 0) {
                 $pdf_FileNameNEW = "$TourCode.$pdf_FileactualExt";
                 $pdf_fileDestination = "/volume1/web/test/php-assignment/itinerary/$Category/$pdf_FileNameNEW";
-
                 move_uploaded_file($pdf_filetmpName, $pdf_fileDestination);
-            } else {
-                echo "Error happen when upload";
-            }
-        } else {
-            echo "File type not premit";
-        }
+            } else {echo "Error happen when upload";}
+        } else {echo "File type not premit";}
+
         // Declare value for Manager of The Area
-        if ($Category == "Asia") {
-            $FK_E_username = "jmoen";
-        } elseif ($Category == "Europe") {
-            $FK_E_username = "ljones";
-        } elseif ($Category == "Exotic") {
-            $FK_E_username = "nicholaus06";
-        } else {
-            header("test copy.html");
-        }
+        if ($Category == "Asia") {$FK_E_username = "jmoen";}
+        elseif ($Category == "Europe") {$FK_E_username = "ljones";}
+        elseif ($Category == "Exotic") {$FK_E_username = "nicholaus06";} 
+        else {header("test copy.html");}
+
         $pdf_httpcess = "http://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pdf_FileNameNEW";
         $pic_httpcess = "http://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pic_FileNameNEW";
 
@@ -86,15 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $addTourdes = "INSERT INTO `Tour_des`(`FK_TourCode`, `Point_1`, `Des_1`, `Point_2`, `Des_2`, `Point_3`, `Des_3`, `Point_4`, `Des_4`) VALUES ('$TourCode','<b>$P1</b> -','$D1','<b>$P2</b> -','$D2','<b>$P3</b> -','$D3','<b>$P4</b> -','$D4');";
             if (mysqli_query($db, $addTourdes)) {
                 echo "<script> alert('Insert Sucess!'); </script>";
-                eecho("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
+                echo("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
                 </script>");
-            } else {
-                echo "sth wrong again bro";
-            }
-        } else {
-            echo "Sth Wrong la bro ";
-        }
-    } else {
-        echo "Duplicate entry for Tour Code :)";
-    }
+            } else {echo "sth wrong again bro";}
+        } else {echo "Sth Wrong la bro ";}
+    } else {echo "Duplicate entry for Tour Code :)";}
 }
