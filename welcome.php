@@ -257,13 +257,7 @@ if ($_SESSION['role']=="Customer") {
                     ");
 
                 //Select and edit the Trip
-                $trip_asia_JOINED_sql = "SELECT  
-                Tr.Trip_ID ,
-                Tr.Departure_date,
-                Tr.Fee,
-                Tr.Airline,
-                Tr.FK_TourCode,
-                T.Name
+                $trip_asia_JOINED_sql = "SELECT  Tr.Trip_ID ,Tr.Departure_date,Tr.Fee,Tr.Airline,Tr.FK_TourCode,T.Name
                 from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode
                 WHERE Category='Asia'
                 ORDER BY Tr.Trip_ID ASC
@@ -272,35 +266,16 @@ if ($_SESSION['role']=="Customer") {
 
                 while ($trip_asia_row = mysqli_fetch_assoc($trip_asia_JOINED_query)) {
                     echo "
-                    <form method='POST' action='php_common/edit_trip.php'>
-                    <tbody>    
+                    <form method='POST' action='php_common/edit_trip.php'> 
                     <tr>
-                        <td>
-                            <input value='{$trip_asia_row['Trip_ID']}' name='Trip_ID' hidden>
-                            {$trip_asia_row['Trip_ID']}
-                        </td>
-                        <td>        
-                            <input value='{$trip_asia_row['Departure_date']}' name='Departure_date' class='form-control' type='date'>
-                        </td>
-                        <td>        
-                            <input value='{$trip_asia_row['Fee']}' name='Fee' class='form-control' type='number'>
-                        </td>
-                        <td>        
-                            <input value='{$trip_asia_row['Airline']}' name='Airline' class='form-control' type='text'>
-                        </td>
-                        <td>        
-                            <input value='{$trip_asia_row['FK_TourCode']}' name='FK_TourCode' hidden>
-                            {$trip_asia_row['FK_TourCode']}
-                        </td>
-                        <td>        
-                            {$trip_asia_row['Name']}
-                        </td>
-                        <td>
-                            <input type='submit' value='Update' class='btn btn-primary'>
-                        </td>
-
+                        <td><input value='{$trip_asia_row['Trip_ID']}' name='Trip_ID' hidden>{$trip_asia_row['Trip_ID']}</td>
+                        <td><input value='{$trip_asia_row['Departure_date']}' name='Departure_date' class='form-control' type='date'></td>
+                        <td><input value='{$trip_asia_row['Fee']}' name='Fee' class='form-control' type='number'></td>
+                        <td><input value='{$trip_asia_row['Airline']}' name='Airline' class='form-control' type='text'></td>
+                        <td><input value='{$trip_asia_row['FK_TourCode']}' name='FK_TourCode' hidden>{$trip_asia_row['FK_TourCode']}</td>
+                        <td>{$trip_asia_row['Name']}</td>
+                        <td><input type='submit' value='Update' class='btn btn-primary'></td>
                     </tr>
-                    </tbody>
                     ";
                     echo ("</form>");
                 }

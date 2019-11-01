@@ -4,7 +4,7 @@ include('config.php');
 session_start();
 
 if ($_SESSION['role']=="Employee") {
-    echo"<script> alert('You seem Lost... Redirecting...'); window.history.go(-1);;</script>";
+    echo"<script> alert('You seem Lost... Redirecting...'); window.history.go(-1);</script>";
 }
 ?>
 <!DOCTYPE html>

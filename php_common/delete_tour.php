@@ -19,19 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (mysqli_query($db, $d_tour_sql)) {
             if (mysqli_query($db, $d_selected_tour_sql)) {
                 echo ("<script> alert('Edit Sucess!'); </script>");
-                echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
-        </script>");
+                echo ("<script> window.history.go(-1)');</script>");
             }else {
-                echo "unable to delete C_Selected_Tour";
-                echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
-        </script>");
+                echo ("<script> alert('unable to delete C_Selected_Tour'); </script>");
+                echo ("<script> window.history.go(-1)');</script>");
             }
         }else {
             header("Location:../jump/reject_delete_tour.html");
         }
     } else {
-        echo "unable to delete C_Selected_Tour";
-        echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
-        </script>");
+        echo ("<script> alert('unable to delete Tour_des'); </script>");
+        echo ("<script> window.history.go(-1)');</script>");
     }
 }

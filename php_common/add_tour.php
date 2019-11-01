@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
 
     if (mysqli_query($db, $sql)) {
         echo ("<script> alert('Add Sucess!'); </script>");
-        echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');</script>");
+        echo ("<script> window.history.go(-1)');</script>");
     } else {
         echo ("<script> alert('Something wrong :3'); </script>");
-        echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');</script>");
+        echo ("<script> window.history.go(-1)');</script>");
     }
 
 }

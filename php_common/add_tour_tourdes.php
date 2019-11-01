@@ -73,8 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $addTourdes = "INSERT INTO `Tour_des`(`FK_TourCode`, `Point_1`, `Des_1`, `Point_2`, `Des_2`, `Point_3`, `Des_3`, `Point_4`, `Des_4`) VALUES ('$TourCode','<b>$P1</b> -','$D1','<b>$P2</b> -','$D2','<b>$P3</b> -','$D3','<b>$P4</b> -','$D4');";
             if (mysqli_query($db, $addTourdes)) {
                 echo "<script> alert('Insert Sucess!'); </script>";
-                echo("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
-                </script>");
+                echo("<script> window.history.go(-1)');</script>");
             } else {echo "sth wrong again bro";}
         } else {echo "Sth Wrong la bro ";}
     } else {echo "Duplicate entry for Tour Code :)";}

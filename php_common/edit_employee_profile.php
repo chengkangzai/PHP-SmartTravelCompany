@@ -20,8 +20,7 @@ include_once("../config.php");
 if ($real_shapass == $chk_password && $password==$C_password) {
     $sql="
     UPDATE Employee SET password='$securepass',FName='$FirstName',LName='$LastName',IC_num='$IC_num',Position='$Position',Agency='$Agency' WHERE username='$username'";    
-    echo("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');
-    </script>");
+    echo("<script> window.history.go(-1)');</script>");
 } elseif ($real_shapass !== $chk_password) {
     echo "Current Password Wrong! ";
 } elseif ($password == $C_password) {

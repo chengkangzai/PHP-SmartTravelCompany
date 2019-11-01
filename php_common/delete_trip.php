@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
 
     if (mysqli_query($db, $sql)) {
         echo ("<script> alert('Delete Sucess!'); </script>");
-        echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');</script>");
+        echo ("<script> window.history.go(-1)');</script>");
     } else {
         echo ("<script> alert('You Are Deleting a trip that already booked!'); </script>");
-        echo ("<script> window.location.replace('http://chengkang.synology.me/test/php-assignment/welcome.php');</script>");
+        echo ("<script> window.history.go(-1)');</script>");
     }
 
 }
