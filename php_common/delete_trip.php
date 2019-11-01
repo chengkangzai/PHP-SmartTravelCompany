@@ -5,10 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     $sql = "DELETE FROM `Trip` WHERE `Trip_ID`='$Trip_ID' ";
     if (mysqli_query($db, $sql)) {
         echo ("<script> alert('Delete Sucess!'); </script>");
-        echo ("<script> window.history.go(-1)');</script>");
+        echo ("<script> window.history.go(-1);</script>");
     } else {
         echo ("<script> alert('You Are Deleting a trip that already booked!'); </script>");
-        echo ("<script> window.history.go(-1)');</script>");
+        echo ("<script> window.history.go(-1);</script>");
     }
 }
 ?>

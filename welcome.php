@@ -1416,8 +1416,10 @@ if ($_SESSION['role']=="Customer") {
             </table>
             
         </div>
-        <div class="col-lg-10 d-block" id="welcome">
-            <img src="img/E_welcome.jpg" class="mx-auto text-center">
+        <div class="col-lg-10 d-block pl-0" id="welcome">
+        <div class='embed-responsive embed-responsive-16by9'>
+            <img src= 'img/E_welcome.jpg' class='img-fluid embed-responsive-item' />
+        </div>
         </div>
     </div>
     <script src="js/hide_display.js">

@@ -15,7 +15,7 @@ $sql="UPDATE `Tour` SET `Name`='$TourName',`Destination`='$Destination',`Categor
 
 if (mysqli_query($db,$sql)) {
     echo("<script> alert('Edit Sucess!'); </script>");
-    echo("<script> window.history.go(-1)');</script>");
+    echo("<script> window.history.go(-1);</script>");
 }else {
     echo "There is some error (●ˇ∀ˇ●)";
 }

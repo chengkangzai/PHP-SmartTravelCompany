@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }else {
             echo ("<script> alert('unable to delete C_Selected_Tour'); </script>");
-            echo ("<script> window.history.go(-1)');</script>");
+            echo ("<script> window.history.go(-1);</script>");
         }
     } else {
         echo ("<script> alert('unable to delete Tour_des'); </script>");
-        echo ("<script> window.history.go(-1)');</script>");
+        echo ("<script> window.history.go(-1);</script>");
     }
 }
 ?>
