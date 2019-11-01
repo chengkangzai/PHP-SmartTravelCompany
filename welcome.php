@@ -1102,6 +1102,15 @@ if ($_SESSION['role']=="Customer") {
                     </thead>
                     ");
                 while ($row_ALL = mysqli_fetch_assoc($query_ALL)) {
+                    $cat_asia=$cat_europe=$cat_exo="";
+                    $category=$row_ALL['Category'];
+                    if ($category=="Asia") {
+                        $cat_asia="selected";
+                    }elseif ($category=="Europe") {
+                        $cat_europe="selected";
+                    }elseif ($category=="Exotic") {
+                        $cat_exo="selected";
+                    }
                     echo "
                     <form method='POST' action='php_common/edit_tour.php'>
                         <tbody>    
@@ -1117,7 +1126,11 @@ if ($_SESSION['role']=="Customer") {
                                 <input value='{$row_ALL['Destination']}' name='Destination' class='form-control'>
                             </td>
                             <td>        
-                                <inputname='Category' value='{$row_ALL['Category']}'class='form-control'>
+                                <select name='Category' class='custom-select'>
+                                <option value='Asia' $cat_asia >Asia </option>
+                                <option value='Europe' $cat_europe >Europe </option>
+                                <option value='Exotic' $cat_exo >Exotic </option>
+                                </select>
                             </td>
                             <td>        
                             <input value='{$row_ALL['FK_E_username']}' name='FK_E_username' class='form-control'>
