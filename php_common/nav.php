@@ -193,25 +193,17 @@ function trip_info($tour_code){
     mysqli_close($db);
 }
 
-function preloader($dir_layer)
+function preloader()
 {
-    if ($dir_layer == "0") {
-        //root level 
         echo "
     <div id='overlay' style='z-index:999999'>
-                <div class='spinner'></div>
+        <div class='spinner'></div>
     </div>
-    <script src='js/pre_load.js'></script>
-    ";
-    } elseif ($dir_layer == "1") {
-        //sub folder
-        echo "       
-        <div id='overlay' style='z-index:999999' class='spinner-grow text-primary' role='status'>
-                    <div class='spinner'></div>
-        </div>
-        <script src='js/pre_load.js'></script>
-        ";
-    }
+        <script>
+            var overlay = document.getElementById('overlay');
+            window.addEventListener('load', function() {
+            overlay.style.display = 'none';})
+        </script>";
 }
 
 function main_CSSandIcon($dir_layer, $bootstrap)

@@ -45,11 +45,9 @@ main_CSSandIcon("0","1");
 
     <body>
         <div class="container">
-            <div id="overlay" style="z-index:999999">
-                <div class="spinner"></div>
-            </div>
-            <script src="js/pre_load.js"></script>
-
+        <?php
+        preloader();
+        ?>
             <div class="jumbotron col-lg-12 col-md-12 col-sm-12 col-12 col-xl-12">
                 <div class="">
                     <img src="img/logo.png" class="pb-2 col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">

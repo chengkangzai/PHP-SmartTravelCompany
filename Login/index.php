@@ -60,6 +60,7 @@ mysqli_close($db);
     <?php
     include("../php_common/nav.php");
     navbar("1");
+    preloader();
     ?>
     <div id="particles-js">
         <form action="" method="post">

@@ -71,14 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($Passport)) {
-        $PassportErr="Phone Number shall not be empty";
+        $PassportErr="Passport Number shall not be empty";
     }else {
-        if (!preg_match("/^[A-Z0-9<]{9}[0-9]{1}[A-Z]{3}[0-9]{7}[A-Z]{1}[0-9]{7}[A-Z0-9<]{14}[0-9]{2}$/",$Passport)) {
-            $PassportErr="who can remember their passport number? use this example instead '1234567890ABC1234567A1234567<<<<<<<<<<<<<<12' :P";
-        }else {
             $Passportchk="1";
         }
-    }
+    
 
     $c_Sql="Select username FROM Employee WHERE username='$username'";
     $c_query=mysqli_query($db,$c_Sql);
@@ -88,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else {
         $c_userchk="1";
     }
-    echo $userchk,$LNamechk,$FNamechk,$CPasschk,$Phonechk,$Passportchk,$passwordchk,$c_userchk;
     
     if ($userchk==1 && $LNamechk==1 && $FNamechk==1 && $CPasschk==1 && $Phonechk==1 && $Passportchk==1 && $passwordchk==1 && $c_userchk==1) {
         $sql = "INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$safepass','$FName','$LName','$Phone_num','$Email','$Passport')";
@@ -134,6 +130,7 @@ mysqli_close($db);
     <?php
     include_once("php_common/nav.php");
     navbar("0");
+    preloader();
     ?>
 
 

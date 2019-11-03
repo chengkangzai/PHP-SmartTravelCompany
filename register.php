@@ -92,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     include_once("php_common/nav.php");
     navbar("0");
+    preloader();
     ?>
     <div class="jumbotron mx-auto p-2">
         <img src="img/logo.png" alt="Company's Logo " class="my-2 img-fluid">

@@ -16,7 +16,7 @@
    $phone_number=$row['Phone_num'];
    $Email=$row['Email'];
    $Passport=$row['Passport'];
-
+   $password=$row['password'];
    
    if(!isset($_SESSION['login_user'])){
       header("location:jump/Login.html");

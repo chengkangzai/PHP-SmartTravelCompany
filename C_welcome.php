@@ -22,16 +22,16 @@ if ($_SESSION['role']=="Employee") {
     main_CSSandIcon("0", "1");
     ?>
     <style>
-        body {
-            background-color: black;
-            background-image:
-                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
-                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
-                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
-            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-        }
+    body {
+        background-color: black;
+        background-image:
+            radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+            radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+            radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+            radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    }
     </style>
 
 </head>
@@ -40,61 +40,70 @@ if ($_SESSION['role']=="Employee") {
     <?php
     include_once("php_common/nav.php");
     navbar("0");
+    preloader();
     ?>
     <div class="row m-3">
         <!-- Select function -->
         <div class="list-group col-lg-2">
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showprofile()" id="profile-btn"> Profile </a>
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showManageTrip()" id="manage-trip-btn"> Booked Trip</a>
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showBookTrip()" id="Book-trip-btn"> Book Another Trip</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showprofile()"
+                id="profile-btn"> Profile </a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showManageTrip()"
+                id="manage-trip-btn"> Booked Trip</a>
+            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showBookTrip()"
+                id="Book-trip-btn"> Book Another Trip</a>
         </div>
 
         <!-- Profile -->
         <div class="col-lg-10 d-none" id="Profile">
             <?php echo "<h1 class='text-center text-white'>Welcome! $position, $login_session </h1>"; ?>
-
             <form action="php_common/edit_customer_profile" method="post">
                 <table class="table table-dark table-striped table-hover table-bordered">
                     <tr>
-                        <td>UserName</td>
-                        <td><input class="form-control" type="text" value="<?php echo $login_session; ?>" name="username" disabled></td>
+                        <td>User Name</td>
+                        <td><input class="form-control" type="text" value="<?php echo $login_session; ?>"
+                                name="username" hidden> <?php echo $login_session; ?></td>
                     </tr>
                     <tr>
-                        <td>
-                            Current Password
-                        </td>
-                        <td>
-                            <input type="password" name="chk_password" class="form-control" required>
-                            <input type="password" name="real_pass" hidden value="<?php echo $password; ?> ">
-                        </td>
+                        <td>Current Password</td>
+                        <td><input type="password" name="chk_password" class="form-control" required
+                                placeholder="Current Password">
+                            <input type="password" name="real_pass" hidden value="<?php echo $password; ?>"></td>
                     </tr>
                     <tr>
                         <td>New Password</td>
-                        <td><input type="password" class="form-control" name="password" value="" required></td>
+                        <td><input type="password" class="form-control" name="password" value="" 
+                                placeholder="Leave blank if you do not wish to change password"></td>
                     </tr>
                     <tr>
                         <td>Confirm New Password</td>
-                        <td><input type="password" class="form-control" name="C_password" value="" required>
-                        </td>
+                        <td><input type="password" class="form-control" name="C_password" value="" 
+                                placeholder="Leave blank if you do not wish to change password"></td>
                     </tr>
                     <tr>
                         <td>First Name</td>
-                        <td><input type="text" class="form-control" name="FirstName" value="<?php echo $FName; ?>"></td>
+                        <td><input type="text" class="form-control" name="FirstName" value="<?php echo $FName; ?>"
+                                required></td>
                     </tr>
                     <tr>
                         <td>Last Name</td>
-                        <td><input type="text" name="LastName" class="form-control" value="<?php echo $LName; ?>"></td>
+                        <td><input type="text" name="LastName" class="form-control" value="<?php echo $LName; ?>"
+                                required></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td><input type="text" name="phone_num" class="form-control"
+                                value="<?php echo $phone_number ;?>" required></td>
                     </tr>
                     <tr>
                         <td>Passport Number</td>
-                        <td><input type="number" name="Passport" class="form-control" value="<?php echo $Passport; ?>">
+                        <td><input type="text" name="Passport" class="form-control" value="<?php echo $Passport; ?>"
+                                required>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="email" name="Position" class="form-control" value="<?php echo $Email; ?>">
-                        </td>
+                        <td><input type="email" name="email" class="form-control" value="<?php echo $Email; ?>"
+                                required></td>
                     </tr>
-
                     <tr>
                         <td colspan="2" class="text-center mx-auto">
                             <input type="submit" value="Update" class="btn btn-lg btn-primary">
@@ -207,110 +216,34 @@ if ($_SESSION['role']=="Employee") {
 
         </div>
         <div class="col-lg-10 d-block pl-0" id="welcome">
-        <div class='embed-responsive embed-responsive-16by9'>
-            <img src= 'img/E_welcome.jpg' class='img-fluid embed-responsive-item' />
-        </div>
-        
+            <div class='embed-responsive embed-responsive-21by9'>
+                <img src='img/E_welcome.jpg' class=' embed-responsive-item' />
+            </div>
+
         </div>
 
     </div>
-    <script>
-        //Button
-        var y = document.getElementById('profile-btn');
-        var y1 = document.getElementById('manage-trip-btn');
-        var y2 = document.getElementById('Book-trip-btn');
+    <script src="js/C_welcome.js">
 
-
-
-        //Hiiden 
-        var Z = document.getElementById('Profile');
-        var Z1 = document.getElementById('managed-trip');
-        var Z2 = document.getElementById('book-trip');
-
-        //Welcome Page
-        var a = document.getElementById('welcome');
-
-
-
-        function showprofile() {
-            if (Z.style.display === 'block') {
-                z.classList.remove("d-block");
-                Z.classList.add("d-none");
-                a.classList.remove("d-none");
-                a.classList.add("d-block");
-
-            } else {
-                Z.classList.add("d-block");
-                a.classList.remove("d-block");
-                a.classList.add("d-none");
-
-                //Others 
-                Z1.classList.remove("d-block");
-                Z1.classList.add("d-none");
-
-                Z2.classList.remove("d-block");
-                Z2.classList.add("d-none");
-            }
-        }
-
-        function showManageTrip() {
-            if (Z1.style.display === 'block') {
-                Z1.classList.remove("d-block");
-                Z1.classList.add("d-none");
-
-                a.classList.remove("d-none");
-                a.classList.add("d-block");
-
-            } else {
-                Z1.classList.add("d-block");
-
-                a.classList.remove("d-block");
-                a.classList.add("d-none");
-
-                //Others 
-                Z.classList.remove("d-block");
-                Z.classList.add("d-none");
-
-                Z2.classList.remove("d-block");
-                Z2.classList.add("d-none");
-            }
-        }
-
-        function showBookTrip() {
-            if (Z2.style.display === 'block') {
-                Z2.classList.remove("d-block");
-                Z2.classList.add("d-none");
-
-                a.classList.remove("d-none");
-                a.classList.add("d-block");
-
-            } else {
-                Z2.classList.add("d-block");
-
-                a.classList.remove("d-block");
-                a.classList.add("d-none");
-
-                //Others 
-                Z.classList.remove("d-block");
-                Z.classList.add("d-none");
-
-                Z1.classList.remove("d-block");
-                Z1.classList.add("d-none");
-            }
-        }
     </script>
 
     <script>
-        function dconfirm() {
-            var r = confirm("You are about to delete a record ! \n Are you sure ?");
-            if (r == FALSE) {
-                location.reload();
-            }
+    function dconfirm() {
+        var r = confirm("You are about to delete a record ! \n Are you sure ?");
+        if (r == FALSE) {
+            location.reload();
         }
+    }
     </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

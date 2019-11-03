@@ -12,15 +12,18 @@ include_once("../config.php");
     $username=mysqli_real_escape_string($db,$_POST['username']);
     $FirstName=mysqli_real_escape_string($db,$_POST['FirstName']);
     $LastName=mysqli_real_escape_string($db,$_POST['LastName']);
-    $IC_num=mysqli_real_escape_string($db,$_POST['IC']);
-    $Position=mysqli_real_escape_string($db,$_POST['Position']);
-    $Agency=mysqli_real_escape_string($db,$_POST['Agency']);
+    $Passport=mysqli_real_escape_string($db,$_POST['Passport']);
+    $email=mysqli_real_escape_string($db,$_POST['email']);
 
-    
-if ($real_shapass == $chk_password && $password==$C_password) {
+    if (empty($password) && empty($C_password)) {
+        $securepass=$real_shapass;
+    }
+if ($real_shapass == $chk_password && $password==$C_password ) {
     $sql="
-    UPDATE Employee SET password='$securepass',FName='$FirstName',LName='$LastName',IC_num='$IC_num',Position='$Position',Agency='$Agency' WHERE username='$username'";    
-    echo("<script> window.history.go(-1);</script>");
+    UPDATE `Customer` SET `password`='$securepass',`FName`='$FirstName',`LName`='$LastName',`Phone_num`='$Phone_num',`Email`='$email',`Passport`='$Passport' WHERE `username`='$username'";    
+    if (mysqli_query($db,$sql)) {
+        echo("<script> alert('Update Sucess!'); window.history.go(-1);</script>");    
+    } 
 } elseif ($real_shapass !== $chk_password) {
     echo ("<script> alert('Current Password Wrong!'); </script>");
     echo("<script> window.history.go(-1);</script>");
