@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (mysqli_query($db, $sql)) {
         header("Location:jump/fake_payment.html");
     } else {
+        echo $sql;
         echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
     };
     mysqli_close($db);
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-5">
                         <select class="custom-select" id="Trip" name="Trip_id" required>
                             <option selected hidden>Choose your Trips</option>
                             <?php
@@ -96,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
             </div>
 
-            <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block">
+            <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block mt-5">
         </form>
 
     </div>

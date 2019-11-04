@@ -69,8 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($Agencychk==1 and $FNamechk==1 and $LNamechk==1 and $passwordchk==1 and $Positionchk==1 and $IC_numchk==1 and $userchk==1 and $c_userchk==1 and $CPasschk =="1") {
         $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
-        if (mysqli_query($db, $sql)) {header("Location:welcome.php");
-        } elseif(mysqli_error($db)) {echo "<script> alert('Please choose another Username'); </script> ";}
+        if (mysqli_query($db, $sql)) {
+            echo ("<script> alert('Add Success!'); </script>");
+            echo ("<script> window.history.go(-1);</script>");
+        } elseif(mysqli_error($db)) {
+            echo "<script> alert('Please choose another Username'); </script> ";
+        }
     }
 }
 ?>

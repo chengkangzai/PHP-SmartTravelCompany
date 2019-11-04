@@ -7,11 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $d_tourdes_sql = "DELETE FROM `Tour_des` WHERE`FK_TourCode`='$TourCode'";
     $d_selected_tour_sql = "DELETE FROM `C_selected_Tour` WHERE`FK_TourCode`='$TourCode'";
 
+    
     if (mysqli_query($db, $d_tourdes_sql)) {
         if (mysqli_query($db, $d_selected_tour_sql)) {
             if (mysqli_query($db, $d_tour_sql)) {
-                echo ("<script> alert('Delete Sucess!'); </script>");
-                echo ("<script> window.history.go(-1)');</script>");
+                echo ("<script> alert('Delete Sucess!');");
+                echo ("window.history.go(-1)');</script>");
             }else {
                 header("Location:../jump/reject_delete_tour.html");
             }

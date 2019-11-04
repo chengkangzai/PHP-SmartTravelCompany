@@ -23,6 +23,7 @@ if ($_SESSION['role'] == "Customer") {
     ?>
 
     <style>
+
     body {
         background-color: black;
         background-image:
@@ -768,7 +769,7 @@ if ($_SESSION['role'] == "Customer") {
         <div class="col-lg-10 d-none" id="Add-Trip">
             <?php echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>"; ?>
 
-            <form action="php_common/add_tour.php" method="post">
+            <form action="php_common/add_trip.php" method="post">
                 <table class="table table-dark table-hover">
                     <tr>
                         <td>
