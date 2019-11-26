@@ -71,7 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($Passport)) {
-        $PassportErr="Passport Number shall not be empty";
+        $Passport="NULL";
+		$Passportchk="1";
     }else {
             $Passportchk="1";
         }
@@ -171,7 +172,7 @@ mysqli_close($db);
                 <span class="text-danger"> <?php echo $EmailErr;?></span>
             </div>
             <div class="my-3">
-                <input type="text" name="Passport" placeholder="Your Passport number" class="form-control" required >    
+                <input type="text" name="Passport" placeholder="Your Passport number(Leave Blank if do not have)" class="form-control"  >    
                 <span class="text-danger"> <?php echo $PassportErr;?></span>
             </div>
                        

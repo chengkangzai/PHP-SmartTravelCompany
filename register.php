@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img src="img/logo.png" alt="Company's Logo " class="my-2 img-fluid">
     </div>
     <h1 class="mb-3">
-        Staff register Page
+        Staff Register Page
     </h1>
     <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-6 col-xl-8 mx-auto p">
 <form method="post" class="form-signin p-2">
