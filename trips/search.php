@@ -54,15 +54,14 @@ session_start();
     <div class="jumbotron col-lg-10 mx-auto">
         <div class="row">
             <?php
-            if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                include_once("../php_common/nav.php");
-                include_once("../config.php");
-                $Tour_Code = mysqli_real_escape_string($db, $_POST['search_text']);
-                if ($Tour_Code == NULL ) {
-                    CallAllTour();
-                }else {
+             include_once("../php_common/nav.php");
+             include_once("../config.php");
+            $Tour_Code = mysqli_real_escape_string($db, $_POST['search_text']);
+            
+            if ($Tour_Code==null){
+                CallAllTour();
+            }elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
                     trip_info($Tour_Code);
-                }
             }
             ?>
         </div>
