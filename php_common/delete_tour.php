@@ -14,7 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 echo ("<script> alert('Delete Sucess!');</script>");
                 echo ("<script>window.history.go(-1);</script>");
             }else {
-                header("Location:../jump/reject_delete_tour.html");
+                echo("<script>
+                alert('There is few trip/tour are going on !\nYou are not allowed to delete this tour/tour \nTry Again after delete relative trip first');
+                window.history.go(-1);
+            </script>");
             }
         }else {
             echo ("<script> alert('unable to delete C_Selected_Tour'); </script>");

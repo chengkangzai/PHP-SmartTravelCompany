@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($feedback!=""){
         $sql = "INSERT INTO Feedback (feedback) VALUES ('$feedback')";
         if (mysqli_query($db, $sql)) {
-            header("Location:jump/Feedback.html");
+            echo("<script> alert('Thanks For your feedback');windows.location.href='../index.php'; </script>");
         } else {
             echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
         }
