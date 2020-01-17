@@ -3,11 +3,15 @@ session_start();
 include("config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback = mysqli_real_escape_string($db, $_POST['Feedback']);
-    $sql = "INSERT INTO Feedback (feedback) VALUES ('$feedback')";
-    if (mysqli_query($db, $sql)) {
-        header("Location:jump/Feedback.html");
-    } else {
-        echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
+    if ($feedback!=""){
+        $sql = "INSERT INTO Feedback (feedback) VALUES ('$feedback')";
+        if (mysqli_query($db, $sql)) {
+            header("Location:jump/Feedback.html");
+        } else {
+            echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
+        }
+    }else {
+        echo "<script>alert('You can not send an empty feedback'); </script>";
     }
 }
 mysqli_close($db);
