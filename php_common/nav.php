@@ -9,93 +9,93 @@ function navbar()
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand active font-weight-bold' href='$host/index.php'>Smart Holidays</a>
-                  <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
-               <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
-                   <!--The icon itself-->
-                   <span class='navbar-toggler-icon'></span>
-               </button>
-               <!--Real nav start here-->
-               <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-                   <ul class='navbar-nav'>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
-                       </li>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/trips/index.php'>Trips</a>
-                       </li>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/About_us.php'>About Us</a>
-                       </li>
-                       <li class='nav-item'>
-                       <a class='nav-link' href='$host/welcome'>Dashboard</a>
+                <!-- only shows with small screen (powered by javascript and bootstrap CSS class) -->
+            <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+                <!--The icon itself-->
+                <span class='navbar-toggler-icon'></span>
+            </button>
+            <!--Real nav start here-->
+            <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+                <ul class='navbar-nav'>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='$host/trips/index.php'>Trips</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='$host/About_us.php'>About Us</a>
+                    </li>
+                    <li class='nav-item'>
+                    <a class='nav-link' href='$host/welcome'>Dashboard</a>
                         </li>
-                       <li class='nav-item'>
-                       <a href='$host/logout.php' class='btn btn-outline-primary nav-link text-right float-right ' title='Log out'>Log out </a>
-                       </li>
-                   </ul>
-               </div>
-           </nav>
-        ";
+                    <li class='nav-item'>
+                    <a href='$host/logout.php' class='btn btn-outline-primary nav-link text-right float-right ' title='Log out'>Log out </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    ";
     } elseif ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Customer") {
         //User Logged in
         echo "
             <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
                 <a class='navbar-brand font-weight-bold' href='$host/index.php'>Smart Holidays</a>
-                      <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
-                   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
-                       <!--The icon itself-->
-                       <span class='navbar-toggler-icon'></span>
-                   </button>
-                   <!--Real nav start here-->
-                   <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-                       <ul class='navbar-nav'>
-                           <li class='nav-item '>
-                               <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
-                           </li>
-                           <li class='nav-item'>
-                               <a class='nav-link' href='$host/trips/index.php'>Trips</a>
-                           </li>
-                           <li class='nav-item'>
-                               <a class='nav-link' href='$host/About_us.php'>About Us</a>
-                           </li>
-                           <li class='nav-item'>
-                           <a class='nav-link' href='$host/C_welcome'>Dashboard</a>
+                    <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
+                <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+                    <!--The icon itself-->
+                    <span class='navbar-toggler-icon'></span>
+                </button>
+                <!--Real nav start here-->
+                <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+                    <ul class='navbar-nav'>
+                        <li class='nav-item '>
+                            <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='$host/trips/index.php'>Trips</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='$host/About_us.php'>About Us</a>
+                        </li>
+                        <li class='nav-item'>
+                        <a class='nav-link' href='$host/C_welcome'>Dashboard</a>
                             </li>
-                           <li class='nav-item'>
-                           <a href='$host/logout.php' class='btn btn-outline-primary nav-link text-right float-right ' title='Log out'>Log out </a>
-                           </li>
-                       </ul>
-                   </div>
-               </nav>
-            ";
+                        <li class='nav-item'>
+                        <a href='$host/logout.php' class='btn btn-outline-primary nav-link text-right float-right ' title='Log out'>Log out </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        ";
     } else {
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand font-weight-bold' href='$host/index.php'>Smart Holidays</a>
-                  <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
-               <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
-                   <!--The icon itself-->
-                   <span class='navbar-toggler-icon'></span>
-               </button>
-               <!--Real nav start here-->
-               <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-                   <ul class='navbar-nav'>
-                       <li class='nav-item '>
-                           <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
-                       </li>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/trips/index.php'>Trips</a>
-                       </li>
-                       <li class='nav-item'>
-                           <a class='nav-link' href='$host/About_us.php'>About Us</a>
-                       </li>
-                       <li class='nav-item'>
-                       <a class='nav-link' href='$host/Login/index.php'>Login</a>
+                <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
+            <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+                <!--The icon itself-->
+                <span class='navbar-toggler-icon'></span>
+            </button>
+            <!--Real nav start here-->
+            <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+                <ul class='navbar-nav'>
+                    <li class='nav-item '>
+                        <a class='nav-link' href='$host/index.php'>Home <span class='sr-only'>(current)</span></a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='$host/trips/index.php'>Trips</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='$host/About_us.php'>About Us</a>
+                    </li>
+                    <li class='nav-item'>
+                    <a class='nav-link' href='$host/Login/index.php'>Login</a>
                         </li>
-                   </ul>
-               </div>
-           </nav>
-        ";
+                </ul>
+            </div>
+        </nav>
+    ";
     }
 }
 
@@ -113,7 +113,8 @@ function CallAllTour()
     mysqli_close($db);
 }
 
-function trip_info($tour_code){
+function trip_info($tour_code)
+{
     include('../config.php');
     $itenerary_sql = "SELECT T.TourCode,T.Name,T.Destination,T.itinerary_url,T.thumbnail_url,td.Point_1,td.Point_2,td.Point_3,td.Point_4,td.Des_1,td.Des_2,td.Des_3,td.Des_4
             FROM Tour T INNER JOIN Tour_des td on td.FK_TourCode=T.TourCode
@@ -122,7 +123,7 @@ function trip_info($tour_code){
     $itenerary_query = mysqli_query($db, $itenerary_sql);
     $itenerary_row = mysqli_fetch_array($itenerary_query, MYSQLI_ASSOC);
     $count = mysqli_num_rows($itenerary_query);
-        
+
     if ($count == "1") {
         //Trip
         $itenerary = $itenerary_row['itinerary_url'];
@@ -188,14 +189,14 @@ function trip_info($tour_code){
         </div>
         ";
     } else {
-        echo"<h3>No Tour Found <br> Please Type valid Tour Code</h3>";
+        echo "<h3>No Tour Found <br> Please Type valid Tour Code</h3>";
     }
     mysqli_close($db);
 }
 
 function preloader()
 {
-        echo "
+    echo "
     <div id='overlay' style='z-index:999999'>
         <div class='spinner'></div>
     </div>
