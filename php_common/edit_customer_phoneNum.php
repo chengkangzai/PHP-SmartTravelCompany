@@ -1,6 +1,6 @@
 <?php
 include("../config.php");
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $phoneNum = mysqli_real_escape_string($db, $_POST['phoneNumber']);
     $username = mysqli_real_escape_string($db, $_POST['id']);
 
