@@ -23,21 +23,20 @@ if ($_SESSION['role'] == "Customer") {
     ?>
 
     <style>
+        body {
+            background-color: black;
+            background-image:
+                radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+                radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
 
-    body {
-        background-color: black;
-        background-image:
-            radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
-            radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
-            radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
-            radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
-        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-    }
-
-    h1 {
-        color: white;
-    }
+        h1 {
+            color: white;
+        }
     </style>
 </head>
 
@@ -78,24 +77,20 @@ if ($_SESSION['role'] == "Customer") {
                 <table class="table table-dark table-striped table-hover table-bordered">
                     <tr>
                         <td>User Name</td>
-                        <td><input class="form-control" type="text" value="<?php echo $login_session; ?>"
-                                name="username" hidden> <?php echo $login_session; ?></td>
+                        <td><input class="form-control" type="text" value="<?php echo $login_session; ?>" name="username" hidden> <?php echo $login_session; ?></td>
                     </tr>
                     <tr>
                         <td>Current Password</td>
-                        <td><input type="password" name="chk_password" class="form-control"
-                                placeholder="Current Password" required>
+                        <td><input type="password" name="chk_password" class="form-control" placeholder="Current Password" required>
                             <input type="password" name="real_pass" hidden value="<?php echo $password; ?>"></td>
                     </tr>
                     <tr>
                         <td>New Password</td>
-                        <td><input type="password" class="form-control" name="password" value=""
-                                placeholder="Leave blank if you do not wish to change password"></td>
+                        <td><input type="password" class="form-control" name="password" value="" placeholder="Leave blank if you do not wish to change password"></td>
                     </tr>
                     <tr>
                         <td>Confirm New Password</td>
-                        <td><input type="password" class="form-control" name="C_password" value=""
-                                placeholder="Leave blank if you do not wish to change password"></td>
+                        <td><input type="password" class="form-control" name="C_password" value="" placeholder="Leave blank if you do not wish to change password"></td>
                     </tr>
                     <tr>
                         <td>First Name</td>
@@ -107,14 +102,12 @@ if ($_SESSION['role'] == "Customer") {
                     </tr>
                     <tr>
                         <td>IC Number</td>
-                        <td><input type="number" name="IC" class="form-control disabled" value="<?php echo $IC; ?>"
-                                hidden>
+                        <td><input type="number" name="IC" class="form-control disabled" value="<?php echo $IC; ?>" hidden>
                             <?php echo "<input class='form-control' value='$IC' disabled>" ?> </td>
                     </tr>
                     <tr>
                         <td>Position</td>
-                        <td><input type="text" name="Position" class="form-control disabled"
-                                value="<?php echo $position; ?>" hidden>
+                        <td><input type="text" name="Position" class="form-control disabled" value="<?php echo $position; ?>" hidden>
                             <?php echo "<input class='form-control' value='$position' disabled> " ?>
                         </td>
                     </tr>
@@ -857,8 +850,7 @@ if ($_SESSION['role'] == "Customer") {
                         <td>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input " name="itenerary"
-                                        accept="application/pdf">
+                                    <input type="file" class="custom-file-input " name="itenerary" accept="application/pdf">
                                     <label class="custom-file-label " for="itenerary">Choose itenerary in pdf</label>
                                 </div>
                             </div>
@@ -1393,21 +1385,30 @@ if ($_SESSION['role'] == "Customer") {
         <div class="col-lg-10 d-none" id="Feedback">
 
             <?php
-if ($position == "Manager" || $position == "Assistant Manager") {
-    echo "<table class='table table-dark table-hover'>
-    <tr><td>Feedback ID</td>
-        <td>Feedback</td></tr>";
-    $feedbacksql = "SELECT * from Feedback";
-    $feedbackquery = mysqli_query($db, $feedbacksql);
-    while ($feedbackrow = mysqli_fetch_assoc($feedbackquery)) {
-        $id = $feedbackrow['Feedback_ID'];
-        $data = $feedbackrow['Feedback'];
-        echo ("<tr><td>$id</td>
-            <td>$data</td></tr>");
-    }
-}else {include_once("php_common/nav.php");
-    notpremit();}
-?>
+            if ($position == "Manager" || $position == "Assistant Manager") {
+                echo "<table class='table table-dark table-hover'>
+    <tr>
+        <td>Feedback ID</td>
+        <td>Feedback</td>
+        <td>Delete</td>
+    </tr>";
+                $feedbacksql = "SELECT * from Feedback";
+                $feedbackquery = mysqli_query($db, $feedbacksql);
+                while ($feedbackrow = mysqli_fetch_assoc($feedbackquery)) {
+                    $id = $feedbackrow['Feedback_ID'];
+                    $data = $feedbackrow['Feedback'];
+                    echo ("
+        <tr id='$id'>
+            <td>$id</td>
+            <td>$data</td>
+            <td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>
+        </tr>");
+                }
+            } else {
+                include_once("php_common/nav.php");
+                notpremit();
+            }
+            ?>
             </table>
 
         </div>
@@ -1421,22 +1422,39 @@ if ($position == "Manager" || $position == "Assistant Manager") {
 
     </script>
 
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    </script>>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
     <script>
-    function dconfirm() {
-        var r = confirm("You are about to delete a record ! \n Are you sure ?");
-        if (r == FALSE) {
-            location.reload();
+        function dconfirm() {
+            var r = confirm("You are about to delete a record ! \n Are you sure ?");
+            if (r == FALSE) {
+                location.reload();
+            }
         }
-    }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+
+        function deleteFeedback(id) {
+            //Send to change in db
+            $.ajax({
+                type: 'POST',
+                url: 'php_common/delete_feedback.php',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    if (response == "success") {
+                        $(`#${id}`).hide();
+                    } else {
+                        alert("Error!" + response);
+                    }
+                },
+            })
+        }
     </script>
 </body>
 
