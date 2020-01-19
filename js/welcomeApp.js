@@ -29,49 +29,49 @@ a.show();
 //Trigger content panel Start
 function showprofile() {
     a.hide();
-    Z.show().attr("id", "activePanel");
+    Z.show().attr("id","activePanel");
     Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showManageTrip() {
     a.hide();
-    Z1.show().attr("id", "activePanel");
+    Z1.show().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showUpdateTrip() {
     a.hide();
-    Z.show().attr("id", "activePanel");
+    Z.show().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showdeletetrip() {
     a.hide();
-    Z3.show().attr("id", "activePanel");
+    Z3.show().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showaddtrip() {
     a.hide();
-    Z4.hide().attr("id", "activePanel");
+    Z4.hide().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showAddTour() {
     a.hide();
-    Z5.show().attr("id", "activePanel");
+    Z5.show().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showUpdateTour() {
     a.hide();
-    Z6.show().attr("id", "activePanel");
+    Z6.show().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
 function showDeleteTour() {
     a.hide();
-    Z6.show().attr("id", "activePanel");
+    Z6.show().attr("id","activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
@@ -85,22 +85,22 @@ function showFeedback() {
 //Side Panel On and off section start
 function hideSidePanel() {
     const sidePanel = $("#sidePanel");
-    const activePanel = $("#activePanel");
+    const activePanel=$("#activePanel");
     sidePanel.addClass("d-none").removeClass("col-lg-2");
     activePanel.addClass("col-lg-12").removeClass("col-lg-10");
-    var dom = `
+    var dom=`
     <a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
     `;
-    var heading = $(".welcomeText");
+    var heading=$(".welcomeText");
     heading.append(dom);
 }
 
 function toggleSidePanel() {
     const sidePanel = $("#sidePanel");
-    const activePanel = $("#activePanel");
+    const activePanel=$("#activePanel");
     sidePanel.removeClass("d-none").addClass("col-lg-2");
     activePanel.removeClass("col-lg-12").addClass("col-lg-10");
-    const btnSidePanel = $(".btnToggleSidePanel");
+    const btnSidePanel=$(".btnToggleSidePanel");
     btnSidePanel.replaceWith();
 }
 //Side Panel On and off section END
@@ -139,7 +139,7 @@ function sendUpdate(id) {
             data: {
                 phoneNumber: phoneNumber,
                 id: username,
-                submit: 'submit'
+                submit:'submit'
             },
             success: function (response) {
                 if (response == "success") {
