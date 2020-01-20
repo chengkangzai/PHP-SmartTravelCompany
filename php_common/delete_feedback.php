@@ -9,6 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($db, $sql)) {
             echo "success";
+        }else {
+            echo "Error when processing SQL command.\n contact your server admin";
         }
     }else{
         echo "No permission ";
