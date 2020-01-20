@@ -1387,22 +1387,22 @@ if ($_SESSION['role'] == "Customer") {
             <?php
             if ($position == "Manager" || $position == "Assistant Manager") {
                 echo "<table class='table table-dark table-hover'>
-    <tr>
-        <td>Feedback ID</td>
-        <td>Feedback</td>
-        <td>Delete</td>
-    </tr>";
+                    <tr>
+                        <td>Feedback ID</td>
+                        <td>Feedback</td>
+                        <td>Delete</td>
+                    </tr>";
                 $feedbacksql = "SELECT * from Feedback";
                 $feedbackquery = mysqli_query($db, $feedbacksql);
                 while ($feedbackrow = mysqli_fetch_assoc($feedbackquery)) {
                     $id = $feedbackrow['Feedback_ID'];
                     $data = $feedbackrow['Feedback'];
                     echo ("
-        <tr id='$id'>
-            <td>$id</td>
-            <td>$data</td>
-            <td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>
-        </tr>");
+                    <tr id='$id'>
+                        <td>$id</td>
+                        <td>$data</td>
+                        <td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>
+                    </tr>");
                 }
             } else {
                 include_once("php_common/nav.php");
