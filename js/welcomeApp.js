@@ -27,55 +27,55 @@ var a = $('#welcome');
 a.show();
 
 //Trigger content panel Start
-function showprofile() {
+function showFirstPanel() {
     a.hide();
     Z.show().attr("id", "activePanel");
     Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showManageTrip() {
+function showSecondPanel() {
     a.hide();
     Z1.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showUpdateTrip() {
+function showThirdPanel() {
     a.hide();
     Z2.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showdeletetrip() {
+function showForthPanel() {
     a.hide();
     Z3.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showaddtrip() {
+function showFifthPanel() {
     a.hide();
     Z4.hide().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showAddTour() {
+function showSixthPanel() {
     a.hide();
     Z5.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showUpdateTour() {
+function showSeventhPanel() {
     a.hide();
     Z6.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showDeleteTour() {
+function showEighthPanel() {
     a.hide();
     Z7.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
-function showFeedback() {
+function showNinthPanel() {
     a.hide();
     Z8.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id");
@@ -84,15 +84,18 @@ function showFeedback() {
 
 //Side Panel On and off section start
 function hideSidePanel() {
-    const sidePanel = $("#sidePanel");
-    const activePanel = $("#activePanel");
-    sidePanel.addClass("d-none").removeClass("col-lg-2");
-    activePanel.addClass("col-lg-12").removeClass("col-lg-10");
-    var dom = `
-    <a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
-    `;
-    var heading = $(".welcomeText");
-    heading.parent().append(dom);
+    if ($("#sidePanel").css("display") !== "none") {
+        const sidePanel = $("#sidePanel");
+        const activePanel = $("#activePanel");
+        
+        sidePanel.addClass("d-none").removeClass("col-lg-2");
+        activePanel.addClass("col-lg-12").removeClass("col-lg-10");
+        var dom = `
+        <a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
+        `;
+        var heading = $(".welcomeText");
+        heading.parent().append(dom);
+    }
 }
 
 function toggleSidePanel() {
@@ -107,20 +110,15 @@ function toggleSidePanel() {
 
 //Managed Trip Section Start
 function makeUpdate(id) {
-    alert(id);
-    if ($("#sidePanel").css("display") !== "none") {
-        hideSidePanel();
-    }
-    var target = $(`#customerPhone${id}`);
-    var button = $(`#btn_${id}`);
+    hideSidePanel();
+    const target = $(`#customerPhone${id}`);
+    const button = $(`#btn_${id}`);
     const username = $(`#customerPhone${id}`).attr('data-id');
     button.removeClass("btn-primary").addClass("btn-danger");
     button.removeAttr("onclick").attr("onclick", `sendUpdate("${id}")`);
     var dom = `
     <td id="customerPhone${id}" data-id="${username}">
-        <form action="php_common/edit_customer_phoneNum.php" method="post" id="form_${id}" >
-            <input type="text" value="${target.text()}" name="phoneNumber" id="phoneNumber${id}">
-        </form>
+    <input type="text" value="${target.text()}" name="phoneNumber" id="phoneNumber${id}">
     </td>
     `;
     target.replaceWith(dom);
@@ -130,8 +128,7 @@ function sendUpdate(id) {
     function sendUpdateToPHP() {
         const phoneNumber = $(`#phoneNumber${id}`).val();
         const username = $(`#customerPhone${id}`).attr("data-id");
-        alert(phoneNumber);
-        alert(username);
+
         //Send to change in db
         $.ajax({
             type: 'POST',
@@ -169,3 +166,56 @@ function sendUpdate(id) {
 }
 
 //Manage Trip Section Ended
+
+//Managed Trip Section Started
+function makeTripUpdate(id) {
+    const tripId=$(`#TripID_${id}`);
+    const DeptTime=$(`#DeptTime_${id}`);
+    const Fee=$(`#Fee_${id}`);
+    const Airline=$(`#Airline_${id}`);
+    
+    const tripIddom=`
+    <td id="TripID_${id}">
+        <input value="${tripId.text()}" type="text" name="TripID" id="TripIDinput_${id}"> </input>
+    </td>`;
+    tripId.replaceWith(tripIddom);
+    /*
+    TODO 
+        1. GET All information --> Change it to <input>
+        1.1 trip Id
+        1.2 Dep_time
+        1.3 Airline
+        2. Make Button red and change button attr and add a function
+        3. 
+    */
+}
+
+function sendTripUpdate(id){
+    function sendTripUpdateToPHP() {
+        
+    }
+
+    function replaceValue() {
+        
+    }
+    /*
+    TODO
+    1. GET input value 
+    2. AJAX
+    3. Change the value to the latest value 
+    4. Change back the button and the input back to td
+    */
+}
+
+function sendTripDelete(id){
+    function SendTripDeleteToPHP() {
+        
+    }
+    /*
+    TODO
+    1. Get the id of the record (tr)
+    2. Send to PHP
+    3. hide the row
+    */
+}
+//Managed Trip Section Ended
