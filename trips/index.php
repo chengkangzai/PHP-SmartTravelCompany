@@ -11,12 +11,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Our Trip</title>
+    <title>Our Trips</title>
     <style>
         .intro {
             display: none;
         }
-
+        /*https://leaverou.github.io/css3patterns/# */
         body {
             background-color: black;
             background-image:
@@ -30,7 +30,7 @@ session_start();
     </style>
     <?php
     include_once("../php_common/nav.php");
-    main_CSSandIcon("0", "1");
+    main_CSSandIcon("1", "1");
     ?>
 </head>
 
