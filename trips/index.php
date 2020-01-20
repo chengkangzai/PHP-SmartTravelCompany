@@ -11,12 +11,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Our Trips</title>
+    <title>Our Trip</title>
     <style>
         .intro {
             display: none;
         }
-        /*https://leaverou.github.io/css3patterns/# */
+
         body {
             background-color: black;
             background-image:
@@ -30,35 +30,48 @@ session_start();
     </style>
     <?php
     include_once("../php_common/nav.php");
-    main_CSSandIcon("1", "1");
+    main_CSSandIcon("0", "1");
     ?>
-    
 </head>
 
 <body class="bg-secondary">
-
     <?php
     include_once("../php_common/nav.php");
     navbar("1");
     preloader();
+
     ?>
 
- <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="search.php">
-     <div class="input-group-prepend">
-         <span class="input-group-text" >Tour Code</span>
-     </div>
-     <input type="text" class="form-control" placeholder="Type specific Tour Code" name="search_text" required>
-     <div class="input-group-append">
-         <input class="btn btn-light border" type="submit" value="Search">
-     </div>
- </form>
+    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="addOnText" >Tour Code</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourCode" id="TourCodeInput">
+        <input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourName" id="TourNameInput">
+        <div class="input-group-append">
+            <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
+        </div>
+    </form>
 
     <div class="jumbotron col-lg-10 mx-auto">
-        <h1 class="text-center mb-3">Most Popular Trips!</h1>
         <div class="row">
             <?php
             include_once("../php_common/nav.php");
-            CallAllTour()
+            include_once("../config.php");
+            $Tour_Code = mysqli_real_escape_string($db, $_POST['TourCode']);
+            $Tour_Name =mysqli_real_escape_string($db,$_POST['TourName']);
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                if ($Tour_Code !== null) {
+                    trip_info($Tour_Code);
+                }elseif (condition) {
+                    # code...
+                }
+                else {
+                    CallAllTour();
+                }
+            } else {
+                CallAllTour();
+            }
             ?>
         </div>
     </div>
