@@ -146,7 +146,7 @@ function trip_info($tour_code)
         $ran3 = rand();
         echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 border py-2 mx-auto'>
         <div class='embed-responsive embed-responsive-16by9'>
-        <img src= '$thumbnail' class='img-fluid embed-responsive-item' />
+        <img src= '$thumbnail' class='img-fluid embed-responsive-item' alt='thumbnail picture' />
         </div>
             <h3 class='text-capitalize'>$Tour_name</h3>
         <div class='mx-auto text-center'>
