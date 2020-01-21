@@ -59,12 +59,17 @@ function renderTripManagement()
             $area = "WHERE Category =\'Exotic\'";
             break;
 
+        case NULL:
+            notpremit();
+            break;
+
         default:
-            # code...
+            $login_session=$GLOBALS['login_session'];
+            $area = "WHERE FK_E_username='$login_session'";
             break;
     }
 
-    $sql = "SELECT   Tr.Trip_ID , Tr.Departure_date, Tr.Fee, Tr.Airline, Tr.FK_TourCode, T.Name from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode $area ORDER BY Tr.Trip_ID ASC ";
+    $sql = "SELECT Tr.Trip_ID , Tr.Departure_date, Tr.Fee, Tr.Airline, Tr.FK_TourCode, T.Name from Trip Tr inner JOIN Tour T on Tr.FK_TourCode=T.TourCode $area ORDER BY Tr.Trip_ID ASC ";
 
     $sql_query = mysqli_query($GLOBALS['db'], $sql);
     echo $table;
