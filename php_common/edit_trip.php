@@ -5,14 +5,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     $Departure_date = mysqli_real_escape_string($db, $_POST['Departure_date']);
     $Fee = mysqli_real_escape_string($db, $_POST['Fee']);
     $Airline = mysqli_real_escape_string($db, $_POST['Airline']);
-    $FK_TourCode = mysqli_real_escape_string($db, $_POST['FK_TourCode']);
-    $sql = "UPDATE `Trip` SET `Departure_date`='$Departure_date',`Fee`='$Fee',`Airline`='$Airline',`FK_TourCode`='$FK_TourCode' WHERE `Trip_ID`='$Trip_ID'";
+    $sql = "UPDATE `Trip` SET `Departure_date`='$Departure_date',`Fee`='$Fee',`Airline`='$Airline' WHERE `Trip_ID`='$Trip_ID'";
     if (mysqli_query($db, $sql)) {
-        echo ("<script> alert('Edit Success!'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+        echo("Success");
     } else {
-        echo ("<script> alert('Error happen! Whyyyy'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+        echo"Error happen! Whyyyy";
     }
 }
 ?>

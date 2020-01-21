@@ -87,7 +87,7 @@ function hideSidePanel() {
     if ($("#sidePanel").css("display") !== "none") {
         const sidePanel = $("#sidePanel");
         const activePanel = $("#activePanel");
-        
+
         sidePanel.addClass("d-none").removeClass("col-lg-2");
         activePanel.addClass("col-lg-12").removeClass("col-lg-10");
         var dom = `
@@ -118,7 +118,7 @@ function makeUpdate(id) {
     button.removeAttr("onclick").attr("onclick", `sendUpdate("${id}")`);
     var dom = `
     <td id="customerPhone${id}" data-id="${username}">
-    <input type="text" value="${target.text()}" name="phoneNumber" id="phoneNumber${id}">
+        <input type="text" value="${target.text()}" name="phoneNumber" id="phoneNumber${id}">
     </td>
     `;
     target.replaceWith(dom);
@@ -169,16 +169,53 @@ function sendUpdate(id) {
 
 //Managed Trip Section Started
 function makeTripUpdate(id) {
-    const tripId=$(`#TripID_${id}`);
-    const DeptTime=$(`#DeptTime_${id}`);
-    const Fee=$(`#Fee_${id}`);
-    const Airline=$(`#Airline_${id}`);
-    
-    const tripIddom=`
+    hideSidePanel();
+    const tripId = $(`#TripID_${id}`);
+    const DeptTime = $(`#DeptTime_${id}`);
+    const Fee = $(`#Fee_${id}`);
+    const Airline = $(`#Airline_${id}`);
+    const btn_update = $(`#btn_TripUpdate${id}`);
+    const btn_danger = $(`#btn_TripDelete${id}`);
+
+    const tripIddom = `
     <td id="TripID_${id}">
-        <input value="${tripId.text()}" type="text" name="TripID" id="TripIDinput_${id}"> </input>
+        <input value="${tripId.text()}" type="text" name="TripID" id="TripIDinput_${id}">
     </td>`;
     tripId.replaceWith(tripIddom);
+
+    const DeptTimedom = `
+    <td id="DeptTime_${id}">
+        <input value="${DeptTime.text()}" type="date" name="DeptTime" id="DeptTimeinput_${id}">
+    </td>`;
+    DeptTime.replaceWith(DeptTimedom);
+
+    const Feedom = `
+    <td id="Fee_${id}">
+        <input value="${Fee.text()}" type="number" name="Fee" id="Feeinput_${id}">
+    </td>
+    `;
+    Fee.replaceWith(Feedom);
+
+    $.ajax({
+        type: 'POST',
+        url: 'php_common/list_all_flight.php',
+        data: {
+            id: id,
+            Airline: Airline.text()
+        },
+        success: function (response) {
+            alert
+            if (response !== "") {
+                Airline.replaceWith(response);
+            } else {
+                alert("Error!" + response);
+            }
+        },
+    })
+
+    btn_update.removeClass("btn-primary").addClass("btn-danger").removeAttr("onclick").attr("onclick", `sendTripUpdate('${id}')`);
+    btn_danger.removeClass("btn-danger").addClass("btn-secondary").attr("disabled", "disabled").attr("onclick", "alert('You want to update or delete ar?')");
+
     /*
     TODO 
         1. GET All information --> Change it to <input>
@@ -190,14 +227,48 @@ function makeTripUpdate(id) {
     */
 }
 
-function sendTripUpdate(id){
+function sendTripUpdate(id) {
+    const tripId = $(`#TripIDinput_${id}`);
+    const DeptTime = $(`#DeptTimeinput_${id}`);
+    const Fee = $(`#Feeinput_${id}`);
+    const Airline = $(`#Airline_${id}`);
+    const btn_update = $(`#btn_TripUpdate${id}`);
+    const btn_danger = $(`#btn_TripDelete${id}`);
+
+    var s = $(`#selectAirline${id}`).children('option:selected').attr('value');
+
     function sendTripUpdateToPHP() {
-        
+        $.ajax({
+            type: 'POST',
+            url: 'php_common/edit_trip.php',
+            data: {
+                Trip_ID: tripId.val(),
+                Departure_date: DeptTime.val(),
+                Fee: Fee.val(),
+                Airline: s
+            },
+            success: function (response) {
+                alert
+                if (response == "Success") {
+                    replaceValue();
+                } else {
+                    alert("Error!" + response);
+                }
+            },
+        })
     }
 
     function replaceValue() {
-        
+        tripId.replaceWith(tripId.val());
+        DeptTime.replaceWith(DeptTime.val());
+        Fee.replaceWith(Fee.val());
+        AirlineDom=`<td id="Airline_${id}"> ${s}</td>`
+        Airline.replaceWith(AirlineDom);
+
+        btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick",`makeTripUpdate(\'${id}\')`);
+        btn_danger.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeClass("onclick").attr("onclick",`sendTripDelete(\'${id}\')`);
     }
+    sendTripUpdateToPHP();
     /*
     TODO
     1. GET input value 
@@ -207,10 +278,31 @@ function sendTripUpdate(id){
     */
 }
 
-function sendTripDelete(id){
+function sendTripDelete(trip_id,rowId) {
+    const tr=$(`#tr_${rowId}`);
     function SendTripDeleteToPHP() {
-        
+        $.ajax({
+            type: 'POST',
+            url: 'php_common/delete_trip.php',
+            data: {
+                Trip_ID: trip_id,
+            },
+            success: function (response) {
+                alert(response);
+                if (response == "Success") {
+                    replaceValue();
+                } else if( response =="Error") {
+                    alert(response);
+                }else {
+                    alert(response);
+                }
+            },
+        })
     }
+    function replaceValue() {
+        tr.hide();
+    }
+    SendTripDeleteToPHP();
     /*
     TODO
     1. Get the id of the record (tr)

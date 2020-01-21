@@ -1,14 +1,21 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include_once("../config.php");
     $Trip_ID = mysqli_real_escape_string($db, $_POST['Trip_ID']);
-    $sql = "DELETE FROM `Trip` WHERE `Trip_ID`='$Trip_ID' ";
-    if (mysqli_query($db, $sql)) {
-        echo ("<script> alert('Delete Sucess!'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+    $sql = "SELECT COUNT(Booking_ID) AS Count from Booking WHERE `FK_Trip_ID`=$Trip_ID";
+    $query = mysqli_query($db, $sql);
+    $row=mysqli_fetch_assoc($query);
+    $count=$row['Count'];
+    
+    if ($count == 0) {
+        $sql = "DELETE FROM `Trip` WHERE `Trip_ID`='$Trip_ID' ";
+        if (mysqli_query($db, $sql)) {
+            echo "Success";
+        } else {
+            echo "Error";
+        }
+        
     } else {
-        echo ("<script> alert('You Are Deleting a trip that already booked!'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+        echo "There is someone booking this Trip, You cant delete this";
     }
 }
-?>
