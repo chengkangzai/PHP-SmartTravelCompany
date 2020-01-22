@@ -11,20 +11,19 @@ var y8 = $('#feedback-btn');
 
 
 //Hiiden 
-var Z = $('#Profile');
-var Z1 = $('#managed-trip');
-var Z2 = $('#Update-Trip');
-var Z3 = $('#Delete-Trip');
-var Z4 = $('#Add-Trip');
-var Z5 = $('#Add-Tour');
-var Z6 = $('#Update-Tour');
-var Z7 = $('#Delete-Tour');
-var Z8 = $('#Feedback');
+var Z = $('#contentPanel1');
+var Z1 = $('#contentPanel2');
+var Z2 = $('#contentPanel3');
+var Z3 = $('#contentPanel4');
+var Z4 = $('#contentPanel5');
+var Z5 = $('#contentPanel6');
+var Z6 = $('#contentPanel7');
+var Z7 = $('#contentPanel8');
+var Z8 = $('#contentPanel9');
 
-Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
+
 //Welcome Page
 var a = $('#welcome');
-a.show();
 
 //Trigger content panel Start
 function showFirstPanel() {
@@ -53,7 +52,7 @@ function showForthPanel() {
 
 function showFifthPanel() {
     a.hide();
-    Z4.hide().attr("id", "activePanel");
+    Z4.show().attr("id", "activePanel");
     Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
 }
 
@@ -170,18 +169,11 @@ function sendUpdate(id) {
 //Managed Trip Section Started
 function makeTripUpdate(id) {
     hideSidePanel();
-    const tripId = $(`#TripID_${id}`);
     const DeptTime = $(`#DeptTime_${id}`);
     const Fee = $(`#Fee_${id}`);
     const Airline = $(`#Airline_${id}`);
     const btn_update = $(`#btn_TripUpdate${id}`);
     const btn_danger = $(`#btn_TripDelete${id}`);
-
-    const tripIddom = `
-    <td id="TripID_${id}">
-        <input value="${tripId.text()}" type="text" name="TripID" id="TripIDinput_${id}">
-    </td>`;
-    tripId.replaceWith(tripIddom);
 
     const DeptTimedom = `
     <td id="DeptTime_${id}">
@@ -201,7 +193,8 @@ function makeTripUpdate(id) {
         url: 'php_common/list_all_flight.php',
         data: {
             id: id,
-            Airline: Airline.text()
+            Airline: Airline.text(),
+            type: 'update'
         },
         success: function (response) {
             alert
@@ -228,13 +221,12 @@ function makeTripUpdate(id) {
 }
 
 function sendTripUpdate(id) {
-    const tripId = $(`#TripIDinput_${id}`);
+    const tripId = $(`#TripID_${id}`);
     const DeptTime = $(`#DeptTimeinput_${id}`);
     const Fee = $(`#Feeinput_${id}`);
     const Airline = $(`#Airline_${id}`);
     const btn_update = $(`#btn_TripUpdate${id}`);
     const btn_danger = $(`#btn_TripDelete${id}`);
-
     var s = $(`#selectAirline${id}`).children('option:selected').attr('value');
 
     function sendTripUpdateToPHP() {
@@ -242,7 +234,7 @@ function sendTripUpdate(id) {
             type: 'POST',
             url: 'php_common/edit_trip.php',
             data: {
-                Trip_ID: tripId.val(),
+                Trip_ID: tripId.text(),
                 Departure_date: DeptTime.val(),
                 Fee: Fee.val(),
                 Airline: s
@@ -259,14 +251,13 @@ function sendTripUpdate(id) {
     }
 
     function replaceValue() {
-        tripId.replaceWith(tripId.val());
         DeptTime.replaceWith(DeptTime.val());
         Fee.replaceWith(Fee.val());
-        AirlineDom=`<td id="Airline_${id}"> ${s}</td>`
+        AirlineDom = `<td id="Airline_${id}"> ${s}</td>`
         Airline.replaceWith(AirlineDom);
 
-        btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick",`makeTripUpdate(\'${id}\')`);
-        btn_danger.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeClass("onclick").attr("onclick",`sendTripDelete(\'${id}\')`);
+        btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick", `makeTripUpdate(\'${id}\')`);
+        btn_danger.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeClass("onclick").attr("onclick", `sendTripDelete(\'${id}\')`);
     }
     sendTripUpdateToPHP();
     /*
@@ -278,8 +269,8 @@ function sendTripUpdate(id) {
     */
 }
 
-function sendTripDelete(trip_id,rowId) {
-    const tr=$(`#tr_${rowId}`);
+function sendTripDelete(trip_id, rowId) {
+    const tr = $(`#tr_${rowId}`);
     function SendTripDeleteToPHP() {
         $.ajax({
             type: 'POST',
@@ -291,9 +282,9 @@ function sendTripDelete(trip_id,rowId) {
                 alert(response);
                 if (response == "Success") {
                     replaceValue();
-                } else if( response =="Error") {
+                } else if (response == "Error") {
                     alert(response);
-                }else {
+                } else {
                     alert(response);
                 }
             },
@@ -310,4 +301,104 @@ function sendTripDelete(trip_id,rowId) {
     3. hide the row
     */
 }
+
+function addAirlineForTrip() {
+    var airline = $("#selectAirline");
+    var airlineDom = "<input type='text' required name='Airline' class='form-control' placeholder='Enter New Airline Name Here' id='inputAirline'> ";
+    airline.replaceWith(airlineDom);
+
+    $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "changeAirlineForTrip()");
+
+}
+
+function changeAirlineForTrip() {
+    var airline = $("#inputAirline");
+    $.ajax({
+        type: 'POST',
+        url: 'php_common/list_all_flight.php',
+        data: {
+            type: 'add'
+        },
+        success: function (response) {
+            if (response !== "") {
+                airline.replaceWith(response);
+                $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "addAirlineForTrip()");
+            } else {
+                alert("Error!" + response);
+            }
+        },
+    })
+}
+
+function showAddTripForm() {
+    var TripForm = $("#addTripForm").hide();
+    TripForm.show();
+    document.body.addClass("d-none");
+}
+
+function hideAddTripForm() {
+    var TripForm = $("#addTripForm").hide();
+    TripForm.hide()
+    
+}
+
 //Managed Trip Section Ended
+
+
+//Main Argument
+$(document).ready(function () {
+    //Hide the Panel
+    Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
+
+    $("#managedTrip").DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [10, 5, 25, -1],
+            ['10rows', '5 rows', '25 rows', 'Show all']
+        ],
+        buttons: [
+            'colvis', 'pageLength',
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                text: 'Add',
+                action: function () {
+                    showAddTripForm();
+                }
+            }, {
+                extend: 'collection',
+                text: 'Report',
+                buttons: ['copy', 'csv', 'excel', 'pdf']
+            }
+        ]
+    });
+    $('#TripTable').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [10, 5, 25, -1],
+            ['10rows', '5 rows', '25 rows', 'Show all']
+        ],
+        buttons: [
+            'colvis', 'pageLength',
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                text: 'Add',
+                action: function () {
+                    showAddTripForm();
+                }
+            }, {
+                extend: 'collection',
+                text: 'Report',
+                buttons: ['copy', 'csv', 'excel', 'pdf']
+            }
+        ]
+    });
+
+});
