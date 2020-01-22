@@ -9,7 +9,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     $Airline = mysqli_real_escape_string($db, $_POST['Airline']);
     $TourCode = mysqli_real_escape_string($db, $_POST['TourCode']);
 
-    $sql = "INSERT INTO `Trip`(`Departure_date`, `Fee`, `Airline`, `FK_TourCode`) VALUES ('$newDate',' $Fee','$Airline','$TourCode')";
+    if (!empty($departure_date)) {
+        $departure_date_check=1;
+    }else {
+        $err=$err."Departure Date cannot be empty \n ";
+    }
+
+    if (!empty($Fee)) {
+        $Fee_check=1;
+    }else {
+        $err=$err."Fee cannot be empty \n";
+    }
+
+    if (!empty($Airline)) {
+        $Airline_check=1;
+    }else{
+        $err=$err."Airline cannot be empty \n";
+    }
+
+    if (!empty($TourCode)) {
+        $TourCode_check=1;
+    }else{
+        $err=$err."TourCode cannot be empty \n";
+    }
+
+    if ($Fee_check=1 && $Airline_check =1 && $TourCode_check ==1 && $departure_date_check=1) {
+        $sql = "INSERT INTO `Trip`(`Departure_date`, `Fee`, `Airline`, `FK_TourCode`) VALUES ('$newDate',' $Fee','$Airline','$TourCode')";
+    }else {
+        echo $err;
+    }
+    
 
     if (mysqli_query($db, $sql)) {
         echo ("<script> alert('Add Sucess!'); </script>");

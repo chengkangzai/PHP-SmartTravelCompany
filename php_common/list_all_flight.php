@@ -1,12 +1,19 @@
 <?php
 include("../config.php");
+$type=$_POST['type'];
 
+if ($_SERVER['REQUEST_METHOD']=="POST"&& $type =="update") {
+    listAllFLight();
+}elseif ($type == "add") {
+    echo returnListAllFlight();
+}
 
-if ($_SERVER['REQUEST_METHOD']=="POST") {
-    $id=$_POST['id'];
+function listAllFLight(){
     $sql = "SELECT DISTINCT `Airline` from Trip";
-    $query = mysqli_query($db, $sql);
-    echo "<td id='Airline_$id'><select type='Airline' id='selectAirline$id'>";
+    $query = mysqli_query($GLOBALS['db'], $sql);
+    $id=$_POST['id'];
+    
+    echo "<td id='Airline_$id'><select type='Airline' required id='selectAirline$id' class='custom-select' >";
     while ($row = mysqli_fetch_assoc($query)) {
         $airline = $row['Airline'];
         if($row['Airline'] == $_POST['Airline']){
@@ -15,7 +22,21 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
             $selected="";
         }
         $dom="onclick=this.attr('selected','selected')";
-        echo "<option value='$airline' $dom $selected> $airline </option>";
+        echo "<option  value='$airline' $dom $selected> $airline </option>";
     }
-    echo "</select></td>";    
+    echo "</select></td>";  
+}
+
+function returnListAllFlight(){
+    $sql = "SELECT DISTINCT `Airline` from Trip";
+    $query = mysqli_query($GLOBALS['db'], $sql);
+
+    $domReturn="<select required class='custom-select' id='selectAirline' name='Airline' ><option disabled selected value='' >Select an Airline or Click Add Airline to add an Airline</option><option value='' disabled>---------------------------------- </option>";
+    while ($row=mysqli_fetch_assoc($query)) {
+        $airline=$row['Airline'];
+        $domReturn=$domReturn."<option value='".$airline."'> $airline </option>";
+    }
+    $domReturn.="</select>";
+
+    return $domReturn;
 }
