@@ -311,3 +311,27 @@ function showFeedback() {
         Z7.classList.add("d-none");
     }
 }
+
+function hideSidePanel() {
+    if ($("#sidePanel").css("display") !== "none") {
+        const sidePanel = $("#sidePanel");
+        const activePanel = $("#activePanel");
+
+        sidePanel.addClass("d-none").removeClass("col-lg-2");
+        activePanel.addClass("col-lg-12").removeClass("col-lg-10");
+        var dom = `
+        <a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
+        `;
+        var heading = $(".welcomeText");
+        heading.parent().append(dom);
+    }
+}
+
+function toggleSidePanel() {
+    const sidePanel = $("#sidePanel");
+    const activePanel = $("#activePanel");
+    sidePanel.removeClass("d-none").addClass("col-lg-2");
+    activePanel.removeClass("col-lg-12").addClass("col-lg-10");
+    const btnSidePanel = $(".btnToggleSidePanel");
+    btnSidePanel.replaceWith();
+}
