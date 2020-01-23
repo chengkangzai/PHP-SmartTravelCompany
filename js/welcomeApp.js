@@ -177,13 +177,13 @@ function makeTripUpdate(id) {
 
     const DeptTimedom = `
     <td id="DeptTime_${id}">
-        <input value="${DeptTime.text()}" type="date" name="DeptTime" id="DeptTimeinput_${id}">
+        <input value="${DeptTime.text()}" type="date" name="DeptTime" id="DeptTimeinput_${id}" class='form-control'>
     </td>`;
     DeptTime.replaceWith(DeptTimedom);
 
     const Feedom = `
     <td id="Fee_${id}">
-        <input value="${Fee.text()}" type="number" name="Fee" id="Feeinput_${id}">
+        <input value="${Fee.text()}" type="number" name="Fee" id="Feeinput_${id}" class='form-control'>
     </td>
     `;
     Fee.replaceWith(Feedom);
@@ -259,7 +259,13 @@ function sendTripUpdate(id) {
         btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick", `makeTripUpdate(\'${id}\')`);
         btn_danger.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeClass("onclick").attr("onclick", `sendTripDelete(\'${id}\')`);
     }
-    sendTripUpdateToPHP();
+    var x = confirm("Are you sure the data is correct?");
+    if (x == true) {
+        sendTripUpdateToPHP();
+    }else if (x == false){
+        alert("Canceled liao");
+    }
+    
     /*
     TODO
     1. GET input value 
@@ -271,7 +277,8 @@ function sendTripUpdate(id) {
 
 function sendTripDelete(trip_id, rowId) {
     const tr = $(`#tr_${rowId}`);
-    function SendTripDeleteToPHP() {
+
+    function sendTripDeleteToPHP() {
         $.ajax({
             type: 'POST',
             url: 'php_common/delete_trip.php',
@@ -293,7 +300,13 @@ function sendTripDelete(trip_id, rowId) {
     function replaceValue() {
         tr.hide();
     }
-    SendTripDeleteToPHP();
+
+    var x = confirm('Are you sure you want to delete this document ?');
+    if (x == true) {
+        sendTripDeleteToPHP();
+    } else if (x == false) {
+        alert('Ok lar i cancel! Play play arh you think');
+    }
     /*
     TODO
     1. Get the id of the record (tr)
@@ -307,7 +320,7 @@ function addAirlineForTrip() {
     var airlineDom = "<input type='text' required name='Airline' class='form-control' placeholder='Enter New Airline Name Here' id='inputAirline'> ";
     airline.replaceWith(airlineDom);
 
-    $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "changeAirlineForTrip()");
+    $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "changeAirlineForTrip()").text("Select Airline");
 
 }
 
@@ -322,7 +335,7 @@ function changeAirlineForTrip() {
         success: function (response) {
             if (response !== "") {
                 airline.replaceWith(response);
-                $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "addAirlineForTrip()");
+                $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "addAirlineForTrip()").text("Add Airline");
             } else {
                 alert("Error!" + response);
             }
@@ -339,7 +352,7 @@ function showAddTripForm() {
 function hideAddTripForm() {
     var TripForm = $("#addTripForm").hide();
     TripForm.hide()
-    
+
 }
 
 //Managed Trip Section Ended
