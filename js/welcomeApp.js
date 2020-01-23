@@ -377,11 +377,6 @@ $(document).ready(function () {
                     columns: ':visible'
                 }
             }, {
-                text: 'Add',
-                action: function () {
-                    showAddTripForm();
-                }
-            }, {
                 extend: 'collection',
                 text: 'Report',
                 buttons: ['copy', 'csv', 'excel', 'pdf']
