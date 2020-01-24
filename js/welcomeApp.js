@@ -86,24 +86,31 @@ function hideSidePanel() {
     if ($("#sidePanel").css("display") !== "none") {
         const sidePanel = $("#sidePanel");
         const activePanel = $("#activePanel");
+        const sidePanelbtn = $("#hideShowSideBtn");
 
         sidePanel.addClass("d-none").removeClass("col-lg-2");
-        activePanel.addClass("col-lg-12").removeClass("col-lg-10");
-        var dom = `
-        <a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
-        `;
-        var heading = $(".welcomeText");
-        heading.parent().append(dom);
+        activePanel.addClass("col-lg-11").removeClass("col-lg-10").addClass("mx-auto");
+        sidePanelbtn.removeClass("col-lg-2").css("position","fixed").css("z-index","1").attr("onclick","toggleSidePanel()");
+        $('body').css("overflow","hidden");
+        
+        //var dom = `
+        //<a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
+        //`;
+        //var heading = $(".welcomeText");
+        //heading.parent().append(dom);
     }
 }
 
 function toggleSidePanel() {
     const sidePanel = $("#sidePanel");
     const activePanel = $("#activePanel");
+    const sidePanelbtn = $("#hideShowSideBtn");
+
     sidePanel.removeClass("d-none").addClass("col-lg-2");
-    activePanel.removeClass("col-lg-12").addClass("col-lg-10");
-    const btnSidePanel = $(".btnToggleSidePanel");
-    btnSidePanel.replaceWith();
+    activePanel.removeClass("col-lg-11").addClass("col-lg-10").removeClass("mx-auto");
+    //const btnSidePanel = $(".btnToggleSidePanel");
+    //btnSidePanel.replaceWith();
+    sidePanelbtn.attr('onclick', 'hideSidePanel()');
 }
 //Side Panel On and off section END
 
