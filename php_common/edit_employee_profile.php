@@ -1,25 +1,107 @@
 <?php
-if ($_SERVER['REQUEST_METHOD']=="POST") {
 include_once("../config.php");
-    $real_shapass=mysqli_real_escape_string($db,$_POST['real_pass']);
-    $chk_password=sha1(mysqli_real_escape_string($db,$_POST['chk_password']));
+include_once("../session.php");
+$type = $_POST['type'];
+$role= $_SESSION['role'];
 
-    $password=mysqli_real_escape_string($db,$_POST['password']);
-    $C_password=mysqli_real_escape_string($db,$_POST['C_password']);
-    $securepass=sha1($password);
-    $username=mysqli_real_escape_string($db,$_POST['username']);
-    $FirstName=mysqli_real_escape_string($db,$_POST['FirstName']);
-    $LastName=mysqli_real_escape_string($db,$_POST['LastName']);
-    $IC_num=mysqli_real_escape_string($db,$_POST['IC']);
-    $Position=mysqli_real_escape_string($db,$_POST['Position']);
-    $Agency=mysqli_real_escape_string($db,$_POST['Agency']);
-if (empty($password) && empty($C_password)) {
-    $securepass=$real_shapass;
+
+function authenticate(){
+    //See Authenticate if the password is correct
+    //Return true if password is correct
+    echo"shut-up";
 }
-if ($real_shapass == $chk_password && $password==$C_password) {
-    $sql="UPDATE Employee SET password='$securepass',FName='$FirstName',LName='$LastName',IC_num='$IC_num',Position='$Position',Agency='$Agency' WHERE username='$username'";    
-    if (mysqli_query($db,$sql)) {echo("<script> alert('Edit Sucess!');window.history.go(-1);</script>");}
-} elseif ($real_shapass !== $chk_password) {echo "<script> alert('Current Password Wrong!');window.history.go(-1);</script> ";
-} elseif ($password == $C_password) {echo "<script> alert('New Password doesnt match');window.history.go(-1);</script>";}
+
+function changePassword(){
+    authenticate();
+    /*
+    TODO 
+    0. Authenticate 
+    1.Get information 
+    1.1 Data Validation 
+    
+    2. Prepare sql statement
+    
+    */
 }
-?>
+
+function changeProfile(){
+    authenticate();
+    /*
+    TODO
+    0. Authenticate 
+    1. Get information 
+        1.1 Data Validation
+    2. prepare SQL
+    3. Execute SQL
+    */
+}
+
+function returnAgency() { 
+    $sql = "SELECT DISTINCT `Agency` FROM Employee";
+    $result = mysqli_query($GLOBALS['db'], $sql);
+    $domReturn = "<select required class='custom-select' id='selectAgency' name='Agency'> \n";
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        $agent = $row['Agency'];
+        if ($agent == $GLOBALS['Agency']) {
+            $selected="selected";
+        }else {
+            $selected="";
+        }
+        $dom="onclick=this.attr('selected','selected')";
+        $domReturn .= "\t <option value='$agent'$selected $dom>$agent </option> \n";
+    }
+    $domReturn .= "</select>";
+    return $domReturn;
+    /*
+    TODO
+    1. Query Data from db
+    2. Arrange the data for select
+    3. return data 
+    */
+}
+
+function returnPosition(){
+    $sql = "SELECT DISTINCT `Position` FROM Employee";
+    $result = mysqli_query($GLOBALS['db'], $sql);
+    $domReturn = "<select required class='custom-select' id='selectAgency' name='Agency'> \n";
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        $position = $row['Position'];
+        if ($position == $GLOBALS['position']) {
+            $selected="selected";
+        }else {
+            $selected="";
+        }
+        $dom="onclick=this.attr('selected','selected')";
+        $domReturn .= "\t <option value='$position'$selected $dom>$position </option> \n";
+    }
+    $domReturn .= "</select>";
+    return $domReturn;
+    /*
+    TODO
+    1. Query Data from db
+    2. Arrange the data for select
+    3. return data 
+    */
+}
+
+
+//Main AJAX
+switch ($type) {
+    case 'changePassword':
+        changePassword();
+        break;
+    
+    case 'changeProfile':
+        changeProfile();
+        break;    
+
+    case 'getAgency':
+        echo returnAgency();
+        break;
+
+    case 'getPosition':
+        echo returnPosition();
+        break;
+};

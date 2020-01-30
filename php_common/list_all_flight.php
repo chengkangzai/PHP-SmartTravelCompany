@@ -2,7 +2,7 @@
 include("../config.php");
 $type=$_POST['type'];
 
-if ($_SERVER['REQUEST_METHOD']=="POST"&& $type =="update") {
+if ($type =="update") {
     listAllFLight();
 }elseif ($type == "add") {
     echo returnListAllFlight();
