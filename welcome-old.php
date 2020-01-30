@@ -492,7 +492,7 @@ if ($_SESSION['role'] == "Customer") {
                 echo "</table>";
             } else {
                 include_once("php_common/nav.php");
-                notpremit();
+                notPermit();
             }
 
             ?>
@@ -763,7 +763,7 @@ if ($_SESSION['role'] == "Customer") {
                 echo "</table>";
             } else {
                 include_once("php_common/nav.php");
-                notpremit();
+                notPermit();
             }
             ?>
 
@@ -1167,7 +1167,7 @@ if ($_SESSION['role'] == "Customer") {
                 echo "</table>";
             } else {
                 include_once("php_common/nav.php");
-                notpremit();
+                notPermit();
             }
             ?>
         </div>
@@ -1387,7 +1387,7 @@ if ($_SESSION['role'] == "Customer") {
                 echo "</table>";
             } else {
                 include_once("php_common/nav.php");
-                notpremit();
+                notPermit();
             }
             ?>
         </div>
@@ -1415,7 +1415,7 @@ if ($_SESSION['role'] == "Customer") {
                 }
             } else {
                 include_once("php_common/nav.php");
-                notpremit();
+                notPermit();
             }
             ?>
             </table>
