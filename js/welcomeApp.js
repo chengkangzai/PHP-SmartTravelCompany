@@ -394,7 +394,6 @@ function changeAirlineForTrip() {
 function showAddTripForm() {
     var TripForm = $("#addTripForm").hide();
     TripForm.show();
-    document.body.addClass("d-none");
 }
 
 function hideAddTripForm() {
