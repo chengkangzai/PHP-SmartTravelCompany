@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($feedback!=""){
         $sql = "INSERT INTO Feedback (feedback) VALUES ('$feedback')";
         if (mysqli_query($db, $sql)) {
-            echo("<script> alert('Thanks For your feedback');windows.location.href='../index.php'; </script>");
+            echo("<script> alert('Thanks For your feedback');window.location.href='index.php'; </script>");
         } else {
             echo "Not really functioning well \nBelow are the error code\n" . mysqli_error($db);
         }
@@ -159,7 +159,7 @@ mysqli_close($db);
     ?>
     <div class="jumbotron py-3 m-0 text-center bg-white col-lg-12 Opacity-7">
         <h1>Contact Us !</h1>
-        For futher infomation, please do not hesitate to contact us by using below infomation.
+        For further information, please do not hesitate to contact us by using below information.
 
     </div>
 
@@ -172,7 +172,7 @@ mysqli_close($db);
         <div class="container">
             <div class="intro">
                 <h2 class="text-center">Feedback Form</h2>
-                <p class="text-center">We are always happy recieve feedback from our users! Because that is that makes
+                <p class="text-center">We are always happy receive feedback from our users! Because that is that makes
                     us better!<br>Don't worry, Your Feedback will send anonymously!<br>Because we care about
                     your&nbsp;privacy!<br><br></p>
             </div>
