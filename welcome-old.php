@@ -1400,8 +1400,9 @@ if ($_SESSION['role'] == "Customer") {
                         <td>Feedback ID</td>
                         <td>Feedback</td>
                         <td>Delete</td>
+                        <td>Fixed</td>
                     </tr>";
-                $feedbacksql = "SELECT * from Feedback";
+                $feedbacksql = "SELECT * from Feedback WHERE Complete=0";
                 $feedbackquery = mysqli_query($db, $feedbacksql);
                 while ($feedbackrow = mysqli_fetch_assoc($feedbackquery)) {
                     $id = $feedbackrow['Feedback_ID'];
@@ -1411,6 +1412,8 @@ if ($_SESSION['role'] == "Customer") {
                         <td>$id</td>
                         <td>$data</td>
                         <td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>
+                        <td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed </a></td>
+
                     </tr>");
                 }
             } else {
@@ -1464,6 +1467,22 @@ if ($_SESSION['role'] == "Customer") {
             })
         }
         
+        function markFeedbackAsFix(id){
+        $.ajax({
+                type: 'POST',
+                url: 'php_common/mark_feedback_as_fixed.php',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    if (response == "success") {
+                        $(`#${id}`).hide();
+                    } else {
+                        alert("Error!" + response);
+                    }
+                },
+            })
+        }
     </script>
 </body>
 
