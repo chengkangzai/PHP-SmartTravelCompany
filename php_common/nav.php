@@ -227,7 +227,7 @@ function main_CSSandIcon($dir_layer, $bootstrap)
     }
 }
 
-function notpremit()
+function notPermit()
 {
     $user = $_SESSION['login_user'];
     echo ("
@@ -235,4 +235,15 @@ function notpremit()
     <h3 class='text-center text-white'> Contact your domain adminstrator to evaluate your premission. </h3>
     <img src='https://carrierubin.files.wordpress.com/2015/10/sad-cartoon-boy.png' class='text-center'>
     ");
+}
+
+function renderGoBackInJs(){
+    echo "<script> window.history.go(-1);</script>";
+}
+function renderAlertInJs($msg){
+    echo "<script>alert('$msg')</script>";
+}
+
+function renderRedirectionInJS($path){
+    echo "<script>window.location.href='$path'</script>";
 }
