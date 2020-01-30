@@ -81,6 +81,25 @@ function showNinthPanel() {
 }
 //Trigger content panel END
 
+//Profile section Start
+
+function showChangeProfilePasswordForm() {
+    const form = $('#changeProfileInfoForm');
+
+    form.show();
+}
+function hideChangeProfilePasswordForm() {
+    
+}
+
+function showChangeProfileForm() {
+    
+}
+function hideChangeProfileForm() {
+    
+}
+//Profile section END
+
 //Side Panel On and off section start
 function hideSidePanel() {
     if ($("#sidePanel").css("display") !== "none") {
@@ -369,6 +388,7 @@ function hideAddTripForm() {
 $(document).ready(function () {
     //Hide the Panel
     Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
+    
 
     $("#managedTrip").DataTable({
         dom: 'Bfrtip',

@@ -50,7 +50,7 @@ if ($_SESSION['role'] == "Customer") {
         <!-- Select function -->
         <div class="list-group col-lg-2">
             <div class="row">
-            <div class="col-lg-10 m-0 p-0" id="contenttest">
+            <div class="col-lg-10 m-0 p-0" id="sidePanel">
                 <a class="list-group-item list-group-item-action" onclick="showprofile()" id="profile-btn"> Profile </a>
                 <a class="list-group-item list-group-item-action" onclick="showManageTrip()" id="manage-trip-btn"> Managed
                     Trip</a>
@@ -72,12 +72,13 @@ if ($_SESSION['role'] == "Customer") {
                 }
                 ?>
             </div>
-            <a name="" id="hideshow" value='hide/show' class="btn btn-primary" href="#" role="button" onclick="hideSidePanel()">
+            <a id="hideshow" value='hide/show' class="btn btn-primary hsbtn" role="button" onclick="hideSidePanel()">
             
             </a>
             </div>
         </div>
-        
+
+
 
         <div class="col-lg-10 d-none" id="Profile">
             <?php echo "<h1 class='text-center'>Welcome! $position, $login_session </h1>"; ?>

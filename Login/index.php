@@ -5,24 +5,37 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from POST form 
 
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
     $safepass=sha1($password);
 
     // Customer 
-    $sql = "SELECT username FROM Customer WHERE username = '$username' and password = '$safepass'";
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $active = $row['active'];
-    $count = mysqli_num_rows($result);
+    //$sql = "SELECT username FROM Customer WHERE username = '$username' and password = '$safepass'";
+    $sql = "SELECT `username` FROM `Customer` WHERE `username` =? and `password` =?";
+    if($stmt = mysqli_prepare($db, $sql)) {
+        mysqli_stmt_bind_param($stmt, "ss", $username, $safepass);
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $active = $row['active'];
+            mysqli_stmt_store_result($stmt);
+            $count = mysqli_stmt_num_rows($stmt);
+        }
+    }
 
     //Employee
-    $sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$safepass'";
-    $result1 = mysqli_query($db, $sql1);
-    $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
-    $active1 = $row1['active'];
-    $count1 = mysqli_num_rows($result1);
-    
+    //$sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$safepass'";
+    $sql1 = "SELECT `username` FROM Employee WHERE `username` =? and `password` =?";
+    if($stmt1 = mysqli_prepare($db, $sql1)) {
+        mysqli_stmt_bind_param($stmt1, "ss", $username, $safepass);
+        $result1 =mysqli_stmt_execute($stmt1);
+        if ($result1) {
+            $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+            $active1 = $row1['active'];
+            mysqli_stmt_store_result($stmt1);
+            $count1 = mysqli_stmt_num_rows($stmt1);
+        }
+    }
 
     if ($count == 1) {
         $_SESSION['login_user'] = $username ;
@@ -118,6 +131,7 @@ mysqli_close($db);
                 ele.className = newClass.replace(/^\s+|\s+$/g, '');
             }
         }
+        
         document.querySelector(".login-button").onclick = function() {
             addClass(document.querySelector(".login"), "active")
             setTimeout(function() {
