@@ -8,7 +8,7 @@ $welcomeText = "<h1 class='text-center welcomeText' >Welcome! $GLOBALS[position]
 function renderChangeProfilePasswordForm(){
     $dom="            
     <div class='mt-2' id='changeProfilePasswordForm' style='display:none'>
-    <form action='php_common/edit_employee_profile.php' method='POST'>
+    <form action='php_common/edit_employee_profile.php?type=changePassword' method='POST'>
     <table class='table table-active table-striped border '>
         <thead>
             <tr>
@@ -34,9 +34,8 @@ function renderChangeProfilePasswordForm(){
             </tr>
             <tr>
                 <td colspan='2' class='text-center'>
-                    <input class='btn btn-primary' value=''
-                    <a id='' class='btn btn-primary' href='#' role='button' onclick=''>Submit</a>
-                    <a id='' class='btn btn-danger' href='#' role='button' onclick=''>Cancel </a>
+                    <input  class='btn btn-primary' role='button' type='submit'>
+                    <a id='' class='btn btn-danger' href='#' role='button' onclick='hideChangeProfilePasswordForm()'>Cancel </a>
                     <input type='reset' value='Reset' class='btn btn-danger'>
                 </td>
             </tr>
@@ -58,6 +57,7 @@ function renderChangeProfileInfoForm(){
     $agency= returnAgency();    
     $dom="            
     <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
+    <form action='php_common/edit_employee_profile.php?type=changeProfile'>
     <table class='table table-active table-striped border '>
         <thead>
             <tr>
@@ -97,13 +97,14 @@ function renderChangeProfileInfoForm(){
             </tr>
             <tr>
                 <td colspan='2' class='text-center'>
-                    <a id='' class='btn btn-primary' href='#' role='button' onclick=''>Submit</a>
-                    <a id='' class='btn btn-danger' href='#' role='button' onclick=''>Cancel </a>
+                    <a id='' class='btn btn-primary' href='#' role='button' type='submit'>Submit</a>
+                    <a id='' class='btn btn-danger' href='#' role='button' onclick='hideChangeProfileInfoForm()'>Cancel </a>
                     <input type='reset' value='Reset' class='btn btn-danger'>
                 </td>
             </tr>
         </tbody>
     </table>
+    </form>
     </div>";
 echo $dom;
 }
@@ -125,7 +126,7 @@ function renderManagedTrip()
             break;
 
         case NULL:
-            notpremit();
+            notPermit();
             break;
 
         default:
