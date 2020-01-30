@@ -48,6 +48,23 @@ if ($_SESSION['role'] == "Customer") {
             background-color: whitesmoke;
         }
 
+        #authenticateEditEmployeeProfile {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 40%;
+            top: 40%;
+            width: auto;
+            /* Full width */
+            height: auto;
+            margin:0 auto;
+            overflow: hidden;
+            background-color: whitesmoke;
+        }
+
         body {
             overflow: hidden;
         }
@@ -96,8 +113,8 @@ if ($_SESSION['role'] == "Customer") {
             </div>
 
             <?php   
-            renderChangeProfileInfoForm();
             renderChangeProfilePasswordForm();
+            renderChangeProfileInfoForm();
             ?>
         </div>
         <div class="col-lg-10" id="contentPanel2">

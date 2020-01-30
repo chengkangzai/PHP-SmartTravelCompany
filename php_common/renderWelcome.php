@@ -53,12 +53,11 @@ function renderChangeProfileInfoForm(){
     $username= $GLOBALS['login_session'];
     $FName=$GLOBALS['FName'];
     $LName=$GLOBALS['LName'];
-    $position=returnPosition();
     $agency= returnAgency();    
     $dom="            
     <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
     <form action='php_common/edit_employee_profile.php?type=changeProfile'>
-    <table class='table table-active table-striped border '>
+    <table class='table table-active table-striped border'>
         <thead>
             <tr>
                 <td colspan='2' class='text-center'>
@@ -84,12 +83,6 @@ function renderChangeProfileInfoForm(){
                 </td>
             </tr>
             <tr>
-                <td>Position</td>
-                <td>
-                    $position
-                </td>
-            </tr>
-            <tr>
                 <td>Belonging Agency</td>
                 <td>
                     $agency
@@ -97,13 +90,32 @@ function renderChangeProfileInfoForm(){
             </tr>
             <tr>
                 <td colspan='2' class='text-center'>
-                    <a id='' class='btn btn-primary' href='#' role='button' type='submit'>Submit</a>
+                    <a id='' class='btn btn-primary' href='#' role='button' onclick='showAuthenticateEditEmployeeProfile()'>Next</a>
                     <a id='' class='btn btn-danger' href='#' role='button' onclick='hideChangeProfileInfoForm()'>Cancel </a>
                     <input type='reset' value='Reset' class='btn btn-danger'>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div id='authenticateEditEmployeeProfile' >
+        <table class='table table-danger table-striped '> 
+            <tr>
+                <td colspan='2' class='text-center'>Authenticate </td>
+            </tr>
+            <tr>
+                <td>Current Password</td>
+                <td>
+                    <input name='currPassword' type='password' placeholder='Type Your Current Password to Authenticate' class='form-control'>  
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' class='text-center'>
+                    <input class='btn btn-primary' type='submit' value='Submit'>
+                    <a id='' class='btn btn-danger' href='#' role='button' onclick='hideAuthenticateEditEmployeeProfile()'>Cancel </a>
+                </td>
+            </tr>
+        </table>
+    </div>
     </form>
     </div>";
 echo $dom;

@@ -37,13 +37,13 @@ function changePassword(){
             if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/i", $password1)) {
                 $passwordMatch=true;
             }else {
-                $error ="Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit. Exp:ASDasd123";
+                $error.="Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit. Exp:ASDasd123";
             }
         }else {
-            $error ="Password Shall Not be empty";
+            $error.="Password Shall Not be empty";
         }
     }else{
-        $error="Password does not match";
+        $error.="Password does not match";
     }
 
     if ($passwordMatch==true) {
@@ -51,8 +51,7 @@ function changePassword(){
         $username=$GLOBALS['username'];
         $sql="UPDATE `Employee` SET `password`='$password' WHERE `username`='$username'";
         if(mysqli_query($GLOBALS['db'],$sql)){
-            renderAlertInJs("Update Success");
-            renderAlertInJs("You will be logged out");
+            renderAlertInJs("Update Success \n You will be logged out");
             renderRedirectionInJS("../logout.php");
         }else {
             renderAlertInJs("There is some error when updating your Password\n Contact your server administrator ASAP");
@@ -66,6 +65,60 @@ function changePassword(){
 
 function changeProfile(){
     authenticate();
+    $username=$GLOBALS['username'];
+    $fName=$_POST['fname'];
+    $lName=$_POST['lname'];
+    $agency=$_POST['Agency'];
+    if ($fName!=="") {
+        if (preg_match("/^[a-zA-Z ]*$/", $fName)) {
+            $fNameChk=true;
+        } else {
+            $error.="Only Letter and white Space allowed in First Name \n";
+        }
+    }else {
+        $error.="Shall not be empty. \n";
+    }
+    if ($lName!=="") {
+        if (preg_match("/^[a-zA-Z ]*$/", $lName)) {
+            $lNameChk=true;
+        } else {
+            $error.="Only Letter and white Space allowed in Last Name \n";
+        }
+    }else {
+        $error.="Shall not be empty. \n";
+    }
+    if ($agency!==""){
+        $agencyChk=true;
+    }else{
+        $error.="Agency is a must! \n";
+    }
+    if ($fNameChk==true && $lNameChk == true && $agencyChk ==true) {
+        $allCheck=true;
+    }
+
+    if ($error!=="") {
+        renderAlertInJs($error);
+        echo $error;
+    }
+
+    if ($allCheck==true){
+        $sql="UPDATE `Employee` SET `FName`=?,`LName`=?,`Agency`=? WHERE username=?";
+        if($stmt=mysqli_prepare($GLOBALS['db'],$sql)){
+            mysqli_stmt_bind_param($stmt,"ssss",$fName,$lName,$agency,$username);
+            if(mysqli_stmt_execute($stmt)){
+                echo "Success!";
+                renderAlertInJs("Update Success!");
+            }else {
+                echo "Error when Execute ";
+            }
+        }else{
+            echo "Error when Prepare";
+        }
+    }else{
+        echo "Fail All check";
+    }
+
+
     /*
     TODO
     0. Authenticate 
@@ -103,9 +156,10 @@ function returnAgency() {
 }
 
 function returnPosition(){
+    //Not in used  30012020
     $sql = "SELECT DISTINCT `Position` FROM Employee";
     $result = mysqli_query($GLOBALS['db'], $sql);
-    $domReturn = "<select required class='custom-select' id='selectAgency' name='Agency'> \n";
+    $domReturn = "<select required class='custom-select' id='selectPosition' name='Position'> \n";
     
     while ($row = mysqli_fetch_assoc($result)) {
         $position = $row['Position'];
@@ -128,7 +182,7 @@ function returnPosition(){
 }
 
 
-//Main AJAX
+//Main Switch
 switch ($type) {
     case 'changePassword':
         changePassword();
