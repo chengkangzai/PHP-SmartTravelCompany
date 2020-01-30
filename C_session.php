@@ -8,7 +8,8 @@
    
    $ses_sql = mysqli_query($db,"select * from Customer where username = '$user_check' ");
    
-   $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+   //$row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+   $row=mysqli_fetch_assoc($ses_sql);
    // Get the user name, Their Name
    $login_session = $row['username'];
    $FName = $row['FName'];
