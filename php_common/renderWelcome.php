@@ -2,8 +2,111 @@
 session_start();
 include("../session.php");
 include("../config.php");
-include("../php_common/nav.php");
+include("nav.php");
 $welcomeText = "<h1 class='text-center welcomeText' >Welcome! $GLOBALS[position], $GLOBALS[login_session] </h1>";
+if ($_SERVER['REQUEST_METHOD']=="POST") {
+    renderChangeProfileInfoForm();
+}
+function renderChangeProfilePasswordForm(){
+    $dom="            
+    <div class='mt-2' id='changeProfilePasswordForm' style='display:none'>
+    <table class='table table-active table-striped border '>
+        <thead>
+            <tr>
+                <td colspan=2 class='text-center'> <h2>Change Password</h2></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> Current Password</td>
+                <td><input type='password' name='currPassword' id='currPassword' placeholder='Current Password' class='form-control'></td>
+            </tr>
+            <tr>
+                <td>New Password</td>
+                <td>
+                    <input type='password' name='password1' id='password1' placeholder='Type Your New Password' class='form-control'>
+                </td>
+            </tr>
+            <tr>
+                <td>Retype New Password</td>
+                <td>
+                    <input type='password' name='password2' id='password2' placeholder='Retype Your New Password' class='form-control'>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' class='text-center'>
+                    <a id='' class='btn btn-primary' href='#' role='button' onclick=''>Submit</a>
+                    <a id='' class='btn btn-danger' href='#' role='button' onclick=''>Cancel </a>
+                    <input type='reset' value='Reset' class='btn btn-danger'>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    ";
+    echo $dom;
+    
+}
+
+function renderChangeProfileInfoForm(){
+    include_once("edit_employee_profile.php");
+    $username= $GLOBALS['login_session'];
+    $FName=$GLOBALS['FName'];
+    $LName=$GLOBALS['LName'];
+    $position=returnPosition();
+    $agency= returnAgency();    
+    $dom="            
+    <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
+    <table class='table table-active table-striped border '>
+        <thead>
+            <tr>
+                <td colspan='2' class='text-center'>
+                    <h2>Change Profile Information </h2>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> User Name</td>
+                <td><input type='text' name='username' id='username' placeholder='$username' class='form-control' disabled value='$username'></td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td>
+                    <input type='text' name='fname' id='fname' placeholder='Type Your First Name' class='form-control' value='$FName'>
+                </td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>
+                    <input type='text' name='lname' id='lname' placeholder='Type Your Last Name' class='form-control' value='$LName'>
+                </td>
+            </tr>
+            <tr>
+                <td>Position</td>
+                <td>
+                    $position
+                </td>
+            </tr>
+            <tr>
+                <td>Belonging Agency</td>
+                <td>
+                    $agency
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2' class='text-center'>
+                    <a id='' class='btn btn-primary' href='#' role='button' onclick=''>Submit</a>
+                    <a id='' class='btn btn-danger' href='#' role='button' onclick=''>Cancel </a>
+                    <input type='reset' value='Reset' class='btn btn-danger'>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>";
+echo $dom;
+}
+
 
 function renderManagedTrip()
 {
@@ -98,7 +201,7 @@ function renderTripManagementForm(){
     $airline=returnListAllFlight();
     $tourCode=returnAllTourName();
     $dom= "
-    <table id='addTripForm' class='col-lg-8 modal table table-light '>
+    <table id='addTripForm' class='col-lg-8 modal table table-light table-striped '>
     <form method='post' action='php_common/add_trip.php'>
         <thead>
             <tr>

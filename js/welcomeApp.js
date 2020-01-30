@@ -84,19 +84,41 @@ function showNinthPanel() {
 //Profile section Start
 
 function showChangeProfilePasswordForm() {
-    const form = $('#changeProfileInfoForm');
-
-    form.show();
+    const formPassword = $('#changeProfilePasswordForm');
+    const formInfo = $("#changeProfileInfoForm");
+    const btn = $("#btnToggleProfilePasswordForm");
+    if (formInfo.css("display") !== "none") {
+        hideChangeProfileInfoForm();
+    }
+    formPassword.show();
+    btn.removeAttr("onclick").attr("onclick","hideChangeProfilePasswordForm()").removeClass("btn-primary").addClass("btn-info");
 }
 function hideChangeProfilePasswordForm() {
-    
+    const form = $('#changeProfilePasswordForm');
+    const btn = $("#btnToggleProfilePasswordForm");
+    if (form.css("display") == "block") {
+        form.hide();
+        btn.removeAttr("onclick").attr("onclick","showChangeProfilePasswordForm()").removeClass("btn-info").addClass("btn-primary");
+    }
 }
 
-function showChangeProfileForm() {
-    
+function showChangeProfileInfoForm() {
+    const formPassword = $('#changeProfilePasswordForm');
+    const formInfo = $("#changeProfileInfoForm");
+    const btn = $("#btnToggleProfileInfoForm");
+    if (formPassword.css("display") !=="none") {
+        hideChangeProfilePasswordForm();
+    }
+    formInfo.show();
+    btn.removeAttr("onclick").attr("onclick","hideChangeProfileInfoForm()").removeClass("btn-primary").addClass("btn-info");
 }
-function hideChangeProfileForm() {
-    
+function hideChangeProfileInfoForm() {
+    const form=$("#changeProfileInfoForm");
+    const btn = $("#btnToggleProfileInfoForm");
+    if (form.css("display") =="block") {
+        form.hide();
+        btn.removeAttr("onclick").attr("onclick","showChangeProfileInfoForm()").removeClass("btn-info").addClass("btn-primary");
+    }
 }
 //Profile section END
 
