@@ -4,8 +4,8 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
-    $safepass = sha1($password);
+    $checkPassword = mysqli_real_escape_string($db, $_POST['cpassword']);
+    $shaPassword = sha1($password);
     $FName = mysqli_real_escape_string($db, $_POST['FName']);
     $LName = mysqli_real_escape_string($db, $_POST['LName']);
     $IC_num = mysqli_real_escape_string($db, $_POST['IC']);
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z ]*$/", $username)) {
             $usernameErr = "Only letters and white space allowed";
         } else {
-            $userchk = "1";
+            $userChk = "1";
         }
     }
     if (empty($LName)) {
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z ]*$/", $LName)) {
             $LnameErr = "Only letters and white space allowed";
         } else {
-            $LNamechk = "1";
+            $LNameChk = "1";
         }
     }
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z ]*$/", $FName)) {
             $FnameErr = "Only letters and white space allowed";
         } else {
-            $FNamechk = "1";
+            $FNameChk = "1";
         }
     }
 
@@ -48,14 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/(([[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01]))-([0-9]{2})-([0-9]{4})/", $IC_num)) {
             $ICErr = "Please Enter proper Malaysian IC with dash(-) Exp:700529-01-3007";
         } else {
-            $IC_numchk = "1";
+            $IC_numChk = "1";
         }
     }
 
-    if ($password !== $cpassword) {
+    if ($password !== $checkPassword) {
         $CPassErr = "Password not match!";
     } else {
-        $CPasschk = "1";
+        $CPassChk = "1";
     }
 
     //http://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1
@@ -65,20 +65,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/i", $password)) {
             $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit. Exp:ASDasd123";
         } else {
-            $passwordchk = "1";
+            $passwordChk = "1";
         }
     }
 
     if (empty($Position)) {
         $PositionErr = "Please choose a position";
     } else {
-        $Positionchk = "1";
+        $PositionChk = "1";
     }
 
     if (empty($Agency)) {
         $AgencyErr = "Please choose a Agency";
     } else {
-        $Agencychk = "1";
+        $AgencyChk = "1";
     }
 
     $c_Sql = "Select username FROM Customer WHERE username='$username'";
@@ -88,11 +88,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($c_row == "1") {
         $c_usernameErr = "Duplicate Username, please choose another username";
     } else {
-        $c_userchk = "1";
+        $c_userChk = "1";
     }
 
-    if ($Agencychk == 1 and $FNamechk == 1 and $LNamechk == 1 and $passwordchk == 1 and $Positionchk == 1 and $IC_numchk == 1 and $userchk == 1 and $c_userchk == 1 and $CPasschk == "1") {
-        $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$safepass','$FName','$LName','$IC_num','$Position','$Agency')";
+    if ($AgencyChk == 1 and $FNameChk == 1 and $LNameChk == 1 and $passwordChk == 1 and $PositionChk == 1 and $IC_numChk == 1 and $userChk == 1 and $c_userChk == 1 and $CPassChk== 1) {
+        $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$shaPassword','$FName','$LName','$IC_num','$Position','$Agency')";
         if (mysqli_query($db, $sql)) {
             echo ("<script> alert('Add Success!'); </script>");
             echo ("<script> window.history.go(-1);</script>");

@@ -63,8 +63,6 @@ session_start();
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if ($Tour_Code !== null) {
                     trip_info($Tour_Code);
-                }elseif (condition) {
-                    # code...
                 }
                 else {
                     CallAllTour();

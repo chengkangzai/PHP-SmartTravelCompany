@@ -2,6 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     
     include_once("../config.php");
+    include_once("nav.php");
 
     $departure_date = mysqli_real_escape_string($db, $_POST['departure_date']);
     $newDate = date("Y-m-d", strtotime($departure_date));
@@ -41,12 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     
 
     if (mysqli_query($db, $sql)) {
-        echo ("<script> alert('Add Sucess!'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+        renderAlertInJs("Add Success!");
+        renderGoBackInJs();
     } else {
-        echo ("<script> alert('Something wrong :3'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+        renderAlertInJs("Error happen:3! Here is the error \n $err");
+        renderGoBackInJs();
     }
-
+mysqli_close($db);
 }
-?>

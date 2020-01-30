@@ -19,3 +19,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "There is someone booking this Trip, You cant delete this";
     }
 }
+mysqli_close($db);
+?>

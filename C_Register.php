@@ -8,8 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
-    $safepass=sha1($password);
+    $checkPassword = mysqli_real_escape_string($db, $_POST['cpassword']);
+    $shaPassword=sha1($password);
     $FName = mysqli_real_escape_string($db, $_POST['FName']);
     $LName = mysqli_real_escape_string($db, $_POST['LName']);
     $Phone_num = mysqli_real_escape_string($db, $_POST['Phone_num']);
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z ]*$/",$username)) {
         $usernameErr = "Only letters and white space allowed";
         }else {
-            $userchk="1";
+            $userChk="1";
         }
     }
     if (empty($LName)) {
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z ]*$/",$LName)) {
         $LnameErr = "Only letters and white space allowed";
         }else {
-            $LNamechk="1";
+            $LNameChk="1";
         }
     }
     if (empty($FName)) {
@@ -40,13 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z ]*$/",$FName)) {
         $FnameErr = "Only letters and white space allowed";
         }else {
-            $FNamechk="1";
+            $FNameChk="1";
         }
     }
-    if ($password !== $cpassword) {
+    if ($password !== $checkPassword) {
         $CPassErr="Password not match!";
     }else {
-        $CPasschk="1";
+        $CPassChk="1";
     }
     //http://regexlib.com/Search.aspx?k=password&AspxAutoDetectCookieSupport=1
     if (empty($password)) {
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $PassErr = "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit. Exp:asdASD123 ";
         }    
             else {
-            $passwordchk="1";
+            $passwordChk="1";
         }
     }
 
@@ -66,15 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/",$Phone_num)) {
             $PhoneErr="Please enter phone number with 60(Exp:60121234567)";
         }else {
-            $Phonechk="1";
+            $PhoneChk="1";
         }
     }
 
     if (empty($Passport)) {
         $Passport="NULL";
-		$Passportchk="1";
+		$PassportChk="1";
     }else {
-            $Passportchk="1";
+            $PassportChk="1";
         }
     
 
@@ -82,13 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $c_query=mysqli_query($db,$c_Sql);
     $c_row=mysqli_num_rows($c_query);
     if ($c_row=="1") {
-     $c_usernameErr="Duplicate Username, please choose another username";
+        $c_usernameErr="Duplicate Username, please choose another username";
     }else {
-        $c_userchk="1";
+        $c_userChk="1";
     }
     
-    if ($userchk==1 && $LNamechk==1 && $FNamechk==1 && $CPasschk==1 && $Phonechk==1 && $Passportchk==1 && $passwordchk==1 && $c_userchk==1) {
-        $sql = "INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$safepass','$FName','$LName','$Phone_num','$Email','$Passport')";
+    if ($userChk==1 && $LNameChk==1 && $FNameChk==1 && $CPassChk==1 && $PhoneChk==1 && $PassportChk==1 && $passwordChk==1 && $c_userChk==1) {
+        $sql = "INSERT INTO Customer (username,password,FName,LName,Phone_num,Email,Passport) VALUES ('$username','$shaPassword','$FName','$LName','$Phone_num','$Email','$Passport')";
         if (mysqli_query($db, $sql)) {
             echo "Successfully Register!";
             header("Location:jump/Login.html");
@@ -175,7 +175,6 @@ mysqli_close($db);
                 <input type="text" name="Passport" placeholder="Your Passport number(Leave Blank if do not have)" class="form-control"  >    
                 <span class="text-danger"> <?php echo $PassportErr;?></span>
             </div>
-                       
             <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block">
         </form>
 

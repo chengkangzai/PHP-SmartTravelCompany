@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 ?>
 
-<!--Put to 2 seperate file and by using session, get the tour code -->
+<!--Put to 2 separate file and by using session, get the tour code -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <label for="username" class="col-sm-2 col-form-label">Tour Code :</label>
                     <div class="col-sm-10 border-left">
                         <input type="text" readonly class="form-control-plaintext" name="Tour Code" value="
-                   <?php
+                    <?php
                     include_once('itenerary.php');
                     CallSelectedTrip($login_session);
                     ?>

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 ?>
 
-<!--Put to 2 seperate file and by using session, get the tour code -->
+<!--Put to 2 separate file and by using session, get the tour code -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,12 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <select class="custom-select" id="TourCode" name="TourCode" required>
                             <option selected hidden>Choose your Trips</option>
                             <<?php
-                                $tcode = $_GET['tcode'];
+                                $tourCode = $_GET['tcode'];
                                 include_once('itenerary.php');
-                                if ($tcode == NULL) {
+                                if ($tourCode == NULL) {
                                     CallTour();
                                 } else {
-                                    selecttour($tcode);
+                                    selectTour($tourCode);
                                     CallTour();
                                 }
                                 ?> 

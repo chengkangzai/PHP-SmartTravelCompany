@@ -12,12 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if (!preg_match("/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/", $phoneNum)) {
             echo "Please enter phone number with 60(Exp:60121234567)";
         } else {
-            $Phonechk = "1";
+            $phoneCheck = "1";
         }
     }
     
 
-    if ($Phonechk == "1") {
+    if ($phoneCheck == "1") {
         $sql = "UPDATE Customer SET Phone_num=? WHERE username=?";
         if ($stmt = mysqli_prepare($db, $sql)) {
             mysqli_stmt_bind_param($stmt, "ss", $phoneNum, $username);

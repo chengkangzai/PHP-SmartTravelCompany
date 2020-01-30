@@ -41,7 +41,7 @@ function navbar()
         echo "
             <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
                 <a class='navbar-brand font-weight-bold' href='$host/index.php'>Smart Holidays</a>
-                    <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
+                    <!-- only shows with small screen (powered by javascript and bootstrap CSS class) -->
                 <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
                     <!--The icon itself-->
                     <span class='navbar-toggler-icon'></span>
@@ -72,7 +72,7 @@ function navbar()
         echo "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand font-weight-bold' href='$host/index.php'>Smart Holidays</a>
-                <!-- only shows with small screen (powered by javascipt and bootstrap CSS class) -->
+                <!-- only shows with small screen (powered by javascript and bootstrap CSS class) -->
             <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
                 <!--The icon itself-->
                 <span class='navbar-toggler-icon'></span>
@@ -130,7 +130,7 @@ function trip_info($tour_code)
         $Tour_name = $itenerary_row['Name'];
         $thumbnail = $itenerary_row['thumbnail_url'];
         $category = $itenerary_row['Destination'];
-        //Hightlight 
+        //Highlight 
         $P1 = $itenerary_row['Point_1'];
         $D1 = $itenerary_row['Des_1'];
         $P2 = $itenerary_row['Point_2'];
@@ -139,7 +139,7 @@ function trip_info($tour_code)
         $D3 = $itenerary_row['Des_3'];
         $P4 = $itenerary_row['Point_4'];
         $D4 = $itenerary_row['Des_4'];
-        //Javasciprt Naming 
+        //Javascript Naming 
         //Generate random number 
         $ran1 = rand();
         $ran2 = rand();
@@ -158,7 +158,7 @@ function trip_info($tour_code)
         ";
         echo    "
             <ul id='$ran2' class='intro p-3 mx-auto'>
-            <h2 class='text-primary text-center'>Hightlight</h2> 
+            <h2 class='text-primary text-center'>Highlight</h2> 
         ";
         echo    "
         <li>$P1$D1</li>
@@ -231,8 +231,8 @@ function notPermit()
 {
     $user = $_SESSION['login_user'];
     echo ("
-    <h1 class='text-center text-white'> Hi! $user, This functionality is not yet premit to used for you. </h1>
-    <h3 class='text-center text-white'> Contact your domain adminstrator to evaluate your premission. </h3>
+    <h1 class='text-center text-white'> Hi! $user, This functionality is not yet permit to used for you. </h1>
+    <h3 class='text-center text-white'> Contact your domain administrator to evaluate your permission. </h3>
     <img src='https://carrierubin.files.wordpress.com/2015/10/sad-cartoon-boy.png' class='text-center'>
     ");
 }

@@ -60,13 +60,19 @@ if ($_SESSION['role'] == "Customer") {
             width: auto;
             /* Full width */
             height: auto;
-            margin:0 auto;
+            margin: 0 auto;
             overflow: hidden;
             background-color: whitesmoke;
         }
 
         body {
             overflow: hidden;
+        }
+
+        .hsbtn {
+            height: 487px;
+            position: fixed;
+            z-index: 1;
         }
     </style>
 </head>
@@ -112,7 +118,7 @@ if ($_SESSION['role'] == "Customer") {
                 <a id="btnToggleProfileInfoForm" class="btn btn-primary text-white" role="button" onclick="showChangeProfileInfoForm()">Change Profile</a>
             </div>
 
-            <?php   
+            <?php
             renderChangeProfilePasswordForm();
             renderChangeProfileInfoForm();
             ?>
