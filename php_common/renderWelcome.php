@@ -4,12 +4,11 @@ include("../session.php");
 include("../config.php");
 include("nav.php");
 $welcomeText = "<h1 class='text-center welcomeText' >Welcome! $GLOBALS[position], $GLOBALS[login_session] </h1>";
-if ($_SERVER['REQUEST_METHOD']=="POST") {
-    renderChangeProfileInfoForm();
-}
+
 function renderChangeProfilePasswordForm(){
     $dom="            
     <div class='mt-2' id='changeProfilePasswordForm' style='display:none'>
+    <form action='php_common/edit_employee_profile.php' method='POST'>
     <table class='table table-active table-striped border '>
         <thead>
             <tr>
@@ -35,6 +34,7 @@ function renderChangeProfilePasswordForm(){
             </tr>
             <tr>
                 <td colspan='2' class='text-center'>
+                    <input class='btn btn-primary' value=''
                     <a id='' class='btn btn-primary' href='#' role='button' onclick=''>Submit</a>
                     <a id='' class='btn btn-danger' href='#' role='button' onclick=''>Cancel </a>
                     <input type='reset' value='Reset' class='btn btn-danger'>
@@ -42,6 +42,7 @@ function renderChangeProfilePasswordForm(){
             </tr>
         </tbody>
     </table>
+    </form>
     </div>
     ";
     echo $dom;

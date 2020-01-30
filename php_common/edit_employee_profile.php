@@ -1,7 +1,7 @@
 <?php
 include_once("../config.php");
 include_once("../session.php");
-$type = $_POST['type'];
+$type = $_GET['type'];
 $role= $_SESSION['role'];
 
 
