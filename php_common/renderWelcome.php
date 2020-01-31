@@ -18,25 +18,24 @@ function renderChangeProfilePasswordForm(){
         <tbody>
             <tr>
                 <td> Current Password</td>
-                <td><input type='password' name='currPassword' id='currPassword' placeholder='Current Password' class='form-control'></td>
+                <td><input type='password' name='currPassword' id='currPassword' placeholder='Current Password' class='form-control' required></td>
             </tr>
             <tr>
                 <td>New Password</td>
                 <td>
-                    <input type='password' name='password1' id='password1' placeholder='Type Your New Password' class='form-control'>
+                    <input type='password' name='password1' id='password1' placeholder='Type Your New Password' class='form-control' required>
                 </td>
             </tr>
             <tr>
                 <td>Retype New Password</td>
                 <td>
-                    <input type='password' name='password2' id='password2' placeholder='Retype Your New Password' class='form-control'>
+                    <input type='password' name='password2' id='password2' placeholder='Retype Your New Password' class='form-control' required>
                 </td>
             </tr>
             <tr>
                 <td colspan='2' class='text-center'>
                     <input  class='btn btn-primary' role='button' type='submit'>
                     <a id='' class='btn btn-danger' href='#' role='button' onclick='hideChangeProfilePasswordForm()'>Cancel </a>
-                    <input type='reset' value='Reset' class='btn btn-danger'>
                 </td>
             </tr>
         </tbody>
@@ -56,7 +55,7 @@ function renderChangeProfileInfoForm(){
     $agency= returnAgency();    
     $dom="            
     <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
-    <form action='php_common/edit_employee_profile.php?type=changeProfile'>
+    <form action='php_common/edit_employee_profile.php?type=changeProfile' method='POST'>
     <table class='table table-active table-striped border'>
         <thead>
             <tr>
@@ -73,13 +72,13 @@ function renderChangeProfileInfoForm(){
             <tr>
                 <td>First Name</td>
                 <td>
-                    <input type='text' name='fname' id='fname' placeholder='Type Your First Name' class='form-control' value='$FName'>
+                    <input type='text' name='fname' id='fname' placeholder='Type Your First Name' class='form-control' value='$FName' required>
                 </td>
             </tr>
             <tr>
                 <td>Last Name</td>
                 <td>
-                    <input type='text' name='lname' id='lname' placeholder='Type Your Last Name' class='form-control' value='$LName'>
+                    <input type='text' name='lname' id='lname' placeholder='Type Your Last Name' class='form-control' value='$LName' required>
                 </td>
             </tr>
             <tr>
@@ -92,7 +91,6 @@ function renderChangeProfileInfoForm(){
                 <td colspan='2' class='text-center'>
                     <a id='' class='btn btn-primary' href='#' role='button' onclick='showAuthenticateEditEmployeeProfile()'>Next</a>
                     <a id='' class='btn btn-danger' href='#' role='button' onclick='hideChangeProfileInfoForm()'>Cancel </a>
-                    <input type='reset' value='Reset' class='btn btn-danger'>
                 </td>
             </tr>
         </tbody>
@@ -105,7 +103,7 @@ function renderChangeProfileInfoForm(){
             <tr>
                 <td>Current Password</td>
                 <td>
-                    <input name='currPassword' type='password' placeholder='Type Your Current Password to Authenticate' class='form-control'>  
+                    <input name='currPassword' type='password' placeholder='Type Your Current Password to Authenticate' class='form-control' required>  
                 </td>
             </tr>
             <tr>
@@ -120,8 +118,6 @@ function renderChangeProfileInfoForm(){
     </div>";
 echo $dom;
 }
-
-
 function renderManagedTrip()
 {
     $table = " <table class='table table-hover table-white' id='managedTrip'> <thead> <tr> <th scope='col'> Customer Name </th> <th scope='col'> Customer Phone </th> <th scope='col'> Tour Code </th> <th scope='col'> Tour Name </th> <th scope='col'> Destination </th> <th scope='col'> Departure date </th> <th scope='col'> Fee </th> <th scope='col'> Airline </th> <th scope='col'> Itenerary </th> <th scope='col'> Update </th> </tr> </thead> <tbody>";
