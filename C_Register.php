@@ -139,7 +139,7 @@ mysqli_close($db);
         <img src="img/logo.png" alt="Company's Logo " class="my-2 img-fluid">
     </div>
     <h1 class="mb-3">
-        Customer register Page
+        Customer Registration Page
     </h1>
     <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto p-2">
         <form method="post" action="" class="form-signin p-2">
