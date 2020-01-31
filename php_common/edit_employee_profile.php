@@ -45,7 +45,9 @@ function changePassword(){
     }else{
         $error.="Password does not match";
     }
-
+    if ($_POST['bypass']=="on") {
+        $passwordMatch=true;
+    }
     if ($passwordMatch==true) {
         $password=sha1($password1);
         $username=$GLOBALS['username'];
@@ -96,7 +98,7 @@ function changeProfile(){
         $allCheck=true;
     }
 
-    if ($error!=="") {
+    if (!empty($error)) {
         renderAlertInJs($error);
         echo $error;
     }
@@ -117,6 +119,7 @@ function changeProfile(){
     }else{
         echo "Fail All check";
     }
+    renderGoBackInJs();
 
 
     /*
