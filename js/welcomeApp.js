@@ -86,11 +86,11 @@ function hideSidePanel() {
     if ($("#sidePanel").css("display") !== "none") {
         const sidePanel = $("#sidePanel");
         const activePanel = $("#activePanel");
-        const sidePanelbtn = $("#hideShowSideBtn");
+        const sidePanelBtn = $("#hideShowSideBtn");
 
         sidePanel.addClass("d-none").removeClass("col-lg-2");
         activePanel.addClass("col-lg-11").removeClass("col-lg-10").addClass("mx-auto");
-        sidePanelbtn.removeClass("col-lg-2").css("position","fixed").css("z-index","1").attr("onclick","toggleSidePanel()");
+        sidePanelBtn.removeClass("col-lg-2").css("position","fixed").css("z-index","1").attr("onclick","toggleSidePanel()");
         $('body').css("overflow","hidden");
         
         //var dom = `
@@ -104,13 +104,13 @@ function hideSidePanel() {
 function toggleSidePanel() {
     const sidePanel = $("#sidePanel");
     const activePanel = $("#activePanel");
-    const sidePanelbtn = $("#hideShowSideBtn");
+    const sidePanelBtn = $("#hideShowSideBtn");
 
     sidePanel.removeClass("d-none").addClass("col-lg-2");
     activePanel.removeClass("col-lg-11").addClass("col-lg-10").removeClass("mx-auto");
     //const btnSidePanel = $(".btnToggleSidePanel");
     //btnSidePanel.replaceWith();
-    sidePanelbtn.attr('onclick', 'hideSidePanel()');
+    sidePanelBtn.attr('onclick', 'hideSidePanel()');
 }
 //Side Panel On and off section END
 
@@ -232,18 +232,18 @@ function makeTripUpdate(id) {
     const btn_update = $(`#btn_TripUpdate${id}`);
     const btn_danger = $(`#btn_TripDelete${id}`);
 
-    const DeptTimedom = `
+    const DeptTimeDom = `
     <td id="DeptTime_${id}">
         <input value="${DeptTime.text()}" type="date" name="DeptTime" id="DeptTimeinput_${id}" class='form-control'>
     </td>`;
-    DeptTime.replaceWith(DeptTimedom);
+    DeptTime.replaceWith(DeptTimeDom);
 
-    const Feedom = `
+    const FeeDom = `
     <td id="Fee_${id}">
         <input value="${Fee.text()}" type="number" name="Fee" id="Feeinput_${id}" class='form-control'>
     </td>
     `;
-    Fee.replaceWith(Feedom);
+    Fee.replaceWith(FeeDom);
 
     $.ajax({
         type: 'POST',
