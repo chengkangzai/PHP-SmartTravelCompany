@@ -815,7 +815,7 @@ if ($_SESSION['role'] == "Customer") {
 
                                 <?php
                                 include_once("itenerary.php");
-                                CallTour();
+                                renderTourSelection();
                                 ?>
                             </select>
                         </td>

@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <input type="text" readonly class="form-control-plaintext" name="Tour Code" value="
                     <?php
                     include_once('itenerary.php');
-                    CallSelectedTrip($login_session);
+                    renderSelectedTrip($login_session);
                     ?>
                     ">
                     </div>
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <?php
                             include_once('itenerary.php');
 
-                            CallTrip($login_session);
+                            renderAvailableTripByTour($login_session);
                             ?>
                         </select>
                     </div>

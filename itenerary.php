@@ -1,6 +1,6 @@
 <?php
 
-function CallTour(){
+function renderTourSelection(){
     include('config.php');
     $sql="SELECT * FROM Tour";
     $query_sql= mysqli_query($db,$sql);
@@ -15,7 +15,7 @@ function CallTour(){
     }
 }
 
-function CallTrip($login_session) {
+function renderAvailableTripByTour($login_session) {
     include('config.php');
     //Get the Tour that selected by customer
     $Tour_sql="SELECT * FROM C_selected_Tour where FK_C_username='$login_session' order by id desc limit 1";
@@ -40,7 +40,7 @@ function CallTrip($login_session) {
     mysqli_close($db);
 }
 
-function CallSelectedTrip($login_session) {
+function renderSelectedTrip($login_session) {
     include('config.php');
     //Get the Tour that selected by customer
     $Tour_sql="SELECT * FROM C_selected_Tour where FK_C_username='$login_session' order by id desc limit 1";
@@ -56,7 +56,7 @@ function CallSelectedTrip($login_session) {
     echo $TourName ;
 }
 
-function selectTour($TourCode){
+function renderSelectedTour($TourCode){
     include('config.php');
     $sql="SELECT * FROM Tour where TourCode='$TourCode'";
     $query_sql= mysqli_query($db,$sql);

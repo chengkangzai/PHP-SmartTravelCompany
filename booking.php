@@ -75,10 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 $tourCode = $_GET['tcode'];
                                 include_once('itenerary.php');
                                 if ($tourCode == NULL) {
-                                    CallTour();
+                                    renderTourSelection();
                                 } else {
-                                    selectTour($tourCode);
-                                    CallTour();
+                                    renderSelectedTour($tourCode);
+                                    renderTourSelection();
                                 }
                                 ?> 
                         </select> 

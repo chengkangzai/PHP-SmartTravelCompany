@@ -182,10 +182,10 @@ if ($_SESSION['role'] == "Employee") {
                                     $tourCode = $_GET['tcode'];
                                     echo $_GET['tcode'];
                                     include_once('itenerary.php');
-                                    selectTour($tourCode);
+                                    renderSelectedTour($tourCode);
                                     if ($tourCode == NULL) {
                                         include_once('itenerary.php');
-                                        CallTour();
+                                        renderTourSelection();
                                     }
                                     ?>
                                 </select>
