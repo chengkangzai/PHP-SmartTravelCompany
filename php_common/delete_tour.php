@@ -8,15 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $d_tourDes_sql = "DELETE FROM `Tour_des` WHERE`FK_TourCode`='$TourCode'";
     $d_selected_tour_sql = "DELETE FROM `C_selected_Tour` WHERE`FK_TourCode`='$TourCode'";
 
-    
+
     if (mysqli_query($db, $d_tourDes_sql)) {
         if (mysqli_query($db, $d_selected_tour_sql)) {
             if (mysqli_query($db, $d_tour_sql)) {
                 renderAlertInJs("Delete Success!");
-            }else {
+            } else {
                 renderAlertInJs("There is few trip/tour are going on !\nYou are not allowed to delete this tour/tour \nTry Again after delete relative trip first");
             }
-        }else {
+        } else {
             renderAlertInJs("unable to delete C_Selected_Tour");
         }
     } else {
@@ -25,5 +25,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 renderGoBackInJs();
 mysqli_close($db);
-
-?>

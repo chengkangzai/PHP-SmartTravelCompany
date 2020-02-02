@@ -95,5 +95,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "Duplicate entry for Tour Code :)";
     }
     mysqli_close($db);
-
 }

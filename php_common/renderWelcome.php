@@ -5,8 +5,9 @@ include("../config.php");
 include("nav.php");
 $welcomeText = "<h1 class='text-center welcomeText' >Welcome! $GLOBALS[position], $GLOBALS[login_session] </h1>";
 
-function renderChangeProfilePasswordForm(){
-    $dom="            
+function renderChangeProfilePasswordForm()
+{
+    $dom = "            
     <div class='mt-2' id='changeProfilePasswordForm' style='display:none'>
     <form action='php_common/edit_employee_profile.php?type=changePassword' method='POST'>
     <table class='table table-active table-striped border '>
@@ -44,16 +45,16 @@ function renderChangeProfilePasswordForm(){
     </div>
     ";
     echo $dom;
-    
 }
 
-function renderChangeProfileInfoForm(){
+function renderChangeProfileInfoForm()
+{
     include_once("edit_employee_profile.php");
-    $username= $GLOBALS['login_session'];
-    $FName=$GLOBALS['FName'];
-    $LName=$GLOBALS['LName'];
-    $agency= returnAgency();    
-    $dom="            
+    $username = $GLOBALS['login_session'];
+    $FName = $GLOBALS['FName'];
+    $LName = $GLOBALS['LName'];
+    $agency = returnAgency();
+    $dom = "            
     <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
     <form action='php_common/edit_employee_profile.php?type=changeProfile' method='POST'>
     <table class='table table-active table-striped border'>
@@ -116,19 +117,19 @@ function renderChangeProfileInfoForm(){
     </div>
     </form>
     </div>";
-echo $dom;
+    echo $dom;
 }
 function renderManagedTrip()
 {
     $table = " <table class='table table-hover table-white' id='managedTrip'> <thead> <tr> <th scope='col'> Customer Name </th> <th scope='col'> Customer Phone </th> <th scope='col'> Tour Code </th> <th scope='col'> Tour Name </th> <th scope='col'> Destination </th> <th scope='col'> Departure date </th> <th scope='col'> Fee </th> <th scope='col'> Airline </th> <th scope='col'> Itenerary </th> <th scope='col'> Update </th> </tr> </thead> <tbody>";
 
     $today = date("Y-m-d");
-    $sql="SELECT B.Booking_ID,C.FName,C.LName,Trip.Trip_ID,T.TourCode,C.Phone_num,T.Name,T.Destination,Trip.Departure_date,Trip.Fee,Trip.Airline,E.username ,T.itinerary_url,C.username FROM Booking B INNER JOIN Customer C ON B.FK_C_username=C.username INNER JOIN Trip on Trip.Trip_ID=B.FK_Trip_ID INNER join Tour T on Trip.FK_TourCode=T.TourCode INNER JOIN Employee E on T.FK_E_username=E.username ";
+    $sql = "SELECT B.Booking_ID,C.FName,C.LName,Trip.Trip_ID,T.TourCode,C.Phone_num,T.Name,T.Destination,Trip.Departure_date,Trip.Fee,Trip.Airline,E.username ,T.itinerary_url,C.username FROM Booking B INNER JOIN Customer C ON B.FK_C_username=C.username INNER JOIN Trip on Trip.Trip_ID=B.FK_Trip_ID INNER join Tour T on Trip.FK_TourCode=T.TourCode INNER JOIN Employee E on T.FK_E_username=E.username ";
 
 
     switch ($GLOBALS['position']) {
         case 'Manager':
-            $whereClause="WHERE Trip.Departure_date >= '$today'";
+            $whereClause = "WHERE Trip.Departure_date >= '$today'";
             break;
 
         case NULL:
@@ -137,11 +138,11 @@ function renderManagedTrip()
 
         default:
             $login_session = $GLOBALS['login_session'];
-            $whereClause="WHERE (E.username='$login_session') AND (Trip.Departure_date >= '$today') ";
-        break;
+            $whereClause = "WHERE (E.username='$login_session') AND (Trip.Departure_date >= '$today') ";
+            break;
     }
     echo $table;
-    $query_sql = mysqli_query($GLOBALS['db'], $sql.$whereClause);
+    $query_sql = mysqli_query($GLOBALS['db'], $sql . $whereClause);
     while ($row = mysqli_fetch_assoc($query_sql)) {
         $ran = rand();
         echo "<tr ><td >{$row['FName']} {$row['LName']}</td><td id='customerPhone$ran' data-id='{$row['username']}'>{$row['Phone_num']}</td><td>{$row['TourCode']}</td><td>{$row['Name']}</td><td>{$row['Destination']}</td><td>{$row['Departure_date']}</td><td>RM {$row['Fee']}</td><td>{$row['Airline']}</td><td><a href='{$row[' itinerary_url']}'><img src='img/itenerary-dark.png' /></a> </td><td><a class='btn btn-primary text-white' role='button' onclick='makeUpdate(\"$ran\")' id='btn_$ran'>Update</a></td></tr>";
@@ -200,16 +201,15 @@ function renderTripManagement()
         ";
     }
     echo "</tbody></table>";
-
-
 }
 
-function renderTripManagementForm(){
+function renderTripManagementForm()
+{
     include("list_all_flight.php");
     include("list_all_Tour.php");
-    $airline=returnListAllFlight();
-    $tourCode=returnAllTourName();
-    $dom= "
+    $airline = returnListAllFlight();
+    $tourCode = returnAllTourName();
+    $dom = "
     <table id='addTripForm' class='col-lg-8 modal table table-light table-striped '>
     <form method='post' action='php_common/add_trip.php'>
         <thead>
@@ -249,6 +249,6 @@ function renderTripManagementForm(){
         </form>
     </table>
     ";
-echo $dom;
-
+    echo $dom;
 }
+mysqli_close($db);

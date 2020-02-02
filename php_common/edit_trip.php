@@ -12,4 +12,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
         echo"Error happen! Whyyyy";
     }
 }
-?>
+mysqli_close($db);
