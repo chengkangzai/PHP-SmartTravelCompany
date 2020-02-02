@@ -66,12 +66,13 @@ if ($_SESSION['role'] == "Customer") {
         }
 
         body {
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .hsbtn {
-            height: 487px;
-            position: fixed;
+            height: 100%;
+            max-height: 605px;
+            position: relative;
             z-index: 1;
         }
     </style>
