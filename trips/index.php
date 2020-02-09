@@ -47,7 +47,7 @@ session_start();
             <span class="input-group-text" id="addOnText" >Tour Code</span>
         </div>
         <input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourCode" id="TourCodeInput">
-        <input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourName" id="TourNameInput">
+        <!--<input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourName" id="TourNameInput">-->
         <div class="input-group-append">
             <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
         </div>
