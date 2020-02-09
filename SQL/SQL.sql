@@ -72,8 +72,10 @@ CREATE TABLE C_selected_Tour(
 
 CREATE TABLE Feedback(
     Feedback_ID INT AUTO_INCREMENT PRIMARY key,
-    Feedback VARCHAR(255) not null 
+    Feedback VARCHAR(255) not null ,
+    Complete INT(1) NULL DEFAULT '0',
 )
+
 
 
 INSERT INTO TableName (username,password,FName,LName,IC_num,Position)
