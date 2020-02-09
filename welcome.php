@@ -92,10 +92,12 @@ if ($_SESSION['role'] == "Customer") {
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSecondPanel()" id="manage-trip-btn"> View Ongoing Trip</a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showThirdPanel()" id="update-trip-btn"> Manage Trip</a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showForthPanel()" id="delete-trip-btn"> Manage Tour</a>
+                    <!--
                     <a class="list-group-item list-group-item-action btn btn-primary" href='welcome-old.php' onclick="showFifthPanel()" id="add-trip-btn"> (Old Page...)</a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSixthPanel()" id="add-tour-btn"> Add Tour(Deprecating) </a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSeventhPanel()" id="update-tour-btn"> Update Tour(Deprecating) </a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showEighthPanel()" id="delete-tour-btn"> Delete Tour(Deprecating) </a>
+                    -->
                     <?php
                     if ($position == "Manager" || $position == "Assistant Manager") {
                         echo "<a class='list-group-item list-group-item-action' onclick='showFeedback()' id='feedback-btn'> Feedback</a>";
@@ -142,7 +144,7 @@ if ($_SESSION['role'] == "Customer") {
         <div class="col-lg-10" id="contentPanel4">
             <?php
             echo $GLOBALS['welcomeText'];
-            //renderTourManagement();
+            renderTourManagement();
 
             ?>
         </div>

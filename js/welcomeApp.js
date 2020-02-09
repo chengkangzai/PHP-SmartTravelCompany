@@ -90,9 +90,9 @@ function hideSidePanel() {
 
         sidePanel.addClass("d-none").removeClass("col-lg-2");
         activePanel.addClass("col-lg-11").removeClass("col-lg-10").addClass("mx-auto");
-        sidePanelBtn.removeClass("col-lg-2").css("position","fixed").css("z-index","1").attr("onclick","toggleSidePanel()");
-        $('body').css("overflow","hidden");
-        
+        sidePanelBtn.removeClass("col-lg-2").css("position", "fixed").css("z-index", "1").attr("onclick", "toggleSidePanel()");
+        $('body').css("overflow", "hidden");
+
         //var dom = `
         //<a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
         //`;
@@ -125,40 +125,40 @@ function showChangeProfilePasswordForm() {
         hideChangeProfileInfoForm();
     }
     formPassword.show();
-    btn.removeAttr("onclick").attr("onclick","hideChangeProfilePasswordForm()").removeClass("btn-primary").addClass("btn-info");
+    btn.removeAttr("onclick").attr("onclick", "hideChangeProfilePasswordForm()").removeClass("btn-primary").addClass("btn-info");
 }
 function hideChangeProfilePasswordForm() {
     const form = $('#changeProfilePasswordForm');
     const btn = $("#btnToggleProfilePasswordForm");
     if (form.css("display") == "block") {
         form.hide();
-        btn.removeAttr("onclick").attr("onclick","showChangeProfilePasswordForm()").removeClass("btn-info").addClass("btn-primary");
+        btn.removeAttr("onclick").attr("onclick", "showChangeProfilePasswordForm()").removeClass("btn-info").addClass("btn-primary");
     }
 }
 function showChangeProfileInfoForm() {
     const formPassword = $('#changeProfilePasswordForm');
     const formInfo = $("#changeProfileInfoForm");
     const btn = $("#btnToggleProfileInfoForm");
-    if (formPassword.css("display") !=="none") {
+    if (formPassword.css("display") !== "none") {
         hideChangeProfilePasswordForm();
     }
     formInfo.show();
-    btn.removeAttr("onclick").attr("onclick","hideChangeProfileInfoForm()").removeClass("btn-primary").addClass("btn-info");
+    btn.removeAttr("onclick").attr("onclick", "hideChangeProfileInfoForm()").removeClass("btn-primary").addClass("btn-info");
 }
 function hideChangeProfileInfoForm() {
-    const form=$("#changeProfileInfoForm");
+    const form = $("#changeProfileInfoForm");
     const btn = $("#btnToggleProfileInfoForm");
-    if (form.css("display") =="block") {
+    if (form.css("display") == "block") {
         form.hide();
-        btn.removeAttr("onclick").attr("onclick","showChangeProfileInfoForm()").removeClass("btn-info").addClass("btn-primary");
+        btn.removeAttr("onclick").attr("onclick", "showChangeProfileInfoForm()").removeClass("btn-info").addClass("btn-primary");
     }
 }
 function showAuthenticateEditEmployeeProfile() {
-    const form =$("#authenticateEditEmployeeProfile");
+    const form = $("#authenticateEditEmployeeProfile");
     form.show();
 }
 function hideAuthenticateEditEmployeeProfile() {
-    const form =$("#authenticateEditEmployeeProfile");
+    const form = $("#authenticateEditEmployeeProfile");
     form.hide();
 }
 //Profile section END
@@ -297,7 +297,6 @@ function sendTripUpdate(id) {
                 Airline: s
             },
             success: function (response) {
-                alert
                 if (response == "Success") {
                     replaceValue();
                 } else {
@@ -319,10 +318,10 @@ function sendTripUpdate(id) {
     var x = confirm("Are you sure the data is correct?");
     if (x == true) {
         sendTripUpdateToPHP();
-    }else if (x == false){
+    } else if (x == false) {
         alert("Canceled liao");
     }
-    
+
     /*
     TODO
     1. GET input value 
@@ -413,12 +412,59 @@ function hideAddTripForm() {
 
 //Managed Trip Section Ended
 
+function makeTourUpdate(id) {
+    hideSidePanel();
+    const TourName = $(`#TourName_${id}`);
+    const btn_update = $(`#btn_TourUpdate${id}`);
+
+    const TourNameDom = `
+    <td id="TourName_${id}">
+        <input value="${TourName.text()}" type="text" name="TourName" id="TourNameInput_${id}" class='form-control'>
+    </td>`;
+    TourName.replaceWith(TourNameDom);
+
+    btn_update.removeClass("btn-primary").addClass("btn-danger").removeAttr("onclick").attr("onclick", `sendTourUpdate('${id}')`);
+}
+
+function sendTourUpdate(id) {
+    const TourCode = $(`#TourCode_${id}`);
+    const TourName= $(`#TourNameInput_${id}`);
+
+    $.ajax({
+        type: "POST",
+        url: "php_common/edit_tour.php?type=updateTourName",
+        data: {
+            TourName: TourName.val(),
+            TourCode: TourCode.text()
+        },
+        success: function (response) {
+            if (response =="success") {
+                changeValue();
+            }else{
+                alert(response);
+            }
+        }
+    });
+    function changeValue() {
+        const btn_update = $(`#btn_TourUpdate${id}`);
+
+        btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick",`makeTourUpdate(${id})`);
+
+        const dom =`
+        ${TourName.val()}
+        `;
+        TourName.replaceWith(dom);
+    }
+}
+function showAddTourForm() {
+    
+}
 
 //Main Argument
 $(document).ready(function () {
     //Hide the Panel
     Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
-    
+
 
     $("#managedTrip").DataTable({
         dom: 'Bfrtip',
@@ -457,6 +503,31 @@ $(document).ready(function () {
                 text: 'Add',
                 action: function () {
                     showAddTripForm();
+                }
+            }, {
+                extend: 'collection',
+                text: 'Report',
+                buttons: ['copy', 'csv', 'excel', 'pdf']
+            }
+        ]
+    });
+    $('#TourTable').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [10, 5, 25, -1],
+            ['10rows', '5 rows', '25 rows', 'Show all']
+        ],
+        buttons: [
+            'colvis', 'pageLength',
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                text: 'Add',
+                action: function () {
+                    showAddTourForm();
                 }
             }, {
                 extend: 'collection',
