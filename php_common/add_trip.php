@@ -1,6 +1,6 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
-    
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
     include_once("../config.php");
     include_once("nav.php");
 
@@ -11,35 +11,35 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
     $TourCode = mysqli_real_escape_string($db, $_POST['TourCode']);
 
     if (!empty($departure_date)) {
-        $departure_date_check=1;
-    }else {
-        $err=$err."Departure Date cannot be empty \n ";
+        $departure_date_check = 1;
+    } else {
+        $err = $err . "Departure Date cannot be empty \n ";
     }
 
     if (!empty($Fee)) {
-        $Fee_check=1;
-    }else {
-        $err=$err."Fee cannot be empty \n";
+        $Fee_check = 1;
+    } else {
+        $err = $err . "Fee cannot be empty \n";
     }
 
     if (!empty($Airline)) {
-        $Airline_check=1;
-    }else{
-        $err=$err."Airline cannot be empty \n";
+        $Airline_check = 1;
+    } else {
+        $err = $err . "Airline cannot be empty \n";
     }
 
     if (!empty($TourCode)) {
-        $TourCode_check=1;
-    }else{
-        $err=$err."TourCode cannot be empty \n";
+        $TourCode_check = 1;
+    } else {
+        $err = $err . "TourCode cannot be empty \n";
     }
 
-    if ($Fee_check=1 && $Airline_check =1 && $TourCode_check ==1 && $departure_date_check=1) {
+    if ($Fee_check = 1 && $Airline_check = 1 && $TourCode_check == 1 && $departure_date_check = 1) {
         $sql = "INSERT INTO `Trip`(`Departure_date`, `Fee`, `Airline`, `FK_TourCode`) VALUES ('$newDate',' $Fee','$Airline','$TourCode')";
-    }else {
+    } else {
         echo $err;
     }
-    
+
 
     if (mysqli_query($db, $sql)) {
         renderAlertInJs("Add Success!");
@@ -48,5 +48,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" ) {
         renderAlertInJs("Error happen:3! Here is the error \n $err");
         renderGoBackInJs();
     }
-mysqli_close($db);
+    mysqli_close($db);
 }

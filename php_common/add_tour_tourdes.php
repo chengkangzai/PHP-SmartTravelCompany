@@ -97,6 +97,7 @@ function addTourAndTourDes()
     } else {
         echo "Duplicate entry for Tour Code :)";
     }
+<<<<<<< HEAD
 }
 function deleteTour()
 {
@@ -183,4 +184,7 @@ switch ($type) {
     default:
 
         break;
+=======
+    mysqli_close($db);
+>>>>>>> 14c1d397de1a0fc9bbea2fd851ed01593902fcec
 }

@@ -114,9 +114,7 @@ function renderTripManagementForm()
     ";
     echo $dom;
 }
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    renderTourManagementForm();
-}
+
 //Trip Management Section END
 
 function renderTourManagement()
@@ -176,6 +174,7 @@ function renderTourManagement()
             </td>
         </tr>";
     }
+<<<<<<< HEAD
 
     echo "</tbody></table>";
 }
@@ -186,6 +185,20 @@ function renderTourManagementForm()
     $Category = returnCategorySelection();
     $dom = "<table class='table table-striped ' id='addTourForm'>
     <form action='php_common/add_tour_tourdes.php?type=addTourAndTourDes' method='post' enctype='multipart/form-data'>
+=======
+    echo "</tbody></table>";
+}
+
+function renderTripManagementForm()
+{
+    include("list_all_flight.php");
+    include("list_all_Tour.php");
+    $airline = returnListAllFlight();
+    $tourCode = returnAllTourName();
+    $dom = "
+    <table id='addTripForm' class='col-lg-8 modal table table-light table-striped '>
+    <form method='post' action='php_common/add_trip.php'>
+>>>>>>> 14c1d397de1a0fc9bbea2fd851ed01593902fcec
         <thead>
             <tr class='text-center'>
                 <td colspan='5'> <h2>Add New Tour</h2></td>
@@ -275,7 +288,16 @@ function renderTourManagementForm()
                 </td>
             </tr>
         </tbody>
+<<<<<<< HEAD
     </form>
 </table>";
     echo $dom;
 }
+=======
+        </form>
+    </table>
+    ";
+    echo $dom;
+}
+mysqli_close($db);
+>>>>>>> 14c1d397de1a0fc9bbea2fd851ed01593902fcec

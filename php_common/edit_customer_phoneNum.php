@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $phoneNum = mysqli_real_escape_string($db, $_POST['phoneNumber']);
     $username = mysqli_real_escape_string($db, $_POST['id']);
 
-    
+
 
     if (empty($phoneNum)) {
         echo "Phone Number shall not be empty";
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $phoneCheck = "1";
         }
     }
-    
+
 
     if ($phoneCheck == "1") {
         $sql = "UPDATE Customer SET Phone_num=? WHERE username=?";
@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             mysqli_stmt_bind_param($stmt, "ss", $phoneNum, $username);
             if (mysqli_stmt_execute($stmt)) {
                 echo "success";
-            }else {
+            } else {
                 echo "error";
             }
         }
     }
-
 }
+mysqli_close($db);
