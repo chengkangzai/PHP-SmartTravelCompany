@@ -65,6 +65,23 @@ if ($_SESSION['role'] == "Customer") {
             background-color: whitesmoke;
         }
 
+        #addTourForm {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 25%;
+            top: 10%;
+            width: auto;
+            /* Full width */
+            height: auto;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: whitesmoke;
+        }
+
         body {
             overflow-x: hidden;
         }
@@ -145,7 +162,7 @@ if ($_SESSION['role'] == "Customer") {
             <?php
             echo $GLOBALS['welcomeText'];
             renderTourManagement();
-
+            renderTourManagementForm();
             ?>
         </div>
         <div class="col-lg-10" id="contentPanel5">
@@ -154,107 +171,6 @@ if ($_SESSION['role'] == "Customer") {
             <?php
             echo $GLOBALS['welcomeText'];
             ?>
-            <form action="php_common/add_tour_tourdes.php" method="post" enctype="multipart/form-data">
-                <table class="table table-hover">
-                    <tr>
-                        <td>Tour Code</td>
-                        <td><input type="text" name="TourCode" class="form-control " placeholder="Tour Code"></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Name</td>
-                        <td><input type="text" name="TourName" class="form-control " placeholder="Tour Name"></td>
-                    </tr>
-                    <tr>
-                        <td>Thumbnail Picture (jpg,jpeg,png)</td>
-                        <td>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="pic" accept="image/*">
-                                    <label class=" custom-file-label " for="pic">Choose picture</label>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Itenerary PDF</td>
-                        <td>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input " name="itenerary" accept="application/pdf">
-                                    <label class="custom-file-label " for="itenerary">Choose itenerary in pdf</label>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Category</td>
-                        <td>
-                            <select name="Category" class="custom-select">
-                                <option value="Asia"> Asia</option>
-                                <option value="Asia"> Exotic</option>
-                                <option value="Asia"> Europe</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Destination</td>
-                        <td>
-                            <select name="Destination" class="custom-select">
-                                <option value="Malaysia">Malaysia</option>
-                                <option value="Turkey">Turkey</option>
-                                <option value="Indonesia">Indonesia</option>
-                                <option value="Taiwan">Taiwan</option>
-                                <option value="Europe">Europe</option>
-                                <option value="Italy">Italy</option>
-                                <option value="Cairo">Cairo</option>
-                                <option value="Vietnam">Vietnam</option>
-                                <option value="Thailand">Thailand</option>
-                                <option value="Arfica">Arfica</option>
-                                <option value="China">China</option>
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Tour Hightlight 1</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Point_1"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 1 Description</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Des_1"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 2</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Point_2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 2 Description</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Des_2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 3</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Point_3"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 3 Description</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Des_3"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 4</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Point_4"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Tour Hightlight 4 Description</td>
-                        <td><textarea row="3" col="50" class="form-control" name="Des_4"></textarea></td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" class="text-center mx-auto">
-                            <input type="submit" value="Add Tour" class="btn btn-lg btn-primary">
-                        </td>
-                    </tr>
-                </table>
-            </form>
 
         </div>
         <div class="col-lg-10" id="contentPanel7">

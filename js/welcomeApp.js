@@ -407,7 +407,6 @@ function showAddTripForm() {
 function hideAddTripForm() {
     var TripForm = $("#addTripForm").hide();
     TripForm.hide()
-
 }
 
 //Managed Trip Section Ended
@@ -416,6 +415,7 @@ function makeTourUpdate(id) {
     hideSidePanel();
     const TourName = $(`#TourName_${id}`);
     const btn_update = $(`#btn_TourUpdate${id}`);
+    const btn_delete =$(`btn_DeleteTour${id}`);
 
     const TourNameDom = `
     <td id="TourName_${id}">
@@ -424,6 +424,7 @@ function makeTourUpdate(id) {
     TourName.replaceWith(TourNameDom);
 
     btn_update.removeClass("btn-primary").addClass("btn-danger").removeAttr("onclick").attr("onclick", `sendTourUpdate('${id}')`);
+    btn_delete.removeClass("btn-danger").addClass("btn-secondary").attr("disabled", "disabled").attr("onclick", "alert('You want to update or delete ar?')");
 }
 
 function sendTourUpdate(id) {
@@ -447,6 +448,7 @@ function sendTourUpdate(id) {
     });
     function changeValue() {
         const btn_update = $(`#btn_TourUpdate${id}`);
+        const btn_delete =$(`btn_DeleteTour${id}`);
 
         btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick",`makeTourUpdate(${id})`);
 
@@ -454,11 +456,99 @@ function sendTourUpdate(id) {
         ${TourName.val()}
         `;
         TourName.replaceWith(dom);
+
+        btn_delete.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeAttr("onclick").attr(`onclick()`,`deleteTour(\"${id}\")`);
+        
+        
     }
 }
-function showAddTourForm() {
+
+function deleteTour(id) {
+    const row = $(`#tr_${id}`);
+    const TourCode = $(`#TourCode_${id}`).text();
+
+    var x = confirm('Are you sure you want to delete this tour ?');
+    if (x == true) {
+        $.ajax({
+            type: "POST",
+            url: "php_common/add_tour_tourdes.php?type=deleteTour",
+            data: {
+                TourCode:TourCode
+            },
+            success: function (response) {
+                if (response=="Success") {
+                    row.replaceWith();
+                }else{
+                    alert(response);
+                }
+            }
+        });
+    } else if (x == false) {
+        alert('Operation has been canceled');
+    }
     
 }
+
+function showAddTourForm() {
+    $('#addTourForm').show();
+}
+function hideAddTourForm() {
+    $('#addTourForm').hide();
+}
+function addCategoryForTour(){
+    const category = $("#categoryInAddTourForm");
+    const categoryDom = "<input type='text' required name='Category' class='form-control' placeholder='Enter New Category Name Here' id='categoryInput' value=''> ";
+    category.replaceWith(categoryDom);
+
+    $("#btnChangeCategory").removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "changeCategoryForTour()").text("Select Category");
+}
+
+function changeCategoryForTour(){
+    var category = $("#categoryInput");
+    $.ajax({
+        type: 'POST',
+        url: 'php_common/add_tour_tourdes.php?type=echoCategorySelection',
+        data: {
+            type: 'add'
+        },
+        success: function (response) {
+            if (response !== "") {
+                category.replaceWith(response);
+                $("#btnChangeCategory").removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "addCategoryForTour()").text("Add Category");
+            } else {
+                alert("Error!" + response);
+            }
+        },
+    })
+}
+
+function addDestinationForTour(){
+    const destination = $("#destinationInAddTourForm");
+    const destinationDom = "<input type='text' required name='Destination' class='form-control' placeholder='Enter New Destination Name Here' id='destinationInput' value=''/> ";
+    destination.replaceWith(destinationDom);
+
+    $("#btnChangeDestination").removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "changeDestinationForTour()").text("Select Destination");
+}
+
+function changeDestinationForTour(){
+    var destination = $("#destinationInput");
+    $.ajax({
+        type: 'POST',
+        url: 'php_common/add_tour_tourdes.php?type=echoDestinationSelection',
+        data: {
+            type: 'add'
+        },
+        success: function (response) {
+            if (response !== "") {
+                destination.replaceWith(response);
+                $("#btnChangeDestination").removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "addDestinationForTour()").text("Add Destination");
+            } else {
+                alert("Error!" + response);
+            }
+        },
+    })
+}
+
 
 //Main Argument
 $(document).ready(function () {
