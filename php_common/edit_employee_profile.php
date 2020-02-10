@@ -13,13 +13,8 @@ $username = $_SESSION['login_user'];
 function authenticate()
 {
     if ($GLOBALS['securePassword'] == $GLOBALS['password']) {
-<<<<<<< HEAD
         $authenticated=true;
         //$username=$GLOBALS['username'];
-=======
-        $authenticated = true;
-        $username = $GLOBALS['username'];
->>>>>>> 14c1d397de1a0fc9bbea2fd851ed01593902fcec
         //echo "You are Authenticated  as $username ";
     } else {
         $authenticated = false;
