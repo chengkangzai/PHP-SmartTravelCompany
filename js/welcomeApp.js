@@ -87,14 +87,11 @@ function hideSidePanel() {
         const sidePanel = $("#sidePanel");
         const activePanel = $("#activePanel");
         const sidePanelBtn = $("#hideShowSideBtn");
-
         sidePanel.addClass("d-none").removeClass("col-lg-2");
         activePanel.addClass("col-lg-11").removeClass("col-lg-10").addClass("mx-auto");
-        sidePanelBtn.removeClass("col-lg-2").css("position", "fixed").css("z-index", "1").attr("onclick", "toggleSidePanel()");
-        $('body').css("overflow", "hidden");
-
+        sidePanelBtn.removeClass("col-lg-2").css("position", "fixed").attr("onclick", "toggleSidePanel()");
         //var dom = `
-        //<a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">Toggle Side Panel</a>
+        //<a class="btn btn-info text-white btnToggleSidePanel" role="button" onclick="toggleSidePanel()">ToggleSide Panel</a>
         //`;
         //var heading = $(".welcomeText");
         //heading.parent().append(dom);
@@ -110,7 +107,7 @@ function toggleSidePanel() {
     activePanel.removeClass("col-lg-11").addClass("col-lg-10").removeClass("mx-auto");
     //const btnSidePanel = $(".btnToggleSidePanel");
     //btnSidePanel.replaceWith();
-    sidePanelBtn.attr('onclick', 'hideSidePanel()');
+    sidePanelBtn.attr('onclick', 'hideSidePanel()').css("position", "relative");
 }
 //Side Panel On and off section END
 
@@ -411,11 +408,12 @@ function hideAddTripForm() {
 
 //Managed Trip Section Ended
 
+//Manage Tour Section  START
 function makeTourUpdate(id) {
     hideSidePanel();
     const TourName = $(`#TourName_${id}`);
     const btn_update = $(`#btn_TourUpdate${id}`);
-    const btn_delete =$(`btn_DeleteTour${id}`);
+    const btn_delete = $(`btn_DeleteTour${id}`);
 
     const TourNameDom = `
     <td id="TourName_${id}">
@@ -429,7 +427,7 @@ function makeTourUpdate(id) {
 
 function sendTourUpdate(id) {
     const TourCode = $(`#TourCode_${id}`);
-    const TourName= $(`#TourNameInput_${id}`);
+    const TourName = $(`#TourNameInput_${id}`);
 
     $.ajax({
         type: "POST",
@@ -439,27 +437,25 @@ function sendTourUpdate(id) {
             TourCode: TourCode.text()
         },
         success: function (response) {
-            if (response =="success") {
+            if (response == "success") {
                 changeValue();
-            }else{
+            } else {
                 alert(response);
             }
         }
     });
     function changeValue() {
         const btn_update = $(`#btn_TourUpdate${id}`);
-        const btn_delete =$(`btn_DeleteTour${id}`);
+        const btn_delete = $(`btn_DeleteTour${id}`);
 
-        btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick",`makeTourUpdate(${id})`);
+        btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick", `makeTourUpdate(${id})`);
 
-        const dom =`
+        const dom = `
         ${TourName.val()}
         `;
         TourName.replaceWith(dom);
 
-        btn_delete.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeAttr("onclick").attr(`onclick()`,`deleteTour(\"${id}\")`);
-        
-        
+        btn_delete.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeAttr("onclick").attr(`onclick()`, `deleteTour(\"${id}\")`);
     }
 }
 
@@ -473,12 +469,12 @@ function deleteTour(id) {
             type: "POST",
             url: "php_common/add_tour_tourdes.php?type=deleteTour",
             data: {
-                TourCode:TourCode
+                TourCode: TourCode
             },
             success: function (response) {
-                if (response=="Success") {
+                if (response == "Success") {
                     row.replaceWith();
-                }else{
+                } else {
                     alert(response);
                 }
             }
@@ -486,7 +482,7 @@ function deleteTour(id) {
     } else if (x == false) {
         alert('Operation has been canceled');
     }
-    
+
 }
 
 function showAddTourForm() {
@@ -495,7 +491,7 @@ function showAddTourForm() {
 function hideAddTourForm() {
     $('#addTourForm').hide();
 }
-function addCategoryForTour(){
+function addCategoryForTour() {
     const category = $("#categoryInAddTourForm");
     const categoryDom = "<input type='text' required name='Category' class='form-control' placeholder='Enter New Category Name Here' id='categoryInput' value=''> ";
     category.replaceWith(categoryDom);
@@ -503,7 +499,7 @@ function addCategoryForTour(){
     $("#btnChangeCategory").removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "changeCategoryForTour()").text("Select Category");
 }
 
-function changeCategoryForTour(){
+function changeCategoryForTour() {
     var category = $("#categoryInput");
     $.ajax({
         type: 'POST',
@@ -522,7 +518,7 @@ function changeCategoryForTour(){
     })
 }
 
-function addDestinationForTour(){
+function addDestinationForTour() {
     const destination = $("#destinationInAddTourForm");
     const destinationDom = "<input type='text' required name='Destination' class='form-control' placeholder='Enter New Destination Name Here' id='destinationInput' value=''/> ";
     destination.replaceWith(destinationDom);
@@ -530,7 +526,7 @@ function addDestinationForTour(){
     $("#btnChangeDestination").removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "changeDestinationForTour()").text("Select Destination");
 }
 
-function changeDestinationForTour(){
+function changeDestinationForTour() {
     var destination = $("#destinationInput");
     $.ajax({
         type: 'POST',
@@ -548,7 +544,44 @@ function changeDestinationForTour(){
         },
     })
 }
+//Manage Tour Section END
 
+//Manage Feedback Section STARTED
+function deleteFeedback(id) {
+    //Send to change in db
+    $.ajax({
+        type: 'POST',
+        url: 'php_common/delete_feedback.php',
+        data: {
+            id: id
+        },
+        success: function (response) {
+            if (response == "success") {
+                $(`#${id}`).hide();
+            } else {
+                alert("Error!" + response);
+            }
+        },
+    })
+}
+
+function markFeedbackAsFix(id) {
+    $.ajax({
+        type: 'POST',
+        url: 'php_common/mark_feedback_as_fixed.php',
+        data: {
+            id: id
+        },
+        success: function (response) {
+            if (response == "success") {
+                $(`#${id}`).hide();
+            } else {
+                alert("Error!" + response);
+            }
+        },
+    })
+}
+//Manage Feedback Section ENDED
 
 //Main Argument
 $(document).ready(function () {
@@ -618,6 +651,26 @@ $(document).ready(function () {
                 text: 'Add',
                 action: function () {
                     showAddTourForm();
+                }
+            }, {
+                extend: 'collection',
+                text: 'Report',
+                buttons: ['copy', 'csv', 'excel', 'pdf']
+            }
+        ]
+    });
+    $('#TableFeedback').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [10, 5, 25, -1],
+            ['10rows', '5 rows', '25 rows', 'Show all']
+        ],
+        buttons: [
+            'colvis', 'pageLength',
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
                 }
             }, {
                 extend: 'collection',

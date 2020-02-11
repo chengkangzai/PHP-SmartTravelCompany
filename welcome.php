@@ -117,7 +117,7 @@ if ($_SESSION['role'] == "Customer") {
                     -->
                     <?php
                     if ($position == "Manager" || $position == "Assistant Manager") {
-                        echo "<a class='list-group-item list-group-item-action' onclick='showFeedback()' id='feedback-btn'> Feedback</a>";
+                        echo "<a class='list-group-item list-group-item-action btn btn-primary' href='#' onclick='showFifthPanel()' id='feedback-btn'> Feedback</a>";
                         echo "<a class='list-group-item list-group-item-action' href='register.php' >Register Employee </a>";
                     }
                     ?>
@@ -155,9 +155,7 @@ if ($_SESSION['role'] == "Customer") {
             renderTripManagement();
             renderTripManagementForm();
             ?>
-
         </div>
-
         <div class="col-lg-10" id="contentPanel4">
             <?php
             echo $GLOBALS['welcomeText'];
@@ -166,18 +164,16 @@ if ($_SESSION['role'] == "Customer") {
             ?>
         </div>
         <div class="col-lg-10" id="contentPanel5">
-        </div>
-        <div class="col-lg-10" id="contentPanel6">
+            <!--Feedback -->
             <?php
             echo $GLOBALS['welcomeText'];
+            renderFeedbackForm()
             ?>
-
+        </div>
+        <div class="col-lg-10" id="contentPanel6">
+            
         </div>
         <div class="col-lg-10" id="contentPanel7">
-            <?php
-            include("list_all_flight.php");
-            returnListAllFlight();
-            ?>
         </div>
         <div class="col-lg-10" id="contentPanel8">
         </div>
