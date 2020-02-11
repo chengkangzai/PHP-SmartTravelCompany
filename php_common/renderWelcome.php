@@ -117,6 +117,7 @@ function renderTripManagementForm()
 
 //Trip Management Section END
 
+//Tour Management Section STARTED
 function renderTourManagement()
 {
     $tableHead = "<table border='0' class='table table-striped table-hover' id='TourTable'>
@@ -169,7 +170,7 @@ function renderTourManagement()
                 </a>
             </td>
             <td>
-                <a class='btn btn-danger text-white' role='button' onclick='deleteTour(\"$ran\")'id='btn_DeleteTour$ran'>Update
+                <a class='btn btn-danger text-white' role='button' onclick='deleteTour(\"$ran\")'id='btn_DeleteTour$ran'>Delete
                 </a>
             </td>
         </tr>";
@@ -182,8 +183,9 @@ function renderTourManagementForm()
     include_once("add_tour_tourdes.php");
     $destination = returnDestinationSelection();
     $Category = returnCategorySelection();
-    $dom = "<table class='table table-striped ' id='addTourForm'>
-    <form action='php_common/add_tour_tourdes.php?type=addTourAndTourDes' method='post' enctype='multipart/form-data'>
+    $dom = "
+     <form action='php_common/add_tour_tourdes.php?type=addTourAndTourDes' method='post' enctype='multipart/form-data' id='addTourForm'>
+    <table class='table table-striped ' >
         <thead>
             <tr class='text-center'>
                 <td colspan='5'> <h2>Add New Tour</h2></td>
@@ -273,8 +275,52 @@ function renderTourManagementForm()
                 </td>
             </tr>
         </tbody>
-    
-        </form>
-</table>";
+    </table>
+    </form>";
     echo $dom;
+}
+//Tour Management Section END
+if ($_SERVER['REQUEST_METHOD']=="POST") {
+    renderFeedbackForm();
+}
+function renderFeedbackForm()
+{
+if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Manager") {
+    echo "<div class='p2'>
+    <table border='0' class='table table-striped table-hover' id='TableFeedback'>
+    <thead>
+        <tr>
+            <th scope='col'>Feedback ID</td>
+            <th scope='col'>Feedback</td>
+            <th scope='col'>Delete</td>
+            <th scope='col'>Fixed</th>
+        </tr>
+    </thead>
+    <tbody>";
+    $sql = "SELECT * from Feedback WHERE Complete=0";
+    $result = mysqli_query($GLOBALS['db'], $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row['Feedback_ID'];
+        $data = $row['Feedback'];
+        echo ("
+        <tr id='$id'>
+            <td>$id</td>
+            <td>$data</td>
+            <td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>
+            <td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed <a></td>
+        </tr>
+        ");
+    }
+    echo "</tbody></table></div>";
+} else {
+    notPermit();
+}
+    /*
+    TODO 
+    1. Render the feedback and remove delete function 
+
+    Requirement 
+    1. No delete 
+    2. Double confirm
+*/
 }
