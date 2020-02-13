@@ -92,6 +92,7 @@ if ($_SESSION['role'] == "Customer") {
             position: relative;
             z-index: 1;
         }
+        
     </style>
 </head>
 
@@ -109,18 +110,24 @@ if ($_SESSION['role'] == "Customer") {
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSecondPanel()" id="manage-trip-btn"> View Ongoing Trip</a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showThirdPanel()" id="update-trip-btn"> Manage Trip</a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showForthPanel()" id="delete-trip-btn"> Manage Tour</a>
+                    <?php
+                    if ($position == "Manager" || $position == "Assistant Manager") {
+                        echo "<a class='list-group-item list-group-item-action btn btn-primary' href='#' onclick='showFifthPanel()' id='feedback-btn'> Feedback</a>";
+                    }
+                    ?>
                     <!--
                     <a class="list-group-item list-group-item-action btn btn-primary" href='welcome-old.php' onclick="showFifthPanel()" id="add-trip-btn"> (Old Page...)</a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSixthPanel()" id="add-tour-btn"> Add Tour(Deprecating) </a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSeventhPanel()" id="update-tour-btn"> Update Tour(Deprecating) </a>
                     <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showEighthPanel()" id="delete-tour-btn"> Delete Tour(Deprecating) </a>
                     -->
+                    <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSixthPanel()" id="delete-trip-btn"> View Report</a>
                     <?php
                     if ($position == "Manager" || $position == "Assistant Manager") {
-                        echo "<a class='list-group-item list-group-item-action btn btn-primary' href='#' onclick='showFifthPanel()' id='feedback-btn'> Feedback</a>";
                         echo "<a class='list-group-item list-group-item-action' href='register.php' >Register Employee </a>";
                     }
                     ?>
+                    
                 </div>
                 <div class="col-lg-2 p-0 m-0 ">
                     <a id="hideShowSideBtn" value='hide/show' class="btn btn-primary hsbtn" role="button" onclick="hideSidePanel()" title="Click to close side panel">
@@ -132,7 +139,7 @@ if ($_SESSION['role'] == "Customer") {
         <div class="col-lg-10" id="contentPanel1">
             <?php echo $GLOBALS['welcomeText']
             ?>
-            <div id="switchProfilePanel">
+            <div>
                 <a id="btnToggleProfilePasswordForm" class="btn btn-primary text-white" role="button" onclick="showChangeProfilePasswordForm()">Change Password</a>
 
                 <a id="btnToggleProfileInfoForm" class="btn btn-primary text-white" role="button" onclick="showChangeProfileInfoForm()">Change Profile</a>
@@ -167,11 +174,17 @@ if ($_SESSION['role'] == "Customer") {
             <!--Feedback -->
             <?php
             echo $GLOBALS['welcomeText'];
-            renderFeedbackForm()
+            renderFeedbackForm();
             ?>
         </div>
         <div class="col-lg-10" id="contentPanel6">
-            
+            <?php echo $GLOBALS['welcomeText']; ?>
+            <div>
+                <a id="btnShowTourReportSection" class="btn btn-primary text-white" onclick="showTourReportSection()">Tour Report</a>
+            </div>
+            <?php
+            renderTourReportInTable();
+            ?>
         </div>
         <div class="col-lg-10" id="contentPanel7">
         </div>

@@ -583,101 +583,139 @@ function markFeedbackAsFix(id) {
 }
 //Manage Feedback Section ENDED
 
+function showTourReportSection(){
+    const btn=$("#btnShowTourReportSection");
+    const section =$("#TourReportTableSection");
+
+    btn.removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick","hideTourReportSection()");
+    section.show();
+}
+
+function hideTourReportSection(){
+    const btn=$("#btnShowTourReportSection");
+    const section =$("#TourReportTableSection");
+    
+    btn.removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick","showTourReportSection()");
+    section.hide();
+}
+
 //Main Argument
 $(document).ready(function () {
     //Hide the Panel
     Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
-
-
-    $("#managedTrip").DataTable({
-        dom: 'Bfrtip',
-        lengthMenu: [
-            [10, 5, 25, -1],
-            ['10rows', '5 rows', '25 rows', 'Show all']
-        ],
-        buttons: [
-            'colvis', 'pageLength',
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: ':visible'
+    dataT();
+    function dataT() {
+        $("#managedTrip").DataTable({
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 5, 25, -1],
+                ['10rows', '5 rows', '25 rows', 'Show all']
+            ],
+            buttons: [
+                'colvis', 'pageLength',
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'collection',
+                    text: 'Report',
+                    buttons: ['copy', 'csv', 'excel', 'pdf']
                 }
-            }, {
-                extend: 'collection',
-                text: 'Report',
-                buttons: ['copy', 'csv', 'excel', 'pdf']
-            }
-        ]
-    });
-    $('#TripTable').DataTable({
-        dom: 'Bfrtip',
-        lengthMenu: [
-            [10, 5, 25, -1],
-            ['10rows', '5 rows', '25 rows', 'Show all']
-        ],
-        buttons: [
-            'colvis', 'pageLength',
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: ':visible'
+            ]
+        });
+        $('#TripTable').DataTable({
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 5, 25, -1],
+                ['10rows', '5 rows', '25 rows', 'Show all']
+            ],
+            buttons: [
+                'colvis', 'pageLength',
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    text: 'Add',
+                    action: function () {
+                        showAddTripForm();
+                    }
+                }, {
+                    extend: 'collection',
+                    text: 'Report',
+                    buttons: ['copy', 'csv', 'excel', 'pdf']
                 }
-            }, {
-                text: 'Add',
-                action: function () {
-                    showAddTripForm();
+            ]
+        });
+        $('#TourTable').DataTable({
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 5, 25, -1],
+                ['10rows', '5 rows', '25 rows', 'Show all']
+            ],
+            buttons: [
+                'colvis', 'pageLength',
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    text: 'Add',
+                    action: function () {
+                        showAddTourForm();
+                    }
+                }, {
+                    extend: 'collection',
+                    text: 'Report',
+                    buttons: ['copy', 'csv', 'excel', 'pdf']
                 }
-            }, {
-                extend: 'collection',
-                text: 'Report',
-                buttons: ['copy', 'csv', 'excel', 'pdf']
-            }
-        ]
-    });
-    $('#TourTable').DataTable({
-        dom: 'Bfrtip',
-        lengthMenu: [
-            [10, 5, 25, -1],
-            ['10rows', '5 rows', '25 rows', 'Show all']
-        ],
-        buttons: [
-            'colvis', 'pageLength',
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: ':visible'
+            ]
+        });
+        $('#TableFeedback').DataTable({
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 5, 25, -1],
+                ['10rows', '5 rows', '25 rows', 'Show all']
+            ],
+            buttons: [
+                'colvis', 'pageLength',
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'collection',
+                    text: 'Report',
+                    buttons: ['copy', 'csv', 'excel', 'pdf']
                 }
-            }, {
-                text: 'Add',
-                action: function () {
-                    showAddTourForm();
+            ]
+        });
+        $('#TourReportInTable').DataTable({
+            order: [[ 2, "desc" ]],
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [15, 10, 25, -1],
+                ['15rows', '10 rows', '25 rows', 'Show all']
+            ],
+            buttons: [
+                'colvis', 'pageLength',
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'collection',
+                    text: 'Report',
+                    buttons: ['copy', 'csv', 'excel', 'pdf']
                 }
-            }, {
-                extend: 'collection',
-                text: 'Report',
-                buttons: ['copy', 'csv', 'excel', 'pdf']
-            }
-        ]
-    });
-    $('#TableFeedback').DataTable({
-        dom: 'Bfrtip',
-        lengthMenu: [
-            [10, 5, 25, -1],
-            ['10rows', '5 rows', '25 rows', 'Show all']
-        ],
-        buttons: [
-            'colvis', 'pageLength',
-            {
-                extend: 'print',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            }, {
-                extend: 'collection',
-                text: 'Report',
-                buttons: ['copy', 'csv', 'excel', 'pdf']
-            }
-        ]
-    });
+            ]
+        });
+    }
 
 });

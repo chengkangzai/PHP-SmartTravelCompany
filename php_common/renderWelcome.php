@@ -23,7 +23,7 @@ function renderChangeProfileInfoForm()
     $agency = returnAgency();
     $dom = "
     <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
-     <form action='php_common/edit_employee_profile.php?type=changeProfile' method='POST'> <table class='table table-active table-striped border'> <thead> <tr> <td colspan='2' class='text-center'> <h2>Change Profile Information </h2> </td> </tr> </thead> <tbody> <tr> <td> User Name</td> <td><input type='text' name='username' id='username' placeholder='$username' class='form-control' disabled value='$username'></td> </tr> <tr> <td>First Name</td> <td> <input type='text' name='fname' id='fname' placeholder='Type Your First Name' class='form-control' value='$FName' required> </td> </tr> <tr> <td>Last Name</td> <td> <input type='text' name='lname' id='lname' placeholder='Type Your Last Name' class='form-control' value='$LName' required> </td> </tr> <tr> <td>Belonging Agency</td> <td> $agency </td> </tr> <tr> <td colspan='2' class='text-center'> <a class='btn btn-primary' href='#' role='button' onclick='showAuthenticateEditEmployeeProfile()'>Next</a> <a class='btn btn-danger' href='#' role='button' onclick='hideChangeProfileInfoForm()'>Cancel </a> </td> </tr> </tbody> </table> <div id='authenticateEditEmployeeProfile' > <table class='table table-danger table-striped '>  <tr> <td colspan='2' class='text-center'>Authenticate </td> </tr> <tr> <td>Current Password</td> <td> <input name='currPassword' type='password' placeholder='Type Your Current Password to Authenticate' class='form-control' required>   </td> </tr> <tr> <td colspan='2' class='text-center'> <input class='btn btn-primary' type='submit' value='Submit'> <a class='btn btn-danger' href='#' role='button' onclick='hideAuthenticateEditEmployeeProfile()'>Cancel </a> </td> </tr> </table> </div> </form> 
+     <form action='php_common/edit_employee_profile.php?type=changeProfile' method='POST'> <table class='table table-active table-striped border'> <thead> <tr> <td colspan='2' class='text-center'> <h2>Change Profile Information </h2> </td> </tr> </thead> <tbody> <tr> <td> User Name</td> <td><input type='text' name='username' id='username' placeholder='$username' class='form-control' disabled value='$username'></td> </tr> <tr> <td>First Name</td> <td> <input type='text' name='fname' id='fname' placeholder='Type Your First Name' class='form-control' value='$FName' required> </td> </tr> <tr> <td>Last Name</td> <td> <input type='text' name='lname' id='lname' placeholder='Type Your Last Name' class='form-control' value='$LName' required> </td> </tr> <tr> <td>Belonging Agency</td> <td> $agency </td> </tr> <tr> <td colspan='2' class='text-center'> <a class='btn btn-primary' href='#' role='button' onclick='showAuthenticateEditEmployeeProfile()'>Next</a> <a class='btn btn-danger' href='#' role='button' onclick='hideChangeProfileInfoForm()'>Cancel </a> </td> </tr> </tbody> </table> <div id='authenticateEditEmployeeProfile' > <table class='table table-danger table-striped m-0 '>  <tr> <td colspan='2' class='text-center'>Authenticate </td> </tr> <tr> <td>Current Password</td> <td> <input name='currPassword' type='password' placeholder='Type Your Current Password to Authenticate' class='form-control' required>   </td> </tr> <tr> <td colspan='2' class='text-center'> <input class='btn btn-primary' type='submit' value='Submit'> <a class='btn btn-danger' href='#' role='button' onclick='hideAuthenticateEditEmployeeProfile()'>Cancel </a> </td> </tr> </table> </div> </form> 
     </div>";
     echo $dom;
 }
@@ -120,18 +120,7 @@ function renderTripManagementForm()
 //Tour Management Section STARTED
 function renderTourManagement()
 {
-    $tableHead = "<table border='0' class='table table-striped table-hover' id='TourTable'>
-    <thead>
-        <tr>
-            <th scope='col'> Tour Code </th>
-            <th scope='col'> Tour Name </th>
-            <th scope='col'> Destination </th>
-            <th scope='col'> Itinerary </th>
-            <th scope='col'> Update </th>
-            <th scope='col'> Delete </th>
-        </tr>
-    </thead>
-    <tbody>";
+    $dom = "<table border='0' class='table table-striped table-hover' id='TourTable'> <thead> <tr> <th scope='col'> Tour Code </th> <th scope='col'> Tour Name </th> <th scope='col'> Destination </th> <th scope='col'> Itinerary </th> <th scope='col'> Update </th> <th scope='col'> Delete </th> </tr> </thead> <tbody>";
 
     switch ($GLOBALS['position']) {
         case 'Manager':
@@ -152,31 +141,13 @@ function renderTourManagement()
     }
     $sql = "SELECT * FROM Tour $whereClause";
     $query = mysqli_query($GLOBALS['db'], $sql);
-    echo $tableHead;
+    
     while ($row = mysqli_fetch_assoc($query)) {
         $ran = rand();
-        echo "
-        <tr id='tr_$ran'>
-            <td id='TourCode_$ran'> {$row['TourCode']}      </td>
-            <td id='TourName_$ran'> {$row['Name']}          </td>
-            <td>                    {$row['Destination']}   </td>
-            <td>
-                <a href='{$row['itinerary_url']}'>
-                    <img src='img/itenerary-dark.png'/>
-                </a>  
-            </td>
-            <td>
-                <a class='btn btn-primary text-white' role='button' onclick='makeTourUpdate(\"$ran\")'id='btn_TourUpdate$ran'>Update
-                </a>
-            </td>
-            <td>
-                <a class='btn btn-danger text-white' role='button' onclick='deleteTour(\"$ran\")'id='btn_DeleteTour$ran'>Delete
-                </a>
-            </td>
-        </tr>";
+        $dom.= " <tr id='tr_$ran'> <td id='TourCode_$ran'> {$row['TourCode']}</td> <td id='TourName_$ran'> {$row['Name']}</td> <td>{$row['Destination']}</td> <td> <a href='{$row['itinerary_url']}'> <img src='img/itenerary-dark.png'/> </a>   </td> <td> <a class='btn btn-primary text-white' role='button' onclick='makeTourUpdate(\"$ran\")'id='btn_TourUpdate$ran'>Update </a> </td> <td> <a class='btn btn-danger text-white' role='button' onclick='deleteTour(\"$ran\")'id='btn_DeleteTour$ran'>Delete </a> </td> </tr>";
     }
-
-    echo "</tbody></table>";
+    $dom.="</tbody></table>";
+    echo $dom;
 }
 function renderTourManagementForm()
 {
@@ -280,13 +251,12 @@ function renderTourManagementForm()
     echo $dom;
 }
 //Tour Management Section END
-if ($_SERVER['REQUEST_METHOD']=="POST") {
-    renderFeedbackForm();
-}
+
+//Feedback Management Section STARTED
 function renderFeedbackForm()
 {
-if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Manager") {
-    echo "<div class='p2'>
+    if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Manager") {
+        echo "<div class='p2'>
     <table border='0' class='table table-striped table-hover' id='TableFeedback'>
     <thead>
         <tr>
@@ -297,12 +267,12 @@ if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Mana
         </tr>
     </thead>
     <tbody>";
-    $sql = "SELECT * from Feedback WHERE Complete=0";
-    $result = mysqli_query($GLOBALS['db'], $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row['Feedback_ID'];
-        $data = $row['Feedback'];
-        echo ("
+        $sql = "SELECT * from Feedback WHERE Complete=0";
+        $result = mysqli_query($GLOBALS['db'], $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['Feedback_ID'];
+            $data = $row['Feedback'];
+            echo ("
         <tr id='$id'>
             <td>$id</td>
             <td>$data</td>
@@ -310,11 +280,11 @@ if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Mana
             <td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed <a></td>
         </tr>
         ");
+        }
+        echo "</tbody></table></div>";
+    } else {
+        notPermit();
     }
-    echo "</tbody></table></div>";
-} else {
-    notPermit();
-}
     /*
     TODO 
     1. Render the feedback and remove delete function 
@@ -323,4 +293,18 @@ if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Mana
     1. No delete 
     2. Double confirm
 */
+}
+//Feedback Management Section END
+
+
+function renderTourReportInTable()
+{
+    $sql = 'SELECT `TourCode`, `Name`, SUM(`Fee`) AS TotalFee, COUNT(`Booking_ID`) AS TotalCount FROM `Booking` INNER JOIN `Trip` T ON FK_Trip_ID = T.Trip_ID INNER JOIN `Tour` TR ON FK_TourCode = TR.TourCode GROUP BY `TourCode`';
+    $result = mysqli_query($GLOBALS['db'], $sql);
+    $dom = "<div id='TourReportTableSection' style='display:none;'><h3 class='text-center'>Report</h3> <table class='table table-hover table-striped' id='TourReportInTable'> <thead> <th>Tour Code</th> <th>Tour Name</th> <th>Total Sales </th> <th>Total Booking </th> </thead> <tbody>";
+    while ($rows = mysqli_fetch_array($result)) {
+        $dom .= "<tr class='container_result'> <td>{$rows['TourCode']}</td> <td>{$rows['Name']}</td> <td>{$rows['TotalFee']}</td> <td>{$rows['TotalCount']}</td></tr>";
+    }
+    $dom .= "</tbody></table></div>";
+    echo $dom;
 }
