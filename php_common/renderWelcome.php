@@ -154,100 +154,7 @@ function renderTourManagementForm()
     include_once("add_tour_tourdes.php");
     $destination = returnDestinationSelection();
     $Category = returnCategorySelection();
-    $dom = "
-     <form action='php_common/add_tour_tourdes.php?type=addTourAndTourDes' method='post' enctype='multipart/form-data' id='addTourForm'>
-    <table class='table table-striped ' >
-        <thead>
-            <tr class='text-center'>
-                <td colspan='5'> <h2>Add New Tour</h2></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tour Code</td>
-                <td><input required class='form-control' type='text' name='TourCode' placeholder='Please enter Tour Code' /></td>
-                <td></td>
-                <td>Tour Highlight 1</td>
-                <td><input required class='form-control' type='text' name='Point_1' placeholder='Please enter Tour Highlight 1' /></td>
-            </tr>
-            <tr>
-                <td>Tour Name</td>
-                <td><input required class='form-control' type='text' name='TourName' placeholder='Please enter Tour Name' /></td>
-                <td></td>
-                <td>Tour Highlight Description 1</td>
-                <td><textarea required class='form-control' name='Des_1' cols='30' rows='2'  placeholder='Please enter Tour Highlight Description '></textarea></td>
-            </tr>
-            <tr>
-                <td>Thumbnail picture</td>
-                <td>
-                    <div class='input-group'>
-                        <div class='custom-file'>
-                            <input required type='file' class='custom-file-input' name='pic' accept='image/*'>
-                            <label class=' custom-file-label ' for='pic'>Choose picture</label>
-                        </div>
-                    </div>
-                </td>
-                <td></td>
-                <td>Tour Highlight 2</td>
-                <td><input required class='form-control' type='text' name='Point_2' placeholder='Please enter Tour Highlight 2' /></td>
-            </tr>
-            <tr>
-                <td>Itinerary PDF</td>
-                <td>
-                    <div class='input-group'>
-                        <div class='custom-file'>
-                            <input required type='file' class='custom-file-input ' name='itinerary' accept='application/pdf'>
-                            <label class='custom-file-label ' for='itinerary'>Choose itinerary in pdf</label>
-                        </div>
-                    </div>
-                </td>
-                <td></td>
-                <td>Tour Highlight Description 2</td>
-                <td><textarea required class='form-control' name='Des_2' cols='30' rows='2' placeholder='Please enter Tour Highlight Description '></textarea></td>
-            </tr>
-            <tr>
-                <td>Category</td>
-                <td>
-                    $Category
-                </td>
-                <td></td>
-                <td>Tour Highlight 3 </td>
-                <td><input required class='form-control' type='text' name='Point_3' placeholder='Please enter Tour Highlight 3' /></textarea></td>
-            </tr>
-            <tr>
-                <td>Destination</td>
-                <td>
-                    $destination
-                </td>
-                <td></td>
-                <td>Tour Highlight Description 3</td>
-                <td><textarea required class='form-control' name='Des_3' cols='30' rows='2' placeholder='Please enter Tour Highlight Description '></textarea></td>
-            </tr>
-            <tr>
-                <td colspan='2'>
-                    <a id='btnChangeCategory' class='btn btn-primary' href='#' role='button' onclick='addCategoryForTour()'>Add Category</a>
-                    <a id='btnChangeDestination' class='btn btn-primary' href='#' role='button' onclick='addDestinationForTour()'>Add Destination</a>
-                </td>
-                <td></td>
-                <td>Tour Highlight 4 </td>
-                <td><input required class='form-control' type='text' name='Point_4' placeholder='Please enter Tour Highlight 4' /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Tour Highlight Description 4</td>
-                <td><textarea required class='form-control' name='Des_4' cols='30' rows='2' placeholder='Please enter Tour Highlight Description '></textarea></td>
-            </tr>
-            <tr>
-                <td colspan='5' class='text-center text-white' >
-                    <input type='submit' value='Submit' class='btn btn-lg btn-primary'>
-                    <a class='btn btn-lg btn-danger' role='button' onclick='hideAddTourForm()'>Cancel</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </form>";
+    $dom = "<form action='php_common/add_tour_tourdes.php?type=addTourAndTourDes' method='post' enctype='multipart/form-data' id='addTourForm'>　<table class='table table-striped ' >　<thead>　<tr class='text-center'>　<td colspan='5'> <h2>Add New Tour</h2></td>　</tr>　</thead>　<tbody>　<tr>　<td>Tour Code</td>　<td><input required class='form-control' type='text' name='TourCode' placeholder='Please enter Tour Code' /></td>　<td></td>　<td>Tour Highlight 1</td>　<td><input required class='form-control' type='text' name='Point_1' placeholder='Please enter Tour Highlight 1' /></td>　</tr>　<tr>　<td>Tour Name</td>　<td><input required class='form-control' type='text' name='TourName' placeholder='Please enter Tour Name' /></td>　<td></td>　<td>Tour Highlight Description 1</td>　<td><textarea required class='form-control' name='Des_1' cols='30' rows='2'  placeholder='Please enter Tour HighlightDescription '></textarea></td>　</tr>　<tr>　<td>Thumbnail picture</td>　<td>　<div class='input-group'>　<div class='custom-file'>　<input required type='file' class='custom-file-input' name='pic' accept='image/*'>　<label class=' custom-file-label ' for='pic'>Choose picture</label>　</div>　</div>　</td>　<td></td>　<td>Tour Highlight 2</td>　<td><input required class='form-control' type='text' name='Point_2' placeholder='Please enter Tour Highlight 2' /></td>　</tr>　<tr>　<td>Itinerary PDF</td>　<td>　<div class='input-group'>　<div class='custom-file'>　<input required type='file' class='custom-file-input ' name='itinerary' accept='application/pdf'>　<label class='custom-file-label ' for='itinerary'>Choose itinerary in pdf</label>　</div>　</div>　</td>　<td></td>　<td>Tour Highlight Description 2</td>　<td><textarea required class='form-control' name='Des_2' cols='30' rows='2' placeholder='Please enter Tour HighlightDescription '></textarea></td>　</tr>　<tr>　<td>Category</td>　<td>$Category</td>　<td></td>　<td>Tour Highlight 3 </td>　<td><input required class='form-control' type='text' name='Point_3' placeholder='Please enter Tour Highlight 3' /><textarea></td>　</tr>　<tr>　<td>Destination</td>　<td>$destination</td>　<td></td>　<td>Tour Highlight Description 3</td>　<td><textarea required class='form-control' name='Des_3' cols='30' rows='2' placeholder='Please enter Tour HighlightDescription '></textarea></td>　</tr>　<tr>　<td colspan='2'>　<a id='btnChangeCategory' class='btn btn-primary' href='#' role='button' onclick='addCategoryForTour()'>Add Category</a>　<a id='btnChangeDestination' class='btn btn-primary' href='#' role='button' onclick='addDestinationForTour()'>AddDestination</a>　</td>　<td></td>　<td>Tour Highlight 4 </td>　<td><input required class='form-control' type='text' name='Point_4' placeholder='Please enter Tour Highlight 4' /></td>　</tr>　<tr>　<td></td>　<td></td>　<td></td>　<td>Tour Highlight Description 4</td>　<td><textarea required class='form-control' name='Des_4' cols='30' rows='2' placeholder='Please enter Tour HighlightDescription '></textarea></td>　</tr>　<tr>　<td colspan='5' class='text-center text-white' >　<input type='submit' value='Submit' class='btn btn-lg btn-primary'>　<a class='btn btn-lg btn-danger' role='button' onclick='hideAddTourForm()'>Cancel</a>　</td>　</tr>　</tbody>　</table>　</form>";
     echo $dom;
 }
 //Tour Management Section END
@@ -256,29 +163,13 @@ function renderTourManagementForm()
 function renderFeedbackForm()
 {
     if ($GLOBALS['position'] == "Manager" || $GLOBALS['position'] == "Assistant Manager") {
-        echo "<div class='p2'>
-    <table border='0' class='table table-striped table-hover' id='TableFeedback'>
-    <thead>
-        <tr>
-            <th scope='col'>Feedback ID</td>
-            <th scope='col'>Feedback</td>
-            <th scope='col'>Delete</td>
-            <th scope='col'>Fixed</th>
-        </tr>
-    </thead>
-    <tbody>";
+        echo "<div class='p2'> <table border='0' class='table table-striped table-hover' id='TableFeedback'> <thead> <tr> <th scope='col'>Feedback ID</td> <th scope='col'>Feedback</td> <th scope='col'>Delete</td> <th scope='col'>Fixed</th> </tr> </thead> <tbody>";
         $sql = "SELECT * from Feedback WHERE Complete=0";
         $result = mysqli_query($GLOBALS['db'], $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $id = $row['Feedback_ID'];
             $data = $row['Feedback'];
-            echo ("
-        <tr id='$id'>
-            <td>$id</td>
-            <td>$data</td>
-            <td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>
-            <td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed <a></td>
-        </tr>
+            echo ("　<tr id='$id'>　<td>$id</td>　<td>$data</td>　<td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>　<td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed <a></td>　</tr>
         ");
         }
         echo "</tbody></table></div>";
@@ -292,11 +183,11 @@ function renderFeedbackForm()
     Requirement 
     1. No delete 
     2. Double confirm
-*/
+    */
 }
 //Feedback Management Section END
 
-
+//Report Section START
 function renderTourReportInTable()
 {
     $sql = 'SELECT `TourCode`, `Name`, SUM(`Fee`) AS TotalFee, COUNT(`Booking_ID`) AS TotalCount FROM `Booking` INNER JOIN `Trip` T ON FK_Trip_ID = T.Trip_ID INNER JOIN `Tour` TR ON FK_TourCode = TR.TourCode GROUP BY `TourCode`';
@@ -341,3 +232,4 @@ function renderTourReportInBar()
     </script>";
     echo $dom;
 }
+//Report Section END
