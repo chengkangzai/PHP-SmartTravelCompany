@@ -22,10 +22,19 @@ if ($_SESSION['role'] == "Customer") {
     include_once("php_common/nav.php");
     main_CSSandIcon("0", "1");
     ?>
+    <!-- Data table START -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
+    <!-- Data table END -->
+    <!-- Morris Chart START-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- Morris Chart END-->
+    <!-- Customize START -->
     <style>
         .activePanel {
             background-color: blue;
@@ -94,6 +103,7 @@ if ($_SESSION['role'] == "Customer") {
         }
         
     </style>
+    <!-- Customize END -->
 </head>
 
 <body>
@@ -180,10 +190,12 @@ if ($_SESSION['role'] == "Customer") {
         <div class="col-lg-10" id="contentPanel6">
             <?php echo $GLOBALS['welcomeText']; ?>
             <div>
-                <a id="btnShowTourReportSection" class="btn btn-primary text-white" onclick="showTourReportSection()">Tour Report</a>
-            </div>
+                <a id="btnShowTourReportInTableSection" class="btn btn-primary text-white" onclick="showTourReportInTableSection()">Tour Report In table </a>
+                <a id="btnShowTourReportInBarSection" class="btn btn-primary text-white" onclick="showTourReportInBarSection()">Tour Report In Bar </a>
+                </div>
             <?php
             renderTourReportInTable();
+            renderTourReportInBar();
             ?>
         </div>
         <div class="col-lg-10" id="contentPanel7">
@@ -211,15 +223,15 @@ if ($_SESSION['role'] == "Customer") {
             </div>
         </div>
     </div>
-
+    <!-- Bootstrap START -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Bootstrap END -->
+    <!-- Data Table START -->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
@@ -231,21 +243,14 @@ if ($_SESSION['role'] == "Customer") {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.js"></script>
+    <!--Data Table END -->
+    <!-- Custom START -->
     <script src="js/welcomeApp.js"></script>
-    <script>
-        function dconfirm() {
-            var r = confirm("You are about to delete a record ! \n Are you sure ?");
-            if (r == FALSE) {
-                location.reload();
-            }
-        }
-
-        var TripForm = $("#addTripForm").hide();
-
-        function showAddTripForm() {
-            TripForm.show();
-        }
-    </script>
+    <!-- Custom END -->
+    <!-- Morris Chart START -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- Morris Chart END -->
 </body>
 
 </html>

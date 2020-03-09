@@ -141,12 +141,12 @@ function renderTourManagement()
     }
     $sql = "SELECT * FROM Tour $whereClause";
     $query = mysqli_query($GLOBALS['db'], $sql);
-    
+
     while ($row = mysqli_fetch_assoc($query)) {
         $ran = rand();
-        $dom.= " <tr id='tr_$ran'> <td id='TourCode_$ran'> {$row['TourCode']}</td> <td id='TourName_$ran'> {$row['Name']}</td> <td>{$row['Destination']}</td> <td> <a href='{$row['itinerary_url']}'> <img src='img/itenerary-dark.png'/> </a>   </td> <td> <a class='btn btn-primary text-white' role='button' onclick='makeTourUpdate(\"$ran\")'id='btn_TourUpdate$ran'>Update </a> </td> <td> <a class='btn btn-danger text-white' role='button' onclick='deleteTour(\"$ran\")'id='btn_DeleteTour$ran'>Delete </a> </td> </tr>";
+        $dom .= " <tr id='tr_$ran'> <td id='TourCode_$ran'> {$row['TourCode']}</td> <td id='TourName_$ran'> {$row['Name']}</td> <td>{$row['Destination']}</td> <td> <a href='{$row['itinerary_url']}'> <img src='img/itenerary-dark.png'/> </a>   </td> <td> <a class='btn btn-primary text-white' role='button' onclick='makeTourUpdate(\"$ran\")'id='btn_TourUpdate$ran'>Update </a> </td> <td> <a class='btn btn-danger text-white' role='button' onclick='deleteTour(\"$ran\")'id='btn_DeleteTour$ran'>Delete </a> </td> </tr>";
     }
-    $dom.="</tbody></table>";
+    $dom .= "</tbody></table>";
     echo $dom;
 }
 function renderTourManagementForm()
@@ -301,10 +301,43 @@ function renderTourReportInTable()
 {
     $sql = 'SELECT `TourCode`, `Name`, SUM(`Fee`) AS TotalFee, COUNT(`Booking_ID`) AS TotalCount FROM `Booking` INNER JOIN `Trip` T ON FK_Trip_ID = T.Trip_ID INNER JOIN `Tour` TR ON FK_TourCode = TR.TourCode GROUP BY `TourCode`';
     $result = mysqli_query($GLOBALS['db'], $sql);
-    $dom = "<div id='TourReportTableSection' style='display:none;'><h3 class='text-center'>Report</h3> <table class='table table-hover table-striped' id='TourReportInTable'> <thead> <th>Tour Code</th> <th>Tour Name</th> <th>Total Sales </th> <th>Total Booking </th> </thead> <tbody>";
+    $dom = "<div id='TourReportTableInTableSection' style='display:none;'><h3 class='text-center'>Report</h3> <table class='table table-hover table-striped' id='TourReportInTable'> <thead> <th>Tour Code</th> <th>Tour Name</th> <th>Total Sales </th> <th>Total Booking </th> </thead> <tbody>";
     while ($rows = mysqli_fetch_array($result)) {
         $dom .= "<tr class='container_result'> <td>{$rows['TourCode']}</td> <td>{$rows['Name']}</td> <td>{$rows['TotalFee']}</td> <td>{$rows['TotalCount']}</td></tr>";
     }
     $dom .= "</tbody></table></div>";
+    echo $dom;
+}
+
+function renderTourReportInBar()
+{
+    $sql = "SELECT `TourCode`, `Name`, SUM(`Fee`) AS Total FROM `Booking` INNER JOIN `Trip` T ON FK_Trip_ID = T.Trip_ID INNER JOIN `Tour` TR ON FK_TourCode = TR.TourCode GROUP BY `TourCode` ORDER BY Total DESC  ";
+    $result = mysqli_query($GLOBALS['db'], $sql);
+
+    while ($row = mysqli_fetch_array($result)) {
+        $data .= "{
+        Price: '{$row["Total"]}',
+        Tour: '{$row["Name"]}',
+        Tcode:'{$row["TourCode"]}'
+    },";
+    }
+
+    $dom.="    <div id='TourReportInBarSection'  >
+        <h3 class='text-center'>Tour Overall Sales</h3>
+        <div id='TourReportInBar'></div>
+    </div>";
+    $dom.="
+    <script>
+    new Morris.Bar({
+        //https://morrisjs.github.io/morris.js/bars.html 
+        element: 'TourReportInBar', 
+        data: [$data], 
+        xkey: ['Tcode'], 
+        ykeys: ['Price'], 
+        labels: ['Price'],
+        
+    });
+    
+    </script>";
     echo $dom;
 }

@@ -274,6 +274,11 @@ function makeTripUpdate(id) {
     */
 }
 
+function showAddTripForm() {
+    var TripForm = $("#addTripForm");
+    TripForm.show();
+}
+
 function sendTripUpdate(id) {
     const tripId = $(`#TripID_${id}`);
     const DeptTime = $(`#DeptTimeinput_${id}`);
@@ -583,19 +588,43 @@ function markFeedbackAsFix(id) {
 }
 //Manage Feedback Section ENDED
 
-function showTourReportSection(){
-    const btn=$("#btnShowTourReportSection");
-    const section =$("#TourReportTableSection");
-
-    btn.removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick","hideTourReportSection()");
+function showTourReportInTableSection() {
+    hideSidePanel();
+    const btn = $("#btnShowTourReportInTableSection");
+    const section = $("#TourReportTableInTableSection");
+    const bar = $("#TourReportInBarSection");
+    if (bar.css("display") == "block") {
+        hideTourReportInBarSection();
+    }
+    btn.removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "hideTourReportInTableSection()");
     section.show();
 }
 
-function hideTourReportSection(){
-    const btn=$("#btnShowTourReportSection");
-    const section =$("#TourReportTableSection");
-    
-    btn.removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick","showTourReportSection()");
+function hideTourReportInTableSection() {
+    const btn = $("#btnShowTourReportInTableSection");
+    const section = $("#TourReportTableInTableSection");
+
+    btn.removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "showTourReportInTableSection()");
+    section.hide();
+}
+
+function showTourReportInBarSection() {
+    hideSidePanel();
+    const btn = $("#btnShowTourReportInBarSection");
+    const section = $("#TourReportInBarSection");
+    const table = $("#TourReportTableInTableSection");
+    if (table.css("display") == "block") {
+        hideTourReportInTableSection();
+    }
+    btn.removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "hideTourReportInBarSection()");
+    section.show();
+}
+
+function hideTourReportInBarSection() {
+    const btn = $("#btnShowTourReportInBarSection");
+    const section = $("#TourReportInBarSection");
+
+    btn.removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "showTourReportInBarSection()");
     section.hide();
 }
 
@@ -604,6 +633,7 @@ $(document).ready(function () {
     //Hide the Panel
     Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
     dataT();
+    hideTourReportInBarSection();
     function dataT() {
         $("#managedTrip").DataTable({
             dom: 'Bfrtip',
@@ -648,7 +678,8 @@ $(document).ready(function () {
                     text: 'Report',
                     buttons: ['copy', 'csv', 'excel', 'pdf']
                 }
-            ]
+            ],
+            pagingType: "full_numbers"
         });
         $('#TourTable').DataTable({
             dom: 'Bfrtip',
@@ -696,7 +727,7 @@ $(document).ready(function () {
             ]
         });
         $('#TourReportInTable').DataTable({
-            order: [[ 2, "desc" ]],
+            order: [[2, "desc"]],
             dom: 'Bfrtip',
             lengthMenu: [
                 [15, 10, 25, -1],
@@ -717,5 +748,6 @@ $(document).ready(function () {
             ]
         });
     }
+
 
 });
