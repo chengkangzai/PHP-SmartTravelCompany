@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("php_common/nav.php");
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -94,8 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($AgencyChk == 1 and $FNameChk == 1 and $LNameChk == 1 and $passwordChk == 1 and $PositionChk == 1 and $IC_numChk == 1 and $userChk == 1 and $c_userChk == 1 and $CPassChk== 1) {
         $sql = "INSERT INTO Employee (username,password,FName,LName,IC_num,Position,Agency) VALUES ('$username','$shaPassword','$FName','$LName','$IC_num','$Position','$Agency')";
         if (mysqli_query($db, $sql)) {
-            echo ("<script> alert('Add Success!'); </script>");
-            echo ("<script> window.history.go(-1);</script>");
+            renderAlertInJs("Successfully Register");
+            $_SESSION['login_user'] = $username;
+            $_SESSION['role'] = "Employee";
+            header("Location:welcome.php");
         } elseif (mysqli_error($db)) {
             echo "<script> alert('Please choose another Username'); </script> ";
         }
