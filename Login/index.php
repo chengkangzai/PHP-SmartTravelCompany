@@ -2,17 +2,25 @@
 include('../config.php');
 session_start();
 
+//Prevent user login again if they already logged in STARTED
+if ($_SESSION['role'] == "Customer") {
+    header("Location:../C_welcome.php");
+} elseif ($_SESSION['role'] == "Employee") {
+    header("Location:../welcome.php");
+}
+//Prevent user login again if they already logged in END
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from POST form 
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $safepass=sha1($password);
+    $safepass = sha1($password);
 
     // Customer 
     //$sql = "SELECT username FROM Customer WHERE username = '$username' and password = '$safepass'";
     $sql = "SELECT `username` FROM `Customer` WHERE `username` =? and `password` =?";
-    if($stmt = mysqli_prepare($db, $sql)) {
+    if ($stmt = mysqli_prepare($db, $sql)) {
         mysqli_stmt_bind_param($stmt, "ss", $username, $safepass);
         $result = mysqli_stmt_execute($stmt);
         if ($result) {
@@ -26,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Employee
     //$sql1 = "SELECT username FROM Employee WHERE username = '$username' and password = '$safepass'";
     $sql1 = "SELECT `username` FROM Employee WHERE `username` =? and `password` =?";
-    if($stmt1 = mysqli_prepare($db, $sql1)) {
+    if ($stmt1 = mysqli_prepare($db, $sql1)) {
         mysqli_stmt_bind_param($stmt1, "ss", $username, $safepass);
-        $result1 =mysqli_stmt_execute($stmt1);
+        $result1 = mysqli_stmt_execute($stmt1);
         if ($result1) {
             $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
             $active1 = $row1['active'];
@@ -38,16 +46,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($count == 1) {
-        $_SESSION['login_user'] = $username ;
+        //if is customer
+        $_SESSION['login_user'] = $username;
         $_SESSION['role'] = "Customer";
         header("Location:../C_welcome.php");
-    } elseif ($count1 == 1 ) {
-        $_SESSION['login_user']= $username;
+    } elseif ($count1 == 1) {
+        //if is employee
+        $_SESSION['login_user'] = $username;
         $_SESSION['role'] = "Employee";
         header("Location:../welcome.php");
-    }else {
+    } else {
         echo "<script> alert('Your Credential is invalid!'); </script>";
-		echo("<script> window.history.go(-1);</script>");
+        echo ("<script> window.history.go(-1);</script>");
     }
 }
 
@@ -56,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 mysqli_close($db);
 ?>
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -84,19 +94,19 @@ mysqli_close($db);
                 <div class="login-center clearfix">
                     <div class="login-center-img"><img src="img/name.png" /></div>
                     <div class="login-center-input">
-                        <input type="text" name="username" value="" placeholder="Enter Your User Name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your user name '" autofocus required/>
+                        <input type="text" name="username" value="" placeholder="Enter Your User Name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your user name '" autofocus required />
                         <div class="login-center-input-text">User Name</div>
                     </div>
                 </div>
                 <div class="login-center clearfix">
                     <div class="login-center-img"><img src="img/password.png" /></div>
                     <div class="login-center-input">
-                        <input type="password" name="password" value="" placeholder="Enter Your password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter Your Password'" required/>
+                        <input type="password" name="password" value="" placeholder="Enter Your password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter Your Password'" required />
                         <div class="login-center-input-text">Password</div>
                     </div>
                 </div>
                 <div class="btn btn-primary btn-block col-md-10 col-10 col-sm-10 col-md-10 col-xl-10 mx-auto ">
-                    <input type="submit" value="Submit" class="btn btn-primary col-md-12" >
+                    <input type="submit" value="Submit" class="btn btn-primary col-md-12">
                 </div>
                 <div class="login-center clearfix mt-2">
                     <a href="../C_Register.php"> Dont have account? register here !</a>
@@ -131,7 +141,7 @@ mysqli_close($db);
                 ele.className = newClass.replace(/^\s+|\s+$/g, '');
             }
         }
-        
+
         document.querySelector(".login-button").onclick = function() {
             addClass(document.querySelector(".login"), "active")
             setTimeout(function() {
