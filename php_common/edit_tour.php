@@ -19,7 +19,6 @@ function updateAll()
         echo ("<script> window.history.go(-1);</script>");
     } else {
         echo "There is some error (●ˇ∀ˇ●) \n";
-        echo error_log(E_ALL);
     }
 }
 
