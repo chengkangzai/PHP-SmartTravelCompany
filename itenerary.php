@@ -15,6 +15,20 @@ function renderTourSelection(){
     }
 }
 
+function returnTourSelection(){
+    include('config.php');
+    $sql="SELECT * FROM Tour";
+    $query_sql= mysqli_query($db,$sql);
+    $return .="\n";
+    while ($row = mysqli_fetch_assoc($query_sql)) 
+    {
+        $TourCode = $row['TourCode'];                  
+        $TourName = $row['Name'];
+    $return .= "<option value='$TourCode' > $TourName </option> \n";
+    }
+    return $return;
+}
+
 function renderAvailableTripByTour($login_session) {
     include('config.php');
     //Get the Tour that selected by customer
@@ -66,6 +80,19 @@ function renderSelectedTour($TourCode){
     echo "<option value='$TourCode' selected >$TourName</option>";
     echo "<option value='' disable>-------------------- </option>";
     }
+}
+
+function returnSelectedTour($TourCode){
+    include('config.php');
+    $sql="SELECT * FROM Tour where TourCode='$TourCode'";
+    $query_sql= mysqli_query($db,$sql);
+    while ($row=mysqli_fetch_assoc($query_sql)){
+        $TourCode=$row['TourCode'];                  
+        $TourName=$row['Name'];
+    $dom.= "<option value='$TourCode' selected >$TourName</option>";
+    $dom.= "<option value='' disable>-------------------- </option>";
+}
+return $dom;
 }
 ?>
     
