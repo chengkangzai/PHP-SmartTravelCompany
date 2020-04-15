@@ -70,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="form-group row">
                     <div class="input-group mb-3">
                         <select class="custom-select" id="TourCode" name="TourCode" required>
-                            <option selected hidden>Choose your Trips</option>
-                            <<?php
+                            <option selected hidden>Choose your Tour</option>
+                            <?php
                                 $tourCode = $_GET['tcode'];
                                 include_once('itenerary.php');
                                 if ($tourCode == NULL) {

@@ -3,11 +3,6 @@ var y = $('#profile-btn');
 var y1 = $('#manage-trip-btn');
 var y2 = $('#update-trip-btn');
 var y3 = $('#delete-trip-btn');
-var y4 = $('#add-trip-btn');
-var y5 = $('#add-tour-btn');
-var y6 = $('#update-tour-btn');
-var y7 = $('#delete-tour-btn');
-var y8 = $('#feedback-btn');
 
 
 //Hiiden 
@@ -15,11 +10,6 @@ var Z = $('#contentPanel1');
 var Z1 = $('#contentPanel2');
 var Z2 = $('#contentPanel3');
 var Z3 = $('#contentPanel4');
-var Z4 = $('#contentPanel5');
-var Z5 = $('#contentPanel6');
-var Z6 = $('#contentPanel7');
-var Z7 = $('#contentPanel8');
-var Z8 = $('#contentPanel9');
 
 
 //Welcome Page
@@ -32,7 +22,7 @@ function showFirstPanel() {
     Z.show().attr("id", "activePanel");
     Z1.hide().removeAttr("id");
     Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id"); /* Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");*/
+    Z3.hide().removeAttr("id");
 }
 
 function showSecondPanel() {
@@ -40,7 +30,7 @@ function showSecondPanel() {
     Z1.show().attr("id", "activePanel");
     Z.hide().removeAttr("id");
     Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id"); /* Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");*/
+    Z3.hide().removeAttr("id");
 }
 
 function showThirdPanel() {
@@ -48,7 +38,7 @@ function showThirdPanel() {
     Z2.show().attr("id", "activePanel");
     Z.hide().removeAttr("id");
     Z1.hide().removeAttr("id");
-    Z3.hide().removeAttr("id"); /* Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");*/
+    Z3.hide().removeAttr("id");
 }
 
 function showForthPanel() {
@@ -56,68 +46,10 @@ function showForthPanel() {
     Z3.show().attr("id", "activePanel");
     Z.hide().removeAttr("id");
     Z1.hide().removeAttr("id");
-    Z2.hide().removeAttr("id"); /* Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");*/
+    Z2.hide().removeAttr("id");
 }
 
-function showFifthPanel() {
-    a.hide();
-    Z4.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id");
-    Z1.hide().removeAttr("id");
-    Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id"); /* Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");*/
-}
 
-function showSixthPanel() {
-    a.hide();
-    Z5.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id");
-    Z1.hide().removeAttr("id");
-    Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id");
-    Z4.hide().removeAttr("id");
-    Z6.hide().removeAttr("id");
-    Z7.hide().removeAttr("id");
-    Z8.hide().removeAttr("id");
-}
-
-function showSeventhPanel() {
-    a.hide();
-    Z6.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id");
-    Z1.hide().removeAttr("id");
-    Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id");
-    Z4.hide().removeAttr("id");
-    Z5.hide().removeAttr("id");
-    Z7.hide().removeAttr("id");
-    Z8.hide().removeAttr("id");
-}
-
-function showEighthPanel() {
-    a.hide();
-    Z7.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id");
-    Z1.hide().removeAttr("id");
-    Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id");
-    Z4.hide().removeAttr("id");
-    Z5.hide().removeAttr("id");
-    Z7.hide().removeAttr("id");
-    Z8.hide().removeAttr("id");
-}
-
-function showNinthPanel() {
-    a.hide();
-    Z8.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id");
-    Z1.hide().removeAttr("id");
-    Z2.hide().removeAttr("id");
-    Z3.hide().removeAttr("id");
-    Z4.hide().removeAttr("id");
-    Z5.hide().removeAttr("id");
-    Z7.hide().removeAttr("id");
-}
 //Trigger content panel END
 
 //Side Panel On and off section start
@@ -220,6 +152,26 @@ $(document).ready(function() {
             lengthMenu: [
                 [10, 5, 25, -1],
                 ['10rows', '5 rows', '25 rows', 'Show all']
+            ],
+            buttons: [
+                'colvis', 'pageLength',
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'collection',
+                    text: 'Report',
+                    buttons: ['copy', 'csv', 'excel', 'pdf']
+                }
+            ]
+        });
+        $("#PassBookedTrip").DataTable({
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [5, 10, 25, -1],
+                ['5 rows', '10 rows', '25 rows', 'Show all']
             ],
             buttons: [
                 'colvis', 'pageLength',

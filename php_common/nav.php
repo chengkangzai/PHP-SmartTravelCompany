@@ -6,7 +6,7 @@ function navbar()
 
     if ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Employee") {
         //User Logged in
-        echo "
+        $dom .= "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand active font-weight-bold' href='$host/index.php'>Smart Holidays</a>
                 <!-- only shows with small screen (powered by javascript and bootstrap CSS class) -->
@@ -27,6 +27,9 @@ function navbar()
                         <a class='nav-link' href='$host/About_us.php'>About Us</a>
                     </li>
                     <li class='nav-item'>
+                        <a class='nav-link' href='$host/bot/index.php'>BOT</a>
+                    </li>
+                    <li class='nav-item'>
                     <a class='nav-link' href='$host/welcome'>Dashboard</a>
                         </li>
                     <li class='nav-item'>
@@ -38,7 +41,7 @@ function navbar()
     ";
     } elseif ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Customer") {
         //User Logged in
-        echo "
+        $dom .= "
             <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
                 <a class='navbar-brand font-weight-bold' href='$host/index.php'>Smart Holidays</a>
                     <!-- only shows with small screen (powered by javascript and bootstrap CSS class) -->
@@ -59,6 +62,9 @@ function navbar()
                             <a class='nav-link' href='$host/About_us.php'>About Us</a>
                         </li>
                         <li class='nav-item'>
+                            <a class='nav-link' href='$host/bot/index.php'>BOT</a>
+                        </li>
+                        <li class='nav-item'>
                         <a class='nav-link' href='$host/C_welcome'>Dashboard</a>
                             </li>
                         <li class='nav-item'>
@@ -69,7 +75,7 @@ function navbar()
             </nav>
         ";
     } else {
-        echo "
+        $dom .= "
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <a class='navbar-brand font-weight-bold' href='$host/index.php'>Smart Holidays</a>
                 <!-- only shows with small screen (powered by javascript and bootstrap CSS class) -->
@@ -90,6 +96,9 @@ function navbar()
                         <a class='nav-link' href='$host/About_us.php'>About Us</a>
                     </li>
                     <li class='nav-item'>
+                        <a class='nav-link' href='$host/bot/index.php'>BOT</a>
+                    </li>
+                    <li class='nav-item'>
                     <a class='nav-link' href='$host/Login/index.php'>Login</a>
                         </li>
                 </ul>
@@ -97,6 +106,8 @@ function navbar()
         </nav>
     ";
     }
+
+    echo $dom;
 }
 
 
@@ -148,7 +159,7 @@ function trip_info($tour_code)
         <div class='embed-responsive embed-responsive-16by9'>
         <img src= '$thumbnail' class='img-fluid embed-responsive-item' alt='thumbnail picture' />
         </div>
-            <h3 class='text-capitalize'>$Tour_name</h3>
+            <h3 class='text-center'>$Tour_name</h3>
         <div class='mx-auto text-center'>
         Tour Code: $tour_code
         </div>
@@ -183,7 +194,7 @@ function trip_info($tour_code)
                 }
                 }
                 </script>
-            <a href='$itenerary' class='btn btn-dark x-auto'>Itinerary </a>
+            <a href='$itenerary' class='btn btn-info x-auto'>Itinerary </a>
             <a href='../booking.php?tcode=$tour_code' class='btn btn-danger x-auto'>Book now ! </a>
         </div>
         </div>

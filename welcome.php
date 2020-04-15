@@ -29,10 +29,10 @@ if ($_SESSION['role'] == "Customer") {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
     <!-- Data table END -->
     <!-- Morris Chart START-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <!-- Morris Chart END-->
     <!-- Customize START -->
     <style>
@@ -82,7 +82,7 @@ if ($_SESSION['role'] == "Customer") {
             z-index: 1;
             /* Sit on top */
             left: 25%;
-            top: 10%;
+            top: 0;
             width: auto;
             /* Full width */
             height: auto;
@@ -101,7 +101,6 @@ if ($_SESSION['role'] == "Customer") {
             position: relative;
             z-index: 1;
         }
-        
     </style>
     <!-- Customize END -->
 </head>
@@ -137,7 +136,7 @@ if ($_SESSION['role'] == "Customer") {
                         echo "<a class='list-group-item list-group-item-action' href='register.php' >Register Employee </a>";
                     }
                     ?>
-                    
+
                 </div>
                 <div class="col-lg-2 p-0 m-0 ">
                     <a id="hideShowSideBtn" value='hide/show' class="btn btn-primary hsbtn" role="button" onclick="hideSidePanel()" title="Click to close side panel">
@@ -192,10 +191,10 @@ if ($_SESSION['role'] == "Customer") {
             <div>
                 <a id="btnShowTourReportInTableSection" class="btn btn-primary text-white" onclick="showTourReportInTableSection()">Tour Report In table </a>
                 <a id="btnShowTourReportInBarSection" class="btn btn-primary text-white" onclick="showTourReportInBarSection()">Tour Report In Bar </a>
-                </div>
+            </div>
             <?php
             renderTourReportInTable();
-            renderTourReportInBar();
+            renderTourReportInBar("default");
             ?>
         </div>
         <div class="col-lg-10" id="contentPanel7">
@@ -244,13 +243,13 @@ if ($_SESSION['role'] == "Customer") {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.js"></script>
     <!--Data Table END -->
+    <!-- Morris Chart START -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- Morris Chart END -->
     <!-- Custom START -->
     <script src="js/welcomeApp.js"></script>
     <!-- Custom END -->
-    <!-- Morris Chart START -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-    <!-- Morris Chart END -->
 </body>
 
 </html>

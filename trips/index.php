@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include("../config.php");
 session_start();
 ?>
@@ -12,6 +15,18 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Our Trips</title>
+    <script type="text/javascript">
+            let headID = document.getElementsByTagName("head")[0];
+            let newCss = document.createElement('link');
+            newCss.rel = 'stylesheet';
+            newCss.type = 'text/css';
+            newCss.href = "https://botmake.io/embed/bot17169.css";
+            let newScript = document.createElement('script');
+            newScript.src = "https://botmake.io/embed/bot17169.js";
+            newScript.type = 'text/javascript';
+            headID.appendChild(newScript);
+            headID.appendChild(newCss);
+        </script>
     <style>
         .intro {
             display: none;
@@ -46,6 +61,7 @@ session_start();
     preloader();
 
     ?>
+    <iframe width="100%" height="0" frameBorder="0" src="https://botmake.io/tour-chat?preview=yes"></iframe>
     <div id="carouselId" class="carousel slide col-lg-6 mx-auto " data-ride="carousel">
         <div class="carousel-inner" role="listbox" id="carousel-inner">
         </div>
@@ -58,12 +74,12 @@ session_start();
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto" method="POST" action="">
+
+    <form class="input-group my-3 p-3 input-group-lg col-lg-10 mx-auto " method="POST" action="https://chengkang.synology.me/test/php-assignment/trips/index.php?type=TourCode" id="formID">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="addOnText">Tour Code</span>
+            <span class="input-group-text bg-info text-white" id="trigger" onclick="changeToName()" title='Click me to change search Method !'>Tour Code</span>
         </div>
-        <input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourCode" id="TourCodeInput">
-        <!--<input type="text" class="form-control" placeholder="Type specific Tour Code" required name="TourName" id="TourNameInput">-->
+        <input type="text" class="form-control" placeholder="Type specific TourCode" required name="TourCode" id="Input">
         <div class="input-group-append">
             <input class="btn btn-light border" type="submit" id="button-addon2" value="Search">
         </div>
@@ -74,29 +90,103 @@ session_start();
             <?php
             include_once("../php_common/nav.php");
             include_once("../config.php");
-            $Tour_Code = mysqli_real_escape_string($db, $_POST['TourCode']);
-            $Tour_Name = mysqli_real_escape_string($db, $_POST['TourName']);
+            $type = $_GET['type'];
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if ($Tour_Code !== null) {
-                    trip_info($Tour_Code);
-                } else {
-                    CallAllTour();
+                $Tour_Code = mysqli_real_escape_string($db, $_POST['TourCode']);
+                $Tour_Name = mysqli_real_escape_string($db, $_POST['TourName']);
+                $Category = mysqli_real_escape_string($db, $_POST['Category']);
+                switch ($type) {
+                    case 'TourCode':
+                        trip_info($Tour_Code);
+                        break;
+
+                    case 'TourName':
+                        $sql = "SELECT * from Tour WHERE Name LIKE '%$Tour_Name%'";
+                        $query = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_assoc($query)) {
+                            $tourCode = $row['TourCode'];
+                            trip_info($tourCode);
+                        }
+                        mysqli_close($db);
+                        break;
+
+                    case 'Category':
+                        $sql = "SELECT * from Tour WHERE Category LIKE '%$Category%'";
+                        $query = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_assoc($query)) {
+                            $tourCode = $row['TourCode'];
+                            trip_info($tourCode);
+                        }
+                        mysqli_close($db);
+                        break;
+
+                    default:
+                        CallAllTour();
+                        break;
                 }
             } else {
-                CallAllTour();
+                //if the user is open by a "GET" method
+                $Tour_Code = $_GET['TourCode'];
+                $Tour_Name = $_GET['TourName'];
+                $Category = $_GET['Category'];
+                switch ($type) {
+                    case 'TourCode':
+                        trip_info($Tour_Code);
+                        break;
+
+                    case 'TourName':
+                        $sql = "SELECT * from Tour WHERE Name LIKE '%$Tour_Name%'";
+                        $query = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_assoc($query)) {
+                            $tourCode = $row['TourCode'];
+                            trip_info($tourCode);
+                        }
+                        mysqli_close($db);
+                        break;
+
+                    case 'Category':
+                        $sql = "SELECT * from Tour WHERE Category LIKE '%$Category%'";
+                        $query = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_assoc($query)) {
+                            $tourCode = $row['TourCode'];
+                            trip_info($tourCode);
+                        }
+                        mysqli_close($db);
+                        break;
+
+                    default:
+                        CallAllTour();
+                        break;
+                }
             }
+
+            //TODO
+            //1.Identify type of search
+            //2.Get the Tour Code of that parameter
+            //3.Pass the Tour Code to trip_info(//TourCode Here)
+
+            //How it works now
+            //1. Identify how user open the page
+            //1.1 if its open by "POST" -->  2.0
+            //1.2 If its not open by "POST" --> Call All Tour
+            //2.0 Identify if 
+
+            //What is Trip INFO or card maker
+            //Render the card (Image, Tour Code, Category, Highlight..) 
+
+            //What is Call All Tour ?
+            //Render all Tour and send it to Trip info (card maker)
             ?>
         </div>
     </div>
 
 
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </html>

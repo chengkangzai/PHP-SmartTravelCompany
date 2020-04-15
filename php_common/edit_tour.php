@@ -11,7 +11,26 @@ function updateAll()
     $FK_E_username = mysqli_real_escape_string($GLOBALS['db'], $_POST['FK_E_username']);
     $thumbnail_url = mysqli_real_escape_string($GLOBALS['db'], $_POST['thumbnail_url']);
     $itinerary_url = mysqli_real_escape_string($GLOBALS['db'], $_POST['itenerary']);
+    if ($TourCode !== "") {
+        if ($TourName !== "") {
+            if ($category !== "") {
+                if ($Destination !== "") {
+                    if ($FK_E_username !== "") {
+                        if ($thumbnail_url !== "") {
+                            if ($itinerary_url !== "") {
+                                $allCheck == true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    if ($allCheck !== true) {
+        echo "All field are required";
+        die();
+    }
     $sql = "UPDATE `Tour` SET `Name`='$TourName',`Destination`='$Destination',`Category`='$category',`FK_E_username`='$FK_E_username',`itinerary_url`='$itinerary_url',`thumbnail_url`='$thumbnail_url' WHERE`TourCode`='$TourCode'";
 
     if (mysqli_query($GLOBALS['db'], $sql)) {
@@ -26,23 +45,15 @@ function updateTourName()
 {
     $tourName = $_POST['TourName'];
     $tourCode = $_POST['TourCode'];
-
     if ($tourCode == "" || $tourName == "") {
         echo "Tour Name and Tour Code is required\n ";
     } else {
-        $stmt = "UPDATE `Tour` SET `Name`=? WHERE `TourCode`=?";
-        if ($stmt=mysqli_prepare($GLOBALS['db'], $stmt)) {
-            mysqli_stmt_bind_param($stmt, "ss", $tourName, $tourCode);
-            mysqli_stmt_execute($stmt);
-            if (mysqli_stmt_affected_rows($stmt) == 1) {
-                echo "success";
-            }elseif(mysqli_stmt_affected_rows($stmt) == 0){
-                echo "success";
-            }else{
-                echo "Error When getting affected row";
-            }
-        }else {
-            echo "Error happen when prepare statement";
+        $tourCode=str_replace(" ","",$tourCode);
+        $sql = "UPDATE `Tour` SET `Name`='$tourName' WHERE `TourCode`='$tourCode'";
+        if (mysqli_query($GLOBALS['db'],$sql)) {
+            echo "success";
+        }else{
+            echo "Sth Wrong";
         }
     }
 }

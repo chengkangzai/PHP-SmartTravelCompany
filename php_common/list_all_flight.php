@@ -14,7 +14,7 @@ function listAllFLight()
     $query = mysqli_query($GLOBALS['db'], $sql);
     $id = $_POST['id'];
 
-    echo "<td id='Airline_$id'><select type='Airline' required id='selectAirline$id' class='custom-select' >";
+    echo "<td id='Airline_$id'><select type='Airline' required id='selectAirline$id' class='custom-select' required>";
     while ($row = mysqli_fetch_assoc($query)) {
         $airline = $row['Airline'];
         if ($row['Airline'] == $_POST['Airline']) {

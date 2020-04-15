@@ -38,8 +38,10 @@ function renderAvailableTripByTour($login_session) {
     //Customer's selected Tour
     $TourCode=$Tour_row['FK_TourCode'];
     
+    $date=date("Y-m-d");
     //Check the Trip by Tour
-    $Trip_sql="SELECT * FROM Trip where FK_TourCode='$TourCode' ";
+    $Trip_sql="SELECT * FROM Trip WHERE FK_TourCode='$TourCode' AND Departure_date >='$date' ";
+    $option .= $Trip_sql;
     $Trip_query_sql= mysqli_query($db,$Trip_sql);      
         while ($row=mysqli_fetch_assoc($Trip_query_sql)) 
         {
@@ -47,10 +49,14 @@ function renderAvailableTripByTour($login_session) {
             $Depart_date=$row['Departure_date'];                  
             $Fee=$row['Fee'];
             $Airline=$row['Airline'];
-        echo "
+        $option .= "
         <option value='$Trip_id'> $Depart_date, RM$Fee/pax, $Airline</option>
         ";
         }
+        if($option == ""){
+            $option ="<option selected disabled> Currently there is no Trip </option>";
+        }
+        echo $option;
     mysqli_close($db);
 }
 

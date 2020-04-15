@@ -19,6 +19,7 @@ function authenticate()
     } else {
         $authenticated = false;
         //echo "Your password is wrong! \n";
+        renderAlertInJs("Your Password is Wrong!, Please try again!");
         renderGoBackInJs();
         die();
     }

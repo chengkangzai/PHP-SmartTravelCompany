@@ -29,55 +29,117 @@ var a = $('#welcome');
 function showFirstPanel() {
     a.hide();
     Z.show().attr("id", "activePanel");
-    Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z6.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showSecondPanel() {
     a.hide();
     Z1.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z6.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showThirdPanel() {
     a.hide();
     Z2.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z6.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showForthPanel() {
     a.hide();
     Z3.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z6.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showFifthPanel() {
     a.hide();
     Z4.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z6.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showSixthPanel() {
     a.hide();
     Z5.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z6.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z6.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showSeventhPanel() {
     a.hide();
     Z6.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showEighthPanel() {
     a.hide();
     Z7.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id"); Z8.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
+    Z8.hide().removeAttr("id");
 }
 
 function showNinthPanel() {
     a.hide();
     Z8.show().attr("id", "activePanel");
-    Z.hide().removeAttr("id"); Z1.hide().removeAttr("id"); Z2.hide().removeAttr("id"); Z3.hide().removeAttr("id"); Z4.hide().removeAttr("id"); Z5.hide().removeAttr("id"); Z7.hide().removeAttr("id");
+    Z.hide().removeAttr("id");
+    Z1.hide().removeAttr("id");
+    Z2.hide().removeAttr("id");
+    Z3.hide().removeAttr("id");
+    Z4.hide().removeAttr("id");
+    Z5.hide().removeAttr("id");
+    Z7.hide().removeAttr("id");
 }
 //Trigger content panel END
 
@@ -124,6 +186,7 @@ function showChangeProfilePasswordForm() {
     formPassword.show();
     btn.removeAttr("onclick").attr("onclick", "hideChangeProfilePasswordForm()").removeClass("btn-primary").addClass("btn-info");
 }
+
 function hideChangeProfilePasswordForm() {
     const form = $('#changeProfilePasswordForm');
     const btn = $("#btnToggleProfilePasswordForm");
@@ -132,6 +195,7 @@ function hideChangeProfilePasswordForm() {
         btn.removeAttr("onclick").attr("onclick", "showChangeProfilePasswordForm()").removeClass("btn-info").addClass("btn-primary");
     }
 }
+
 function showChangeProfileInfoForm() {
     const formPassword = $('#changeProfilePasswordForm');
     const formInfo = $("#changeProfileInfoForm");
@@ -142,6 +206,7 @@ function showChangeProfileInfoForm() {
     formInfo.show();
     btn.removeAttr("onclick").attr("onclick", "hideChangeProfileInfoForm()").removeClass("btn-primary").addClass("btn-info");
 }
+
 function hideChangeProfileInfoForm() {
     const form = $("#changeProfileInfoForm");
     const btn = $("#btnToggleProfileInfoForm");
@@ -150,10 +215,12 @@ function hideChangeProfileInfoForm() {
         btn.removeAttr("onclick").attr("onclick", "showChangeProfileInfoForm()").removeClass("btn-info").addClass("btn-primary");
     }
 }
+
 function showAuthenticateEditEmployeeProfile() {
     const form = $("#authenticateEditEmployeeProfile");
     form.show();
 }
+
 function hideAuthenticateEditEmployeeProfile() {
     const form = $("#authenticateEditEmployeeProfile");
     form.hide();
@@ -191,7 +258,7 @@ function sendUpdate(id) {
                 id: username,
                 submit: 'submit'
             },
-            success: function (response) {
+            success: function(response) {
                 if (response == "success") {
                     //Change back to td
                     var target = $(`#customerPhone${id}`);
@@ -231,13 +298,13 @@ function makeTripUpdate(id) {
 
     const DeptTimeDom = `
     <td id="DeptTime_${id}">
-        <input value="${DeptTime.text()}" type="date" name="DeptTime" id="DeptTimeinput_${id}" class='form-control'>
+        <input value="${DeptTime.text()}" type="date" name="DeptTime" id="DeptTimeinput_${id}" class='form-control' required>
     </td>`;
     DeptTime.replaceWith(DeptTimeDom);
 
     const FeeDom = `
     <td id="Fee_${id}">
-        <input value="${Fee.text()}" type="number" name="Fee" id="Feeinput_${id}" class='form-control'>
+        <input value="${Fee.text()}" type="number" name="Fee" id="Feeinput_${id}" class='form-control' required>
     </td>
     `;
     Fee.replaceWith(FeeDom);
@@ -250,8 +317,7 @@ function makeTripUpdate(id) {
             Airline: Airline.text(),
             type: 'update'
         },
-        success: function (response) {
-            alert
+        success: function(response) {
             if (response !== "") {
                 Airline.replaceWith(response);
             } else {
@@ -286,7 +352,7 @@ function sendTripUpdate(id) {
     const Airline = $(`#Airline_${id}`);
     const btn_update = $(`#btn_TripUpdate${id}`);
     const btn_danger = $(`#btn_TripDelete${id}`);
-    var s = $(`#selectAirline${id}`).children('option:selected').attr('value');
+    var airlinee = $(`#selectAirline${id}`).children('option:selected').attr('value');
 
     function sendTripUpdateToPHP() {
         $.ajax({
@@ -296,9 +362,9 @@ function sendTripUpdate(id) {
                 Trip_ID: tripId.text(),
                 Departure_date: DeptTime.val(),
                 Fee: Fee.val(),
-                Airline: s
+                Airline: airlinee
             },
-            success: function (response) {
+            success: function(response) {
                 if (response == "Success") {
                     replaceValue();
                 } else {
@@ -311,14 +377,16 @@ function sendTripUpdate(id) {
     function replaceValue() {
         DeptTime.replaceWith(DeptTime.val());
         Fee.replaceWith(Fee.val());
-        AirlineDom = `<td id="Airline_${id}"> ${s}</td>`
+        AirlineDom = `<td id="Airline_${id}"> ${airlinee}</td>`
         Airline.replaceWith(AirlineDom);
 
         btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick", `makeTripUpdate(\'${id}\')`);
         btn_danger.removeClass("btn-secondary").addClass("btn-danger").removeAttr("disabled").removeClass("onclick").attr("onclick", `sendTripDelete(\'${id}\')`);
     }
+
     var x = confirm("Are you sure the data is correct?");
     if (x == true) {
+        //dataValidation();
         sendTripUpdateToPHP();
     } else if (x == false) {
         alert("Canceled liao");
@@ -343,7 +411,7 @@ function sendTripDelete(trip_id, rowId) {
             data: {
                 Trip_ID: trip_id,
             },
-            success: function (response) {
+            success: function(response) {
                 alert(response);
                 if (response == "Success") {
                     replaceValue();
@@ -355,6 +423,7 @@ function sendTripDelete(trip_id, rowId) {
             },
         })
     }
+
     function replaceValue() {
         tr.hide();
     }
@@ -375,7 +444,7 @@ function sendTripDelete(trip_id, rowId) {
 
 function addAirlineForTrip() {
     var airline = $("#selectAirline");
-    var airlineDom = "<input type='text' required name='Airline' class='form-control' placeholder='Enter New Airline Name Here' id='inputAirline'> ";
+    var airlineDom = "<input type='text' required name='Airline' class='form-control' placeholder='Enter New Airline Name Here' id='inputAirline' required> ";
     airline.replaceWith(airlineDom);
 
     $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "changeAirlineForTrip()").text("Select Airline");
@@ -390,7 +459,7 @@ function changeAirlineForTrip() {
         data: {
             type: 'add'
         },
-        success: function (response) {
+        success: function(response) {
             if (response !== "") {
                 airline.replaceWith(response);
                 $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "addAirlineForTrip()").text("Add Airline");
@@ -418,11 +487,11 @@ function makeTourUpdate(id) {
     hideSidePanel();
     const TourName = $(`#TourName_${id}`);
     const btn_update = $(`#btn_TourUpdate${id}`);
-    const btn_delete = $(`btn_DeleteTour${id}`);
+    const btn_delete = $(`#btn_DeleteTour${id}`);
 
     const TourNameDom = `
     <td id="TourName_${id}">
-        <input value="${TourName.text()}" type="text" name="TourName" id="TourNameInput_${id}" class='form-control'>
+        <input value="${TourName.text()}" type="text" name="TourName" id="TourNameInput_${id}" class='form-control' required>
     </td>`;
     TourName.replaceWith(TourNameDom);
 
@@ -441,7 +510,7 @@ function sendTourUpdate(id) {
             TourName: TourName.val(),
             TourCode: TourCode.text()
         },
-        success: function (response) {
+        success: function(response) {
             if (response == "success") {
                 changeValue();
             } else {
@@ -449,9 +518,10 @@ function sendTourUpdate(id) {
             }
         }
     });
+
     function changeValue() {
         const btn_update = $(`#btn_TourUpdate${id}`);
-        const btn_delete = $(`btn_DeleteTour${id}`);
+        const btn_delete = $(`#btn_DeleteTour${id}`);
 
         btn_update.removeClass("btn-danger").addClass("btn-primary").removeAttr("onclick").attr("onclick", `makeTourUpdate(${id})`);
 
@@ -476,7 +546,7 @@ function deleteTour(id) {
             data: {
                 TourCode: TourCode
             },
-            success: function (response) {
+            success: function(response) {
                 if (response == "Success") {
                     row.replaceWith();
                 } else {
@@ -493,12 +563,14 @@ function deleteTour(id) {
 function showAddTourForm() {
     $('#addTourForm').show();
 }
+
 function hideAddTourForm() {
     $('#addTourForm').hide();
 }
+
 function addCategoryForTour() {
     const category = $("#categoryInAddTourForm");
-    const categoryDom = "<input type='text' required name='Category' class='form-control' placeholder='Enter New Category Name Here' id='categoryInput' value=''> ";
+    const categoryDom = "<input type='text' required name='Category' class='form-control' placeholder='Enter New Category Name Here' id='categoryInput' value='' required> ";
     category.replaceWith(categoryDom);
 
     $("#btnChangeCategory").removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "changeCategoryForTour()").text("Select Category");
@@ -512,7 +584,7 @@ function changeCategoryForTour() {
         data: {
             type: 'add'
         },
-        success: function (response) {
+        success: function(response) {
             if (response !== "") {
                 category.replaceWith(response);
                 $("#btnChangeCategory").removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "addCategoryForTour()").text("Add Category");
@@ -525,7 +597,7 @@ function changeCategoryForTour() {
 
 function addDestinationForTour() {
     const destination = $("#destinationInAddTourForm");
-    const destinationDom = "<input type='text' required name='Destination' class='form-control' placeholder='Enter New Destination Name Here' id='destinationInput' value=''/> ";
+    const destinationDom = "<input type='text' required name='Destination' class='form-control' placeholder='Enter New Destination Name Here' id='destinationInput' value='' required/> ";
     destination.replaceWith(destinationDom);
 
     $("#btnChangeDestination").removeClass("btn-primary").addClass("btn-info").removeAttr("onclick").attr("onclick", "changeDestinationForTour()").text("Select Destination");
@@ -539,7 +611,7 @@ function changeDestinationForTour() {
         data: {
             type: 'add'
         },
-        success: function (response) {
+        success: function(response) {
             if (response !== "") {
                 destination.replaceWith(response);
                 $("#btnChangeDestination").removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "addDestinationForTour()").text("Add Destination");
@@ -560,7 +632,7 @@ function deleteFeedback(id) {
         data: {
             id: id
         },
-        success: function (response) {
+        success: function(response) {
             if (response == "success") {
                 $(`#${id}`).hide();
             } else {
@@ -577,7 +649,7 @@ function markFeedbackAsFix(id) {
         data: {
             id: id
         },
-        success: function (response) {
+        success: function(response) {
             if (response == "success") {
                 $(`#${id}`).hide();
             } else {
@@ -629,11 +701,20 @@ function hideTourReportInBarSection() {
 }
 
 //Main Argument
-$(document).ready(function () {
+$(document).ready(function() {
     //Hide the Panel
-    Z.hide(); Z1.hide(); Z2.hide(); Z3.hide(); Z4.hide(); Z5.hide(); Z6.hide(); Z7.hide(); Z8.hide();
-    dataT();
+    Z.hide();
+    Z1.hide();
+    Z2.hide();
+    Z3.hide();
+    Z4.hide();
+    Z5.hide();
+    Z6.hide();
+    Z7.hide();
+    Z8.hide();
     hideTourReportInBarSection();
+    dataT();
+
     function dataT() {
         $("#managedTrip").DataTable({
             dom: 'Bfrtip',
@@ -670,7 +751,7 @@ $(document).ready(function () {
                     }
                 }, {
                     text: 'Add',
-                    action: function () {
+                    action: function() {
                         showAddTripForm();
                     }
                 }, {
@@ -696,7 +777,7 @@ $(document).ready(function () {
                     }
                 }, {
                     text: 'Add',
-                    action: function () {
+                    action: function() {
                         showAddTourForm();
                     }
                 }, {
@@ -727,7 +808,9 @@ $(document).ready(function () {
             ]
         });
         $('#TourReportInTable').DataTable({
-            order: [[2, "desc"]],
+            order: [
+                [2, "desc"]
+            ],
             dom: 'Bfrtip',
             lengthMenu: [
                 [15, 10, 25, -1],
