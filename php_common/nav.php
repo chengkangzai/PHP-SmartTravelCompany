@@ -3,7 +3,7 @@ session_start();
 function navbar()
 {
     include('host.php');
-
+    $dom = "";
     if ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Employee") {
         //User Logged in
         $dom .= "

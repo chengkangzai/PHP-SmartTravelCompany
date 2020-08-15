@@ -58,21 +58,27 @@ function addTourAndTourDes()
         }
 
         // Declare value for Manager of The Area
-        if ($Category == "Asia") {
-            $FK_E_username = "jmoen";
-        } elseif ($Category == "Europe") {
-            $FK_E_username = "ljones";
-        } elseif ($Category == "Exotic") {
-            $FK_E_username = "nicholaus06";
-        } else {
-            $FK_E_username = "cheng.kang";
-        }
+        switch ($Category) {
+            case "Asia":
+                $FK_E_username = "jmoen";
+                break;
+            case "Europe":
+                $FK_E_username = "ljones";
+                break;
+            case "Exotic":
+                $FK_E_username = "nicholaus06";
+                break;
+            default:
+                $FK_E_username = "cheng.kang";
+                break;
 
+        }
 
         $pdf_httpAccess = "https://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pdf_FileNameNEW";
         $pic_httpAccess = "https://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pic_FileNameNEW";
 
-        $addTourSql = "INSERT INTO `Tour`(`TourCode`, `Name`, `Destination`, `Category`, `FK_E_username`, `itinerary_url`, `thumbnail_url`) VALUES ('$TourCode','$TourName','$Destination','$Category','$FK_E_username','$pdf_httpAccess','$pic_httpAccess');";
+        $addTourSql = /** @lang text */
+            "INSERT INTO `Tour`(`TourCode`, `Name`, `Destination`, `Category`, `FK_E_username`, `itinerary_url`, `thumbnail_url`) VALUES ('$TourCode','$TourName','$Destination','$Category','$FK_E_username','$pdf_httpAccess','$pic_httpAccess');";
 
         if (mysqli_query($GLOBALS['db'], $addTourSql)) {
             $P1 = mysqli_real_escape_string($GLOBALS['db'], $_POST['Point_1']);
@@ -86,8 +92,8 @@ function addTourAndTourDes()
 
             $addTourDesSql = "INSERT INTO `Tour_des`(`FK_TourCode`, `Point_1`, `Des_1`, `Point_2`, `Des_2`, `Point_3`, `Des_3`, `Point_4`, `Des_4`) VALUES ('$TourCode','<b>$P1</b> -','$D1','<b>$P2</b> -','$D2','<b>$P3</b> -','$D3','<b>$P4</b> -','$D4');";
             if (mysqli_query($GLOBALS['db'], $addTourDesSql)) {
-                echo "<script> alert('Insert Success!'); </script>";
-                echo("<script> window.history.go(-1);</script>");
+                echo /** @lang text */ "<script> alert('Insert Success!'); </script>";
+                echo/** @lang text */ ("<script> window.history.go(-1);</script>");
             } else {
                 echo "sth wrong again bro";
             }

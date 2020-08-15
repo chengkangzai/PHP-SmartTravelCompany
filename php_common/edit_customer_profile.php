@@ -75,7 +75,8 @@ function changeProfile()
     $email = $_POST['email'];
     $passport = $_POST['passport'];
     $phoneNum = $_POST['phoneNum'];
-
+    $error = "";
+    $fNameChk = $lNameChk = $emailChk = $allCheck = false;
     if ($fName !== "") {
         if (preg_match("/^[a-zA-Z ]*$/", $fName)) {
             $fNameChk = true;
@@ -95,26 +96,11 @@ function changeProfile()
     } else {
         $error .= "Last Name Shall not be empty. \n";
     }
+    $email !== "" ? $emailChk = true : $error .= "Email Shall not be empty. \n";
 
-    if ($email !== "") {
-        $emailChk = true;
-    } else {
-        $error .= "Email Shall not be empty. \n";
-    }
     $phoneNumChk = true;
 
-    //if ($phoneNum !== "") {
-    //    if (preg_match("/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/", $phoneNum)) {
-    //        $phoneNumChk = true;
-    //    } else {
-    //        $error .= "Please enter a legit malaysia phone number \n";
-    //    }
-    //} else {
-    //    $error .= "Phone number Shall not be empty. \n";
-    //}
-
-
-    if ($fNameChk == true && $lNameChk == true && $emailChk == true && $phoneNumChk == true) {
+    if ($fNameChk && $lNameChk && $emailChk && $phoneNumChk) {
         $allCheck = true;
     }
 
@@ -140,16 +126,6 @@ function changeProfile()
         echo "Fail All check";
     }
     renderGoBackInJs();
-
-
-    /*
-    TODO
-    0. Authenticate 
-    1. Get information 
-        1.1 Data Validation
-    2. prepare SQL
-    3. Execute SQL
-    */
 }
 
 
@@ -159,12 +135,8 @@ switch ($type) {
         changePassword();
         break;
 
-    case 'changeProfile':
-        changeProfile();
-        break;
-
     default:
         changeProfile();
         break;
-};
+}
 mysqli_close($db);

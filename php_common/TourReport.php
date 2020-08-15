@@ -50,10 +50,10 @@ function getMorris()
             //https://morrisjs.github.io/morris.js/bars.html 
             element: 'TourReportInBar', 
             data: [$data], 
-            xkey: ['Tcode'], 
+            ['Tcode'], 
             ykeys: ['Price'], 
             labels: ['Price'],
-        });
+        })
     }
 
     </script>";
