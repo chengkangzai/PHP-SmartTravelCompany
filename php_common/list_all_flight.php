@@ -42,4 +42,5 @@ function returnListAllFlight()
 
     return $domReturn;
 }
+
 mysqli_close($db);

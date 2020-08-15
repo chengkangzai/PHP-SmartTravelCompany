@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($Departure_date !== "") {
             if ($Fee !== "") {
                 if ($Airline !== "") {
-                    $allCheck= "true";
+                    $allCheck = "true";
                 }
             }
         }
@@ -19,15 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($allCheck !== "true") {
         echo "All field are required";
         die();
-    }else{
-        
+    } else {
+
         $sql = "UPDATE `Trip` SET `Departure_date`='$Departure_date',`Fee`='$Fee',`Airline`='$Airline' WHERE `Trip_ID`='$Trip_ID'";
         if (mysqli_query($db, $sql)) {
-            echo ("Success");
+            echo("Success");
         } else {
             echo "Error happen! Whyyyy";
         }
     }
-    
+
 }
 mysqli_close($db);

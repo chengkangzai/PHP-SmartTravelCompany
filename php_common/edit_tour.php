@@ -34,8 +34,8 @@ function updateAll()
     $sql = "UPDATE `Tour` SET `Name`='$TourName',`Destination`='$Destination',`Category`='$category',`FK_E_username`='$FK_E_username',`itinerary_url`='$itinerary_url',`thumbnail_url`='$thumbnail_url' WHERE`TourCode`='$TourCode'";
 
     if (mysqli_query($GLOBALS['db'], $sql)) {
-        echo ("<script> alert('Edit Success!'); </script>");
-        echo ("<script> window.history.go(-1);</script>");
+        echo("<script> alert('Edit Success!'); </script>");
+        echo("<script> window.history.go(-1);</script>");
     } else {
         echo "There is some error (●ˇ∀ˇ●) \n";
     }
@@ -48,11 +48,11 @@ function updateTourName()
     if ($tourCode == "" || $tourName == "") {
         echo "Tour Name and Tour Code is required\n ";
     } else {
-        $tourCode=str_replace(" ","",$tourCode);
+        $tourCode = str_replace(" ", "", $tourCode);
         $sql = "UPDATE `Tour` SET `Name`='$tourName' WHERE `TourCode`='$tourCode'";
-        if (mysqli_query($GLOBALS['db'],$sql)) {
+        if (mysqli_query($GLOBALS['db'], $sql)) {
             echo "success";
-        }else{
+        } else {
             echo "Sth Wrong";
         }
     }
@@ -62,7 +62,6 @@ function updateItinerary()
 {
     echo "Under Development";
 }
-
 
 
 switch ($type) {

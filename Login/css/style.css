@@ -162,7 +162,7 @@ canvas {
     margin-top: 5px;
 }
 
-.login-center-img>img {
+.login-center-img > img {
     width: 100%;
 }
 
@@ -217,7 +217,7 @@ canvas {
     /* Opera */
 }
 
-.login-center-input input:focus~.login-center-input-text {
+.login-center-input input:focus ~ .login-center-input-text {
     top: 0;
     z-index: 3;
     opacity: 1;

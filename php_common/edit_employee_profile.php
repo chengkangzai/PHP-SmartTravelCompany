@@ -9,11 +9,10 @@ $securePassword = sha1($_POST['currPassword']);
 $username = $_SESSION['login_user'];
 
 
-
 function authenticate()
 {
     if ($GLOBALS['securePassword'] == $GLOBALS['password']) {
-        $authenticated=true;
+        $authenticated = true;
         //$username=$GLOBALS['username'];
         //echo "You are Authenticated  as $username ";
     } else {

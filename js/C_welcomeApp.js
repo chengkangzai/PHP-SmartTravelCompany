@@ -80,6 +80,7 @@ function toggleSidePanel() {
     //btnSidePanel.replaceWith();
     sidePanelBtn.attr('onclick', 'hideSidePanel()').css("position", "relative");
 }
+
 //Side Panel On and off section END
 
 
@@ -134,11 +135,12 @@ function hideAuthenticateEditEmployeeProfile() {
     const form = $("#authenticateEditEmployeeProfile");
     form.hide();
 }
+
 //Profile section END
 
 
 //Main Argument
-$(document).ready(function() {
+$(document).ready(function () {
     //Hide the Panel
     Z.hide();
     Z1.hide();

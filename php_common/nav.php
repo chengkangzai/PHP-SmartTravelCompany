@@ -155,7 +155,7 @@ function trip_info($tour_code)
         $ran1 = rand();
         $ran2 = rand();
         $ran3 = rand();
-        echo    "<div class='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 border py-2 mx-auto'>
+        echo "<div class='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 border py-2 mx-auto'>
         <div class='embed-responsive embed-responsive-16by9'>
         <img src= '$thumbnail' class='img-fluid embed-responsive-item' alt='thumbnail picture' />
         </div>
@@ -167,18 +167,18 @@ function trip_info($tour_code)
         Category: $category
         </div>
         ";
-        echo    "
+        echo "
             <ul id='$ran2' class='intro p-3 mx-auto'>
             <h2 class='text-primary text-center'>Highlight</h2> 
         ";
-        echo    "
+        echo "
         <li>$P1$D1</li>
         <li>$P2$D2</li>
         <li>$P3$D3</li>
         <li>$P4$D4</li>
         </ul>
         ";
-        echo    "
+        echo "
             <div>
             <a onclick='sss$ran1()' class='btn btn-dark mx-auto text-light' id='$ran3'>Expand</a>
                 <script>
@@ -221,18 +221,18 @@ function preloader()
 function main_CSSandIcon($dir_layer, $bootstrap)
 {
     if ($dir_layer == "0") {
-        echo ("    
+        echo("    
         <link rel='stylesheet' href='css/style.css'>
         <link rel='icon' href='icon.gif' type='image/gif' sizes='16x16'>
         ");
     } elseif ($dir_layer == "1") {
-        echo ("
+        echo("
             <link rel='stylesheet' href='../css/style.css'>
             <link rel='icon' href='../icon.gif' type='image/gif' sizes='16x16'>  
             ");
     }
     if ($bootstrap == "1") {
-        echo ("
+        echo("
         <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
         ");
     }
@@ -241,20 +241,24 @@ function main_CSSandIcon($dir_layer, $bootstrap)
 function notPermit()
 {
     $user = $_SESSION['login_user'];
-    echo ("
+    echo("
     <h1 class='text-center text-white'> Hi! $user, This functionality is not yet permit to used for you. </h1>
     <h3 class='text-center text-white'> Contact your domain administrator to evaluate your permission. </h3>
     <img src='https://carrierubin.files.wordpress.com/2015/10/sad-cartoon-boy.png' class='text-center'>
     ");
 }
 
-function renderGoBackInJs(){
+function renderGoBackInJs()
+{
     echo "<script> window.history.go(-1);</script>";
 }
-function renderAlertInJs($msg){
+
+function renderAlertInJs($msg)
+{
     echo "<script>alert('$msg')</script>";
 }
 
-function renderRedirectionInJS($path){
+function renderRedirectionInJS($path)
+{
     echo "<script>window.location.href='$path'</script>";
 }

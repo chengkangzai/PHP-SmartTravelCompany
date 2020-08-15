@@ -4,9 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Trip_ID = mysqli_real_escape_string($db, $_POST['Trip_ID']);
     $sql = "SELECT COUNT(Booking_ID) AS Count from Booking WHERE `FK_Trip_ID`=$Trip_ID";
     $query = mysqli_query($db, $sql);
-    $row=mysqli_fetch_assoc($query);
-    $count=$row['Count'];
-    
+    $row = mysqli_fetch_assoc($query);
+    $count = $row['Count'];
+
     if ($count == 0) {
         $sql = "DELETE FROM `Trip` WHERE `Trip_ID`='$Trip_ID' ";
         if (mysqli_query($db, $sql)) {
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
             echo "Error";
         }
-        
+
     } else {
         echo "There is someone booking this Trip, You cant delete this";
     }

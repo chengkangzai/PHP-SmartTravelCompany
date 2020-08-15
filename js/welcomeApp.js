@@ -141,6 +141,7 @@ function showNinthPanel() {
     Z5.hide().removeAttr("id");
     Z7.hide().removeAttr("id");
 }
+
 //Trigger content panel END
 
 //Side Panel On and off section start
@@ -171,6 +172,7 @@ function toggleSidePanel() {
     //btnSidePanel.replaceWith();
     sidePanelBtn.attr('onclick', 'hideSidePanel()').css("position", "relative");
 }
+
 //Side Panel On and off section END
 
 
@@ -225,6 +227,7 @@ function hideAuthenticateEditEmployeeProfile() {
     const form = $("#authenticateEditEmployeeProfile");
     form.hide();
 }
+
 //Profile section END
 
 
@@ -258,7 +261,7 @@ function sendUpdate(id) {
                 id: username,
                 submit: 'submit'
             },
-            success: function(response) {
+            success: function (response) {
                 if (response == "success") {
                     //Change back to td
                     var target = $(`#customerPhone${id}`);
@@ -317,7 +320,7 @@ function makeTripUpdate(id) {
             Airline: Airline.text(),
             type: 'update'
         },
-        success: function(response) {
+        success: function (response) {
             if (response !== "") {
                 Airline.replaceWith(response);
             } else {
@@ -364,7 +367,7 @@ function sendTripUpdate(id) {
                 Fee: Fee.val(),
                 Airline: airlinee
             },
-            success: function(response) {
+            success: function (response) {
                 if (response == "Success") {
                     replaceValue();
                 } else {
@@ -411,7 +414,7 @@ function sendTripDelete(trip_id, rowId) {
             data: {
                 Trip_ID: trip_id,
             },
-            success: function(response) {
+            success: function (response) {
                 alert(response);
                 if (response == "Success") {
                     replaceValue();
@@ -459,7 +462,7 @@ function changeAirlineForTrip() {
         data: {
             type: 'add'
         },
-        success: function(response) {
+        success: function (response) {
             if (response !== "") {
                 airline.replaceWith(response);
                 $("#btn_AddTrip").removeAttr("onclick").attr("onclick", "addAirlineForTrip()").text("Add Airline");
@@ -510,7 +513,7 @@ function sendTourUpdate(id) {
             TourName: TourName.val(),
             TourCode: TourCode.text()
         },
-        success: function(response) {
+        success: function (response) {
             if (response == "success") {
                 changeValue();
             } else {
@@ -546,7 +549,7 @@ function deleteTour(id) {
             data: {
                 TourCode: TourCode
             },
-            success: function(response) {
+            success: function (response) {
                 if (response == "Success") {
                     row.replaceWith();
                 } else {
@@ -584,7 +587,7 @@ function changeCategoryForTour() {
         data: {
             type: 'add'
         },
-        success: function(response) {
+        success: function (response) {
             if (response !== "") {
                 category.replaceWith(response);
                 $("#btnChangeCategory").removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "addCategoryForTour()").text("Add Category");
@@ -611,7 +614,7 @@ function changeDestinationForTour() {
         data: {
             type: 'add'
         },
-        success: function(response) {
+        success: function (response) {
             if (response !== "") {
                 destination.replaceWith(response);
                 $("#btnChangeDestination").removeClass("btn-info").addClass("btn-primary").removeAttr("onclick").attr("onclick", "addDestinationForTour()").text("Add Destination");
@@ -621,6 +624,7 @@ function changeDestinationForTour() {
         },
     })
 }
+
 //Manage Tour Section END
 
 //Manage Feedback Section STARTED
@@ -632,7 +636,7 @@ function deleteFeedback(id) {
         data: {
             id: id
         },
-        success: function(response) {
+        success: function (response) {
             if (response == "success") {
                 $(`#${id}`).hide();
             } else {
@@ -649,7 +653,7 @@ function markFeedbackAsFix(id) {
         data: {
             id: id
         },
-        success: function(response) {
+        success: function (response) {
             if (response == "success") {
                 $(`#${id}`).hide();
             } else {
@@ -658,6 +662,7 @@ function markFeedbackAsFix(id) {
         },
     })
 }
+
 //Manage Feedback Section ENDED
 
 function showTourReportInTableSection() {
@@ -701,7 +706,7 @@ function hideTourReportInBarSection() {
 }
 
 //Main Argument
-$(document).ready(function() {
+$(document).ready(function () {
     //Hide the Panel
     Z.hide();
     Z1.hide();
@@ -751,7 +756,7 @@ $(document).ready(function() {
                     }
                 }, {
                     text: 'Add',
-                    action: function() {
+                    action: function () {
                         showAddTripForm();
                     }
                 }, {
@@ -777,7 +782,7 @@ $(document).ready(function() {
                     }
                 }, {
                     text: 'Add',
-                    action: function() {
+                    action: function () {
                         showAddTourForm();
                     }
                 }, {

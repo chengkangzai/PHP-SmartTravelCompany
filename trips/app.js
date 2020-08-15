@@ -72,4 +72,5 @@ function changeToTourCode() {
 
     $("#formID").replaceWith(dom);
 }
+
 renderPic();

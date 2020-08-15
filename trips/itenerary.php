@@ -1,7 +1,7 @@
 <?php
 include('../config.php');
 session_start();
-    $itenerary_sql="SELECT 
+$itenerary_sql = "SELECT 
     T.TourCode,
     T.Name,
     T.Destination,
@@ -13,14 +13,14 @@ session_start();
     ";
 
 // Query it --> Its for all
-$itenerary_query=mysqli_query($db,$itenerary_sql);
-$itenerary_row=mysqli_fetch_array($itenerary_query,MYSQLI_ASSOC);
-$active=$itenerary_row['active'];
+$itenerary_query = mysqli_query($db, $itenerary_sql);
+$itenerary_row = mysqli_fetch_array($itenerary_query, MYSQLI_ASSOC);
+$active = $itenerary_row['active'];
 
 //Trip
-$itenerary= $itenerary_row['itinerary_url'];
-$Tour_name=$itenerary_row['Name'];
-$thumbnail=$itenerary_row['thumbnail_url'];
+$itenerary = $itenerary_row['itinerary_url'];
+$Tour_name = $itenerary_row['Name'];
+$thumbnail = $itenerary_row['thumbnail_url'];
 
 
 mysqli_close($db);

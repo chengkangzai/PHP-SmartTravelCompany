@@ -15,4 +15,5 @@ function returnAllTourName()
 
     return $domReturn;
 }
+
 mysqli_close($db);

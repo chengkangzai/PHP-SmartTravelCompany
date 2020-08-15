@@ -1,12 +1,11 @@
 <?php
 include_once("../config.php");
-include_once("../session.php");
+include_once("../C_session.php");
 include_once("nav.php");
 session_start();
 $type = $_GET['type'];
 $securePassword = sha1($_POST['currPassword']);
 $username = $_SESSION['login_user'];
-
 
 
 function authenticate()
@@ -102,21 +101,20 @@ function changeProfile()
     } else {
         $error .= "Email Shall not be empty. \n";
     }
+    $phoneNumChk = true;
 
-    if ($phoneNum !== "") {
-        if (preg_match("/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/", $phoneNum)) {
-            $phoneNumChk = true;
-        } else {
-            $error .= "Please enter a legit malaysia phone number \n";
-        }
-    } else {
-        $error .= "Phone number Shall not be empty. \n";
-    }
-    
+    //if ($phoneNum !== "") {
+    //    if (preg_match("/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/", $phoneNum)) {
+    //        $phoneNumChk = true;
+    //    } else {
+    //        $error .= "Please enter a legit malaysia phone number \n";
+    //    }
+    //} else {
+    //    $error .= "Phone number Shall not be empty. \n";
+    //}
 
 
-
-    if ($fNameChk == true && $lNameChk == true && $emailChk == true &&$phoneNumChk == true) {
+    if ($fNameChk == true && $lNameChk == true && $emailChk == true && $phoneNumChk == true) {
         $allCheck = true;
     }
 
@@ -128,7 +126,7 @@ function changeProfile()
     if ($allCheck == true) {
         $sql = "UPDATE `Customer` SET `FName`=?,`LName`=?,`Phone_num`=?,`Email`=?,`Passport`=? WHERE username=?";
         if ($stmt = mysqli_prepare($GLOBALS['db'], $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssssss", $fName, $lName, $phoneNum,$email,$passport, $username);
+            mysqli_stmt_bind_param($stmt, "ssssss", $fName, $lName, $phoneNum, $email, $passport, $username);
             if (mysqli_stmt_execute($stmt)) {
                 echo "Success!";
                 renderAlertInJs("Update Success!");
@@ -165,8 +163,8 @@ switch ($type) {
         changeProfile();
         break;
 
-    default :
+    default:
         changeProfile();
-    break;
+        break;
 };
 mysqli_close($db);

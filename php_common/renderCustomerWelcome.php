@@ -64,7 +64,7 @@ function renderChangeProfileInfoForm()
 
     $dom = "
     <div class='mt-2' id='changeProfileInfoForm' style='display:none'>
-    <form action='php_common/edit_employee_profile.php?type=changeProfile' method='POST'>
+    <form action='php_common/edit_customer_profile.php?type=changeProfile' method='POST'>
         <table class='table table-active table-striped border'>
             <thead>
                 <tr>
@@ -153,7 +153,8 @@ function renderBookedTripInfo()
     echo $table;
 }
 
-function renderPassBookedTripInfo(){
+function renderPassBookedTripInfo()
+{
     $login_session = $GLOBALS['login_session'];
     $date = date("Y-m-d");
     $sql = "SELECT B.Booking_ID , B.FK_Trip_ID , B.FK_C_username, Tour.TourCode , Tour.Name , T.Departure_date, T.Fee, Tour.itinerary_url FROM Booking B  INNER JOIN Trip T ON T.Trip_ID=B.FK_Trip_ID INNER JOIN Tour ON T.FK_TourCode=Tour.TourCode WHERE B.FK_C_username='$login_session' AND T.Departure_date<='$date'";

@@ -14,6 +14,7 @@ function renderChangeProfilePasswordForm()
     ";
     echo $dom;
 }
+
 function renderChangeProfileInfoForm()
 {
     include_once("edit_employee_profile.php");
@@ -27,6 +28,7 @@ function renderChangeProfileInfoForm()
     </div>";
     echo $dom;
 }
+
 //Profile Section END
 
 //Managed Trip Section STARTED 
@@ -59,6 +61,7 @@ function renderManagedTrip()
     }
     echo "</tbody></table>";
 }
+
 //Managed Trip Section END
 
 //Trip Management Section STARTED
@@ -149,6 +152,7 @@ function renderTourManagement()
     $dom .= "</tbody></table>";
     echo $dom;
 }
+
 function renderTourManagementForm()
 {
     include_once("add_tour_tourdes.php");
@@ -252,6 +256,7 @@ function renderTourManagementForm()
 </form>";
     echo $dom;
 }
+
 //Tour Management Section END
 
 //Feedback Management Section STARTED
@@ -264,7 +269,7 @@ function renderFeedbackForm()
         while ($row = mysqli_fetch_assoc($result)) {
             $id = $row['Feedback_ID'];
             $data = $row['Feedback'];
-            echo ("　<tr id='$id'>　<td>$id</td>　<td>$data</td>　<td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>　<td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed <a></td>　</tr>
+            echo("　<tr id='$id'>　<td>$id</td>　<td>$data</td>　<td><a class='btn btn-danger' href='#' role='button' onclick='deleteFeedback(\"$id\")'>Delete</a></td>　<td><a class='btn btn-success' href='#' role='button' onclick='markFeedbackAsFix(\"$id\")'>Fixed <a></td>　</tr>
         ");
         }
         echo "</tbody></table></div>";
@@ -280,6 +285,7 @@ function renderFeedbackForm()
     2. Double confirm
     */
 }
+
 //Feedback Management Section END
 
 //Report Section START

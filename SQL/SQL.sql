@@ -68,13 +68,13 @@ CREATE TABLE C_selected_Tour(
         FOREIGN KEY (FK_C_username) REFERENCES Customer(username),
     FK_TourCode VARCHAR(255),
         FOREIGN KEY(FK_TourCode) REFERENCES Tour(TourCode)
-)
+);
 
 CREATE TABLE Feedback(
     Feedback_ID INT AUTO_INCREMENT PRIMARY key,
     Feedback VARCHAR(255) not null ,
-    Complete INT(1) NULL DEFAULT '0',
-)
+    Complete INT(1) NULL DEFAULT '0'
+);
 
 
 

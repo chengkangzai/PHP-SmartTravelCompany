@@ -64,13 +64,13 @@ function addTourAndTourDes()
             $FK_E_username = "ljones";
         } elseif ($Category == "Exotic") {
             $FK_E_username = "nicholaus06";
-        }else{
-            $FK_E_username ="cheng.kang";
+        } else {
+            $FK_E_username = "cheng.kang";
         }
 
 
-        $pdf_httpAccess = "http://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pdf_FileNameNEW";
-        $pic_httpAccess = "http://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pic_FileNameNEW";
+        $pdf_httpAccess = "https://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pdf_FileNameNEW";
+        $pic_httpAccess = "https://chengkang.synology.me/test/php-assignment/itinerary/$Category/$pic_FileNameNEW";
 
         $addTourSql = "INSERT INTO `Tour`(`TourCode`, `Name`, `Destination`, `Category`, `FK_E_username`, `itinerary_url`, `thumbnail_url`) VALUES ('$TourCode','$TourName','$Destination','$Category','$FK_E_username','$pdf_httpAccess','$pic_httpAccess');";
 
@@ -87,7 +87,7 @@ function addTourAndTourDes()
             $addTourDesSql = "INSERT INTO `Tour_des`(`FK_TourCode`, `Point_1`, `Des_1`, `Point_2`, `Des_2`, `Point_3`, `Des_3`, `Point_4`, `Des_4`) VALUES ('$TourCode','<b>$P1</b> -','$D1','<b>$P2</b> -','$D2','<b>$P3</b> -','$D3','<b>$P4</b> -','$D4');";
             if (mysqli_query($GLOBALS['db'], $addTourDesSql)) {
                 echo "<script> alert('Insert Success!'); </script>";
-                echo ("<script> window.history.go(-1);</script>");
+                echo("<script> window.history.go(-1);</script>");
             } else {
                 echo "sth wrong again bro";
             }
@@ -98,10 +98,11 @@ function addTourAndTourDes()
         echo "Duplicate entry for Tour Code :)";
     }
 }
+
 function deleteTour()
 {
     $TourCode = mysqli_real_escape_string($GLOBALS['db'], $_POST['TourCode']);
-    $TourCode=str_replace(" ","",$TourCode);
+    $TourCode = str_replace(" ", "", $TourCode);
 
     $deleteTourSQL = "DELETE FROM `Tour` WHERE`TourCode`='$TourCode'";
     $deleteTourDesSQL = "DELETE FROM `Tour_des` WHERE`FK_TourCode`='$TourCode'";
@@ -122,6 +123,7 @@ function deleteTour()
         echo("unable to delete Tour_des");
     }
 }
+
 function returnDestinationSelection()
 {
     $sql = "SELECT DISTINCT `Destination` from Tour";
