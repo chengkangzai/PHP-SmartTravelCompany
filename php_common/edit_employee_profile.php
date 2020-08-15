@@ -13,19 +13,12 @@ function authenticate()
 {
     if ($GLOBALS['securePassword'] == $GLOBALS['password']) {
         $authenticated = true;
-        //$username=$GLOBALS['username'];
-        //echo "You are Authenticated  as $username ";
     } else {
-        $authenticated = false;
-        //echo "Your password is wrong! \n";
         renderAlertInJs("Your Password is Wrong!, Please try again!");
         renderGoBackInJs();
         die();
     }
     return $authenticated;
-    //See Authenticate if the password is correct
-    //Return true if password is correct
-
 }
 
 function changePassword()
@@ -33,7 +26,7 @@ function changePassword()
     authenticate();
     $password1 = $_POST['password1'];
     $password2 = $_POST['password2'];
-
+    $error = "";
     if ($password1 == $password2) {
         if ($password1 !== "" || $password2 !== "") {
             if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/i", $password1)) {
@@ -74,6 +67,8 @@ function changeProfile()
     $fName = $_POST['fname'];
     $lName = $_POST['lname'];
     $agency = $_POST['Agency'];
+    $error = "";
+    $fNameChk = $lNameChk = $agencyChk = $allCheck = false;
     if ($fName !== "") {
         if (preg_match("/^[a-zA-Z ]*$/", $fName)) {
             $fNameChk = true;
@@ -153,13 +148,6 @@ function returnAgency()
     }
     $domReturn .= "</select>";
     return $domReturn;
-
-    /*
-    TODO
-    1. Query Data from db
-    2. Arrange the data for select
-    3. return data 
-    */
 }
 
 function returnPosition()
@@ -181,12 +169,6 @@ function returnPosition()
     }
     $domReturn .= "</select>";
     return $domReturn;
-    /*
-    TODO
-    1. Query Data from db
-    2. Arrange the data for select
-    3. return data 
-    */
 }
 
 
@@ -207,6 +189,6 @@ switch ($type) {
     case 'getPosition':
         echo returnPosition();
         break;
-};
+}
 mysqli_close($db);
 

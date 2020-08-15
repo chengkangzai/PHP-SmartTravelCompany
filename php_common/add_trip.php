@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Fee = mysqli_real_escape_string($db, $_POST['Fee']);
     $Airline = mysqli_real_escape_string($db, $_POST['Airline']);
     $TourCode = mysqli_real_escape_string($db, $_POST['TourCode']);
-
+    $err="";
     if (!empty($departure_date)) {
         $departure_date_check = 1;
     } else {

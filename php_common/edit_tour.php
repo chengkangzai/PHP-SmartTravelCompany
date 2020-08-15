@@ -11,6 +11,7 @@ function updateAll()
     $FK_E_username = mysqli_real_escape_string($GLOBALS['db'], $_POST['FK_E_username']);
     $thumbnail_url = mysqli_real_escape_string($GLOBALS['db'], $_POST['thumbnail_url']);
     $itinerary_url = mysqli_real_escape_string($GLOBALS['db'], $_POST['itenerary']);
+    $allCheck = false;
     if ($TourCode !== "") {
         if ($TourName !== "") {
             if ($category !== "") {
