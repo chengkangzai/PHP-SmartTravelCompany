@@ -1,10 +1,11 @@
 <?php
 include('C_session.php');
 include('config.php');
+include("php_common/renderCustomerWelcome.php");
 session_start();
 
-if ($_SESSION['role']=="Employee") {
-    echo"<script> alert('You seem Lost... Redirecting...'); window.history.go(-1);</script>";
+if ($_SESSION['role'] == "Employee") {
+    header("Location:Login/index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -17,233 +18,150 @@ if ($_SESSION['role']=="Employee") {
     <title>Dashboard -
         <?php echo $login_session ?>
     </title>
+    <!-- Data table START -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
+    <!-- Data table END -->
     <?php
     include_once("php_common/nav.php");
     main_CSSandIcon("0", "1");
     ?>
     <style>
-    body {
-        background-color: black;
-        background-image:
-            radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
-            radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
-            radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
-            radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
-        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-    }
+        body {
+            overflow-x: hidden;
+        }
+
+        .hsbtn {
+            height: 100%;
+            max-height: 605px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #authenticateEditEmployeeProfile {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 40%;
+            top: 40%;
+            width: auto;
+            /* Full width */
+            height: auto;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: whitesmoke;
+        }
     </style>
 
 </head>
 
 <body>
-    <?php
-    include_once("php_common/nav.php");
-    navbar("0");
-    preloader();
-    ?>
-    <div class="row m-3">
-        <!-- Select function -->
-        <div class="list-group col-lg-2">
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showprofile()"
-                id="profile-btn"> Profile </a>
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showManageTrip()"
-                id="manage-trip-btn"> Booked Trip</a>
-            <a class="list-group-item list-group-item-action bg-dark text-white" onclick="showBookTrip()"
-                id="Book-trip-btn"> Book Another Trip</a>
-        </div>
+<?php
+include_once("php_common/nav.php");
+navbar("0");
+preloader();
+?>
+<div class="row ">
+    <!-- Select function -->
+    <div class="list-group col-lg-2 p-3">
+        <div class="row ">
+            <div class="col-lg-10 m-0 pl-3 pr-0" id="sidePanel">
+                <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showFirstPanel()"
+                   id="profile-btn"> Profile </a>
+                <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showSecondPanel()"
+                   id="manage-trip-btn"> View Ongoing Trip</a>
+                <a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showThirdPanel()"
+                   id="update-trip-btn"> Book another Trip</a>
+                <!--<a class="list-group-item list-group-item-action btn btn-primary" href='#' onclick="showForthPanel()" id="delete-trip-btn"> Manage Tour</a>-->
 
-        <!-- Profile -->
-        <div class="col-lg-10 d-none" id="Profile">
-            <?php echo "<h1 class='text-center text-white'>Welcome! $position, $login_session </h1>"; ?>
-            <form action="php_common/edit_customer_profile" method="post">
-                <table class="table table-dark table-striped table-hover table-bordered">
-                    <tr>
-                        <td>User Name</td>
-                        <td><input class="form-control" type="text" value="<?php echo $login_session; ?>"
-                                name="username" hidden> <?php echo $login_session; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Current Password</td>
-                        <td><input type="password" name="chk_password" class="form-control" required
-                                placeholder="Current Password">
-                            <input type="password" name="real_pass" hidden value="<?php echo $password; ?>"></td>
-                    </tr>
-                    <tr>
-                        <td>New Password</td>
-                        <td><input type="password" class="form-control" name="password" value="" 
-                                placeholder="Leave blank if you do not wish to change password"></td>
-                    </tr>
-                    <tr>
-                        <td>Confirm New Password</td>
-                        <td><input type="password" class="form-control" name="C_password" value="" 
-                                placeholder="Leave blank if you do not wish to change password"></td>
-                    </tr>
-                    <tr>
-                        <td>First Name</td>
-                        <td><input type="text" class="form-control" name="FirstName" value="<?php echo $FName; ?>"
-                                required></td>
-                    </tr>
-                    <tr>
-                        <td>Last Name</td>
-                        <td><input type="text" name="LastName" class="form-control" value="<?php echo $LName; ?>"
-                                required></td>
-                    </tr>
-                    <tr>
-                        <td>Phone Number</td>
-                        <td><input type="text" name="phone_num" class="form-control"
-                                value="<?php echo $phone_number ;?>" required></td>
-                    </tr>
-                    <tr>
-                        <td>Passport Number</td>
-                        <td><input type="text" name="Passport" class="form-control" value="<?php echo $Passport; ?>"
-                                required>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="email" name="email" class="form-control" value="<?php echo $Email; ?>"
-                                required></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="text-center mx-auto">
-                            <input type="submit" value="Update" class="btn btn-lg btn-primary">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        <!--Manage Trip -->
-        <div class="col-lg-10 d-none" id="managed-trip">
-
-            <?php
-            //https://www.youtube.com/watch?v=pc0otVM80Sk
-            echo "<h1 class='text-center text-white'>Welcome! $position, $login_session </h1>";
-
-            $query_sql = mysqli_query($db, "SELECT
-                B.Booking_ID ,
-                B.FK_Trip_ID ,
-                B.FK_C_username,
-                Tour.TourCode ,
-                Tour.Name ,
-                T.Departure_date,
-                T.Fee,
-                Tour.itinerary_url
-            FROM Booking B 
-            inner JOIN Trip T on T.Trip_ID=B.FK_Trip_ID
-            INNER JOIN Tour ON T.FK_TourCode=Tour.TourCode
-            where B.FK_C_username='$login_session'");
-
-            echo "<table border='1' class='table table-striped table-dark table-hover '>";
-            echo "    <thead> 
-            <tr>
-               <td>            Booking ID          </td>
-               <td>            Trip ID             </td>
-               <td>            Tour Code           </td>
-               <td>            Tour Name           </td>
-               <td>            Departure Date      </td>
-               <td>            Fee                 </td>
-               <td>            Itinerary           </td>
-           </tr>
-           </thead>";
-
-            while ($row = mysqli_fetch_assoc($query_sql)) {
-                echo "
-           <tr>
-               <td>        {$row['Booking_ID']}            </td>
-               <td>        {$row['FK_Trip_ID']}            </td>
-               <td>        {$row['TourCode']}              </td>
-               <td>        {$row['Name']}                  </td>
-               <td>        {$row['Departure_date']}        </td>
-               <td>RM        {$row['Fee']}.00              </td>
-               <td><a href='{$row['itinerary_url']}'>
-                   <img src='img/itenerary.png' />
-               </a>                                        </td>
-       
-           </tr>";
-            }
-            echo "</table>
-            
-            <h3 class='text-white'> Once booked trip will not be refund, any cancelation must be contact by customer services </h3>";
-
-            ?>
-        </div>
-        <div class="col-lg-10 d-none" id="book-trip">
-            <div class="border border-dark col-11 col-sm-11 col-md-9 col-lg-8 col-xl-8 mx-auto mt-5 jumbotron">
-                <form method="POST" class="form-signin p-2 " action="booking.php">
-                    <h2 class="text-center mb-3">Book Your Trips Now !</h2>
-                    <div>
-                        <div class="form-group row bg-white">
-                            <label for="username" class="col-sm-2 col-form-label">User Name :</label>
-                            <div class="col-sm-10 border-left">
-                                <input type="text" readonly class="form-control-plaintext" id="username" value="
-                        <?php
-                        include_once('C_session.php');
-                        echo $login_session;
-                        if ($login_session == NULL) {
-                            echo (" Employee account detected! Bear in mind this is Booking Page for Customer used only !");
-                        }
-                        ?>
-                        ">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="input-group mb-3">
-                                <select class="custom-select" id="TourCode" name="TourCode">
-                                    <option selected hidden>Choose your Trips</option>
-                                    <?php
-
-                                    $tcode = $_GET['tcode'];
-                                    echo $_GET['tcode'];
-                                    include_once('itenerary.php');
-                                    selecttour($tcode);
-
-
-
-                                    if ($tcode == NULL) {
-                                        include_once('itenerary.php');
-                                        CallTour();
-                                    }
-
-
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="submit" value="Submit !" class="btn btn-lg btn-primary btn-block">
-                </form>
             </div>
-
-        </div>
-        <div class="col-lg-10 d-block pl-0" id="welcome">
-            <div class='embed-responsive embed-responsive-21by9'>
-                <img src='img/E_welcome.jpg' class=' embed-responsive-item' />
+            <div class="col-lg-2 p-0 m-0 ">
+                <a id="hideShowSideBtn" value='hide/show' class="btn btn-primary hsbtn" role="button"
+                   onclick="hideSidePanel()" title="Click to close side panel">
+                </a>
             </div>
-
         </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="col-lg-10" id="contentPanel1">
+        <?php echo $GLOBALS['welcomeText'] ?>
+        <div>
+            <a id="btnToggleProfilePasswordForm" class="btn btn-primary text-white" role="button"
+               onclick="showChangeProfilePasswordForm()">Change Password</a>
+
+            <a id="btnToggleProfileInfoForm" class="btn btn-primary text-white" role="button"
+               onclick="showChangeProfileInfoForm()">Change Profile</a>
+        </div>
+
+        <?php
+        renderChangeProfilePasswordForm();
+        renderChangeProfileInfoForm();
+        ?>
 
     </div>
-    <script src="js/C_welcome.js">
+    <!--Manage Trip -->
+    <div class="col-lg-10" id="contentPanel2">
+        <?php echo $GLOBALS['welcomeText'];
+        renderBookedTripInfo();
+        renderPassBookedTripInfo()
+        ?>
+    </div>
+    <div class="col-lg-10" id="contentPanel3">
+        <?php echo $GLOBALS['welcomeText']; ?>
+        <div id="bookTripContainer">
+        </div>
+    </div>
+    <div class="col-lg-10 pl-0" id="welcome">
+        <div class='embed-responsive embed-responsive-21by9'>
+            <img src='img/E_welcome.jpg' class='embed-responsive-item'/>
+        </div>
+    </div>
+</div>
 
-    </script>
-
-    <script>
-    function dconfirm() {
-        var r = confirm("You are about to delete a record ! \n Are you sure ?");
-        if (r == FALSE) {
-            location.reload();
-        }
-    }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+<!--BOOTSTRAP START -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+</script>
+<!--BOOTSTRAP END -->
+<!-- Data Table START -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.js"></script>
+<!--Data Table END -->
+<script>
+    //Flex with AJAX a bit XD
+    $.ajax({
+        type: "GET",
+        url: "php_common/renderCustomerWelcome.php",
+        data: {
+            type: 'renderBookTripTool'
+        },
+        success: function (response) {
+            $("#bookTripContainer").replaceWith(response);
+        }
+    });
+</script>
+<script src="js/C_welcomeApp.js"></script>
+
 </body>
 
 </html>

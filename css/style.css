@@ -1,7 +1,11 @@
+/*This Style CSS is only for the custom CSS that required in all webpage */
+/*In order to improve efficiency, do not put CSS that required in one or two page*/
+
 /*Pre-load */
 
 
-/* Pre-load is a overlay with the most upper part and when document finish running, Jacasvript will disable the display of this layer */
+/* Pre-load is a overlay with the most upper part and when document finish running, Javascript will disable the display of this layer */
+
 
 .spinner {
     width: 80px;
@@ -22,7 +26,7 @@
 }
 
 @keyframes
-/*Animation */
+    /*Animation */
 
 spin {
     from {
@@ -43,25 +47,5 @@ spin {
     z-index: 99999999999;
 }
 
-.glass {
-    background-color: rgba(255, 255, 255, 0.7)
-}
 
-.box {
-    top: 30%;
-    bottom: 30%;
-    left: 5%;
-    position: absolute;
-    padding: 1%;
-}
-
-
-/* Glass effect  */
-
-.glass {
-    color: black;
-    display: block;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 1%;
-}
 
