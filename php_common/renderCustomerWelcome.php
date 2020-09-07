@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-include("config.php");
-include("nav.php");
-include("../C_session.php");
-include("../itenerary.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."C_session.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."itenerary.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."nav.php");
 $welcomeText = "<h1 class='text-center welcomeText' >Welcome! $GLOBALS[login_session] </h1>";
 $type = $_GET['type'];
 
@@ -53,7 +53,7 @@ function renderChangeProfilePasswordForm()
 
 function renderChangeProfileInfoForm()
 {
-    include_once("edit_employee_profile.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."edit_employee_profile.php");
     $username = $GLOBALS['login_session'];
     $FName = $GLOBALS['FName'];
     $LName = $GLOBALS['LName'];

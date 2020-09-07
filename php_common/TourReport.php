@@ -1,5 +1,5 @@
 <?php
-include("../config");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
 $type = $_GET['type'];
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
@@ -31,9 +31,9 @@ function returnDataForMorris()
     while ($row = mysqli_fetch_array($result)) {
         $data .= "
         {
-            Price: '{$row["Total"]}',
-            Tour: '{$row["Name"]}',
-            Tcode:'{$row["TourCode"]}'
+            Price: `{$row["Total"]}`,
+            Tour: `{$row["Name"]}`,
+            Tcode:`{$row["TourCode"]}`,
         },";
     }
     return $data;
@@ -43,16 +43,16 @@ function getMorris()
 {
     $data = returnDataForMorris();
     $dom .= "
-    <script id='MorrisBar'>
+    <script>
     mobar();
     function mobar(){
         new Morris.Bar({
             //https://morrisjs.github.io/morris.js/bars.html 
-            element: 'TourReportInBar', 
-            data: [$data], 
-            ['Tcode'], 
-            ykeys: ['Price'], 
-            labels: ['Price'],
+            'element': 'TourReportInBar', 
+            data: [$data],
+            'xkeys': ['Tcode'], 
+            'ykeys': ['Price'], 
+            'labels': ['Price'],
         })
     }
 

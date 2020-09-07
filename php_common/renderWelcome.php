@@ -1,8 +1,8 @@
 <?php
 session_start();
-include("../session.php");
-include("../config.php");
-include("nav.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."session.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."nav.php");
 $welcomeText = "<h1 class='text-center welcomeText' >Welcome! $GLOBALS[position], $GLOBALS[login_session] </h1>";
 //Profile Section STARTED
 function renderChangeProfilePasswordForm()
@@ -17,7 +17,7 @@ function renderChangeProfilePasswordForm()
 
 function renderChangeProfileInfoForm()
 {
-    include_once("edit_employee_profile.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."edit_employee_profile.php");
     $username = $GLOBALS['login_session'];
     $FName = $GLOBALS['FName'];
     $LName = $GLOBALS['LName'];
@@ -106,8 +106,8 @@ function renderTripManagement()
 
 function renderTripManagementForm()
 {
-    include("list_all_flight.php");
-    include("list_all_Tour.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."list_all_flight.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."list_all_Tour.php");
     $airline = returnListAllFlight();
     $tourCode = returnAllTourName();
     $dom = " 
@@ -155,7 +155,7 @@ function renderTourManagement()
 
 function renderTourManagementForm()
 {
-    include_once("add_tour_tourdes.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."add_tour_tourdes.php");
     $destination = returnDestinationSelection();
     $Category = returnCategorySelection();
     $dom = "<form action='php_common/add_tour_tourdes.php?type=addTourAndTourDes' method='post' enctype='multipart/form-data' id='addTourForm'>
@@ -303,7 +303,7 @@ function renderTourReportInTable()
 
 function renderTourReportInBar()
 {
-    include_once('TourReport.php');
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/".'TourReport.php');
     $dom = returnTourReportInBar();
     echo $dom;
 }

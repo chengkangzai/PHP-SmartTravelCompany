@@ -1,5 +1,5 @@
 <?php
-include("../config.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
 $type = $_POST['type'];
 
 if ($type == "update") {

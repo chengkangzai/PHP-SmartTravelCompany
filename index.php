@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php
-    include_once("php_common/nav.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/test/php-assignment/php_common/" . "nav.php");
     main_CSSandIcon("0", "1");
     ?>
     <title>Smart Travel and Tour Agency </title>
@@ -62,7 +62,7 @@ session_start();
             <a href="About_us.php" class="btn btn-lg btn-outline-dark" title="About Us">About Us</a>
             <a href="bot/index.php" class="btn btn-lg btn-outline-dark" title="BOT">BOT</a>
             <?php
-            include("php_common/host.php");
+            include_once($_SERVER['DOCUMENT_ROOT'] . "/test/php-assignment/php_common/" . "host.php");
             if ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Employee") {
                 echo "<a class='btn btn-lg btn-outline-dark' href='$host/welcome'>Dashboard</a>";
             } elseif ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Customer") {

@@ -1,6 +1,6 @@
 <?php
 $type = $_GET['type'];
-include("../config.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
 
 function addTourAndTourDes()
 {

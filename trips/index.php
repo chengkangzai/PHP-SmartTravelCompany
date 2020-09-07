@@ -1,5 +1,5 @@
 <?php
-include("../config.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/test/php-assignment/php_common/" . "nav.php");
 session_start();
 ?>
 
@@ -33,16 +33,14 @@ session_start();
         }
     </style>
     <?php
-    include_once("../php_common/nav.php");
-    main_CSSandIcon("1", "1");
+        main_CSSandIcon("1", "1");
     ?>
 </head>
 
 <body class="bg-secondary">
 <?php
-include_once("../php_common/nav.php");
 navbar("1");
-preloader();
+// preloader();
 
 ?>
 <iframe width="100%" height="0" frameBorder="0" src="https://botmake.io/tour-chat?preview=yes"></iframe>
@@ -74,8 +72,7 @@ preloader();
 <div class="jumbotron col-lg-10 mx-auto">
     <div class="row">
         <?php
-        include_once("../php_common/nav.php");
-        include_once("../config.php");
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/test/php-assignment/" . "config.php");
         $type = $_GET['type'];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $Tour_Code = mysqli_real_escape_string($db, $_POST['TourCode']);
@@ -145,23 +142,6 @@ preloader();
                     break;
             }
         }
-
-        //TODO
-        //1.Identify type of search
-        //2.Get the Tour Code of that parameter
-        //3.Pass the Tour Code to trip_info(//TourCode Here)
-
-        //How it works now
-        //1. Identify how user open the page
-        //1.1 if its open by "POST" -->  2.0
-        //1.2 If its not open by "POST" --> Call All Tour
-        //2.0 Identify if
-
-        //What is Trip INFO or card maker
-        //Render the card (Image, Tour Code, Category, Highlight..)
-
-        //What is Call All Tour ?
-        //Render all Tour and send it to Trip info (card maker)
         ?>
     </div>
 </div>

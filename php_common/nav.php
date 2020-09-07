@@ -2,7 +2,7 @@
 session_start();
 function navbar()
 {
-    include('host.php');
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."host.php");
     $dom = "";
     if ($_SESSION['login_user'] !== NULL && $_SESSION['role'] == "Employee") {
         //User Logged in
@@ -111,27 +111,26 @@ function navbar()
 }
 
 
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
 function CallAllTour()
 {
-    include("../config.php");
     $sql = "SELECT TourCode FROM Tour";
-    $sql_query = mysqli_query($db, $sql);
+    $sql_query = mysqli_query($GLOBALS['db'], $sql);
 
     while ($row = mysqli_fetch_assoc($sql_query)) {
         $TourCode = $row['TourCode'];
         trip_info($TourCode);
     }
-    mysqli_close($db);
 }
 
 function trip_info($tour_code)
 {
-    include('../config.php');
+    
     $itenerary_sql = "SELECT T.TourCode,T.Name,T.Destination,T.itinerary_url,T.thumbnail_url,td.Point_1,td.Point_2,td.Point_3,td.Point_4,td.Des_1,td.Des_2,td.Des_3,td.Des_4
             FROM Tour T INNER JOIN Tour_des td on td.FK_TourCode=T.TourCode
-            Where T.TourCode='$tour_code'";
-    // Query it --> Its for all
-    $itenerary_query = mysqli_query($db, $itenerary_sql);
+            Where T.TourCode='$tour_code' LIMIT 1";
+    // Query it --> Its for all 
+    $itenerary_query = mysqli_query($GLOBALS['db'], $itenerary_sql);
     $itenerary_row = mysqli_fetch_array($itenerary_query, MYSQLI_ASSOC);
     $count = mysqli_num_rows($itenerary_query);
 
@@ -202,7 +201,6 @@ function trip_info($tour_code)
     } else {
         echo "<h3>No Tour Found <br> Please Type valid Tour Code</h3>";
     }
-    mysqli_close($db);
 }
 
 function preloader()

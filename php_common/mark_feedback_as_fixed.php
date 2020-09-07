@@ -1,6 +1,6 @@
 <?php
-include("../config.php");
-include("../session.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."session.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($position == "Manager" || $position == "Assistant Manager") {
         $id = mysqli_real_escape_string($db, $_POST['id']);

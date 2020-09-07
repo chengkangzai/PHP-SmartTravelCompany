@@ -1,7 +1,7 @@
 <?php
-include_once("../config.php");
-include_once("../session.php");
-include_once("nav.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."session.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."nav.php");
 session_start();
 $type = $_GET['type'];
 $role = $_SESSION['role'];

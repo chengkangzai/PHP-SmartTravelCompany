@@ -1,8 +1,8 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    include_once("../config.php");
-    include_once("nav.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."session.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."nav.php");
 
     $departure_date = mysqli_real_escape_string($db, $_POST['departure_date']);
     $newDate = date("Y-m-d", strtotime($departure_date));

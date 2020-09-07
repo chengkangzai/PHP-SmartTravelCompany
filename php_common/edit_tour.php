@@ -1,6 +1,6 @@
 <?php
-include_once("../config.php");
-include("nav.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
+include($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/php_common/"."nav.php");
 $type = $_GET['type'];
 function updateAll()
 {

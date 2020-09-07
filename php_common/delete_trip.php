@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    include_once("../config.php");
+    include_once($_SERVER['DOCUMENT_ROOT']."/test/php-assignment/"."config.php");
     $Trip_ID = mysqli_real_escape_string($db, $_POST['Trip_ID']);
     $sql = "SELECT COUNT(Booking_ID) AS Count from Booking WHERE `FK_Trip_ID`=$Trip_ID";
     $query = mysqli_query($db, $sql);
